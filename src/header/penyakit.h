@@ -1,3 +1,6 @@
+#ifndef PENYAKIT_H
+#define PENYAKIT_H
+
 typedef struct{
     int id;
     char nama_penyakit[20];
@@ -22,3 +25,5 @@ typedef struct{
     int trombosit_min;
     int trombosit_max;
 } Penyakit;
+
+#endif
