@@ -1,0 +1,18 @@
+typedef struct{
+    int id;
+    char username[20];
+    char password[20];
+    char role[20];
+    char riwayat_penyakit[20];
+    float suhu_tubuh;
+    int tekanan_darah_sistolik;
+    int tekanan_darah_diastolik;
+    int detak_jantung;
+    float saturasi_oksigen;
+    int kadar_gula_darah;
+    float berat_badan;
+    int tinggi_badan;
+    int kadar_kolesterol;
+    int kadar_kolesterol_ldl;
+    int trombosit;
+} User;
