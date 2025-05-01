@@ -1,3 +1,6 @@
+#ifndef USER_H
+#define USER_H
+
 typedef struct{
     int id;
     char username[20];
@@ -16,3 +19,5 @@ typedef struct{
     int kadar_kolesterol_ldl;
     int trombosit;
 } User;
+
+#endif
