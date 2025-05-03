@@ -3,6 +3,6 @@
 #include "user.h"
 #include <stdio.h>
 
-void logout();
+void logout(int * loginState, int * loginId);
 
 #endif
