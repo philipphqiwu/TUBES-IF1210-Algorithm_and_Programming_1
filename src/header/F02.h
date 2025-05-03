@@ -1,8 +1,9 @@
 #ifndef F02_H
 #define F02_H
 #include "user.h"
+#include "listdinuser.h"
 #include <stdio.h>
 
-void registerPasien();
+void registerPasien(ListDinUser * UserData);
 
 #endif

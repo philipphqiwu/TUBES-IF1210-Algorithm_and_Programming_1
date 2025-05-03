@@ -1,6 +1,6 @@
 #include "../header/F01.h"
 
-void login(){
+void login(int * loginState, int * loginId){
     return;
 }
 

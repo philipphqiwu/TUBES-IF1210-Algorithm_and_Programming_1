@@ -3,6 +3,6 @@
 #include "user.h"
 #include <stdio.h>
 
-void login();
+void login(int * loginState, int * loginId);
 
 #endif

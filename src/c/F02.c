@@ -1,5 +1,5 @@
 #include "../header/F02.h"
 
-void registerPasien(){
+void registerPasien(ListDinUser * UserData){
     return;
 }
