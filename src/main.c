@@ -6,6 +6,8 @@
 #include "header/penyakit.h"
 #include "header/obat_penyakit.h"
 #include "header/input.h"
+#include "header/listdinuser.h"
+#include "header/parse_user.h"
 #include "header/F01.h"
 #include "header/F02.h"
 #include "header/F03.h"
@@ -20,8 +22,15 @@ int main() {
     2 : logged in as doctor
     3 : logged in as patient
     */
+    int loginId = -1; // logged in dengan id berapa
+    ListDinUser UserData;
+    CreateListDinUser(&UserData, 100);
+    parseUserData(&UserData); // Membaca Data Awal dari ../data/user.csv
+    printf("Jumlah user: %d\n", UserData.nEff);
+    printList(UserData);
+
     while(1){
-        input(&loginState);
+        input(&loginState, &loginId, &UserData);
     }
     
     return 0;
