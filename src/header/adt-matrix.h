@@ -1,0 +1,21 @@
+#ifndef MATRIX_H
+#define MATRIX_H
+#include <stdio.h>
+
+#define MAX_NAME_LENGTH 20
+
+typedef struct{
+    int kapasitas;
+    char dokter[MAX_NAME_LENGTH+1];
+    char *pasien[];
+} KontenDenah;
+
+typedef struct{
+    KontenDenah **ruang;
+} MatriksDenah;
+
+void initializeMatriks(MatriksDenah *denah, int rows, int cols);
+// I.S. matriks bertipe MatriksDenah (sembarang) terdefinisi, rows dan cols terdefinisi
+// F.S. matriks berbentuk array 2D dengan ukuran rows x cols
+
+#endif
