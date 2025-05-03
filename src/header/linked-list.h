@@ -9,6 +9,9 @@ typedef struct {
     Node* next;
 } Node;
 
+Node* createNode(int data);
+// menginisialisasi linked list
+
 void insertHead(Node** headPointer, ElType data);
 // I.S. headPointer terdefinisi (sembarang), data terdefinisi
 // F.S. headPointer menunjuk ke data pertama

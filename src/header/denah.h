@@ -1,5 +1,5 @@
-#ifndef MATRIX_H
-#define MATRIX_H
+#ifndef DENAH_H
+#define DENAH_H
 #include <stdio.h>
 
 #define MAX_NAME_LENGTH 20
