@@ -1,5 +1,8 @@
 #ifndef USER_H
 #define USER_H
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 typedef struct{
     int id;
@@ -19,5 +22,7 @@ typedef struct{
     int kadar_kolesterol_ldl;
     int trombosit;
 } User;
+
+void printUser(User user);
 
 #endif
