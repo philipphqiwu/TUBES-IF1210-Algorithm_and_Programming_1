@@ -15,13 +15,13 @@ void login(int * loginState, int * loginId, ListDinUser UserData){
         printf("Password yang dimasukkan salah!");
     } else{
         *loginId = idxUsername+1;
-        if(strcmp(UserData.buffer[idxUsername].role,"manager")){
+        if(strcmp(UserData.buffer[idxUsername].role,"manager") == 0){
             printf("Halo Manager %s\n", Username);
             *loginState = 1;
-        } else if(strcmp(UserData.buffer[idxUsername].role,"dokter")){
+        } else if(strcmp(UserData.buffer[idxUsername].role,"dokter") == 0){
             printf("Halo Dokter %s\n", Username);
             *loginState = 2;
-        } else if(strcmp(UserData.buffer[idxUsername].role,"pasien")){
+        } else if(strcmp(UserData.buffer[idxUsername].role,"pasien") == 0){
             printf("Halo %s! Ada keluhan apa?\n", Username);
             *loginState = 3;
         }

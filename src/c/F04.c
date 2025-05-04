@@ -15,7 +15,7 @@ void lupaPassword(ListDinUser * UserData){
     } else{
         char RLEUsername[20];
         int RLEidx = 0;
-        for(int i = 0; i < sizeof(KodeUnik); i++){
+        for(int i = 0; i < strlen(KodeUnik); i++){
             if((int) KodeUnik[i] >= 50 && (int) KodeUnik[i] <= 57){
                 for(int j = 0; j < (int) KodeUnik[i] - 48; j++){
                     RLEUsername[RLEidx] = KodeUnik[i+1];
