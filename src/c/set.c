@@ -62,6 +62,6 @@ void setDelete(Set *s, ElType data){
     }
 }
 
-int setSize(Set *s){
-
+int setGetSize(Set *s){
+    return s->nEff;
 }

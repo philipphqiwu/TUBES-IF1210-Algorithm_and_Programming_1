@@ -1,20 +1,20 @@
 #include <stdlib.h>
 #include "linked-list.h"
 
-Node* createNode(int data) {
+Node* createLinked(int data) {
     Node* newNode = (struct Node*)malloc(sizeof(Node));
     newNode->data = data;
     newNode->next = NULL;
     return newNode;
 }
 
-void insertHead(Node** headPointer, ElType data){
+void linkedInsertHead(Node** headPointer, ElType data){
     Node* newNode = createNode(data);
     newNode->next = *headPointer;
     *headPointer = newNode;
 }
 
-void insertAt(Node** headPointer, int position, ElType data){
+void linkedInsertAt(Node** headPointer, int position, ElType data){
     Node* newNode = createNode(data);
     if(position == 0){
         insertHead(headPointer, data);
@@ -35,7 +35,7 @@ void insertAt(Node** headPointer, int position, ElType data){
     }
 }
 
-void deleteAt(Node** headPointer, int position){
+void linkedDeleteAt(Node** headPointer, int position){
     if(*headPointer == NULL){
         printf("Data kosong.\n");
     }

@@ -13,29 +13,29 @@ typedef struct {
     int capacity;
 } Set;
 
-void createSet(Set *s, int capacity);
 // I.S. s dan capacity terdefinisi
 // F.S. Set s terbentuk dengan kapasitas capacity dan dapat diisi
+void createSet(Set *s, int capacity);
 
-void freeSet(Set *s);
 // I.S. s terdefinisi
 // F.S. kapaistas Set s menjadi 0 (tidak dapat diisi)
+void freeSet(Set *s);
 
+// mengecek apakah set memiliki elemen bernilai data. Mengembalikan 1 jika ada, 0 jika tidak.
 int setContain(Set *s, ElType data);
-// mengecek apakah set memiliki elemen bernilai data. Mengembalikan 1 jika ada, 0 jika tidak. 
 
-void setInsert(Set *s, ElType data);
 // I.S. data dan s terdefinisi
 // F.S. data terdapat dalam set
+void setInsert(Set *s, ElType data);
 
-void setDelete(Set *s, ElType data);
 // I.S. data dan s terdefinisi, ada data dalam set
 // F.S. data hilang dari set
+void setDelete(Set *s, ElType data);
 
-int setSize(Set *s);
 // mengembalikan banyak elemen dalam set
+int setGetSize(Set *s);
 
+// mengecek apakah set memiliki elemen bernilai data. Mengembalikan 1 jika ada, 0 jika tidak.
 int setContain(Set *s, ElType data);
-// mengecek apakah set memiliki elemen bernilai data. Mengembalikan 1 jika ada, 0 jika tidak. 
 
 #endif
