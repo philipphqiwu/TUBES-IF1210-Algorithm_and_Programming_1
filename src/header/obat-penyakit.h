@@ -1,5 +1,5 @@
-#ifndef OBATPENYAKIT_H
-#define OBATPENYAKIT_H
+#ifndef OBAT_PENYAKIT_H
+#define OBAT_PENYAKIT_H
 
 typedef struct{
     int obat_id;
