@@ -11,11 +11,11 @@ void input(int * loginState, int * loginId, ListDinUser * UserData){
     scanf("%s", user_input);
     if(*loginState == 0){
         if(strcmp(user_input,"LOGIN") == 0){
-            login(loginState, loginId);
+            login(loginState, loginId, *UserData);
         } else if(strcmp(user_input,"REGISTER") == 0){
             registerPasien(UserData);
         } else if(strcmp(user_input,"LUPA_PASSWORD") == 0){
-            lupaPassword();
+            lupaPassword(UserData);
         }
     }
     if(strcmp(user_input,"LOGOUT") == 0){
