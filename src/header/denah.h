@@ -12,10 +12,15 @@ typedef struct{
 
 typedef struct{
     KontenDenah **ruang;
+    int rows;
+    int cols;
 } MatriksDenah;
 
-void initializeMatriks(MatriksDenah *denah, int rows, int cols);
 // I.S. matriks bertipe MatriksDenah (sembarang) terdefinisi, rows dan cols terdefinisi
 // F.S. matriks berbentuk array 2D dengan ukuran rows x cols
+void initializeMatriks(MatriksDenah *denah, int rows, int cols);
+
+// mengembalikan banyak ruangan pada denah
+int denahSize(MatriksDenah *denah);
 
 #endif
