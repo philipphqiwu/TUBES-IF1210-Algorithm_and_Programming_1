@@ -5,10 +5,10 @@
 
 #define MAX_NAME_LENGTH 20
 
-typedef char* ElType;
+typedef char SetElType[20];
 
 typedef struct {
-    ElType *data;
+    SetElType *data;
     int nEff;
     int capacity;
 } Set;
@@ -22,20 +22,20 @@ void createSet(Set *s, int capacity);
 void freeSet(Set *s);
 
 // mengecek apakah set memiliki elemen bernilai data. Mengembalikan 1 jika ada, 0 jika tidak.
-int setContain(Set *s, ElType data);
+int setContain(Set *s, SetElType data);
 
 // I.S. data dan s terdefinisi
 // F.S. data terdapat dalam set
-void setInsert(Set *s, ElType data);
+void setInsert(Set *s, SetElType data);
 
 // I.S. data dan s terdefinisi, ada data dalam set
 // F.S. data hilang dari set
-void setDelete(Set *s, ElType data);
+void setDelete(Set *s, SetElType data);
 
 // mengembalikan banyak elemen dalam set
 int setGetSize(Set *s);
 
 // mengecek apakah set memiliki elemen bernilai data. Mengembalikan 1 jika ada, 0 jika tidak.
-int setContain(Set *s, ElType data);
+int setContain(Set *s, SetElType data);
 
 #endif
