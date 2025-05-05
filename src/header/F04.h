@@ -2,7 +2,9 @@
 #define F04_H
 #include "user.h"
 #include <stdio.h>
+#include <string.h>
+#include "listdinuser.h"
 
-void lupaPassword();
+void lupaPassword(ListDinUser * UserData);
 
 #endif

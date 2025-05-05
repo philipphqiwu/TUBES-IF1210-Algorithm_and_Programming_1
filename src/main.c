@@ -4,10 +4,10 @@
 #include "header/user.h"
 #include "header/obat.h"
 #include "header/penyakit.h"
-#include "header/obat_penyakit.h"
+#include "header/obat-penyakit.h"
 #include "header/input.h"
 #include "header/listdinuser.h"
-#include "header/parse_user.h"
+#include "header/parse-user.h"
 #include "header/F01.h"
 #include "header/F02.h"
 #include "header/F03.h"
@@ -31,6 +31,8 @@ int main() {
 
     while(1){
         input(&loginState, &loginId, &UserData);
+        printf("id: %d login: %d\n",loginId,loginState);
+        printList(UserData);
     }
     
     return 0;
