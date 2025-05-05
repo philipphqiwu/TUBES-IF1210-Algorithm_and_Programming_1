@@ -22,19 +22,19 @@ void lupaPassword(ListDinUser * UserData){
                     RLEidx++;
                 }
                 i++;
-
             } else{
                 RLEUsername[RLEidx] = KodeUnik[i];
                 RLEidx++;
             }
         }
+        RLEUsername[RLEidx] = '\0';
 
-        if(strcmp(Username,RLEUsername)==0){
-            if(strcmp(UserData->buffer[idxUsername].role,"manager")){
+        if(strcmp(to_lower(Username),to_lower(RLEUsername))==0){
+            if(strcmp(UserData->buffer[idxUsername].role,"manager") == 0){
                 printf("Halo Manager %s\n", Username);
-            } else if(strcmp(UserData->buffer[idxUsername].role,"dokter")){
+            } else if(strcmp(UserData->buffer[idxUsername].role,"dokter") == 0){
                 printf("Halo Dokter %s\n", Username);
-            } else if(strcmp(UserData->buffer[idxUsername].role,"pasien")){
+            } else if(strcmp(UserData->buffer[idxUsername].role,"pasien") == 0){
                 printf("Halo %s! Ada keluhan apa?\n", Username);
             }
             printf("Password Baru: ");

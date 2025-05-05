@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "listdinuser.h"
+#include "to-lower.h"
 
 void lupaPassword(ListDinUser * UserData);
 
