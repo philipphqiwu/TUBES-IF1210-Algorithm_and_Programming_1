@@ -1,53 +1,89 @@
 #include <stdio.h>
+#include "config.h"
 #include "../header/F06.h"
 
+char ruangan[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
+                    'K', 'L', 'M', 'N', 'O', 'P','Q', 'R','S','T','U'
+                    ,'V', 'W', 'X','Y','Z'};
+void LIHAT_DENAH(Config rumahsakit) {
 
-void LIHAT_DENAH() {
-    // Rows dan cols akan menggunakan parse_config
-    printf("      ");                      
-    for (int c = 1; c <= cols; c++) {
-        printf("%-5d", c);               
+    printf("    ");
+    for(int j = 0; j < rumahsakit.roomCol; j++) {
+        printf("  %d  ", j+1);
     }
     printf("\n");
 
     printf("   +");
-    for (int c = 1; c <= cols; c++) {
+    for(int j = 0; j < rumahsakit.roomCol; j++) {
         printf("-----+");
     }
     printf("\n");
 
-    for (int r = 0; r < rows; r++) {
-        char rowLabel = 'A' + r;         
-  
-        printf(" %c |", rowLabel);
-        for (int c = 1; c <= cols; c++) {
 
-            printf(" %c%d  |", rowLabel, c);
+    for(int i = 0; i < rumahsakit.roomRow; i++) {
+
+        printf(" %c |", ruangan[i]);
+        for(int j = 0; j < col; j++) {
+             printf(" %c%-2d |", ruangan[i], j+1); 
         }
         printf("\n");
+
+
         printf("   +");
-        for (int c = 1; c <= cols; c++) {
+        for(int j = 0; j < rumahsakit.roomCol; j++) {
             printf("-----+");
         }
         printf("\n");
-    }
+        }
 }
-void LIHAT_RUANGAN(char koderuangan[2]){
-    printf("--- Detail Ruangan %s ---\n", koderuangan);
-    printf("            : %d\n", kapasistas);
-    if (namadokter == NULL){
-        printf("            : -\n");
-    }
-    else{
-        printf("            : %s\n" namadokter);
-    }
-    printf("Pasien di dalam ruangan:\n");
-    if (banyakpasien == 0){
-        printf("   Tidak ada pasien di dalam ruangan saat ini.\n");
-    }
-    else{
-        for(int i = 0; i < banyakpasien; i++){
-            printf("    %d. %s\n", i, pasien[i]);
+
+void LIHAT_RUANGAN(char koderuangan[2]) { 
+  
+    int baris = -1, kolom = -1;
+    
+    char huruf = koderuangan[0];
+    for (int i = 0; i < rumahsakit.roomRow; i++) {
+        if (ruangan[i] == huruf) {
+            baris = i;
+            break;
         }
     }
+    
+    kolom = atoi(koderuangan + 1) - 1;
+    
+    if (baris == -1 || kolom < 0 || kolom >= rumahsakit.roomCol) {
+        printf("Ruangan tidak ditemukan!\n");
+        return;
+    }
+    
+    int indeks = baris * rumahsakit.roomCol + kolom;
+    
+    printf("--- Detail Ruangan %s ---\n", koderuangan);
+    printf("Kapasitas  : %d\n", rumahsakit.roomCapacity);
+    
+    int id_dokter = rumahsakit.room[indeks][0];
+    if (id_dokter == 0) { 
+        printf("Dokter     : -\n");
+    } else {
+        const char* nama_dokter = cari_nama_dokter(id_dokter); // contoh saja
+        printf("Dokter     : %s\n", nama_dokter ? nama_dokter : "-");
+    }
+    // asumsikan ada fungsi cari nama dokter dan cari nama pasien
+    printf("Pasien di dalam ruangan:\n");
+    int pasien_count = 0;
+    for (int i = 1; i <= rumahsakit.roomCapacity; i++) { 
+        int id_pasien = rumahsakit.room[indeks][i];
+        if (id_pasien != 0) { 
+            const char* nama_pasien = cari_nama_pasien(id_pasien);
+            if (nama_pasien) {
+                printf("  %d. %s\n", ++pasien_count, nama_pasien);
+            }
+        }
+    }
+    
+    if (pasien_count == 0) {
+        printf("  Tidak ada pasien di dalam ruangan saat ini.\n");
+    }
+    
+    printf("------------------------------\n");
 }
