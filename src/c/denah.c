@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "denah.h"
+#include "../header/denah.h"
 
 void initializeMatriks(MatriksDenah *denah, int rows, int cols){
     denah->ruang = (KontenDenah **)malloc(rows * sizeof(KontenDenah *));
