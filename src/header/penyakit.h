@@ -1,5 +1,8 @@
 #ifndef PENYAKIT_H
 #define PENYAKIT_H
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 typedef struct{
     int id;
@@ -25,5 +28,17 @@ typedef struct{
     int trombosit_min;
     int trombosit_max;
 } Penyakit;
+
+typedef struct{
+    Penyakit *items;
+    int nEff;
+    int capacity;
+} ListPenyakit;
+
+void createListPenyakit(ListPenyakit *list, int capacity);
+
+void printListPenyakit(ListPenyakit list);
+
+void insertPenyakit(ListPenyakit *list, Penyakit item);
 
 #endif
