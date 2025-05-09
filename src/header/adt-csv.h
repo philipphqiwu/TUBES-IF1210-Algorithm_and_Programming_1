@@ -7,8 +7,6 @@ typedef struct{
     char nama_obat[20]; 
 } Obat;
 
-#endif
-
 typedef struct{
     int obat_id;
     int penyakit_id;
@@ -35,3 +33,5 @@ typedef struct{
     int trombosit_min;
     int trombosit_max;
 } Penyakit;
+
+#endif
