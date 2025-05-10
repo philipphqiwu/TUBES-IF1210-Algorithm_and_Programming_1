@@ -24,14 +24,21 @@ int main() {
     */
     int loginId = -1; // logged in dengan id berapa
     int run = 1;
-    ListDinUser UserData;
-    CreateListDinUser(&UserData, 100);
-    parseUserData(&UserData); // Membaca Data Awal dari ../data/user.csv
-    printf("Jumlah user: %d\n", UserData.nEff);
-    printList(UserData);
+    ListDinUser listUser;
+    CreateListDinUser(&listUser, 100);
+    ListObat listObat;
+    createListObat(&listObat, 100);
+    ListPenyakit listPenyakit;
+    createListPenyakit(&listPenyakit, 100);
+
+    initializeProgram(&listUser, &listObat, &listPenyakit);
+
+    // parseUserData(&listUser); // Membaca Data Awal dari ../data/user.csv
+    printf("Jumlah user: %d\n", listUser.nEff);
+    printList(listUser);
 
     while(run){
-        input(&loginState, &loginId, &UserData, &run);
+        input(&loginState, &loginId, &listUser, &run);
         //printf("id: %d login: %d\n",loginId,loginState);
         //printList(UserData);
     }
