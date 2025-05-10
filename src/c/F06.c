@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "../header/config.h"
 #include "../header/user.h"
-
 #include "../header/F06.h"
 
 char ruangan[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
