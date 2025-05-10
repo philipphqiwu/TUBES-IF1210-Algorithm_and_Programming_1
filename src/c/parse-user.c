@@ -20,7 +20,7 @@ void parseUserData(ListDinUser * UserData){
     while ((c = fgetc(file)) != EOF && c != '\n');
 
     while ((c = fgetc(file)) != EOF) {
-        if (c == ',' || c == '\n') {
+        if (c == ';' || c == '\n') {
             buffer[bufIdx] = '\0';
 
             switch (field) {
