@@ -11,8 +11,7 @@ typedef struct{
 
 typedef struct{
     Obat *items;
-    int indeksEmpty;
-    int size;
+    int nEff;
     int capacity;
 } ListObat;
 
@@ -21,29 +20,25 @@ void createListObat(ListObat *list, int capacity);
 // I.S. list terdefinisi dan sembarang, capacity terdefinisi
 // F.S. Memori untuk list sudah teralokasikan, list.size bernilai 0, list.capacity bernilai capacity
 
-// Mengupdate indeksEmpty pada indeks pertama ditemukan yang terisi NULL
-void updateIndeksEmptyListObat(ListObat *list);
-// I.S. list terdefinisi
-// F.S. list.indeksEmpty terupdate menjadi nilai berupa indeks yang pertama memiliki nilai NULL
+// Mencetak list obat
+void printListObat(ListObat list);
+// I.S. l boleh kosong
+// F.S. Jika l tidak kosong: print
 
-// Meningkatkan kapasitas list sebanyak 2 kalinya
-void increaseCapacityListObat(ListObat *list);
-// I.S. list terdefinisi
-// F.S. memory tambahan teralokasi untuk list dan list.capacity = 2*list.capacity sebelumnya
+// Menambahkan data obat di indeks terakhir, digunakan untuk obat tanpa id
+void insertObat(ListObat *list, Obat item);
+// I.S. list dan item terdefinisi. item.obat_id tidak bernilai (NULL)
+// F.S. list[nEff] terisi dengan data pada item dan nEff diinkremen 1
 
-// Menambahkan data obat pada indeks sesuai id
-void insertObatByID(ListObat *list, int id, Obat item);
-// I.S. list, id, dan item terdefinisi. list.items[id] bernilai NULL (kosong)
-// F.S. list.items[id] terisi dengan data pada item
+// Menambahkan data obat berdasarkan id
+void insertObatByID(ListObat *list, Obat item);
+// I.S. list dan item terdefinisi. item.obat_id bernilai dan dapat menjadi indeks yang valid
+// F.S. list[item.obat_id] terisi dengan data pada item
+//      jika item.obat_id >= l.nEff, maka l.nEff = item.obat_id + 1
 
-// Menghapus data obat pada indeks sesuai id
-void deleteObat(ListObat *list, int id);
-// I.S. list terdefinisi, list.items[id] tidak berniali NULL
-// F.S. list.items[id] bernilai NULL
-
-// Mengembalikan memori yang telah dialokasikan (digunakan saat list sudah tidak dipakai)
+// Mendealokasikan memori list obat
 void freeListObat(ListObat *list);
-// I.S. list terdefinisi
-// F.S. Memori untuk list terdealokasikan, list.size dan list.capacity bernilai 0
+// I.S. list terdefinisi dan sembarang
+// F.S. Memori dalam list terdealokasi, list.nEff dan list.capacity bernilai 0
 
 #endif
