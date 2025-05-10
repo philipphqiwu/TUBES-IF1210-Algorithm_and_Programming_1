@@ -22,13 +22,23 @@ void createListObat(ListObat *list, int capacity);
 
 // Mencetak list obat
 void printListObat(ListObat list);
-/* I.S. l boleh kosong */
-/* F.S. Jika l tidak kosong: print */
+// I.S. l boleh kosong
+// F.S. Jika l tidak kosong: print
 
-
-// Menambahkan data obat di indeks terakhir
+// Menambahkan data obat di indeks terakhir, digunakan untuk obat tanpa id
 void insertObat(ListObat *list, Obat item);
-// I.S. list dan item terdefinisi.
+// I.S. list dan item terdefinisi. item.obat_id tidak bernilai (NULL)
 // F.S. list[nEff] terisi dengan data pada item dan nEff diinkremen 1
+
+// Menambahkan data obat berdasarkan id
+void insertObatByID(ListObat *list, Obat item);
+// I.S. list dan item terdefinisi. item.obat_id bernilai dan dapat menjadi indeks yang valid
+// F.S. list[item.obat_id] terisi dengan data pada item
+//      jika item.obat_id >= l.nEff, maka l.nEff = item.obat_id + 1
+
+// Mendealokasikan memori list obat
+void freeListObat(ListObat *list);
+// I.S. list terdefinisi dan sembarang
+// F.S. Memori dalam list terdealokasi, list.nEff dan list.capacity bernilai 0
 
 #endif

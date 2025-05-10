@@ -35,10 +35,30 @@ typedef struct{
     int capacity;
 } ListPenyakit;
 
+// Menginisialisasi list penyakit dengan mengalokasikan memori secara dinamis
 void createListPenyakit(ListPenyakit *list, int capacity);
+// I.S. list terdefinisi dan sembarang, capacity terdefinisi
+// F.S. Memori untuk list sudah teralokasikan, list.size bernilai 0, list.capacity bernilai capacity
 
+// Mencetak list penyakit
 void printListPenyakit(ListPenyakit list);
+// I.S. l boleh kosong
+// F.S. Jika l tidak kosong: print
 
+// Menambahkan data penyakit di indeks terakhir, digunakan untuk penyakit tanpa id
 void insertPenyakit(ListPenyakit *list, Penyakit item);
+// I.S. list dan item terdefinisi. item.obat_id tidak bernilai (NULL)
+// F.S. list[nEff] terisi dengan data pada item dan nEff diinkremen 1
+
+// Menambahkan data obat berdasarkan id
+void insertPenyakitByID(ListPenyakit *list, Penyakit item);
+// I.S. list dan item terdefinisi. item.id bernilai dan dapat menjadi indeks yang valid
+// F.S. list[item.id] terisi dengan data pada item
+//      jika item.id >= l.nEff, maka l.nEff = item.id + 1
+
+// Mendealokasikan memori list penyakit
+void freeListPenyakit(ListPenyakit *list);
+// I.S. list terdefinisi dan sembarang
+// F.S. Memori dalam list terdealokasi, list.nEff dan list.capacity bernilai 0
 
 #endif

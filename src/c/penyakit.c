@@ -25,3 +25,16 @@ void insertPenyakit(ListPenyakit *list, Penyakit item){
     list->items[list->nEff] = item;
     list->nEff++; 
 }
+
+void insertPenyakitByID(ListPenyakit *list, Penyakit item){
+    list->items[item.id] = item;
+    if(list->nEff <= item.id){
+        list->nEff = item.id + 1;
+    }
+}
+
+void freeListPenyakit(ListPenyakit *list){
+    free(list);
+    list->nEff = 0;
+    list->capacity = 0;
+}

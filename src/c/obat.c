@@ -19,3 +19,16 @@ void insertObat(ListObat *list, Obat item){
     list->items[list->nEff] = item;
     list->nEff++; 
 }
+
+void insertObatByID(ListObat *list, Obat item){
+    list->items[item.obat_id] = item;
+    if(list->nEff <= item.obat_id){
+        list->nEff = item.obat_id + 1;
+    }
+}
+
+void freeListObat(ListObat *list){
+    free(list);
+    list->nEff = 0;
+    list->capacity = 0;
+}
