@@ -13,23 +13,27 @@ void lupaPassword(ListDinUser * UserData){
     if(idxUsername == -1){
         printf("Tidak ada user di database dengan username %s!\n", Username);
     } else{
-        char RLEUsername[20];
+        char RLEKode[20];
         int RLEidx = 0;
-        for(int i = 0; i < strlen(KodeUnik); i++){
-            if((int) KodeUnik[i] >= 50 && (int) KodeUnik[i] <= 57){
-                for(int j = 0; j < (int) KodeUnik[i] - 48; j++){
-                    RLEUsername[RLEidx] = KodeUnik[i+1];
-                    RLEidx++;
-                }
-                i++;
-            } else{
-                RLEUsername[RLEidx] = KodeUnik[i];
-                RLEidx++;
-            }
-        }
-        RLEUsername[RLEidx] = '\0';
+        char* uname = to_lower(Username);
 
-        if(strcmp(to_lower(Username),to_lower(RLEUsername))==0){
+        for(int i = 0; i < strlen(Username); i++){
+            char currentChar = uname[i];
+            int count = 1;
+
+            while (i + 1 < strlen(uname) && uname[i + 1] == currentChar) {
+                count++;
+                i++;
+            }
+
+            if (count > 1) {
+                RLEidx += sprintf(&RLEKode[RLEidx], "%d", count);
+            }
+            RLEKode[RLEidx++] = currentChar;
+        }
+        RLEKode[RLEidx] = '\0';
+
+        if(strcmp(to_lower(KodeUnik),to_lower(RLEKode))==0){
             if(strcmp(UserData->buffer[idxUsername].role,"manager") == 0){
                 printf("Halo Manager %s\n", Username);
             } else if(strcmp(UserData->buffer[idxUsername].role,"dokter") == 0){
