@@ -1,5 +1,4 @@
-# IF1210-Tubes-01
-> <h1 align="center">Tugas Besar - IF1210 Algoritma dan Pemrograman 1</h1>
+<h1 align="center">Tugas Besar - IF1210 Algoritma dan Pemrograman 1</h1>
 
 <h2 id="description">Deskripsi</h2>
 Repository ini merupakan repository untuk Tugas Besar Algoritma dan Pemrograman 1 dari K-01-K.
@@ -21,12 +20,12 @@ Repository ini merupakan repository untuk Tugas Besar Algoritma dan Pemrograman 
 - Varistha Devi - 13524135<br/>
 
 <h2 id="directory">Directory Information</h2>
-- data : Berisi file-file data yang akan diload
-- doc : Berisi laporan dan MoM dalam format pdf
-- src : Berisi source code program dan fungsi-fungsi
+- data : Berisi file-file data yang akan diload <br/>
+- doc : Berisi laporan dan MoM dalam format pdf <br/>
+- src : Berisi source code program dan fungsi-fungsi <br/>
 
 <h2 id="how-to-run">Cara Menggunakan Program</h2>
-Gunakan wsl. Pastikan gcc dan makefile sudah terinstall.\
+Gunakan wsl. Pastikan gcc dan makefile sudah terinstall.
 
 ### Compile & Run (Instant run)
 ```bash
@@ -49,17 +48,17 @@ make clean
 ```
 
 <h2 id="features">Features</h2>
-Untuk saat ini, fitur-fitur yang telah diimplementasikan berupa: 
-- LOGIN
-- REGISTER
-- LOGOUT
-- LUPA PASSWORD
-- HELP
-- LIHAT DENAH
-- LIHAT RUANGAN
-- LIHAT USER
-- TAMBAH DOKTER
-- ASSIGN DOKTER
+Untuk saat ini, fitur-fitur yang telah diimplementasikan berupa: <br/>
+- LOGIN <br/>
+- REGISTER <br/>
+- LOGOUT <br/>
+- LUPA PASSWORD <br/>
+- HELP <br/>
+- LIHAT DENAH <br/>
+- LIHAT RUANGAN <br/>
+- LIHAT USER <br/>
+- TAMBAH DOKTER <br/>
+- ASSIGN DOKTER <br/>
 - EXIT
 
 
