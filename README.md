@@ -25,26 +25,13 @@ Repository ini merupakan repository untuk Tugas Besar Algoritma dan Pemrograman 
 - src : Berisi source code program dan fungsi-fungsi <br/>
 
 <h2 id="how-to-run">Cara Menggunakan Program</h2>
-Gunakan wsl. Pastikan gcc dan makefile sudah terinstall.
+Gunakan WSL. Pastikan gcc dan makefile sudah terinstall.
 
-### Compile & Run (Instant run)
-```bash
-make
-```
-
-### Compile Program
-```bash
-make build
-```
-
-### Run Program
-```bash
-make run
-```
-
-### Clean Program
+### Metode Compile dan Run Program
 ```bash
 make clean
+make
+./main
 ```
 
 <h2 id="features">Features</h2>
@@ -55,10 +42,10 @@ Untuk saat ini, fitur-fitur yang telah diimplementasikan berupa: <br/>
 - Lupa Password <br/>
 - Help <br/>
 - Lihat Denah <br/>
-- Lihat Ruangan <br/>
+- Lihat Ruangan (unfinished)<br/>
 - Lihat User <br/>
 - Tambah Dokter <br/>
-- Assign Dokter <br/>
+- Assign Dokter (unfinished)<br/>
 - Exit
 
 
