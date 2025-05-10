@@ -6,7 +6,6 @@
 #include "header/penyakit.h"
 #include "header/obat-penyakit.h"
 #include "header/input.h"
-#include "header/listdinuser.h"
 #include "header/parse-user.h"
 #include "header/F01.h"
 #include "header/F02.h"

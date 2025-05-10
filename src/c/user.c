@@ -3,7 +3,6 @@
 #include <string.h>
 #include "../header/user.h"
 #include "../header/Boolean.h"
-#include "../header/listdinuser.h"
 
 void printUser(User user){
     printf("%d,%s,%s,%s", user.id, user.username, user.password, user.role);
