@@ -45,6 +45,8 @@ int main() {
     initializeProgram(&listUser, &listObat, &listPenyakit);
 
     printf("Jumlah user: %d\n", UserData.nEff);
+    printListObat(listObat);
+    printListPenyakit(listPenyakit);
     printList(UserData);
 
     while(run){
