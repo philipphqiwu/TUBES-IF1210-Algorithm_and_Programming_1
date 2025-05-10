@@ -4,6 +4,9 @@
 #include "../header/F02.h"
 #include "../header/F03.h"
 #include "../header/F04.h"
+#include "../header/F07.h"
+#include "../header/F08.h"
+#include "../header/F10.h"
 
 void input(int * loginState, int * loginId, ListDinUser * UserData){
     char user_input[100];
@@ -16,6 +19,13 @@ void input(int * loginState, int * loginId, ListDinUser * UserData){
             registerPasien(UserData);
         } else if(strcmp(user_input,"LUPA_PASSWORD") == 0){
             lupaPassword(UserData);
+        }
+    }
+    if(*loginState == 1){
+        if(strcmp(user_input,"TAMBAH_DOKTER") == 0){
+            tambahDokter(UserData);
+        } else if(strcmp(user_input,"LIHAT_USER") == 0){
+            lihatUser(*UserData);
         }
     }
     if(strcmp(user_input,"LOGOUT") == 0){

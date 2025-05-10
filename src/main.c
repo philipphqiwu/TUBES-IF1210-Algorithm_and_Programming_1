@@ -31,8 +31,8 @@ int main() {
 
     while(1){
         input(&loginState, &loginId, &UserData);
-        printf("id: %d login: %d\n",loginId,loginState);
-        printList(UserData);
+        //printf("id: %d login: %d\n",loginId,loginState);
+        //printList(UserData);
     }
     
     return 0;
