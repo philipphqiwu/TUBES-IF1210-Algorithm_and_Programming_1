@@ -28,7 +28,7 @@ void insertObatByID(ListObat *list, Obat item){
 }
 
 void freeListObat(ListObat *list){
-    free(list);
+    free(list->items);
     list->nEff = 0;
     list->capacity = 0;
 }

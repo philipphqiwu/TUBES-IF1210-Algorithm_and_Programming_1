@@ -7,7 +7,7 @@
 #include "../header/F08.h"
 #include "../header/F10.h"
 
-void input(int * loginState, int * loginId, ListDinUser * UserData){
+void input(int * loginState, int * loginId, ListDinUser * UserData, int * run){
     char user_input[100];
     printf(">>> ");
     scanf("%99s", user_input);

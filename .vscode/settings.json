@@ -5,6 +5,8 @@
         "parse-user.h": "c",
         "obat-penyakit.h": "c",
         "string.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "f10.h": "c",
+        "config.h": "c"
     }
 }

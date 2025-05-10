@@ -34,7 +34,7 @@ void insertPenyakitByID(ListPenyakit *list, Penyakit item){
 }
 
 void freeListPenyakit(ListPenyakit *list){
-    free(list);
+    free(list->items);
     list->nEff = 0;
     list->capacity = 0;
 }
