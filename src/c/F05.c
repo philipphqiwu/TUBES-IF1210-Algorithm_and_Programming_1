@@ -8,14 +8,15 @@ EXIT - Keluar dari program*/
 void HELP(User *Orang){
 
     printf("\n=========== HELP ===========\n");
-    char role[20] = Orang->role;
-    if(strcmp(role, NULL)){
+    char role[20];
+    strcpy(role, Orang->role);
+    if(strcmp(role, "Manager") && strcmp(role, "Dokter") && strcmp(role, "Pasien")){
         printf("Kamu belum login sebagai role apapun. Silahkan login terlebih dahulu.\n\n");
         puts("1. LOGIN    : Masuk ke dalam akun yang sudah terdaftar");
         puts("2. REGISTER : Membuat akun baru");
     }
 
-    else if(strcmp(role, "Manager")){
+    else if(!strcmp(role, "Manager")){
         printf("Halo Manager %s. Berikut adalah hal-hal yang dapat kamu lakukan sekarang:\n\n", Orang->username);
         puts("1. LOGOUT                 : Keluar dari akun yang sedang digunakan");
         puts("2. TAMBAH_DOKTER          : Mendaftarkan dokter baru ke sistem");
@@ -34,7 +35,7 @@ void HELP(User *Orang){
        
      }
 
-    else if(strcmp(role, "Dokter")){
+    else if(!strcmp(role, "Dokter")){
         printf("Halo Dokter %s. Kamu memanggil HELP. Berikut command yang tersedia:\n\n", Orang->username);
         puts("1. LOGOUT         : Keluar dari akun");
         puts("2. DIAGNOSIS      : Melakukan diagnosis pasien");
@@ -43,7 +44,7 @@ void HELP(User *Orang){
         
     }
 
-    else if(strcmp(role, "Pasien")){
+    else if(!strcmp(role, "Pasien")){
         printf("Selamat datang, %s. Berikut command yang tersedia:\n\n", Orang->username);
         puts("1. LOGOUT             : Keluar dari akun");
         puts("2. DAFTAR_CHECKUP     : Mendaftarkan diri untuk pemeriksaan");
