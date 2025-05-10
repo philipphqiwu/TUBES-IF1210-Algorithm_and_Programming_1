@@ -1,8 +1,10 @@
 #ifndef F06_H
 #define F06_H
 #include <stdio.h>
+#include "config.h"
+#include "listdinuser.h"
 
-void LIHAT_DENAH(Config rumahsakit);
-void LIHAT_RUANGAN(char koderuangan[2], Config rumahsakit, ListDinUser UserData);
+void lihatDenah(Config rumahsakit);
+void lihatRuangan(Config rumahsakit, ListDinUser UserData);
 
 #endif

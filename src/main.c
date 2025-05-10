@@ -12,6 +12,8 @@
 #include "header/F02.h"
 #include "header/F03.h"
 #include "header/F04.h"
+#include "header/F06.h"
+#include "header/parse-config.h"
 
 int main() {
     int loginState = 0;
@@ -27,11 +29,15 @@ int main() {
     ListDinUser UserData;
     CreateListDinUser(&UserData, 100);
     parseUserData(&UserData); // Membaca Data Awal dari ../data/user.csv
+
+    Config rumahsakit;
+    readConfig(&rumahsakit);
+
     printf("Jumlah user: %d\n", UserData.nEff);
     printList(UserData);
 
     while(run){
-        input(&loginState, &loginId, &UserData, &run);
+        input(&loginState, &loginId, &UserData, &run, &rumahsakit);
         //printf("id: %d login: %d\n",loginId,loginState);
         //printList(UserData);
     }
