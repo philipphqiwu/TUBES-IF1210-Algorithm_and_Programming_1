@@ -1,7 +1,7 @@
 #include "../header/F02.h"
 #include "../header/set.h"
 
-void registerPasien(ListDinUser * UserData){
+void tambahDokter(ListDinUser * UserData){
     char Username[21];
     char Password[21];
     // Username input validation loop
@@ -46,15 +46,16 @@ void registerPasien(ListDinUser * UserData){
     }
 
     if(setContain(&setUsername, to_lower(Username))){
-        printf("Registrasi gagal! Pasien dengan nama %s sudah terdaftar.\n", Username);
+        printf("Penambahan dokter gagal! Sudah ada Dokter bernama %s!\n", Username);
     } else{
-        printf("Pasien %s berhasil ditambahkan!\n", Username);        
+        printf("Dokter %s berhasil ditambahkan!\n", Username);        
         UserData->buffer[UserData->nEff].id = UserData->nEff+1;
         strcpy(UserData->buffer[UserData->nEff].username, Username);
         strcpy(UserData->buffer[UserData->nEff].password, Password);
-        strcpy(UserData->buffer[UserData->nEff].role, "pasien");
+        strcpy(UserData->buffer[UserData->nEff].role, "dokter");
         UserData->nEff += 1;
     }
+
 
     return;
 }

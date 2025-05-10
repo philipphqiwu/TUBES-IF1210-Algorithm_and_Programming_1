@@ -1,54 +1,43 @@
 # Compiler and flags
-CC := gcc
-CFLAGS := -Wall -Wextra -Iheader/ 
-LDFLAGS := 
-TARGET := build/program
+CC = gcc
+CFLAGS = -g -Wall
 
-# Source directories
-SRC_DIR := .
-C_DIR := c
-HEADERS_DIR := headers
-BUILD_DIR := build
+# Directories
+CDIR = c
+BUILD_DIR = build
+CBUILD_DIR = $(BUILD_DIR)/c
 
-# Find all source files
-SRCS := $(wildcard $(SRC_DIR)/*.c) \
-         $(wildcard $(C_DIR)/*.c)
+# Source and object files
+MAIN_SRCS = $(wildcard *.c)
+C_SRCS = $(wildcard $(CDIR)/*.c)
 
-# Generate object file names in build directory
-OBJS := $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o, \
-         $(filter $(SRC_DIR)/%, $(SRCS)))
-OBJS += $(patsubst $(C_DIR)/%.c,$(BUILD_DIR)/c/%.o, \
-         $(filter $(C_DIR)/%, $(SRCS)))
+MAIN_OBJS = $(patsubst %.c, $(BUILD_DIR)/%.o, $(MAIN_SRCS))
+C_OBJS = $(patsubst $(CDIR)/%.c, $(CBUILD_DIR)/%.o, $(C_SRCS))
+
+OBJS = $(MAIN_OBJS) $(C_OBJS)
+
+# Executable
+TARGET = main
 
 # Default target
-all: $(TARGET)
+all: prepare_dirs $(TARGET)
 
-# Link all objects into executable
+# Prepare required directories
+prepare_dirs:
+	mkdir -p $(BUILD_DIR) $(CBUILD_DIR)
+
+# Linking
 $(TARGET): $(OBJS)
-	@mkdir -p $(@D)
-	$(CC) $(LDFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) -o $@ $^
 
-# Compile main.c
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(@D)
+# Compile main .c files
+$(BUILD_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Compile c/*.c files
-$(BUILD_DIR)/c/%.o: $(C_DIR)/%.c
-	@mkdir -p $(@D)
+$(CBUILD_DIR)/%.o: $(CDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-run: $(TARGET)
-	./$(TARGET)
-
-# Clean build artifacts
-.PHONY: clean
+# Clean
 clean:
-	rm -rf $(BUILD_DIR)
-
-# Print variables (for debugging)
-.PHONY: vars
-vars:
-	@echo "Sources: $(SRCS)"
-	@echo "Objects: $(OBJS)"
-	@echo "Target: $(TARGET)"
+	rm -rf $(BUILD_DIR) $(TARGET)
