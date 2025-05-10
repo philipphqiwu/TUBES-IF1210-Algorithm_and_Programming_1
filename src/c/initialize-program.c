@@ -62,6 +62,6 @@ int initializeProgram(ListDinUser *listUser, ListObat *listObat, ListPenyakit *l
     
     
     fclose(obatPenyakitFile);
-    printf("hit\n");
+    
     return 1;
 }
