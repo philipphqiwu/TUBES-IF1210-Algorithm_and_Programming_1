@@ -49,17 +49,17 @@ make clean
 
 <h2 id="features">Features</h2>
 Untuk saat ini, fitur-fitur yang telah diimplementasikan berupa: <br/>
-- LOGIN <br/>
-- REGISTER <br/>
-- LOGOUT <br/>
-- LUPA PASSWORD <br/>
-- HELP <br/>
-- LIHAT DENAH <br/>
-- LIHAT RUANGAN <br/>
-- LIHAT USER <br/>
-- TAMBAH DOKTER <br/>
-- ASSIGN DOKTER <br/>
-- EXIT
+- Login <br/>
+- Register <br/>
+- Logout <br/>
+- Lupa Password <br/>
+- Help <br/>
+- Lihat Denah <br/>
+- Lihat Ruangan <br/>
+- Lihat User <br/>
+- Tambah Dokter <br/>
+- Assign Dokter <br/>
+- Exit
 
 
 
