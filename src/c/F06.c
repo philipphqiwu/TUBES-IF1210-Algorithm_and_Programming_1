@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "config.h"
-#include "user.h"
+#include "../header/config.h"
+#include "../header/user.h"
 
 #include "../header/F06.h"
 

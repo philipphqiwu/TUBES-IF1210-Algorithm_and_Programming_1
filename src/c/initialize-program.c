@@ -17,17 +17,17 @@ int initializeProgram(ListDinUser *listUser, ListObat *listObat, ListPenyakit *L
     FILE *obatFile = fopen("../data/obat.csv", "r");
     if(!obatFile){
         printf("Gagal membuka file obat.csv\n");
-        return -1;
+        return 0;
     }
     FILE *penyakitFile = fopen("../data/penyakit.csv", "r");
     if(!penyakitFile){
         printf("Gagal membuka file penyakit.csv\n");
-        return -1;
+        return 0;
     }
     FILE *obatPenyakitFile = fopen("../data/obat_penyakit.csv", "r");
     if(!obatPenyakitFile){
         printf("Gagal membuka file obat_penyakit.csv\n");
-        return -1;
+        return 0;
     }
 
     // Parsing dan pemasukan data user

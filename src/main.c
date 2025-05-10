@@ -23,6 +23,7 @@ int main() {
     3 : logged in as patient
     */
     int loginId = -1; // logged in dengan id berapa
+    int run = 1;
     ListDinUser listUser;
     CreateListDinUser(&listUser, 100);
     ListObat listObat;
@@ -36,10 +37,10 @@ int main() {
     printf("Jumlah user: %d\n", listUser.nEff);
     printList(listUser);
 
-    while(1){
-        input(&loginState, &loginId, &listUser);
-        printf("id: %d login: %d\n",loginId,loginState);
-        printList(listUser);
+    while(run){
+        input(&loginState, &loginId, &listUser, &run);
+        //printf("id: %d login: %d\n",loginId,loginState);
+        //printList(UserData);
     }
     
     return 0;

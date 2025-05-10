@@ -4,6 +4,6 @@
 #include <string.h>
 #include <stdio.h>
 
-void Help(User *Orang);
+void help(int loginState, int loginId, ListDinUser UserData);
 
 #endif

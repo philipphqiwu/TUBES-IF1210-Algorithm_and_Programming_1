@@ -2,8 +2,7 @@
 #define F18_H
 #include "user.h"
 #include <stdio.h>
-#include <penyakit.h>
 
-void EXIT();
+void exitProgram(int * run);
 
 #endif
