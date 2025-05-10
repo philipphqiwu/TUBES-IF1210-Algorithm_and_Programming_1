@@ -3,30 +3,52 @@
 #include <string.h>
 #include "initialize-program.h"
 #include "general-parsing.h"
+#include "parse-user.h"
 #include "user.h"
 #include "obat.h"
 #include "penyakit.h"
 #include "obat-penyakit.h"
 
-int initializeProgram(ListObat *listObat, ListPenyakit *ListPenyakit){
+int initializeProgram(ListDinUser *listUser,ListObat *listObat, ListPenyakit *ListPenyakit){
     printf("===============\n");
     printf("SELAMAT DATANG\n");
     printf("===============\n");
 
-    FILE *userFile = fopen("data/obat.csv", "r");
-    FILE *obatFile = fopen("data/obat.csv", "r");
-    FILE *penyakitFile = fopen("data/obat.csv", "r");
-    FILE *obatPenyakitFile = fopen("data/obat.csv", "r");
-    
+    FILE *obatFile = fopen("../data/obat.csv", "r");
+    if(!obatFile){
+        printf("Gagal membuka file obat.csv\n");
+        return -1;
+    }
+    FILE *penyakitFile = fopen("../data/penyakit.csv", "r");
+    if(!penyakitFile){
+        printf("Gagal membuka file penyakit.csv\n");
+        return -1;
+    }
+    FILE *obatPenyakitFile = fopen("../data/obat_penyakit.csv", "r");
+    if(!obatPenyakitFile){
+        printf("Gagal membuka file obat_penyakit.csv\n");
+        return -1;
+    }
+
+    // Parsing dan pemasukan data user
+    parseUserData(listUser);
+
     // Parsing dan pemasukan data obat
     char lineInput[1000];
     fgets(lineInput, sizeof(lineInput), obatFile);
     while(fgets(lineInput, sizeof(lineInput), obatFile)){
-        Obat item;
-        parsing(lineInput, "is", 2, &item.obat_id, item.nama_obat);
+        Obat itemObat;
+        parsing(lineInput, "is", 2, &itemObat.obat_id, itemObat.nama_obat);
+        insertObatByID(listObat, itemObat);
     }
+    // Parsing dan pemasukan data penyakit
     while(fgets(lineInput, sizeof(lineInput), penyakitFile)){
-        Penyakit item;
-        parsing(lineInput, "isffiiiiiiffiiffiiiiii", 22, &item.id, item.nama_penyakit, &item.suhu_tubuh_min, &item.suhu_tubuh_max, &item.tekanan_darah_sistolik_min, &item.tekanan_darah_sistolik_max, &item.tekanan_darah_diastolik_min, &item.tekanan_darah_diastolik_max, &item.detak_jantung_min, &item.detak_jantung_max, &item.kadar_gula_darah_min, &item.kadar_gula_darah_max, &item.berat_badan_min, &item.berat_badan_max, &item.berat_badan_min, &item.berat_badan_max, &item.tinggi_badan_min, &item.tinggi_badan_max, &item.kadar_kolesterol_min, &item.kadar_kolesterol_max, &item.trombosit_min, &item.trombosit_max);
+        Penyakit itemPenyakit;
+        parsing(lineInput, "isffiiiiiiffiiffiiiiii", 22, &itemPenyakit.id, itemPenyakit.nama_penyakit, &itemPenyakit.suhu_tubuh_min, &itemPenyakit.suhu_tubuh_max, &itemPenyakit.tekanan_darah_sistolik_min, &itemPenyakit.tekanan_darah_sistolik_max, &itemPenyakit.tekanan_darah_diastolik_min, &itemPenyakit.tekanan_darah_diastolik_max, &itemPenyakit.detak_jantung_min, &itemPenyakit.detak_jantung_max, &itemPenyakit.kadar_gula_darah_min, &itemPenyakit.kadar_gula_darah_max, &itemPenyakit.berat_badan_min, &itemPenyakit.berat_badan_max, &itemPenyakit.berat_badan_min, &itemPenyakit.berat_badan_max, &itemPenyakit.tinggi_badan_min, &itemPenyakit.tinggi_badan_max, &itemPenyakit.kadar_kolesterol_min, &itemPenyakit.kadar_kolesterol_max, &itemPenyakit.trombosit_min, &itemPenyakit.trombosit_max);
+        insertPenyakitByID(ListPenyakit, itemPenyakit);
     }
+
+    // Parsing dan pemasukan data obat_penyakit
+
+    return 1;
 }

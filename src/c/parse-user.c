@@ -6,7 +6,7 @@ void parseUserData(ListDinUser * UserData){
     FILE * file = fopen("../data/user.csv","r");
 
     if (!file) {
-        printf("Gagal membuka file.\n");
+        printf("Gagal membuka file user.csv\n");
         return;
     }
     

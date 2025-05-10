@@ -6,7 +6,7 @@
 #include <string.h>
 
 // Dijalankan ketika awal program berjalan
-int initializeProgram();
+int initializeProgram(ListDinUser *listUser,ListObat *listObat, ListPenyakit *ListPenyakit);
 // Mengembalikan nilai 1 bila berhasil, 0 bila gagal
 
 #endif
