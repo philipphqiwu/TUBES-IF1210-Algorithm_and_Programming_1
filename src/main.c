@@ -30,23 +30,25 @@ int main() {
     int run = 1;
     ListDinUser UserData;
     CreateListDinUser(&UserData, 100);
-    parseUserData(&UserData); // Membaca Data Awal dari ../data/user.csv
-
-    Config rumahsakit;
-    readConfig(&rumahsakit);
-
-    ListDinUser listUser;
-    CreateListDinUser(&listUser, 100);
     ListObat listObat;
     createListObat(&listObat, 100);
     ListPenyakit listPenyakit;
     createListPenyakit(&listPenyakit, 100);
 
-    initializeProgram(&listUser, &listObat, &listPenyakit);
+    initializeProgram(&UserData, &listObat, &listPenyakit);
+    for (int i = 1; i <= UserData.nEff; i++) {
+        UserData.buffer[i].ruang[0] = '\0';
+    }
+    
+    Config rumahsakit;
+    readConfig(&rumahsakit);
 
-    printf("Jumlah user: %d\n", UserData.nEff);
+
+    printf("List Obat: ");
     printListObat(listObat);
+    printf("List Penyakit: ");
     printListPenyakit(listPenyakit);
+    printf("Jumlah user: %d\n", UserData.nEff);
     printList(UserData);
 
     while(run){

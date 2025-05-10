@@ -1,5 +1,9 @@
-#include "../header/F02.h"
+#include "../header/F10.h"
 #include "../header/set.h"
+
+char ruangann[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
+                    'K', 'L', 'M', 'N', 'O', 'P','Q', 'R','S','T','U'
+                    ,'V', 'W', 'X','Y','Z'};
 
 void tambahDokter(ListDinUser * UserData){
     char Username[21];
@@ -55,7 +59,82 @@ void tambahDokter(ListDinUser * UserData){
         strcpy(UserData->buffer[UserData->nEff].role, "dokter");
         UserData->nEff += 1;
     }
-
-
     return;
+}
+
+void assignDokter(ListDinUser * UserData, Config * rumahsakit){
+    char Username[21];
+    // Username input validation loop
+    while (1) {
+        printf("Username (max 20 characters): ");
+        scanf("%s", Username); 
+
+        if (strlen(Username) > 20) {
+            printf("Error: Username melebihi 20 characters.\n"); 
+        } else {
+            break;
+        }
+    }
+
+    // Validasi input ruangan
+    getchar();
+    char input[100];
+    while (1) {
+        printf("Ruangan: ");
+        fgets(input, sizeof(input), stdin);
+        input[strcspn(input, "\n")] = '\0';
+
+        // Validasi: panjang harus 2, huruf kapital + digit angka
+        if (strlen(input) == 2 &&
+            input[0] >= 'A' && input[0] <= 'Z' &&
+            input[1] >= '1' && input[1] <= '9'){
+            break;
+        } else {
+            printf("Input tidak valid! Format harus 1 huruf kapital dan 1 angka (contoh: A1).\n\n");
+        }
+    }
+
+    int baris = -1, kolom = -1;
+    
+    char huruf = input[0];
+    for (int i = 0; i < rumahsakit->roomRow; i++) {
+        if (ruangann[i] == huruf) {
+            baris = i;
+            break;
+        }
+    }
+    
+    kolom = (int) input[1] - 48;
+    
+    int idx = -1;
+    for(int i = 1; i <= UserData->nEff; i++){
+        if(strcmp(UserData->buffer[i].username,Username) == 0){
+            idx = i;
+            break;
+        }
+    }
+    if(idx == -1){
+        printf("Tidak ada dokter bernama %s\n", Username);
+        return;
+    }
+
+    if (baris == -1 || kolom < 0 || kolom >= rumahsakit->roomCol) {
+        printf("Ruangan %s tidak ditemukan!\n", input);
+        return;
+    }
+
+    if(strlen(UserData->buffer[idx].ruang) > 0){
+        printf("Dokter %s sudah menempati ruangan %s\n", Username, input);
+    }
+    if(rumahsakit->room[baris * rumahsakit->roomCol + kolom][0] != 0){
+        printf("Ruangan %s sudah ditempati oleh Dokter %s\n", input, Username);
+    }
+
+    if(strlen(UserData->buffer[idx].ruang) == 0 &&
+        rumahsakit->room[baris * rumahsakit->roomCol + kolom][0] == 0){
+        printf("Dokter %s berhasil diassign ke ruangan %s\n", Username, input);
+        strcpy(UserData->buffer[idx].ruang, input);
+        rumahsakit->room[baris * rumahsakit->roomCol + kolom][0] = idx;
+    }
+
 }
