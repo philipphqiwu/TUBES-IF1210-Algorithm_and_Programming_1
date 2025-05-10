@@ -55,7 +55,6 @@ int initializeProgram(ListDinUser *listUser, ListObat *listObat, ListPenyakit *l
         insertPenyakitByID(listPenyakit, itemPenyakit);
     }
     fclose(penyakitFile);
-    printf("hit\n");
 
     // Parsing dan pemasukan data obat_penyakit
 
