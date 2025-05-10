@@ -3,9 +3,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#define MAX_NAME_LENGTH 20
+#define MAX_NAME_LENGTH 21
 
-typedef char SetElType[20];
+typedef char SetElType[21];
 
 typedef struct {
     SetElType *data;

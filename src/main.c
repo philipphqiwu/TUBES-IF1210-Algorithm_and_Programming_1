@@ -6,12 +6,16 @@
 #include "header/penyakit.h"
 #include "header/obat-penyakit.h"
 #include "header/input.h"
-#include "header/listdinuser.h"
 #include "header/parse-user.h"
+#include "header/parse-config.h"
+#include "header/general-parsing.h"
+#include "header/initialize-program.h"
 #include "header/F01.h"
 #include "header/F02.h"
 #include "header/F03.h"
 #include "header/F04.h"
+#include "header/F06.h"
+
 
 int main() {
     int loginState = 0;
@@ -23,16 +27,34 @@ int main() {
     3 : logged in as patient
     */
     int loginId = -1; // logged in dengan id berapa
+    int run = 1;
     ListDinUser UserData;
     CreateListDinUser(&UserData, 100);
-    parseUserData(&UserData); // Membaca Data Awal dari ../data/user.csv
+    ListObat listObat;
+    createListObat(&listObat, 100);
+    ListPenyakit listPenyakit;
+    createListPenyakit(&listPenyakit, 100);
+
+    initializeProgram(&UserData, &listObat, &listPenyakit);
+    for (int i = 1; i <= UserData.nEff; i++) {
+        UserData.buffer[i].ruang[0] = '\0';
+    }
+    
+    Config rumahsakit;
+    readConfig(&rumahsakit);
+
+
+    printf("List Obat: ");
+    printListObat(listObat);
+    printf("List Penyakit: ");
+    printListPenyakit(listPenyakit);
     printf("Jumlah user: %d\n", UserData.nEff);
     printList(UserData);
 
-    while(1){
-        input(&loginState, &loginId, &UserData);
-        printf("id: %d login: %d\n",loginId,loginState);
-        printList(UserData);
+    while(run){
+        input(&loginState, &loginId, &UserData, &run, &rumahsakit);
+        //printf("id: %d login: %d\n",loginId,loginState);
+        //printList(UserData);
     }
     
     return 0;

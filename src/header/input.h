@@ -2,8 +2,9 @@
 #define INPUT_H
 #include <string.h>
 #include <stdio.h>
-#include "listdinuser.h"
+#include "user.h"
+#include "config.h"
 
-void input(int * loginState, int * loginId, ListDinUser * UserData);
+void input(int * loginState, int * loginId, ListDinUser * UserData, int * run, Config * rumahsakit);
 
 #endif

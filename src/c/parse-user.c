@@ -1,12 +1,12 @@
-#include "../header/parse-user.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "../header/parse-user.h"
 void parseUserData(ListDinUser * UserData){
     FILE * file = fopen("../data/user.csv","r");
 
     if (!file) {
-        printf("Gagal membuka file.\n");
+        printf("Gagal membuka file user.csv\n");
         return;
     }
     
@@ -20,7 +20,7 @@ void parseUserData(ListDinUser * UserData){
     while ((c = fgetc(file)) != EOF && c != '\n');
 
     while ((c = fgetc(file)) != EOF) {
-        if (c == ',' || c == '\n') {
+        if (c == ';' || c == '\n') {
             buffer[bufIdx] = '\0';
 
             switch (field) {
