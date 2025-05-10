@@ -7,10 +7,10 @@
 
 typedef struct{
     int id;
-    char username[20];
-    char password[20];
-    char role[20];
-    char riwayat_penyakit[20];
+    char username[21];
+    char password[21];
+    char role[21];
+    char riwayat_penyakit[50];
     float suhu_tubuh;
     int tekanan_darah_sistolik;
     int tekanan_darah_diastolik;
@@ -22,6 +22,7 @@ typedef struct{
     int kadar_kolesterol;
     int kadar_kolesterol_ldl;
     int trombosit;
+    char ruang[2];
 } User;
 
 void printUser(User user);

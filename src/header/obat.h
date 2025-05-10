@@ -6,7 +6,7 @@
 
 typedef struct{
     int obat_id;
-    char nama_obat[20];
+    char nama_obat[21];
 } Obat;
 
 typedef struct{
