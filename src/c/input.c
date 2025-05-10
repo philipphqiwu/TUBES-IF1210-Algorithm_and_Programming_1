@@ -16,17 +16,23 @@ void input(int * loginState, int * loginId, ListDinUser * UserData, int * run, C
     scanf("%99s", user_input);
     if(strcmp(user_input,"LOGOUT") == 0){
         logout(loginState, loginId);
+        return;
     } else if(strcmp(user_input,"HELP") == 0){
         help(*loginState, *loginId, *UserData);
+        return;
     } else if(strcmp(user_input,"EXIT") == 0){
         exitProgram(run);
+        return;
     } else if(*loginState != 0){
         if(strcmp(user_input,"LIHAT_DENAH") == 0){
             lihatDenah(*rumahsakit);
+            return;
         } else if(strcmp(user_input,"LIHAT_RUANGAN") == 0){
             lihatRuangan(*rumahsakit, *UserData);
+            return;
         }
-    }else if(*loginState == 0){
+    } 
+    if(*loginState == 0){
         if(strcmp(user_input,"LOGIN") == 0){
             login(loginState, loginId, *UserData);
         } else if(strcmp(user_input,"REGISTER") == 0){
@@ -40,6 +46,8 @@ void input(int * loginState, int * loginId, ListDinUser * UserData, int * run, C
     } else if(*loginState == 1){
         if(strcmp(user_input,"TAMBAH_DOKTER") == 0){
             tambahDokter(UserData);
+        } else if(strcmp(user_input,"ASSIGN_DOKTER") == 0){
+            assignDokter(UserData,rumahsakit);
         } else if(strcmp(user_input,"LIHAT_USER") == 0){
             lihatUser(*UserData);
         } else{
