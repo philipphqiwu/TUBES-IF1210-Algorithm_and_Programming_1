@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "user.h"
-#include "config.h"
+#include "../header/user.h"
+#include "../header/config.h"
 
 void READ_CONFIG(){
     FILE * file = fopen("../data/config.txt","r");
