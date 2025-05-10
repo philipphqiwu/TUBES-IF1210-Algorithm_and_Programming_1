@@ -1,0 +1,12 @@
+#ifndef INITIALIZE_PROGRAM_H
+#define INITIALIZE_PROGRAM_H
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Dijalankan ketika awal program berjalan
+int initializeProgram();
+// Mengembalikan nilai 1 bila berhasil, 0 bila gagal
+
+#endif
