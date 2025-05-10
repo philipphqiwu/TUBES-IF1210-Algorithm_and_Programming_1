@@ -23,14 +23,15 @@ int main() {
     3 : logged in as patient
     */
     int loginId = -1; // logged in dengan id berapa
+    int run = 1;
     ListDinUser UserData;
     CreateListDinUser(&UserData, 100);
     parseUserData(&UserData); // Membaca Data Awal dari ../data/user.csv
     printf("Jumlah user: %d\n", UserData.nEff);
     printList(UserData);
 
-    while(1){
-        input(&loginState, &loginId, &UserData);
+    while(run){
+        input(&loginState, &loginId, &UserData, &run);
         //printf("id: %d login: %d\n",loginId,loginState);
         //printList(UserData);
     }

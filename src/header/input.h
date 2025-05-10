@@ -4,6 +4,6 @@
 #include <stdio.h>
 #include "listdinuser.h"
 
-void input(int * loginState, int * loginId, ListDinUser * UserData);
+void input(int * loginState, int * loginId, ListDinUser * UserData, int * run);
 
 #endif
