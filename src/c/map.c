@@ -1,4 +1,4 @@
-#include "header/map.h"
+#include "../header/map.h"
 #include <string.h>
 #include <stdbool.h>
 #include <stdio.h>

@@ -1,4 +1,4 @@
-#include "header/stack.h"
+#include "../header/stack.h"
 #include <string.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -29,7 +29,7 @@ const char* pop(Stack *s){
     return s->items[s->top--];
 }
 
-const char* peek(const Stack *s){
+const char* stackPeek(const Stack *s){
     if (isStackEmpty(s)) {
         return NULL;
     }
