@@ -7,13 +7,15 @@
 #include "header/obat-penyakit.h"
 #include "header/input.h"
 #include "header/parse-user.h"
+#include "header/parse-config.h"
+#include "header/general-parsing.h"
+#include "header/initialize-program.h"
 #include "header/F01.h"
 #include "header/F02.h"
 #include "header/F03.h"
 #include "header/F04.h"
-#include "header/initialize-program.h"
 #include "header/F06.h"
-#include "header/parse-config.h"
+
 
 int main() {
     int loginState = 0;
@@ -26,6 +28,13 @@ int main() {
     */
     int loginId = -1; // logged in dengan id berapa
     int run = 1;
+    ListDinUser UserData;
+    CreateListDinUser(&UserData, 100);
+    parseUserData(&UserData); // Membaca Data Awal dari ../data/user.csv
+
+    Config rumahsakit;
+    readConfig(&rumahsakit);
+
     ListDinUser listUser;
     CreateListDinUser(&listUser, 100);
     ListObat listObat;
@@ -35,12 +44,8 @@ int main() {
 
     initializeProgram(&listUser, &listObat, &listPenyakit);
 
-    // parseUserData(&listUser); // Membaca Data Awal dari ../data/user.csv
-    printf("Jumlah user: %d\n", listUser.nEff);
-    printList(listUser);
-
-    Config rumahsakit;
-    readConfig(&rumahsakit);
+    printf("Jumlah user: %d\n", UserData.nEff);
+    printList(UserData);
 
     while(run){
         input(&loginState, &loginId, &UserData, &run, &rumahsakit);

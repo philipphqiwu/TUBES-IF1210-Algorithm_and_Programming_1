@@ -6,7 +6,7 @@
 
 typedef struct{
     int id;
-    char nama_penyakit[20];
+    char nama_penyakit[50];
     float suhu_tubuh_min;
     float suhu_tubuh_max;
     int tekanan_darah_sistolik_min;

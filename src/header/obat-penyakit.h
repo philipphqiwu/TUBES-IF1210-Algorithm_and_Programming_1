@@ -5,16 +5,16 @@
 typedef struct{
     int id_obat;
     int urutan_minum;
-} Value;
+} ValueObat;
 
 typedef struct {
     int penyakit_id; //ini key
-    Value value[10];
-} MapPair;
+    ValueObat value[10];
+} MapPairObatPenyakit;
 
 typedef struct {
-    MapPair items[MAX_MAP_SIZE];
+    MapPairObatPenyakit items[MAX_MAP_SIZE];
     int size;
-} Map;
+} MapObatPenyakit;
 
 #endif

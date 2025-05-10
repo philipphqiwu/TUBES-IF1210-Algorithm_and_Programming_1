@@ -9,9 +9,9 @@ void parsing(char *input, char *format, int dataCount, ...){
     va_start(args, dataCount);
     int indeksGet = 0;
     for(int i = 0; i < dataCount; i++){
-        char parsedInput[50];
+        char parsedInput[100];
         int indeksPut = 0;
-        while(input[indeksGet] != ',' && input[indeksGet] != '\n' && input[indeksGet] != '\0'){
+        while(input[indeksGet] != ',' && input[indeksGet] != ';' && input[indeksGet] != '\n' && input[indeksGet] != '\0'){
             // printf("debug %c ", input[indeksGet]);
             // printf("\n");
             parsedInput[indeksPut] = input[indeksGet];

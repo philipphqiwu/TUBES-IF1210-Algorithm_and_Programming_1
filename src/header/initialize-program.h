@@ -8,9 +8,10 @@
 #include "obat.h"
 #include "penyakit.h"
 #include "obat-penyakit.h"
+#include "general-parsing.h"
 
 // Dijalankan ketika awal program berjalan
-int initializeProgram(ListDinUser *listUser,ListObat *listObat, ListPenyakit *ListPenyakit);
+int initializeProgram(ListDinUser *listUser, ListObat *listObat, ListPenyakit *ListPenyakit);
 // Mengembalikan nilai 1 bila berhasil, 0 bila gagal
 
 #endif
