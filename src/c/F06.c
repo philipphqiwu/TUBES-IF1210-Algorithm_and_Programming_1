@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include "config.h"
+#include "listdinuser.h"
+
 #include "../header/F06.h"
 
 char ruangan[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
@@ -23,7 +25,7 @@ void LIHAT_DENAH(Config rumahsakit) {
     for(int i = 0; i < rumahsakit.roomRow; i++) {
 
         printf(" %c |", ruangan[i]);
-        for(int j = 0; j < col; j++) {
+        for(int j = 0; j < rumahsakit.roomCol; j++) {
              printf(" %c%-2d |", ruangan[i], j+1); 
         }
         printf("\n");
@@ -37,7 +39,7 @@ void LIHAT_DENAH(Config rumahsakit) {
         }
 }
 
-void LIHAT_RUANGAN(char koderuangan[2]) { 
+void LIHAT_RUANGAN(char koderuangan[2], Config rumahsakit, ListDinUser UserData) { 
   
     int baris = -1, kolom = -1;
     
@@ -65,7 +67,7 @@ void LIHAT_RUANGAN(char koderuangan[2]) {
     if (id_dokter == 0) { 
         printf("Dokter     : -\n");
     } else {
-        const char* nama_dokter = cari_nama_dokter(id_dokter); // contoh saja
+        const char* nama_dokter = UserData.buffer[id_dokter].username; 
         printf("Dokter     : %s\n", nama_dokter ? nama_dokter : "-");
     }
     // asumsikan ada fungsi cari nama dokter dan cari nama pasien
@@ -74,7 +76,7 @@ void LIHAT_RUANGAN(char koderuangan[2]) {
     for (int i = 1; i <= rumahsakit.roomCapacity; i++) { 
         int id_pasien = rumahsakit.room[indeks][i];
         if (id_pasien != 0) { 
-            const char* nama_pasien = cari_nama_pasien(id_pasien);
+            const char* nama_pasien = UserData.buffer[id_pasien].username;
             if (nama_pasien) {
                 printf("  %d. %s\n", ++pasien_count, nama_pasien);
             }
