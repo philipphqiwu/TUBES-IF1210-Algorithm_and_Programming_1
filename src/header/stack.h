@@ -17,7 +17,7 @@ bool isStackEmpty(const Stack *s);
 bool isStackFull(const Stack *s);
 void push(Stack *s, const char *value);
 const char* pop(Stack *s);
-const char* peek(const Stack *s);
+const char* peekStack(const Stack *s);
 void printStack(const Stack *s);
 
 #endif

@@ -4,6 +4,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "user.h"
+#include "obat.h"
+#include "penyakit.h"
+#include "obat-penyakit.h"
 
 // Dijalankan ketika awal program berjalan
 int initializeProgram(ListDinUser *listUser,ListObat *listObat, ListPenyakit *ListPenyakit);

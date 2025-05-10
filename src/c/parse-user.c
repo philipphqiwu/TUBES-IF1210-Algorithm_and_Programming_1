@@ -1,7 +1,7 @@
-#include "../header/parse-user.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "../header/parse-user.h"
 void parseUserData(ListDinUser * UserData){
     FILE * file = fopen("../data/user.csv","r");
 

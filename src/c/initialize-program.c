@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "initialize-program.h"
-#include "general-parsing.h"
-#include "parse-user.h"
-#include "user.h"
-#include "obat.h"
-#include "penyakit.h"
-#include "obat-penyakit.h"
+#include "../header/initialize-program.h"
+#include "../header/general-parsing.h"
+#include "../header/parse-user.h"
+#include "../header/user.h"
+#include "../header/obat.h"
+#include "../header/penyakit.h"
+#include "../header/obat-penyakit.h"
 
-int initializeProgram(ListDinUser *listUser,ListObat *listObat, ListPenyakit *ListPenyakit){
+int initializeProgram(ListDinUser *listUser, ListObat *listObat, ListPenyakit *ListPenyakit){
     printf("===============\n");
     printf("SELAMAT DATANG\n");
     printf("===============\n");
@@ -34,7 +34,7 @@ int initializeProgram(ListDinUser *listUser,ListObat *listObat, ListPenyakit *Li
     parseUserData(listUser);
 
     // Parsing dan pemasukan data obat
-    char lineInput[1000];
+    char lineInput[500];
     fgets(lineInput, sizeof(lineInput), obatFile);
     while(fgets(lineInput, sizeof(lineInput), obatFile)){
         Obat itemObat;
@@ -49,6 +49,5 @@ int initializeProgram(ListDinUser *listUser,ListObat *listObat, ListPenyakit *Li
     }
 
     // Parsing dan pemasukan data obat_penyakit
-
     return 1;
 }

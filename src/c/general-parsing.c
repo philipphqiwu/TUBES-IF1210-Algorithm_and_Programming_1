@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <string.h>
-#include "general-parsing.h"
+#include "../header/general-parsing.h"
 
 void parsing(char *input, char *format, int dataCount, ...){
     va_list args;

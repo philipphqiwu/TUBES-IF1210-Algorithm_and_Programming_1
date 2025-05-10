@@ -17,7 +17,7 @@ bool isQueueEmpty(const Queue *q);
 bool isQueueFull(const Queue *q);
 void enqueue(Queue *q, const char *value);
 const char* dequeue(Queue *q);
-const char* peek(const Queue *q);
+const char* peekQueue(const Queue *q);
 void printQueue(const Queue *q);
 
 #endif

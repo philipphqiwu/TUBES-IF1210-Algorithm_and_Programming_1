@@ -1,7 +1,7 @@
-#include "header/queue.h"
 #include <string.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include "../header/queue.h"
 
 void initQueue(Queue *q){
     q->front = q->rear = -1;
@@ -40,7 +40,7 @@ const char* dequeue(Queue *q){
     return val;
 }
 
-const char* peek(const Queue *q){
+const char* peekQueue(const Queue *q){
     if (isQueueEmpty(q)) {
         return NULL;
     }
