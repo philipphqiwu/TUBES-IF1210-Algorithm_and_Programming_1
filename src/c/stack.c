@@ -29,7 +29,7 @@ const char* pop(Stack *s){
     return s->items[s->top--];
 }
 
-const char* peekStack(const Stack *s){
+const char* stackPeek(const Stack *s){
     if (isStackEmpty(s)) {
         return NULL;
     }

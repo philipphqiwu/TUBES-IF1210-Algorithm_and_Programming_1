@@ -7,7 +7,8 @@
 char ruangan[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
                     'K', 'L', 'M', 'N', 'O', 'P','Q', 'R','S','T','U'
                     ,'V', 'W', 'X','Y','Z'};
-void LIHAT_DENAH(Config rumahsakit) {
+
+void lihatDenah(Config rumahsakit) {
 
     printf("    ");
     for(int j = 0; j < rumahsakit.roomCol; j++) {
@@ -39,11 +40,27 @@ void LIHAT_DENAH(Config rumahsakit) {
         }
 }
 
-void LIHAT_RUANGAN(char koderuangan[2], Config rumahsakit, ListDinUser UserData) { 
-  
+void lihatRuangan(Config rumahsakit, ListDinUser UserData) { 
+    getchar();
+    char input[100];
+    while (1) {
+        printf("Masukkan kode ruangan yang ingin dilihat: ");
+        fgets(input, sizeof(input), stdin);
+        input[strcspn(input, "\n")] = '\0';
+
+        // Validasi: panjang harus 2, huruf kapital + digit angka
+        if (strlen(input) == 2 &&
+            input[0] >= 'A' && input[0] <= 'Z' &&
+            input[1] >= '1' && input[1] <= '9'){
+            break;
+        } else {
+            printf("Input tidak valid! Format harus 1 huruf kapital dan 1 angka (contoh: A1).\n\n");
+        }
+    }
+
     int baris = -1, kolom = -1;
     
-    char huruf = koderuangan[0];
+    char huruf = input[0];
     for (int i = 0; i < rumahsakit.roomRow; i++) {
         if (ruangan[i] == huruf) {
             baris = i;
@@ -51,7 +68,7 @@ void LIHAT_RUANGAN(char koderuangan[2], Config rumahsakit, ListDinUser UserData)
         }
     }
     
-    kolom = atoi(koderuangan + 1) - 1;
+    kolom = (int) input[1] - 48;
     
     if (baris == -1 || kolom < 0 || kolom >= rumahsakit.roomCol) {
         printf("Ruangan tidak ditemukan!\n");
@@ -60,7 +77,7 @@ void LIHAT_RUANGAN(char koderuangan[2], Config rumahsakit, ListDinUser UserData)
     
     int indeks = baris * rumahsakit.roomCol + kolom;
     
-    printf("--- Detail Ruangan %s ---\n", koderuangan);
+    printf("--- Detail Ruangan %s ---\n", input);
     printf("Kapasitas  : %d\n", rumahsakit.roomCapacity);
     
     int id_dokter = rumahsakit.room[indeks][0];

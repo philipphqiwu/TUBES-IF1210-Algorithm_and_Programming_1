@@ -12,6 +12,8 @@
 #include "header/F03.h"
 #include "header/F04.h"
 #include "header/initialize-program.h"
+#include "header/F06.h"
+#include "header/parse-config.h"
 
 int main() {
     int loginState = 0;
@@ -37,8 +39,11 @@ int main() {
     printf("Jumlah user: %d\n", listUser.nEff);
     printList(listUser);
 
+    Config rumahsakit;
+    readConfig(&rumahsakit);
+
     while(run){
-        input(&loginState, &loginId, &listUser, &run);
+        input(&loginState, &loginId, &UserData, &run, &rumahsakit);
         //printf("id: %d login: %d\n",loginId,loginState);
         //printList(UserData);
     }

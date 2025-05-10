@@ -1,9 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
-
 #include <stdio.h>
 
-// FILE * file = fopen("../data/config.txt","r");
 typedef struct{
     int roomRow;
     int roomCol;
