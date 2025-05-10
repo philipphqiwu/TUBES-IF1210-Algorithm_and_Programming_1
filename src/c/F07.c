@@ -1,18 +1,33 @@
 #include "../header/F07.h"
 
 void sortBased(int * base, int * order){ 
-    printf("Urutkan berdasarkan?\n");
-    printf("1. ID\n");
-    printf("2. Nama\n");
-    printf(">>> Pilihan : ");
-    scanf("%d",base);
+// Validation for sorting base
+    while (1) {
+        printf("Urutkan berdasarkan?\n");
+        printf("1. ID\n");
+        printf("2. Nama\n");
+        printf(">>> Pilihan : ");
+        if (scanf("%d", base) != 1 || (*base != 1 && *base != 2)) {
+            printf("Input tidak valid! Pilih 1 atau 2.\n");
+            while (getchar() != '\n'); // Clear input buffer
+        } else {
+            break;  
+        }
+    }
 
-    printf("\nUrutan sort?\n");
-    printf("1. ASC (A-Z)\n");
-    printf("2. DES (Z-A)\n");
-    printf(">>> Pilihan : ");
-    scanf("%d",order);
-    printf("\n");
+    // Validation for sorting order
+    while (1) {
+        printf("\nUrutan sort?\n");
+        printf("1. ASC (A-Z)\n");
+        printf("2. DES (Z-A)\n");
+        printf(">>> Pilihan : ");
+        if (scanf("%d", order) != 1 || (*order != 1 && *order != 2)) {
+            printf("Input tidak valid! Pilih 1 atau 2.\n");
+            while (getchar() != '\n'); // Clear input buffer
+        } else {
+            break;  
+        }
+    }
 }
 
 void lihatUser(ListDinUser UserData){
