@@ -2,8 +2,9 @@
 #define PARSE_CONFIG_H
 #include <stdio.h>
 #include "config.h"
+#include "user.h"
 
-void readConfig(Config * rumahsakit);
+void readConfig(Config * rumahsakit, ListDinUser * UserData);
 void writeConfig(const Config *rs);
 
 #endif

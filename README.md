@@ -35,17 +35,17 @@ make
 ```
 
 <h2 id="features">Features</h2>
-Untuk saat ini, fitur-fitur yang telah diimplementasikan berupa: <br/>
+Untuk saat ini, fitur-fitur yang telah berhasil diimplementasikan berupa: <br/>
 - Login <br/>
 - Register <br/>
 - Logout <br/>
 - Lupa Password <br/>
 - Help <br/>
 - Lihat Denah <br/>
-- Lihat Ruangan (unfinished)<br/>
+- Lihat Ruangan <br/>
 - Lihat User <br/>
 - Tambah Dokter <br/>
-- Assign Dokter (unfinished)<br/>
+- Assign Dokter <br/>
 - Exit
 
 

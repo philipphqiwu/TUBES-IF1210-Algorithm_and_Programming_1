@@ -57,6 +57,7 @@ void tambahDokter(ListDinUser * UserData){
         strcpy(UserData->buffer[UserData->nEff].username, Username);
         strcpy(UserData->buffer[UserData->nEff].password, Password);
         strcpy(UserData->buffer[UserData->nEff].role, "dokter");
+        UserData->buffer[UserData->nEff].ruang[0] = '\0';
         UserData->nEff += 1;
     }
     return;
@@ -94,20 +95,12 @@ void assignDokter(ListDinUser * UserData, Config * rumahsakit){
         }
     }
 
-    int baris = -1, kolom = -1;
-    
-    char huruf = input[0];
-    for (int i = 0; i < rumahsakit->roomRow; i++) {
-        if (ruangann[i] == huruf) {
-            baris = i;
-            break;
-        }
-    }
-    
-    kolom = (int) input[1] - 48;
+    int baris = input[0] - 'A';
+    int kolom = atoi(input + 1) - 1;
+    int indeks = baris * rumahsakit->roomCol + kolom;
     
     int idx = -1;
-    for(int i = 1; i <= UserData->nEff; i++){
+    for(int i = 0; i < UserData->nEff; i++){
         if(strcmp(UserData->buffer[i].username,Username) == 0){
             idx = i;
             break;
@@ -118,23 +111,23 @@ void assignDokter(ListDinUser * UserData, Config * rumahsakit){
         return;
     }
 
-    if (baris == -1 || kolom < 0 || kolom >= rumahsakit->roomCol) {
-        printf("Ruangan %s tidak ditemukan!\n", input);
+    if (baris < 0 || kolom < 0 || kolom >= rumahsakit->roomCol || baris >= rumahsakit->roomRow) {
+        printf("Ruangan tidak ditemukan!\n");
         return;
     }
 
     if(strlen(UserData->buffer[idx].ruang) > 0){
-        printf("Dokter %s sudah menempati ruangan %s\n", Username, input);
+        printf("Dokter %s sudah menempati ruangan %s\n", Username, UserData->buffer[idx].ruang);
     }
-    if(rumahsakit->room[baris * rumahsakit->roomCol + kolom][0] != 0){
-        printf("Ruangan %s sudah ditempati oleh Dokter %s\n", input, Username);
+    if(rumahsakit->room[indeks][0] != -1){
+        printf("Ruangan %s sudah ditempati oleh Dokter %s\n", input, UserData->buffer[rumahsakit->room[indeks][0]].username);
     }
 
     if(strlen(UserData->buffer[idx].ruang) == 0 &&
-        rumahsakit->room[baris * rumahsakit->roomCol + kolom][0] == 0){
+        rumahsakit->room[indeks][0] == -1){
         printf("Dokter %s berhasil diassign ke ruangan %s\n", Username, input);
         strcpy(UserData->buffer[idx].ruang, input);
-        rumahsakit->room[baris * rumahsakit->roomCol + kolom][0] = idx;
+        rumahsakit->room[indeks][0] = idx;
     }
 
 }

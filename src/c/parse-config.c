@@ -2,7 +2,7 @@
 #include "../header/user.h"
 #include "../header/config.h"
 
-void readConfig(Config *rumahsakit) {
+void readConfig(Config *rumahsakit, ListDinUser * UserData) {
     FILE *file = fopen("../data/config.txt", "r");
     if (!file) {
         printf("Gagal membuka file.\n");
@@ -29,8 +29,15 @@ void readConfig(Config *rumahsakit) {
 
         char *token = strtok(buffer, " ");
         int counter = 0;
+        char kodeRuang[3];
+        int row = i / rumahsakit->roomCol;
+        int col = i % rumahsakit->roomCol;
         while (token != NULL && counter <= rumahsakit->roomCapacity) {
-            rumahsakit->room[i][counter++] = atoi(token);
+            if(counter == 0){
+                sprintf(kodeRuang, "%c%c", 'A' + row, '1' + col);
+                strcpy(UserData->buffer[atoi(token)-1].ruang,kodeRuang);
+            }
+            rumahsakit->room[i][counter++] = atoi(token)-1;
             token = strtok(NULL, " ");
         }
     }

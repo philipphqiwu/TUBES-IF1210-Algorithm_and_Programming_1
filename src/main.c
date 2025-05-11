@@ -36,12 +36,12 @@ int main() {
     createListPenyakit(&listPenyakit, 100);
 
     initializeProgram(&UserData, &listObat, &listPenyakit);
-    for (int i = 1; i <= UserData.nEff; i++) {
+    for (int i = 0; i < UserData.nEff; i++) {
         UserData.buffer[i].ruang[0] = '\0';
     }
     
     Config rumahsakit;
-    readConfig(&rumahsakit);
+    readConfig(&rumahsakit, &UserData);
 
 
     printf("List Obat: ");
