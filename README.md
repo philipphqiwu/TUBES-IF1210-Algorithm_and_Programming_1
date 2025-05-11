@@ -25,12 +25,31 @@ Repository ini merupakan repository untuk Tugas Besar Algoritma dan Pemrograman 
 - src : Berisi source code program dan fungsi-fungsi <br/>
 
 <h2 id="how-to-run">Cara Menggunakan Program</h2>
-Gunakan WSL. Pastikan gcc dan makefile sudah terinstall.
+Program ini dibuat dengan bahasa C dan dijalankan di lingkungan Linux. Direkomendasikan menggunakan WSL (Windows Subsystem for Linux) di Windows.
 
-### Metode Compile dan Run Program
+### 📥 Clone Repository
+Clone repositori ini menggunakan perintah berikut:
+
+```bash
+git clone https://github.com/Labpro-22/if1210-tubes-2025-k01-k.git
+cd if1210-tubes-2025-k01-k/src
+```
+
+#### 🛠 Persyaratan
+-Sudah terpasang GCC. </br>
+-Sudah tersedia Makefile di direktori proyek.
+
+### 🔧 Compile dan Jalankan Program
+1. Bersihkan build lama (opsional):
 ```bash
 make clean
+```
+2. Compile program:
+```bash
 make
+```
+3. Jalankan program:
+```bash
 ./main
 ```
 
