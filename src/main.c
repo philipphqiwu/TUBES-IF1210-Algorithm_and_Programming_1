@@ -44,12 +44,12 @@ int main() {
     readConfig(&rumahsakit, &UserData);
 
 
-    printf("List Obat: ");
-    printListObat(listObat);
-    printf("List Penyakit: ");
-    printListPenyakit(listPenyakit);
-    printf("Jumlah user: %d\n", UserData.nEff);
-    printList(UserData);
+    // printf("List Obat: ");
+    // printListObat(listObat);
+    // printf("List Penyakit: ");
+    // printListPenyakit(listPenyakit);
+    // printf("Jumlah user: %d\n", UserData.nEff);
+    // printList(UserData);
 
     while(run){
         input(&loginState, &loginId, &UserData, &run, &rumahsakit);
