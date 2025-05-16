@@ -50,6 +50,10 @@ void input(int * loginState, int * loginId, ListDinUser * UserData, int * run, C
             assignDokter(UserData,rumahsakit);
         } else if(strcmp(user_input,"LIHAT_USER") == 0){
             lihatUser(*UserData);
+        } else if(strcmp(user_input,"LIHAT_PASIEN") == 0){
+            lihatPasien(*UserData);
+        } else if(strcmp(user_input,"LIHAT_DOKTER") == 0){
+            lihatDokter(*UserData);
         } else{
             printf("PLEASE ENTER A VALID COMMAND!\n");
             printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n");
