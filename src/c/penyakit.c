@@ -7,6 +7,9 @@ void createListPenyakit(ListPenyakit *list, int capacity){
     list->nEff = 0;
     list->capacity = capacity;
     list->items = (Penyakit*) malloc (capacity*sizeof(Penyakit));
+    for(int i = 0; i < capacity; i++){
+        list->items[i].id = 0;
+    }
 }
 
 void printListPenyakit(ListPenyakit list){
@@ -31,6 +34,19 @@ void insertPenyakitByID(ListPenyakit *list, Penyakit item){
     if(list->nEff <= item.id){
         list->nEff = item.id + 1;
     }
+}
+
+int searchIDByName(ListPenyakit list, char nama[]){
+    int result = -1;
+    for(int i = 0; i < list.nEff && result == -1; i++){
+        if(!list.items[i].id){ // Ketika elemen tidak terisi
+            continue;
+        }
+        if(!strcmp(list.items[i].nama_penyakit, nama)){
+            result = i;
+        }
+    }
+    return result;
 }
 
 void freeListPenyakit(ListPenyakit *list){
