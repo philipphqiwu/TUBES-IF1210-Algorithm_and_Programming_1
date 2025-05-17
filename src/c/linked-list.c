@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "linked-list.h"
+#include "../header/linked-list.h"
 
 Node* createLinked(int data) {
     Node* newNode = (struct Node*)malloc(sizeof(Node));
@@ -9,15 +9,22 @@ Node* createLinked(int data) {
 }
 
 void linkedInsertHead(Node** headPointer, ElType data){
-    Node* newNode = createNode(data);
+    Node* newNode = createLinked(data);
     newNode->next = *headPointer;
     *headPointer = newNode;
 }
 
+void linkedDeleteHead(Node** head)
+{
+    Node* temp = *head;
+    *head = (*head)->next;
+    free(temp);
+}
+
 void linkedInsertAt(Node** headPointer, int position, ElType data){
-    Node* newNode = createNode(data);
+    Node* newNode = createLinked(data);
     if(position == 0){
-        insertHead(headPointer, data);
+        linkedInsertHead(headPointer, data);
     }
     else{
         Node* temp = *headPointer;

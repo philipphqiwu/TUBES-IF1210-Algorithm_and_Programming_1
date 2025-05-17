@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "stack.h"
 
 #define INVENTORY_CAP 20
 #define PERUT_CAP 20
