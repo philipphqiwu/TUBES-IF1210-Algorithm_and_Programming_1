@@ -52,7 +52,7 @@ int main() {
     // printList(UserData);
 
     while(run){
-        input(&loginState, &loginId, &UserData, &run, &rumahsakit);
+        input(&loginState, &loginId, &UserData, &listObat, &listPenyakit, &run, &rumahsakit);
         //printf("id: %d login: %d\n",loginId,loginState);
         //printList(UserData);
     }

@@ -10,7 +10,7 @@
 #include "../header/F10.h"
 #include "../header/F18.h"
 
-void input(int * loginState, int * loginId, ListDinUser * UserData, int * run, Config * rumahsakit){
+void input(int * loginState, int * loginId, ListDinUser * UserData, ListObat * listObat, ListPenyakit * listPenyakit, int * run, Config * rumahsakit){
     char user_input[100];
     printf(">>> ");
     scanf("%99s", user_input);
@@ -21,7 +21,7 @@ void input(int * loginState, int * loginId, ListDinUser * UserData, int * run, C
         help(*loginState, *loginId, *UserData);
         return;
     } else if(strcmp(user_input,"EXIT") == 0){
-        exitProgram(run);
+        exitProgram(run, UserData, listObat, listPenyakit, rumahsakit);
         return;
     } else if(*loginState != 0){
         if(strcmp(user_input,"LIHAT_DENAH") == 0){
