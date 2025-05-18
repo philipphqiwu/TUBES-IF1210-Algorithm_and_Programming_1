@@ -3,6 +3,6 @@
 #include "user.h"
 #include <stdio.h>
 
-void parseUserData(ListDinUser users[]);
+void parseUserData(char * filePath, ListDinUser * UserData);
 
 #endif

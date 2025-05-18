@@ -8,26 +8,37 @@
 #include "../header/obat.h"
 #include "../header/penyakit.h"
 #include "../header/obat-penyakit.h"
+#include "../header/save.h"
 
-int initializeProgram(ListDinUser *listUser, ListObat *listObat, ListPenyakit *listPenyakit){
+int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listObat, ListPenyakit *listPenyakit){
     printf("===============\n");
     printf("SELAMAT DATANG\n");
     printf("===============\n");
 
-    FILE *obatFile = fopen("../data/obat.csv", "r");
+
+    char filePathObat[300];
+    snprintf(filePathObat, sizeof(filePathObat),"%s/obat.csv", folderPath ); 
+    char filePathPenyakit[300];
+    snprintf(filePathPenyakit, sizeof(filePathPenyakit),"%s/penyakit.csv", folderPath ); 
+    char filePathObatPenyakit[300];
+    snprintf(filePathObatPenyakit, sizeof(filePathObatPenyakit),"%s/obat.csv", folderPath ); 
+    char filePathUser[300];
+    snprintf(filePathUser, sizeof(filePathUser),"%s/user.csv", folderPath ); 
+
+    FILE *obatFile = fopen(filePathObat, "r");
     if(!obatFile){
         printf("Gagal membuka file obat.csv\n");
         fclose(obatFile);
         return 0;
     }
-    FILE *penyakitFile = fopen("../data/penyakit.csv", "r");
+    FILE *penyakitFile = fopen(filePathPenyakit, "r");
     if(!penyakitFile){
         printf("Gagal membuka file penyakit.csv\n");
         fclose(obatFile);
         fclose(penyakitFile);
         return 0;
     }
-    FILE *obatPenyakitFile = fopen("../data/obat_penyakit.csv", "r");
+    FILE *obatPenyakitFile = fopen(filePathObatPenyakit, "r");
     if(!obatPenyakitFile){
         printf("Gagal membuka file obat_penyakit.csv\n");
         fclose(obatFile);
@@ -36,7 +47,7 @@ int initializeProgram(ListDinUser *listUser, ListObat *listObat, ListPenyakit *l
         return 0;
     }
     // Parsing dan pemasukan data user
-    parseUserData(listUser);
+    parseUserData(filePathUser,listUser);
 
     // Parsing dan pemasukan data obat
     char lineInput[1000];
