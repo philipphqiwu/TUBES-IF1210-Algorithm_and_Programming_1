@@ -74,14 +74,14 @@ void tampilList(User *ptrs[], int type, int base, int order, int length){
                 case 1:
                     printf("ID | Nama                | Role    | Penyakit\n");
                     printf("----------------------------------------------------------\n");
-                    for(int i = 0; i < length - 1; i++){
+                    for(int i = 0; i < length; i++){
                         printf("%-3d| %-20s| %-8s| %-20s\n", ptrs[i]->id, ptrs[i]->username, ptrs[i]->role, strlen(ptrs[i]->riwayat_penyakit) == 0 ? "-" : ptrs[i]->riwayat_penyakit);
                     }
                     break;
                 case 2:
                     printf("ID | Nama                | Penyakit\n");
                     printf("----------------------------------------------------------\n");
-                    for(int i = 0; i < length - 1; i++){
+                    for(int i = 0; i < length; i++){
                         if(strcmp(ptrs[i]->role,"pasien") == 0){
                             printf("%-3d| %-20s| %-20s\n", ptrs[i]->id, ptrs[i]->username, strlen(ptrs[i]->riwayat_penyakit) == 0 ? "-" : ptrs[i]->riwayat_penyakit);
                         }
@@ -90,7 +90,7 @@ void tampilList(User *ptrs[], int type, int base, int order, int length){
                 case 3:
                     printf("ID | Nama\n");
                     printf("----------------------------------------------------------\n");
-                    for(int i = 0; i < length - 1; i++){
+                    for(int i = 0; i < length; i++){
                         if(strcmp(ptrs[i]->role,"dokter") == 0){
                             printf("%-3d| %-20s\n", ptrs[i]->id, ptrs[i]->username);
                         }
