@@ -20,15 +20,14 @@ void readConfig(Config *rumahsakit, ListDinUser *UserData) {
     fgets(line, sizeof(line), file);
     rumahsakit->roomCapacity = (int)strtol(line, &end, 10);
 
-    while(fgetc(file) != '\n');
-
+ 
     for (int i = 0; i < rumahsakit->roomRow * rumahsakit->roomCol; i++) {
         if (!fgets(line, sizeof(line), file)) {
             printf("File tidak lengkap!\n");
             break;
         }
 
-        for (int j = 0; j < 100; j++) {
+        for (int j = 0; j < rumahsakit->roomCapacity+1; j++) {
             rumahsakit->room[i][j] = 0;
         }
 
@@ -41,19 +40,14 @@ void readConfig(Config *rumahsakit, ListDinUser *UserData) {
         while (*ptr && counter <= rumahsakit->roomCapacity) {
 
             while (*ptr == ' ') ptr++;
-            
 
             long val = strtol(ptr, &end, 10);
             if (ptr == end) break;
-            
+        
             if (counter == 0) {
-
                 snprintf(kodeRuang, sizeof(kodeRuang), "%c%c", 'A' + row, '1' + col);
-                
-
                 strncpy(UserData->buffer[val-1].ruang, kodeRuang, sizeof(UserData->buffer[0].ruang)-1);
             }
-            
             rumahsakit->room[i][counter++] = (int)val - 1;
             ptr = end;
         }
@@ -81,9 +75,56 @@ void readConfig(Config *rumahsakit, ListDinUser *UserData) {
     fclose(file);
 }
 
+void writeConfig(Config *rumahsakit, ListDinUser *UserData) {
+    FILE *file = fopen("../data/config.txt", "w");
+    if (!file) {
+        printf("Gagal membuka file untuk ditulis.\n");
+        return;
+    }
 
+    fprintf(file, "%d %d\n", rumahsakit->roomRow, rumahsakit->roomCol);
 
+    fprintf(file, "%d\n", rumahsakit->roomCapacity);
 
+    for (int i = 0; i < rumahsakit->roomRow * rumahsakit->roomCol; i++) {
+        int isKosong = 1;
+        for (int j = 0; j < rumahsakit->roomCapacity; j++) {
+            if (rumahsakit->room[i][j] != 0) {
+                if (isKosong) {
+                    fprintf(file, "%d", rumahsakit->room[i][j] + 1); 
+                    isKosong = 0;
+                } else {
+                    fprintf(file, " %d", rumahsakit->room[i][j] + 1);
+                }
+            }
+        }
+        if (isKosong) {
+            fprintf(file, "0");
+        }
+        fprintf(file, "\n");
+    }
+
+    // Tulis jumlah pemilik obat
+    fprintf(file, "%d\n", rumahsakit->jumlahPemilikobat);
+
+    // Tulis inventory pasien
+    for (int i = 0; i < rumahsakit->jumlahPemilikobat; i++) {
+        int first = 1;
+        for (int j = 0; j < 6; j++) {
+            if (rumahsakit->inventoryPasien[i][j] != 0) {
+                if (first) {
+                    fprintf(file, "%d", rumahsakit->inventoryPasien[i][j]);
+                    first = 0;
+                } else {
+                    fprintf(file, " %d", rumahsakit->inventoryPasien[i][j]);
+                }
+            }
+        }
+        fprintf(file, "\n");
+    }
+
+    fclose(file);
+}
 
 // void readConfig(Config *rumahsakit, ListDinUser * UserData) {
 //     FILE *file = fopen("../data/config.txt", "r");
