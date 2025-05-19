@@ -20,6 +20,9 @@ void input(int * loginState, int * loginId, ListDinUser * UserData, ListObat * l
     } else if(strcmp(user_input,"HELP") == 0){
         help(*loginState, *loginId, *UserData);
         return;
+    } else if(strcmp(user_input,"SAVE") == 0){
+        save(UserData, listObat, listPenyakit, rumahsakit);
+        return;
     } else if(strcmp(user_input,"EXIT") == 0){
         exitProgram(run, UserData, listObat, listPenyakit, rumahsakit);
         return;
@@ -54,6 +57,12 @@ void input(int * loginState, int * loginId, ListDinUser * UserData, ListObat * l
             lihatPasien(*UserData);
         } else if(strcmp(user_input,"LIHAT_DOKTER") == 0){
             lihatDokter(*UserData);
+        } else if(strcmp(user_input,"CARI_USER") == 0){
+            cariUser(UserData);
+        } else if(strcmp(user_input,"CARI_PASIEN") == 0){
+            cariPasien(UserData);
+        } else if(strcmp(user_input,"CARI_DOKTER") == 0){
+            cariDokter(UserData);
         } else{
             printf("PLEASE ENTER A VALID COMMAND!\n");
             printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n");
