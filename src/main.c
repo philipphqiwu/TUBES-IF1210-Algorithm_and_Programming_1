@@ -34,8 +34,10 @@ int main() {
     createListObat(&listObat, 100);
     ListPenyakit listPenyakit;
     createListPenyakit(&listPenyakit, 100);
+    MapObatPenyakit mapObatPenyakit;
+    createMapObatPenyakit(&mapObatPenyakit);
 
-    initializeProgram(&UserData, &listObat, &listPenyakit);
+    initializeProgram(&UserData, &listObat, &listPenyakit, &mapObatPenyakit);
     for (int i = 0; i < UserData.nEff; i++) {
         UserData.buffer[i].ruang[0] = '\0';
     }
@@ -48,6 +50,8 @@ int main() {
     // printListObat(listObat);
     // printf("List Penyakit: ");
     // printListPenyakit(listPenyakit);
+    printf("Map Obat Penyakit: \n");
+    printMapObatPenyakit(mapObatPenyakit);
     // printf("Jumlah user: %d\n", UserData.nEff);
     // printList(UserData);
 

@@ -9,7 +9,8 @@
 #include "../header/penyakit.h"
 #include "../header/obat-penyakit.h"
 
-int initializeProgram(ListDinUser *listUser, ListObat *listObat, ListPenyakit *listPenyakit){
+// Fungsi ketika inisialisasi program untuk memasukan data-data dari csv file ke program
+int initializeProgram(ListDinUser *listUser, ListObat *listObat, ListPenyakit *listPenyakit, MapObatPenyakit *mapObatPenyakit){
     printf("===============\n");
     printf("SELAMAT DATANG\n");
     printf("===============\n");
@@ -57,10 +58,14 @@ int initializeProgram(ListDinUser *listUser, ListObat *listObat, ListPenyakit *l
     fclose(penyakitFile);
 
     // Parsing dan pemasukan data obat_penyakit
-
-
-    
-    
+    fgets(lineInput, sizeof(lineInput), obatPenyakitFile);
+    while(fgets(lineInput, sizeof(lineInput), obatPenyakitFile) != NULL){
+        int obatId;
+        int penyakitId;
+        int urutanMinum;
+        parsing(lineInput, "iii", 3, &obatId, &penyakitId, &urutanMinum);
+        insertObatPenyakitByRawData(mapObatPenyakit, obatId, penyakitId, urutanMinum);
+    }
     fclose(obatPenyakitFile);
     
     return 1;
