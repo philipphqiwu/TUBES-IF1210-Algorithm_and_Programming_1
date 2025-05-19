@@ -34,7 +34,7 @@ void sortBased(int * base, int * order){
 void alphabetSort(User *ptrs[], int length){
     for (int i = 0; i < length - 1; i++) {
         for (int j = 0; j < length - i - 1; j++) {
-            if (strcmp(ptrs[j]->username,ptrs[j + 1]->username) > 0){
+            if (strcmp(to_lower(ptrs[j]->username),to_lower(ptrs[j + 1]->username)) > 0){
                 User* temp =  ptrs[j];
                 ptrs[j] = ptrs[j+1];
                 ptrs[j+1] = temp;
