@@ -15,15 +15,22 @@ int initializeProgram(ListDinUser *listUser, ListObat *listObat, ListPenyakit *l
     printf("SELAMAT DATANG\n");
     printf("===============\n");
 
+    FILE *userFile = fopen("../data/user.csv", "r");
+    if(!userFile){
+        printf("Gagal membuka file user.csv");
+        fclose(userFile);
+    }
     FILE *obatFile = fopen("../data/obat.csv", "r");
     if(!obatFile){
         printf("Gagal membuka file obat.csv\n");
+        fclose(userFile);
         fclose(obatFile);
         return 0;
     }
     FILE *penyakitFile = fopen("../data/penyakit.csv", "r");
     if(!penyakitFile){
         printf("Gagal membuka file penyakit.csv\n");
+        fclose(userFile);
         fclose(obatFile);
         fclose(penyakitFile);
         return 0;
@@ -31,20 +38,27 @@ int initializeProgram(ListDinUser *listUser, ListObat *listObat, ListPenyakit *l
     FILE *obatPenyakitFile = fopen("../data/obat_penyakit.csv", "r");
     if(!obatPenyakitFile){
         printf("Gagal membuka file obat_penyakit.csv\n");
+        fclose(userFile);
         fclose(obatFile);
         fclose(penyakitFile);
         fclose(obatPenyakitFile);
         return 0;
     }
-    // Parsing dan pemasukan data user
-    parseUserData(listUser);
-
-    // Parsing dan pemasukan data obat
     char lineInput[1000];
+    // Parsing dan pemasukan data user
+    // parseUserData(listUser);
+    fgets(lineInput, sizeof(lineInput), userFile);
+    while(fgets(lineInput, sizeof(lineInput), userFile)){
+        User itemUser;
+        parsing(lineInput, "issssfiiififiiii", &itemUser.id, itemUser.username, itemUser.password, itemUser.role, itemUser.riwayat_penyakit, &itemUser.suhu_tubuh, &itemUser.tekanan_darah_sistolik, &itemUser.tekanan_darah_diastolik, &itemUser.detak_jantung, &itemUser.saturasi_oksigen, &itemUser.kadar_gula_darah, &itemUser.berat_badan, &itemUser.tinggi_badan, &itemUser.kadar_kolesterol, &itemUser.kadar_kolesterol_ldl, &itemUser.trombosit);
+        insertLast(listUser, itemUser);
+    }
+    fclose(userFile);
+    // Parsing dan pemasukan data obat
     fgets(lineInput, sizeof(lineInput), obatFile);
     while(fgets(lineInput, sizeof(lineInput), obatFile) != NULL){
         Obat itemObat;
-        parsing(lineInput, "is", 2, &itemObat.obat_id, itemObat.nama_obat);
+        parsing(lineInput, "is", &itemObat.obat_id, itemObat.nama_obat);
         insertObatByID(listObat, itemObat);
     }
     fclose(obatFile);
@@ -52,7 +66,7 @@ int initializeProgram(ListDinUser *listUser, ListObat *listObat, ListPenyakit *l
     fgets(lineInput, sizeof(lineInput), penyakitFile);
     while(fgets(lineInput, sizeof(lineInput), penyakitFile) != NULL){
         Penyakit itemPenyakit;
-        parsing(lineInput, "isffiiiiiiffiiffiiiiii", 22, &itemPenyakit.id, itemPenyakit.nama_penyakit, &itemPenyakit.suhu_tubuh_min, &itemPenyakit.suhu_tubuh_max, &itemPenyakit.tekanan_darah_sistolik_min, &itemPenyakit.tekanan_darah_sistolik_max, &itemPenyakit.tekanan_darah_diastolik_min, &itemPenyakit.tekanan_darah_diastolik_max, &itemPenyakit.detak_jantung_min, &itemPenyakit.detak_jantung_max, &itemPenyakit.saturasi_oksigen_min, &itemPenyakit.saturasi_oksigen_max,  &itemPenyakit.kadar_gula_darah_min, &itemPenyakit.kadar_gula_darah_max, &itemPenyakit.berat_badan_min, &itemPenyakit.berat_badan_max, &itemPenyakit.tinggi_badan_min, &itemPenyakit.tinggi_badan_max, &itemPenyakit.kadar_kolesterol_min, &itemPenyakit.kadar_kolesterol_max, &itemPenyakit.trombosit_min, &itemPenyakit.trombosit_max);
+        parsing(lineInput, "isffiiiiiiffiiffiiiiii", &itemPenyakit.id, itemPenyakit.nama_penyakit, &itemPenyakit.suhu_tubuh_min, &itemPenyakit.suhu_tubuh_max, &itemPenyakit.tekanan_darah_sistolik_min, &itemPenyakit.tekanan_darah_sistolik_max, &itemPenyakit.tekanan_darah_diastolik_min, &itemPenyakit.tekanan_darah_diastolik_max, &itemPenyakit.detak_jantung_min, &itemPenyakit.detak_jantung_max, &itemPenyakit.saturasi_oksigen_min, &itemPenyakit.saturasi_oksigen_max,  &itemPenyakit.kadar_gula_darah_min, &itemPenyakit.kadar_gula_darah_max, &itemPenyakit.berat_badan_min, &itemPenyakit.berat_badan_max, &itemPenyakit.tinggi_badan_min, &itemPenyakit.tinggi_badan_max, &itemPenyakit.kadar_kolesterol_min, &itemPenyakit.kadar_kolesterol_max, &itemPenyakit.trombosit_min, &itemPenyakit.trombosit_max);
         insertPenyakitByID(listPenyakit, itemPenyakit);
     }
     fclose(penyakitFile);
@@ -63,7 +77,7 @@ int initializeProgram(ListDinUser *listUser, ListObat *listObat, ListPenyakit *l
         int obatId;
         int penyakitId;
         int urutanMinum;
-        parsing(lineInput, "iii", 3, &obatId, &penyakitId, &urutanMinum);
+        parsing(lineInput, "iii", &obatId, &penyakitId, &urutanMinum);
         insertObatPenyakitByRawData(mapObatPenyakit, obatId, penyakitId, urutanMinum);
     }
     fclose(obatPenyakitFile);

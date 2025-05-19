@@ -45,16 +45,15 @@ int main() {
     Config rumahsakit;
     readConfig(&rumahsakit, &UserData);
 
-
-    // printf("List Obat: ");
-    // printListObat(listObat);
-    // printf("List Penyakit: ");
-    // printListPenyakit(listPenyakit);
+    printf("Jumlah user: %d\n", UserData.nEff);
+    printList(UserData);
+    printf("List Obat: \n");
+    printListObat(listObat);
+    printf("List Penyakit: \n");
+    printListPenyakit(listPenyakit);
     printf("Map Obat Penyakit: \n");
     printMapObatPenyakit(mapObatPenyakit);
-    // printf("Jumlah user: %d\n", UserData.nEff);
-    // printList(UserData);
-
+    
     while(run){
         input(&loginState, &loginId, &UserData, &run, &rumahsakit);
         //printf("id: %d login: %d\n",loginId,loginState);
