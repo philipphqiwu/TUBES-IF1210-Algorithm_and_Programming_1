@@ -11,6 +11,7 @@ void createListPenyakit(ListPenyakit *list, int capacity){
 
 void printListPenyakit(ListPenyakit list){
     for(int i = 0; i < list.nEff; i++){
+        if(list.items[i].id == 0) continue;
         printf("%d, %s, %f, %f, %d, %d, %d, %d, %d, %d, %f, %f, %d, %d, %f, %f, %d, %d, %d, %d, %d, %d\n", 
             list.items[i].id, list.items[i].nama_penyakit ,list.items[i].suhu_tubuh_min, list.items[i].suhu_tubuh_max,
             list.items[i].tekanan_darah_sistolik_min, list.items[i].tekanan_darah_sistolik_max, list.items[i].tekanan_darah_diastolik_min, list.items[i].tekanan_darah_diastolik_max ,

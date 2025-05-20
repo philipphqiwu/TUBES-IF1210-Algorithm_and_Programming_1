@@ -11,7 +11,7 @@
 #include "general-parsing.h"
 
 // Dijalankan ketika awal program berjalan
-int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listObat, ListPenyakit *ListPenyakit);
+int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listObat, ListPenyakit *ListPenyakit, MapObatPenyakit *mapObatPenyakit);
 // Mengembalikan nilai 1 bila berhasil, 0 bila gagal
 
 #endif

@@ -11,6 +11,7 @@ void createListObat(ListObat *list, int capacity){
 
 void printListObat(ListObat list){
     for(int i = 0; i < list.nEff; i++){
+        if(list.items[i].obat_id == 0) continue;
         printf("%d %s\n", list.items[i].obat_id, list.items[i].nama_obat);
     }
 }

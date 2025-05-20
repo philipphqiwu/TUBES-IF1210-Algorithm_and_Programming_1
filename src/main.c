@@ -55,8 +55,10 @@ int main(int argc, char *argv[]) {
     createListObat(&listObat, 100);
     ListPenyakit listPenyakit;
     createListPenyakit(&listPenyakit, 100);
+    MapObatPenyakit mapObatPenyakit;
+    createMapObatPenyakit(&mapObatPenyakit);
 
-    initializeProgram(folderPath, &UserData, &listObat, &listPenyakit);
+    initializeProgram(folderPath, &UserData, &listObat, &listPenyakit, &mapObatPenyakit);
     for (int i = 0; i < UserData.nEff; i++) {
         UserData.buffer[i].ruang[0] = '\0';
     }
@@ -64,14 +66,15 @@ int main(int argc, char *argv[]) {
     Config rumahsakit;
     readConfig(folderPath, &rumahsakit, &UserData);
 
-
-    // printf("List Obat: ");
-    // printListObat(listObat);
-    // printf("List Penyakit: ");
-    // printListPenyakit(listPenyakit);
-    // printf("Jumlah user: %d\n", UserData.nEff);
-    // printList(UserData);
-
+    printf("Jumlah user: %d\n", UserData.nEff);
+    printList(UserData);
+    printf("List Obat: \n");
+    printListObat(listObat);
+    printf("List Penyakit: \n");
+    printListPenyakit(listPenyakit);
+    printf("Map Obat Penyakit: \n");
+    printMapObatPenyakit(mapObatPenyakit);
+    
     while(run){
         input(&loginState, &loginId, &UserData, &listObat, &listPenyakit, &run, &rumahsakit);
         //printf("id: %d login: %d\n",loginId,loginState);
