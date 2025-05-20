@@ -66,17 +66,17 @@ int main(int argc, char *argv[]) {
     Config rumahsakit;
     readConfig(folderPath, &rumahsakit, &UserData);
 
-    printf("Jumlah user: %d\n", UserData.nEff);
-    printList(UserData);
-    printf("List Obat: \n");
-    printListObat(listObat);
-    printf("List Penyakit: \n");
-    printListPenyakit(listPenyakit);
-    printf("Map Obat Penyakit: \n");
-    printMapObatPenyakit(mapObatPenyakit);
+    // printf("Jumlah user: %d\n", UserData.nEff);
+    // printList(UserData);
+    // printf("List Obat: \n");
+    // printListObat(listObat);
+    // printf("List Penyakit: \n");
+    // printListPenyakit(listPenyakit);
+    // printf("Map Obat Penyakit: \n");
+    // printMapObatPenyakit(mapObatPenyakit);
     
     while(run){
-        input(&loginState, &loginId, &UserData, &listObat, &listPenyakit, &run, &rumahsakit);
+        input(&loginState, &loginId, &UserData, &listObat, &listPenyakit, &mapObatPenyakit, &run, &rumahsakit);
         //printf("id: %d login: %d\n",loginId,loginState);
         //printList(UserData);
     }

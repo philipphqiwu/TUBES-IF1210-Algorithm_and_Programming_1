@@ -1,7 +1,7 @@
 #include "../header/F18.h"
 #include <stdio.h>
 
-void exitProgram(int * run, ListDinUser * UserData, ListObat * listObat, ListPenyakit * listPenyakit, Config * rumahsakit){
+void exitProgram(int * run, ListDinUser * UserData, ListObat * listObat, ListPenyakit * listPenyakit,  MapObatPenyakit * mapObatPenyakit, Config * rumahsakit){
     while (getchar() != '\n'); // Clear input buffer
     char input[100];
     char konfirmasi;
@@ -24,7 +24,7 @@ void exitProgram(int * run, ListDinUser * UserData, ListObat * listObat, ListPen
 
     if (konfirmasi == 'y') {
         printf("Data akan disimpan.\n");
-        save(UserData, listObat, listPenyakit, rumahsakit);
+        save(UserData, listObat, listPenyakit, mapObatPenyakit, rumahsakit);
     } else {
         printf("Data tidak disimpan.\n");
     }

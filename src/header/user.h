@@ -148,6 +148,10 @@ void compressList(ListDinUser *l);
 
 void printUser(User user);
 
+void printList(ListDinUser l);
+
+IdxType indexOfUsername(ListDinUser l, char* username);
+
 void writeListUser(char * folderPath, ListDinUser *list);
 
 #endif

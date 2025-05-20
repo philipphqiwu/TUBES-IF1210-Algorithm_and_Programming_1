@@ -7,6 +7,6 @@
 #include "save.h"
 #include <stdio.h>
 
-void exitProgram(int * run, ListDinUser * UserData, ListObat * listObat, ListPenyakit * listPenyakit, Config * rumahsakit);
+void exitProgram(int * run, ListDinUser * UserData, ListObat * listObat, ListPenyakit * listPenyakit, MapObatPenyakit * mapObatPenyakit, Config * rumahsakit);
 
 #endif

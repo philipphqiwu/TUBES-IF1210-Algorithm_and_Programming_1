@@ -21,7 +21,7 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
     char filePathPenyakit[300];
     snprintf(filePathPenyakit, sizeof(filePathPenyakit),"%s/penyakit.csv", folderPath ); 
     char filePathObatPenyakit[300];
-    snprintf(filePathObatPenyakit, sizeof(filePathObatPenyakit),"%s/obat-penyakit.csv", folderPath ); 
+    snprintf(filePathObatPenyakit, sizeof(filePathObatPenyakit),"%s/obat_penyakit.csv", folderPath ); 
     char filePathUser[300];
     snprintf(filePathUser, sizeof(filePathUser),"%s/user.csv", folderPath ); 
 
@@ -48,7 +48,7 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
     }
     FILE *userFile = fopen(filePathUser, "r");
     if(!userFile){
-        printf("Gagal membuka file obat_penyakit.csv\n");
+        printf("Gagal membuka file user.csv\n");
         fclose(obatFile);
         fclose(penyakitFile);
         fclose(obatPenyakitFile);

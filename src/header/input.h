@@ -5,8 +5,9 @@
 #include "obat.h"
 #include "penyakit.h"
 #include "user.h"
+#include "obat-penyakit.h"
 #include "config.h"
 
-void input(int * loginState, int * loginId, ListDinUser * UserData, ListObat * listObat, ListPenyakit * listPenyakit, int * run, Config * rumahsakit);
+void input(int * loginState, int * loginId, ListDinUser * UserData, ListObat * listObat, ListPenyakit * listPenyakit, MapObatPenyakit * mapObatPenyakit, int * run, Config * rumahsakit);
 
 #endif

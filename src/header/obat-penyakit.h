@@ -47,4 +47,5 @@ void printMapObatPenyakit(MapObatPenyakit map);
 // I.S. map terdefinisi
 // F.S. Tercetak pada terminal/layar seluruh isi data pada map
 
+void writeMapObatPenyakit(char * folderPath, MapObatPenyakit * mapObatPenyakit);
 #endif
