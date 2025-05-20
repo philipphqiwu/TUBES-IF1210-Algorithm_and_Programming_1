@@ -2,8 +2,10 @@
 #include "../header/user.h"
 #include "../header/config.h"
 
-void readConfig(Config *rumahsakit, ListDinUser * UserData) {
-    FILE *file = fopen("../data/config.txt", "r");
+void readConfig(char * folderPath, Config *rumahsakit, ListDinUser * UserData) {
+    char filePathConfig[300];
+    snprintf(filePathConfig, sizeof(filePathConfig),"%s/config.txt", folderPath );
+    FILE *file = fopen(filePathConfig, "r");
     if (!file) {
         printf("Gagal membuka file.\n");
         return;

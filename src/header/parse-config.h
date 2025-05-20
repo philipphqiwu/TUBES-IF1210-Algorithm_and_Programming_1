@@ -4,7 +4,7 @@
 #include "config.h"
 #include "user.h"
 
-void readConfig(Config * rumahsakit, ListDinUser * UserData);
+void readConfig(char * folderPath, Config * rumahsakit, ListDinUser * UserData);
 void writeConfig(const Config *rs);
 
 #endif

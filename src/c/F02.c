@@ -46,7 +46,7 @@ void registerPasien(ListDinUser * UserData){
     }
 
     if(setContain(&setUsername, to_lower(Username))){
-        printf("Registrasi gagal! Pasien dengan nama %s sudah terdaftar.\n", Username);
+        printf("Registrasi gagal! User dengan nama %s sudah terdaftar.\n", Username);
     } else{
         printf("Pasien %s berhasil ditambahkan!\n", Username);        
         UserData->buffer[UserData->nEff].id = UserData->nEff+1;

@@ -50,7 +50,7 @@ void tambahDokter(ListDinUser * UserData){
     }
 
     if(setContain(&setUsername, to_lower(Username))){
-        printf("Penambahan dokter gagal! Sudah ada Dokter bernama %s!\n", Username);
+        printf("Penambahan dokter gagal! Sudah ada user bernama %s!\n", Username);
     } else{
         printf("Dokter %s berhasil ditambahkan!\n", Username);        
         UserData->buffer[UserData->nEff].id = UserData->nEff+1;

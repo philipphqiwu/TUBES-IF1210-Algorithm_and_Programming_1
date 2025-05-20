@@ -4,9 +4,10 @@
 #include <string.h>
 #include "../header/general-parsing.h"
 
-void parsing(char *input, char *format, int dataCount, ...){
+void parsing(char *input, char *format, ...){
     va_list args;
-    va_start(args, dataCount);
+    int dataCount = strlen(format);
+    va_start(args, format);
     int indeksGet = 0;
     for(int i = 0; i < dataCount; i++){
         char parsedInput[100];

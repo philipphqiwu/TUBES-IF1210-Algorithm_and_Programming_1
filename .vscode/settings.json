@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "obat-penyakit.h": "c",
+        "string.h": "c",
+        "map.h": "c"
+    }
+}
