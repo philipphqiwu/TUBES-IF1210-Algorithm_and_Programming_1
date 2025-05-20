@@ -4,20 +4,23 @@
 #include <stdbool.h>
 #include <string.h>
 
-#define MAX_QUEUE_SIZE 100
-#define MAX_VAL_LENGTH 50
+typedef struct Node {
+    int data;
+    struct Node* next;
+} node;
 
-typedef struct {
-    char items[MAX_QUEUE_SIZE][MAX_VAL_LENGTH]; //queue of strings
-    int front, rear;
-} Queue;
+typedef struct Queue {
+    node* front;
+    node* rear;
+    int counter;
+} queue;
 
-void initQueue(Queue *q);
-bool isQueueEmpty(const Queue *q);
-bool isQueueFull(const Queue *q);
-void enqueue(Queue *q, const char *value);
-const char* dequeue(Queue *q);
-const char* peekQueue(const Queue *q);
-void printQueue(const Queue *q);
+node* createNode(int data);
+queue* createQueue();
+int isEmpty(queue* q);
+void enqueue(queue* q, int data);
+int dequeue(queue* q);
+int peek(queue* q);
+void printQueue(queue* q);
 
 #endif
