@@ -22,11 +22,7 @@ void readConfig(Config *rumahsakit, ListDinUser *UserData) {
 
  
     for (int i = 0; i < rumahsakit->roomRow * rumahsakit->roomCol; i++) {
-        if (!fgets(line, sizeof(line), file)) {
-            printf("File tidak lengkap!\n");
-            break;
-        }
-
+     
         for (int j = 0; j < rumahsakit->roomCapacity+1; j++) {
             rumahsakit->room[i][j] = 0;
         }
@@ -97,6 +93,9 @@ void writeConfig(Config *rumahsakit, ListDinUser *UserData) {
                     fprintf(file, " %d", rumahsakit->room[i][j] + 1);
                 }
             }
+            else{
+                break;
+            }
         }
         if (isKosong) {
             fprintf(file, "0");
@@ -104,10 +103,8 @@ void writeConfig(Config *rumahsakit, ListDinUser *UserData) {
         fprintf(file, "\n");
     }
 
-    // Tulis jumlah pemilik obat
     fprintf(file, "%d\n", rumahsakit->jumlahPemilikobat);
 
-    // Tulis inventory pasien
     for (int i = 0; i < rumahsakit->jumlahPemilikobat; i++) {
         int first = 1;
         for (int j = 0; j < 6; j++) {
