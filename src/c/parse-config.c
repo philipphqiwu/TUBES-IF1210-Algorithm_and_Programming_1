@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include "../header/user.h"
 #include "../header/config.h"
+#include "../header/matriks.h"
 
 
 void readConfig(Config *rumahsakit, ListDinUser *UserData) {
+   
     FILE *file = fopen("../data/config.txt", "r");
     if (!file) {
         printf("Gagal membuka file.\n");
@@ -20,11 +22,11 @@ void readConfig(Config *rumahsakit, ListDinUser *UserData) {
     fgets(line, sizeof(line), file);
     rumahsakit->roomCapacity = (int)strtol(line, &end, 10);
 
- 
+    initializeMatriks(rumahsakit->room.contents, rumahsakit->roomRow*rumahsakit->roomCol,rumahsakit->roomCapacity+1);
     for (int i = 0; i < rumahsakit->roomRow * rumahsakit->roomCol; i++) {
      
         for (int j = 0; j < rumahsakit->roomCapacity+1; j++) {
-            rumahsakit->room[i][j] = 0;
+            rumahsakit->room.contents[i][j] = 0;
         }
 
         ptr = line;
@@ -44,7 +46,7 @@ void readConfig(Config *rumahsakit, ListDinUser *UserData) {
                 snprintf(kodeRuang, sizeof(kodeRuang), "%c%c", 'A' + row, '1' + col);
                 strncpy(UserData->buffer[val-1].ruang, kodeRuang, sizeof(UserData->buffer[0].ruang)-1);
             }
-            rumahsakit->room[i][counter++] = (int)val - 1;
+            rumahsakit->room.contents[i][counter++] = (int)val;
             ptr = end;
         }
     }
@@ -53,7 +55,7 @@ void readConfig(Config *rumahsakit, ListDinUser *UserData) {
     fgets(line, sizeof(line), file);
     rumahsakit->jumlahPemilikobat = (int)strtol(line, &end, 10);
 
-
+    initializeMatriks(rumahsakit->inventoryPasien.contents, rumahsakit->jumlahPemilikobat, Max_obat);
     for (int i = 0; i < rumahsakit->jumlahPemilikobat; i++) {
         if (!fgets(line, sizeof(line), file)) break;
         
@@ -63,7 +65,7 @@ void readConfig(Config *rumahsakit, ListDinUser *UserData) {
             while (*ptr == ' ') ptr++;
             
             long val = strtol(ptr, &end, 10);
-            rumahsakit->inventoryPasien[i][j] = (int)val;
+            rumahsakit->inventoryPasien.contents[i][j] = (int)val;
             ptr = end;
         }
     }
@@ -85,12 +87,12 @@ void writeConfig(Config *rumahsakit, ListDinUser *UserData) {
     for (int i = 0; i < rumahsakit->roomRow * rumahsakit->roomCol; i++) {
         int isKosong = 1;
         for (int j = 0; j < rumahsakit->roomCapacity; j++) {
-            if (rumahsakit->room[i][j] != 0) {
+            if (rumahsakit->room.contents[i][j] != 0) {
                 if (isKosong) {
-                    fprintf(file, "%d", rumahsakit->room[i][j] + 1); 
+                    fprintf(file, "%d", rumahsakit->room.contents[i][j]); 
                     isKosong = 0;
                 } else {
-                    fprintf(file, " %d", rumahsakit->room[i][j] + 1);
+                    fprintf(file, " %d", rumahsakit->room.contents[i][j]);
                 }
             }
             else{
@@ -108,17 +110,19 @@ void writeConfig(Config *rumahsakit, ListDinUser *UserData) {
     for (int i = 0; i < rumahsakit->jumlahPemilikobat; i++) {
         int first = 1;
         for (int j = 0; j < 6; j++) {
-            if (rumahsakit->inventoryPasien[i][j] != 0) {
+            if (rumahsakit->inventoryPasien.contents[i][j] != 0) {
                 if (first) {
-                    fprintf(file, "%d", rumahsakit->inventoryPasien[i][j]);
+                    fprintf(file, "%d", rumahsakit->inventoryPasien.contents[i][j]);
                     first = 0;
                 } else {
-                    fprintf(file, " %d", rumahsakit->inventoryPasien[i][j]);
+                    fprintf(file, " %d", rumahsakit->inventoryPasien.contents[i][j]);
                 }
             }
         }
         fprintf(file, "\n");
     }
+    freeMatriks(rumahsakit->room.contents);
+    freeMatriks(rumahsakit->inventoryPasien.contents);
 
     fclose(file);
 }
