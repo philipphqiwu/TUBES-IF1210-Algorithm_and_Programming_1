@@ -187,4 +187,11 @@ void compressList(ListDinUser *l);
 
 void printUser(User user);
 
+// Memasukan item pada elemen pada list sesuai ID user
+void insertUserByID(ListDinUser *list, ElType item);
+// I.S. list dan item terdefinisi. item.id bernilai dan dapat menjadi indeks yang valid
+// F.S. list.buffer[item.id] terisi dengan data pada item
+//      jika item.id >= list.nEff, maka list.nEff = item.id + 1
+
+
 #endif

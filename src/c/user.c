@@ -226,3 +226,10 @@ void compressList(ListDinUser *l){
 /* Proses : Mengubah capacity sehingga nEff = capacity */
 /* I.S. List tidak kosong */
 /* F.S. Ukuran nEff = capacity */
+
+void insertUserByID(ListDinUser *list, ElType item){
+    list->buffer[item.id] = item;
+    if(list->nEff <= item.id){
+        list->nEff = item.id + 1;
+    }
+}

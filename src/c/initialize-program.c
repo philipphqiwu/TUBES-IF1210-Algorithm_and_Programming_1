@@ -51,7 +51,7 @@ int initializeProgram(ListDinUser *listUser, ListObat *listObat, ListPenyakit *l
     while(fgets(lineInput, sizeof(lineInput), userFile)){
         User itemUser;
         parsing(lineInput, "issssfiiififiiii", &itemUser.id, itemUser.username, itemUser.password, itemUser.role, itemUser.riwayat_penyakit, &itemUser.suhu_tubuh, &itemUser.tekanan_darah_sistolik, &itemUser.tekanan_darah_diastolik, &itemUser.detak_jantung, &itemUser.saturasi_oksigen, &itemUser.kadar_gula_darah, &itemUser.berat_badan, &itemUser.tinggi_badan, &itemUser.kadar_kolesterol, &itemUser.kadar_kolesterol_ldl, &itemUser.trombosit);
-        insertLast(listUser, itemUser);
+        insertUserByID(listUser, itemUser);
     }
     fclose(userFile);
     // Parsing dan pemasukan data obat
