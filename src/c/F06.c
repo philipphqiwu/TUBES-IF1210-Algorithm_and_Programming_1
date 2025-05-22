@@ -50,18 +50,18 @@ void lihatDenah(Config rumahsakit) {
 
 
 void lihatRuangan(Config rumahsakit, ListDinUser UserData) {
-    char koderuangan[100];
+    char kodeRuangan[100];
         // Validasi input ruangan
     getchar();
     while (1) {
         printf("Ruangan: ");
-        fgets(koderuangan, sizeof(koderuangan), stdin);
-        koderuangan[strcspn(koderuangan, "\n")] = '\0';
+        fgets(kodeRuangan, sizeof(kodeRuangan), stdin);
+        kodeRuangan[strcspn(kodeRuangan, "\n")] = '\0';
 
         // Validasi: panjang harus 2, huruf kapital + digit angka
-        if (strlen(koderuangan) == 2 &&
-            koderuangan[0] >= 'A' && koderuangan[0] <= 'Z' &&
-            koderuangan[1] >= '1' && koderuangan[1] <= '9'){
+        if (strlen(kodeRuangan) == 2 &&
+            kodeRuangan[0] >= 'A' && kodeRuangan[0] <= 'Z' &&
+            kodeRuangan[1] >= '1' && kodeRuangan[1] <= '9'){
             break;
         } else {
             printf("Input tidak valid! Format harus 1 huruf kapital dan 1 angka (contoh: A1).\n\n");
@@ -70,8 +70,8 @@ void lihatRuangan(Config rumahsakit, ListDinUser UserData) {
 
 
 
-    int baris = koderuangan[0] - 'A';
-    int kolom = atoi(koderuangan + 1) - 1;
+    int baris = kodeRuangan[0] - 'A';
+    int kolom = atoi(kodeRuangan + 1) - 1;
     int indeks = baris * rumahsakit.roomCol + kolom;
 
     
@@ -80,21 +80,21 @@ void lihatRuangan(Config rumahsakit, ListDinUser UserData) {
         return;
     }
 
-    printf("\n--- Detail Ruangan %s ---\n", koderuangan);
+    printf("\n--- Detail Ruangan %s ---\n", kodeRuangan);
     printf("Kapasitas  : %d\n", rumahsakit.roomCapacity);
     
 
-    int id_dokter = rumahsakit.room[indeks][0];
-    printf("Dokter     : %s\n", (id_dokter == 0) ? "-" : cari_username(UserData, id_dokter+1));
+    int idDokter = rumahsakit.room[indeks].idDokter;
+    printf("Dokter     : %s\n", (idDokter == 0) ? "-" : cari_username(UserData, idDokter+1));
 
     printf("Pasien di dalam ruangan:\n");
-    int pasien_count = 0;
-    for (int i = 1; i <= rumahsakit.roomCapacity; i++) {
-        int id_pasien = rumahsakit.room[indeks][i];
+    int pasienCount = 0;
+    for (int i = 0; i <= rumahsakit.roomCapacity; i++) {
+        int id_pasien = rumahsakit.room[indeks].ruangan[i];
         if (id_pasien != 0) {
-            printf("  %d. %s\n", ++pasien_count, cari_username(UserData, id_pasien+1));
+            printf("  %d. %s\n", ++pasienCount, cari_username(UserData, id_pasien+1));
         }
     }
-    if (pasien_count == 0) printf("  Tidak ada pasien\n");
+    if (pasienCount == 0) printf("  Tidak ada pasien\n");
     printf("------------------------------\n");
 }
