@@ -40,7 +40,8 @@ void writeConfig(Config *rumahsakit, ListDinUser *UserData) {
         }
 
         QueueConfig tempQueue = rumahsakit->room[i].antrian;
-        while (!isEmpty(tempQueue)) {
+
+        while (!isQueueEmpty(tempQueue)) {
             int pasienId;
             dequeue(&tempQueue, &pasienId);
             if (!isFirstElement) {

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "../header/user.h"
 #include "../header/config.h"
-#include "../header/queue.h"
+#include "../header/config_queue.h"
 
 
 void readConfig(Config *rumahsakit, ListDinUser *UserData) {

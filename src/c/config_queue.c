@@ -1,5 +1,6 @@
 #include "Boolean.h"
 #include <stdio.h>
+#include "../header/config.h"
 #include "../header/config_queue.h"
 
 #define IDX_UNDEF -1
@@ -15,7 +16,7 @@
 #define TAIL(q) (q).buffer[(q).idxTail]
 
 /* *** Kreator *** */
-void CreateQueueConfig(QueueConfig *q){
+void createQueueConfig(QueueConfig *q){
     IDX_HEAD(*q) = IDX_UNDEF;
     IDX_TAIL(*q) = IDX_UNDEF;
 }
@@ -26,17 +27,17 @@ void CreateQueueConfig(QueueConfig *q){
 /* Proses : Melakukan alokasi, membuat sebuah q kosong */
 
 /* ********* Prototype ********* */
-boolean isEmpty(QueueConfig q){
+boolean isQueueEmptyConfig(QueueConfig q){
     return IDX_HEAD(q) == IDX_UNDEF && IDX_TAIL(q)==IDX_UNDEF;
 }
 /* Mengirim true jika q kosong: lihat definisi di atas */
-boolean isFull(QueueConfig q){
+boolean isQueueFullConfig(QueueConfig q){
     return (IDX_HEAD(q) == (IDX_TAIL(q) + 1) % CAPACITY);
 }
 
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
 /* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD dalam buffer melingkar*/
-int length(QueueConfig q){
+int queueLengthConfig(QueueConfig q){
     if (isEmpty(q)) return 0;
     int i = IDX_HEAD(q);
     int count = 0;
@@ -50,7 +51,7 @@ int length(QueueConfig q){
 /* Mengirimkan banyaknya elemen QueueConfig. Mengirimkan 0 jika q kosong. */
 
 /* *** Primitif Add/Delete *** */
-void enQueueConfig(QueueConfig *q, ElType val){
+void enQueueConfig(QueueConfig *q, int val){
     if (isEmpty(*q)){
         IDX_TAIL(*q) = 0;
         IDX_HEAD(*q) = 0;
@@ -66,7 +67,7 @@ void enQueueConfig(QueueConfig *q, ElType val){
 /* I.S. q mungkin kosong, tabel penampung elemen q mungkin penuh. Jangan lakukan apapun apabila penampung penuh. */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
 
-void deQueueConfig(QueueConfig *q, ElType *val){
+void deQueueConfig(QueueConfig *q, int *val){
     if (IDX_HEAD(*q) == IDX_TAIL(*q)){
         *val = HEAD(*q);
         CreateQueueConfig(q);
