@@ -100,33 +100,6 @@ boolean isEmpty(ListDinUser l);
 boolean isFull(ListDinUser l);
 /* Mengirimkan true jika list l penuh, mengirimkan false jika tidak */
 
-// /* ********** BACA dan TULIS dengan INPUT/OUTPUT device ********** */
-// /* *** Mendefinisikan isi list dari pembacaan *** */
-// void readList(ListDinUser *l);
-// /* I.S. l sembarang dan sudah dialokasikan sebelumnya */
-// /* F.S. List l terdefinisi */
-// /* Proses : membaca banyaknya elemen l dan mengisi nilainya */
-// /* 1. Baca banyaknya elemen diakhiri enter, misalnya N */
-// /*    Pembacaan diulangi sampai didapat N yang benar yaitu 0 <= N <= CAPACITY(l) */
-// /*    Jika N tidak valid, tidak diberikan pesan kesalahan */
-// /* 2. Jika 0 < N <= CAPACITY(l); Lakukan N kali: Baca elemen mulai dari indeks
-//       0 satu per satu diakhiri enter */
-// /*    Jika N = 0; hanya terbentuk l kosong */
-void printList(ListDinUser l);
-/* Proses : Menuliskan isi list dengan traversal, list ditulis di antara kurung siku;
-   antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan karakter di depan,
-   di tengah, atau di belakang, termasuk spasi dan enter */
-/* I.S. l boleh kosong */
-/* F.S. Jika l tidak kosong: [e1,e2,...,en] */
-/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
-/* Jika list kosong : menulis [] */
-
-
-// /* ********** OPERATOR RELASIONAL ********** */
-// /* *** Operasi pembandingan list : < =, > *** */
-// boolean isListEqual(ListDinUser l1, ListDinUser l2);
-// /* Mengirimkan true jika l1 sama dengan l2 yaitu jika nEff l1 = l2 dan semua elemennya sama */
-
 /* ********** SEARCHING ********** */
 /* ***  Perhatian : list boleh kosong!! *** */
 IdxType indexOfUsername(ListDinUser l, char * username);
@@ -142,18 +115,6 @@ void copyList(ListDinUser lIn, ListDinUser *lOut);
 /* I.S. lIn terdefinisi tidak kosong, lOut sembarang */
 /* F.S. lOut berisi salinan dari lIn (identik, nEff dan capacity sama) */
 /* Proses : Menyalin isi lIn ke lOut */
-
-// int countVal(ListDinUser l, ElType val);
-// /* Menghasilkan berapa banyak kemunculan val di l */
-// /* Jika l kosong menghasilkan 0 */
-
-// /* ********** SORTING ********** */
-// void sort(ListDinUser *l, boolean asc);
-// /* I.S. l boleh kosong */
-// /* F.S. Jika asc = true, l terurut membesar */
-// /*      Jika asc = false, l terurut mengecil */
-// /* Proses : Mengurutkan l dengan salah satu algoritma sorting,
-//    algoritma bebas */
 
 /* ********** MENAMBAH DAN MENGHAPUS ELEMEN DI AKHIR ********** */
 /* *** Menambahkan elemen terakhir *** */
@@ -193,5 +154,10 @@ void insertUserByID(ListDinUser *list, ElType item);
 // F.S. list.buffer[item.id] terisi dengan data pada item
 //      jika item.id >= list.nEff, maka list.nEff = item.id + 1
 
+void printList(ListDinUser l);
+
+IdxType indexOfUsername(ListDinUser l, char* username);
+
+void writeListUser(char * folderPath, ListDinUser *list);
 
 #endif

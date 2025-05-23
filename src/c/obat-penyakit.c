@@ -44,3 +44,23 @@ void printMapObatPenyakit(MapObatPenyakit map){
         }
     }
 }
+
+void writeMapObatPenyakit( char * folderPath, MapObatPenyakit * mapObatPenyakit){
+    char fullFilePath[300];
+    snprintf(fullFilePath, sizeof(fullFilePath),"%s/obat_penyakit.csv", folderPath ); 
+    FILE * file = fopen(fullFilePath, "w");
+    fprintf(file, "obat_id;penyakit_id;urutan_minum\n");
+    for(int i = 0; i < mapObatPenyakit->size; i++){
+        if(!mapObatPenyakit->items[i].penyakit_id){
+            continue;
+        }
+        for(int j = 0; j < MAX_OBAT_PER_PENYAKIT; j++){
+            if(mapObatPenyakit->items[i].value[j].urutan_minum){
+                fprintf(file, "%d;%d;%d\n", mapObatPenyakit->items[i].value[j].obat_id, mapObatPenyakit->items[i].penyakit_id, mapObatPenyakit->items[i].value[j].urutan_minum);
+            }
+            
+        }
+    }
+
+    fclose(file);
+}

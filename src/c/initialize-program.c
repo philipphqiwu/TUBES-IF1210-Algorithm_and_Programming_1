@@ -8,40 +8,51 @@
 #include "../header/obat.h"
 #include "../header/penyakit.h"
 #include "../header/obat-penyakit.h"
+#include "../header/save.h"
 
-// Fungsi ketika inisialisasi program untuk memasukan data-data dari csv file ke program
-int initializeProgram(ListDinUser *listUser, ListObat *listObat, ListPenyakit *listPenyakit, MapObatPenyakit *mapObatPenyakit){
+int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listObat, ListPenyakit *listPenyakit , MapObatPenyakit *mapObatPenyakit){
     printf("===============\n");
     printf("SELAMAT DATANG\n");
     printf("===============\n");
 
-    FILE *userFile = fopen("../data/user.csv", "r");
-    if(!userFile){
-        printf("Gagal membuka file user.csv");
-        fclose(userFile);
-    }
-    FILE *obatFile = fopen("../data/obat.csv", "r");
+
+    char filePathObat[300];
+    snprintf(filePathObat, sizeof(filePathObat),"%s/obat.csv", folderPath ); 
+    char filePathPenyakit[300];
+    snprintf(filePathPenyakit, sizeof(filePathPenyakit),"%s/penyakit.csv", folderPath ); 
+    char filePathObatPenyakit[300];
+    snprintf(filePathObatPenyakit, sizeof(filePathObatPenyakit),"%s/obat_penyakit.csv", folderPath ); 
+    char filePathUser[300];
+    snprintf(filePathUser, sizeof(filePathUser),"%s/user.csv", folderPath ); 
+
+    FILE *obatFile = fopen(filePathObat, "r");
     if(!obatFile){
         printf("Gagal membuka file obat.csv\n");
-        fclose(userFile);
         fclose(obatFile);
         return 0;
     }
-    FILE *penyakitFile = fopen("../data/penyakit.csv", "r");
+    FILE *penyakitFile = fopen(filePathPenyakit, "r");
     if(!penyakitFile){
         printf("Gagal membuka file penyakit.csv\n");
-        fclose(userFile);
         fclose(obatFile);
         fclose(penyakitFile);
         return 0;
     }
-    FILE *obatPenyakitFile = fopen("../data/obat_penyakit.csv", "r");
+    FILE *obatPenyakitFile = fopen(filePathObatPenyakit, "r");
     if(!obatPenyakitFile){
         printf("Gagal membuka file obat_penyakit.csv\n");
-        fclose(userFile);
         fclose(obatFile);
         fclose(penyakitFile);
         fclose(obatPenyakitFile);
+        return 0;
+    }
+    FILE *userFile = fopen(filePathUser, "r");
+    if(!userFile){
+        printf("Gagal membuka file user.csv\n");
+        fclose(obatFile);
+        fclose(penyakitFile);
+        fclose(obatPenyakitFile);
+        fclose(userFile);
         return 0;
     }
     char lineInput[1000];
