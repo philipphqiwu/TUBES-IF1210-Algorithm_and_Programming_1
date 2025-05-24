@@ -184,7 +184,7 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
                 }
                 stringAngka[indeksPutAngka] = '\0';
                 int obatID = atoi(stringAngka);
-                insertMatrixByIndex(&(config->inventoryPasien), i, indeksPut, obatID);
+                insertMatrixByIndex(&(config->inventoryPasien), pasienID, indeksPut, obatID);
                 indeksGet++;
                 indeksPut++;
             }
