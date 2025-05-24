@@ -2,7 +2,7 @@
 #define DENAH_H
 #include <stdio.h>
 
-#define MAX_NAME_LENGTH 20
+#define MAX_NAME_LENGTH 21
 
 // typedef struct{
 //     int kapasitas;
@@ -21,6 +21,13 @@ typedef struct{
 void initializeMatriks(Matriks *arr, int rows, int cols);
 
 void freeMatriks(Matriks *arr);
+
+// Memasukan data ke dalam matriks sesuai letaknya
+void insertMatrixByIndex(Matriks *matriks, int row, int col, int data);
+// I.S. Semua argumen terdefinisi, matriks.contents[row][col] valid
+// F.S. matriks.contents[row][col] terisi data. 
+//      matriks.rows = row + 1 jika row >= matriks.rows
+//      matriks.cols = col + 1 jika col >= matriks.cols
 
 // mengembalikan banyak ruangan pada denah
 int matriksSize(Matriks *arr);

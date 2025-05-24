@@ -5,6 +5,7 @@
         "map.h": "c",
         "general-parsing.h": "c",
         "user.h": "c",
-        "matriks-denah.h": "c"
+        "matriks-denah.h": "c",
+        "stdio.h": "c"
     }
 }

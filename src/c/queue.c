@@ -22,12 +22,12 @@ Queue* createQueue(){
     Queue* newQueue = (Queue*)malloc(sizeof(Queue));
     // Initialize the front and rear pointers of the Queue
     newQueue->front = newQueue->rear = NULL;
-    Queue* counter = 0;
+    newQueue->counter = 0;
     return newQueue;
 }
 
 // Function to check if the Queue is empty
-int isEmpty(Queue* q){
+int isQueueEmpty(Queue* q){
     // Check if the front pointer is NULL
     return q->front == NULL;
 }
@@ -58,7 +58,7 @@ void enqueue(Queue* q, int data){
 // Function to remove an element from the Queue
 int dequeue(Queue* q){
     // Check if the Queue is empty
-    if (isEmpty(q)) {
+    if (isQueueEmpty(q)) {
         printf("Queue Underflow\n");
         return -1;
     }
@@ -78,7 +78,7 @@ int dequeue(Queue* q){
 // Function to return the front element of the Queue
 int peek(Queue* q){
     // Check if the Queue is empty
-    if (isEmpty(q))
+    if (isQueueEmpty(q))
         return -1;
     // Return the data of the front Node
     return q->front->data;

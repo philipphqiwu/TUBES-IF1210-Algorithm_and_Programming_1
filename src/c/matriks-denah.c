@@ -4,34 +4,21 @@
 #include "../header/queue.h"
 #include "../header/matriks-denah.h"
 
-void initializeMatriksDenah(MatriksDenah *matriks, int rows, int cols, int kapasitasRuangan, int kapasitasAntrian){
-    matriks->rows = rows;
-    matriks->cols = cols;
-    matriks->contents = (KontenDenah**)malloc(rows * sizeof(KontenDenah*));
-    for(int i = 0; i < rows; i++){
-        matriks->contents[i] = (KontenDenah*)malloc(cols * sizeof(KontenDenah));
-    }
-    for(int i = 0; i < rows; i++){
-        for(int j = 0; i < cols; i++){
+void initializeMatriksDenah(MatriksDenah *matriks){
+    matriks->rows = 0;
+    matriks->cols = 0;
+    for(int i = 0; i < MAX_ROWS; i++){
+        for(int j = 0; j < MAX_COLS; j++){
             strcpy(matriks->contents[i][j].kodeRuangan, convertNumberToKodeRuangan(i, j));
             matriks->contents[i][j].dokterID = 0;
-            matriks->contents[i][j].pasienID = (int*)malloc(kapasitasRuangan * sizeof(int));
-            for(int p = 0; p < kapasitasRuangan; p++){
-                matriks->contents[i][j].pasienID[p] = 0;
-            }
             matriks->contents[i][j].antrian = createQueue();
         }
     }
 }
 
 void freeMatriksDenah(MatriksDenah *matriks){
-    for(int i = 0; i < matriks->rows; i++){
-        for(int j = 0; j < matriks->cols; j++){
-            free(matriks->contents[i][j].pasienID);
-        }
-        free(matriks->contents[i]);
-    }
-    free(matriks->contents);
+    matriks->rows = 0;
+    matriks->cols = 0;
 }
 
 char* convertNumberToKodeRuangan(int rows, int cols){
@@ -52,7 +39,7 @@ char* convertNumberToKodeRuangan(int rows, int cols){
         rows = rows%pangkat;
         indeksPut++;
     }
-    char stringAngka[MAX_KODE_RUANG_LENGTH];
+    char stringAngka[MAX_KODE_RUANG_LENGTH+1];
     sprintf(stringAngka, "%d", cols+1);
     for(int i = 0; i < strlen(stringAngka); i++){
         output[indeksPut] = stringAngka[i];

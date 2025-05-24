@@ -94,7 +94,7 @@ boolean isIdxEff(ListDinUser l, IdxType i);
 
 /* ********** TEST KOSONG/PENUH ********** */
 /* *** Test list kosong *** */
-boolean isEmpty(ListDinUser l);
+boolean isListDinEmpty(ListDinUser l);
 /* Mengirimkan true jika list l kosong, mengirimkan false jika tidak */
 /* *** Test list penuh *** */
 boolean isFull(ListDinUser l);

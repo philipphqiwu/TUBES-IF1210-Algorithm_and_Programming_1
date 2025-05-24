@@ -46,7 +46,7 @@ boolean isIdxEff(ListDinUser l, IdxType i){
     return false;
 }
 
-boolean isEmpty(ListDinUser l){
+boolean isListDinEmpty(ListDinUser l){
     return l.nEff==0;
 }
 

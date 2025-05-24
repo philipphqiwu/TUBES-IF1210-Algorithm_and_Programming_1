@@ -4,23 +4,24 @@
 #include "queue.h"
 
 #define MAX_KODE_RUANG_LENGTH 10
+#define MAX_ROWS 100
+#define MAX_COLS 100
 
 typedef struct{
     char kodeRuangan[MAX_KODE_RUANG_LENGTH];
     int dokterID;
-    int *pasienID;
     Queue *antrian;
 } KontenDenah;
 
 typedef struct{
-    KontenDenah **contents;
+    KontenDenah contents[MAX_ROWS][MAX_COLS];
     int rows;
     int cols;
 } MatriksDenah;
 
 // I.S. matriks bertipe MatriksDenah (sembarang) terdefinisi, rows dan cols terdefinisi
 // F.S. matriks berbentuk array 2D dengan ukuran rows x cols
-void initializeMatriksDenah(MatriksDenah *matriks, int rows, int cols, int kapasitasRuangan, int kapasitasAntrian);
+void initializeMatriksDenah(MatriksDenah *matriks);
 
 void freeMatriksDenah(MatriksDenah *matriks);
 

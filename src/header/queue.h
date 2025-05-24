@@ -17,7 +17,7 @@ typedef struct Queue {
 
 Node* createNode(int data);
 Queue* createQueue();
-int isEmpty(Queue* q);
+int isQueueEmpty(Queue* q);
 void enqueue(Queue* q, int data);
 int dequeue(Queue* q);
 int peek(Queue* q);
