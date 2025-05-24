@@ -8,22 +8,25 @@
 #include "../header/obat.h"
 #include "../header/penyakit.h"
 #include "../header/obat-penyakit.h"
+#include "../header/config.h"
 #include "../header/save.h"
 
-int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listObat, ListPenyakit *listPenyakit , MapObatPenyakit *mapObatPenyakit){
+int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listObat, ListPenyakit *listPenyakit, MapObatPenyakit *mapObatPenyakit, Config *config){
     printf("===============\n");
     printf("SELAMAT DATANG\n");
     printf("===============\n");
 
 
-    char filePathObat[300];
+    char filePathObat[MAX_FILE_PATH_CHAR];
     snprintf(filePathObat, sizeof(filePathObat),"%s/obat.csv", folderPath ); 
-    char filePathPenyakit[300];
+    char filePathPenyakit[MAX_FILE_PATH_CHAR];
     snprintf(filePathPenyakit, sizeof(filePathPenyakit),"%s/penyakit.csv", folderPath ); 
-    char filePathObatPenyakit[300];
+    char filePathObatPenyakit[MAX_FILE_PATH_CHAR];
     snprintf(filePathObatPenyakit, sizeof(filePathObatPenyakit),"%s/obat_penyakit.csv", folderPath ); 
-    char filePathUser[300];
-    snprintf(filePathUser, sizeof(filePathUser),"%s/user.csv", folderPath ); 
+    char filePathUser[MAX_FILE_PATH_CHAR];
+    snprintf(filePathUser, sizeof(filePathUser),"%s/user.csv", folderPath );
+    char filePathConfig[MAX_FILE_PATH_CHAR];
+    snprintf(filePathConfig, sizeof(filePathConfig), "%s/config.txt", folderPath );
 
     FILE *obatFile = fopen(filePathObat, "r");
     if(!obatFile){
@@ -55,7 +58,7 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
         fclose(userFile);
         return 0;
     }
-    char lineInput[1000];
+    char lineInput[MAX_INPUT_CHAR];
     // Parsing dan pemasukan data user
     // parseUserData(listUser);
     fgets(lineInput, sizeof(lineInput), userFile);
@@ -92,6 +95,8 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
         insertObatPenyakitByRawData(mapObatPenyakit, obatId, penyakitId, urutanMinum);
     }
     fclose(obatPenyakitFile);
+
+    // Parsing dan pemasukan data config
     
     return 1;
 }

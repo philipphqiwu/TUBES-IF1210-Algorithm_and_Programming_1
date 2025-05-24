@@ -7,20 +7,20 @@
 typedef struct Node {
     int data;
     struct Node* next;
-} node;
+} Node;
 
 typedef struct Queue {
-    node* front;
-    node* rear;
+    Node* front;
+    Node* rear;
     int counter;
-} queue;
+} Queue;
 
-node* createNode(int data);
-queue* createQueue();
-int isEmpty(queue* q);
-void enqueue(queue* q, int data);
-int dequeue(queue* q);
-int peek(queue* q);
-void printQueue(queue* q);
+Node* createNode(int data);
+Queue* createQueue();
+int isEmpty(Queue* q);
+void enqueue(Queue* q, int data);
+int dequeue(Queue* q);
+int peek(Queue* q);
+void printQueue(Queue* q);
 
 #endif

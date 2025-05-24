@@ -1,33 +1,43 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 #include <stdio.h>
+#include <user.h>
 #include "config_queue.h"
 #include "matriks.h"
+#include "matriks-denah.h"
 
 
-#define Max_ruangan 260
-#define Max_pasien 100
-#define Max_obat 6
+#define MAX_RUANGAN 260
+#define MAX_PASIEN 100
+#define MAX_OBAT 6
 #define CAPCITYANTRIAN 50
 #define CAPACITYRUANGAN 50
 
 
-typedef struct{
-    int idDokter;
-    char kodeRuangan[3];
-    int ruangan[CAPACITYRUANGAN]; //😊 Hi!
-    QueueConfig antrian;
-}roomComponent;
+// typedef struct{
+//     char kodeRuangan[3];
+//     int idDokter;
+//     int ruangan[CAPACITYRUANGAN]; //😊 Hi!
+//     QueueConfig antrian;
+// } RoomComponent;
+
+// typedef struct{
+//     int roomRow;
+//     int roomCol;
+//     int roomCapacity;
+//     int queueCapacity;
+//     RoomComponent room[MAX_RUANGAN];
+//     int jumlahPemilikobat;
+//     Matriks inventoryPasien;
+// } Config;
 
 typedef struct{
-    int roomRow;
-    int roomCol;
-    int roomCapacity;
-    int queueCapacity;
-    roomComponent room[Max_ruangan];
-    int jumlahPemilikobat;
+    MatriksDenah denah;
+    int kapasitasRuangan;
+    int kapasitasAntrian;
+    int jumlahPemilikObat;
     Matriks inventoryPasien;
-    } Config;
+} Config;
 
 void writeConfig(Config *rumahsakit, ListDinUser *UserData);
 void readConfig(Config *rumahsakit, ListDinUser *UserData);

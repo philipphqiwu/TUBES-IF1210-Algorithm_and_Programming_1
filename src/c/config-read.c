@@ -71,12 +71,12 @@ void readConfig(Config *rumahsakit, ListDinUser *UserData) {
     fgets(line, sizeof(line), file);
     rumahsakit->jumlahPemilikobat = (int)strtol(line, &end, 10);
 
-    initializeMatriks(rumahsakit->inventoryPasien.contents, rumahsakit->jumlahPemilikobat, Max_obat);
+    initializeMatriks(rumahsakit->inventoryPasien.contents, rumahsakit->jumlahPemilikobat, MAX_OBAT);
     for (int i = 0; i < rumahsakit->jumlahPemilikobat; i++) {
         if (!fgets(line, sizeof(line), file)) break;
         
         ptr = line;
-        for (int j = 0; j < Max_obat; j++) {
+        for (int j = 0; j < MAX_OBAT; j++) {
       
             while (*ptr == ' ') ptr++;
             if (*ptr == '\n' || *ptr == '\0') break;
