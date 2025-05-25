@@ -7,6 +7,7 @@
 #include "../header/F06.h"
 #include "../header/F07.h"
 #include "../header/F08.h"
+#include "../header/F09.h"
 #include "../header/F10.h"
 #include "../header/F18.h"
 
@@ -64,6 +65,8 @@ void input(int * loginState, int * loginId, ListDinUser * UserData, ListObat * l
             cariPasien(UserData);
         } else if(strcmp(user_input,"CARI_DOKTER") == 0){
             cariDokter(UserData);
+        } else if(strcmp(user_input,"LIHAT_SEMUA_ANTRIAN") == 0){
+            lihatAntrian(*rumahsakit, *UserData);
         } else{
             printf("PLEASE ENTER A VALID COMMAND!\n");
             printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n");
