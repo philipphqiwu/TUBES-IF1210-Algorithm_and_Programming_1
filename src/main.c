@@ -23,7 +23,6 @@ int main(int argc, char *argv[]) {
     if (argc == 1){
         printf("Program akan menggunakan folder default yaitu ../data\n");
         snprintf(folderPath, sizeof(folderPath), "../data");
-        printf("hit\n");
     } else if (argc == 2) {
         char folderName[256];
         strcpy (folderName,argv[1]);
@@ -38,8 +37,6 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
-    printf("hit\n");
-
     int loginState = 0;
     /*
     loginState
@@ -52,21 +49,14 @@ int main(int argc, char *argv[]) {
     int run = 1;
     ListDinUser UserData;
     CreateListDinUser(&UserData, 100);
-    printf("hit1\n");
     ListObat listObat;
     createListObat(&listObat, 100);
-    printf("hit2\n");
     ListPenyakit listPenyakit;
     createListPenyakit(&listPenyakit, 100);
-    printf("hit3\n");
     MapObatPenyakit mapObatPenyakit;
     createMapObatPenyakit(&mapObatPenyakit);
-    printf("hit4\n");
     Config config;
     createConfig(&config);
-    printf("hit5\n");
-
-    printf("hit6\n");
 
     initializeProgram(folderPath, &UserData, &listObat, &listPenyakit, &mapObatPenyakit, &config);
     for (int i = 0; i < UserData.nEff; i++) {

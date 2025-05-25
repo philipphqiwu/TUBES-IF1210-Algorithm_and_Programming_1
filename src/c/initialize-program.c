@@ -28,8 +28,6 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
     char filePathConfig[MAX_FILE_PATH_CHAR];
     snprintf(filePathConfig, sizeof(filePathConfig), "%s/config.txt", folderPath );
 
-    printf("the1\n");
-
     FILE *obatFile = fopen(filePathObat, "r");
     if(!obatFile){
         printf("Gagal membuka file obat.csv\n");
@@ -71,8 +69,6 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
         return 0;
     }
 
-    printf("the2\n");
-
     char lineInput[MAX_INPUT_CHAR];
     // Parsing dan pemasukan data user
     // parseUserData(listUser);
@@ -83,7 +79,6 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
         insertUserByID(listUser, itemUser);
     }
     fclose(userFile);
-    printf("the3\n");
     // Parsing dan pemasukan data obat
     fgets(lineInput, sizeof(lineInput), obatFile);
     while(fgets(lineInput, sizeof(lineInput), obatFile) != NULL){
@@ -92,7 +87,6 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
         insertObatByID(listObat, itemObat);
     }
     fclose(obatFile);
-    printf("the4\n");
     // Parsing dan pemasukan data penyakit
     fgets(lineInput, sizeof(lineInput), penyakitFile);
     while(fgets(lineInput, sizeof(lineInput), penyakitFile) != NULL){
@@ -101,7 +95,6 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
         insertPenyakitByID(listPenyakit, itemPenyakit);
     }
     fclose(penyakitFile);
-    printf("the5\n");
     // Parsing dan pemasukan data obat_penyakit
     fgets(lineInput, sizeof(lineInput), obatPenyakitFile);
     while(fgets(lineInput, sizeof(lineInput), obatPenyakitFile) != NULL){
@@ -112,56 +105,42 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
         insertObatPenyakitByRawData(mapObatPenyakit, obatId, penyakitId, urutanMinum);
     }
     fclose(obatPenyakitFile);
-    printf("the6\n");
     // Parsing dan pemasukan data config
     fgets(lineInput, sizeof(lineInput), configFile);
     configParsing(lineInput, "ii", &config->denah.rows, &config->denah.cols);
     fgets(lineInput, sizeof(lineInput), configFile);
     configParsing(lineInput, "ii", &config->kapasitasRuangan, &config->kapasitasAntrian);
-    printf("the2\n");
     for(int i = 0; i < config->denah.rows * config->denah.cols; i++){
-        printf("theloop\n");
-        printf("%d\n", config->denah.rows * config->denah.cols);
         int row = i/config->denah.cols;
         int col = i%config->denah.cols;
         fgets(lineInput, sizeof(lineInput), configFile);
         configParsing(lineInput, "i", &config->denah.contents[row][col].dokterID);
-        printf("theloop1\n");
         int indeksGet = 1;
         while(lineInput[indeksGet] != ' '){
             indeksGet++;
         }
         // config->denah.contents[row][col].antrian = createQueue();
         while(lineInput[indeksGet] != '\n' && lineInput[indeksGet] != '\0'){
-            printf("the the loop%d\n", indeksGet);
-            printf("char: %c\n", lineInput[indeksGet]);
             if(lineInput[indeksGet] == ' '){
                 indeksGet++;
-                printf("hit\n");
             }
             else{
-                printf("else1\n");
                 char stringAngka[10];
                 int indeksPut = 0;
                 stringAngka[indeksPut] = lineInput[indeksGet];
                 indeksPut++;
                 indeksGet++;
-                printf("else2\n");
                 while(lineInput[indeksGet] != ' ' && lineInput[indeksGet] != '\n' && lineInput[indeksGet] != '\0'){
                     stringAngka[indeksPut] = lineInput[indeksGet];
                     indeksGet++;
                     indeksPut++;
                 }
-                printf("else3\n");
                 stringAngka[indeksPut] = '\0';
                 int pasienID = atoi(stringAngka);
                 enqueue(config->denah.contents[row][col].antrian, pasienID);
-                printf("else4\n");
-                
             }
         }
     }
-    printf("the7\n");
     fgets(lineInput, sizeof(lineInput), configFile);
     configParsing(lineInput, "i", &config->jumlahPemilikObat);
     for(int i = 0; i < config->jumlahPemilikObat; i++){
@@ -191,7 +170,6 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
         }
     }
     fclose(configFile);
-    printf("the8\n");
     
     return 1;
 }
