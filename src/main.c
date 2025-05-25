@@ -16,12 +16,13 @@
 #include "header/F04.h"
 #include "header/F06.h"
 #include "header/save.h"
+#include "header/colors.h"
 
 
 int main(int argc, char *argv[]) {
     char folderPath[300];
     if (argc == 1){
-        printf("Program akan menggunakan folder default yaitu ../data\n");
+        printf(COLOR_BLUE"Program akan menggunakan folder default yaitu ../data\n"COLOR_RESET);
         snprintf(folderPath, sizeof(folderPath), "../data");
     } else if (argc == 2) {
         char folderName[256];
@@ -29,11 +30,11 @@ int main(int argc, char *argv[]) {
         folderName[strcspn(folderName, "\n")] = '\0';
         snprintf(folderPath, sizeof(folderPath), "../data/%s", folderName);
         if (!folderExists(folderPath)) {
-            printf("FOLDER TIDAK DITEMUKAN! PASTIKAN FOLDER ADA DAN BERISI DATA YANG VALID!\n");
+            printf(COLOR_RED"FOLDER TIDAK DITEMUKAN! PASTIKAN FOLDER ADA DAN BERISI DATA YANG VALID!\n"COLOR_RESET);
             return 0;
         }
     } else{
-        printf("INVALID ARGUMENT!\n");
+        printf(COLOR_RED"INVALID ARGUMENT!\n"COLOR_RESET);
         return 0;
     }
 

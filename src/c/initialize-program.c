@@ -9,8 +9,11 @@
 #include "../header/penyakit.h"
 #include "../header/obat-penyakit.h"
 #include "../header/save.h"
+#include "../header/logo.h"
 
 int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listObat, ListPenyakit *listPenyakit , MapObatPenyakit *mapObatPenyakit){
+    printLogo();
+    printf("\n");
     printf("===============\n");
     printf("SELAMAT DATANG\n");
     printf("===============\n");
