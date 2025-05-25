@@ -6,7 +6,6 @@
 #include "header/penyakit.h"
 #include "header/obat-penyakit.h"
 #include "header/input.h"
-#include "header/parse-user.h"
 #include "header/parse-config.h"
 #include "header/general-parsing.h"
 #include "header/initialize-program.h"
@@ -67,16 +66,16 @@ int main(int argc, char *argv[]) {
     // Config rumahsakit;
     // readConfig(folderPath, &rumahsakit, &UserData);
 
-    printf("Jumlah user: %d\n", UserData.nEff);
-    printList(UserData);
-    printf("List Obat: \n");
-    printListObat(listObat);
-    printf("List Penyakit: \n");
-    printListPenyakit(listPenyakit);
-    printf("Map Obat Penyakit: \n");
-    printMapObatPenyakit(mapObatPenyakit);
-    printf("Config: \n");
-    printConfig(config);
+    // printf("Jumlah user: %d\n", UserData.nEff);
+    // printList(UserData);
+    // printf("List Obat: \n");
+    // printListObat(listObat);
+    // printf("List Penyakit: \n");
+    // printListPenyakit(listPenyakit);
+    // printf("Map Obat Penyakit: \n");
+    // printMapObatPenyakit(mapObatPenyakit);
+    // printf("Config: \n");
+    // printConfig(config);
     
     while(run){
         input(&loginState, &loginId, &UserData, &listObat, &listPenyakit, &mapObatPenyakit, &run, &config);

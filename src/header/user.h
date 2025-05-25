@@ -20,7 +20,6 @@ typedef struct{
     float berat_badan;
     int tinggi_badan;
     int kadar_kolesterol;
-    int kadar_kolesterol_ldl;
     int trombosit;
     char ruang[2];
 } User;
@@ -157,6 +156,11 @@ void insertUserByID(ListDinUser *list, ElType item);
 void printList(ListDinUser l);
 
 IdxType indexOfUsername(ListDinUser l, char* username);
+
+// Sort List based on id
+void sortUser(ListDinUser *list);
+
+int cariIdxUser(ListDinUser * UserData, int id);
 
 void writeListUser(char * folderPath, ListDinUser *list);
 
