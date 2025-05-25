@@ -8,7 +8,7 @@ Node* createLinked(int data) {
     return newNode;
 }
 
-void linkedInsertHead(Node** headPointer, ElType data){
+void linkedInsertHead(Node** headPointer, int data){
     Node* newNode = createLinked(data);
     newNode->next = *headPointer;
     *headPointer = newNode;
@@ -21,7 +21,7 @@ void linkedDeleteHead(Node** head)
     free(temp);
 }
 
-void linkedInsertAt(Node** headPointer, int position, ElType data){
+void linkedInsertAt(Node** headPointer, int position, int data){
     Node* newNode = createLinked(data);
     if(position == 0){
         linkedInsertHead(headPointer, data);

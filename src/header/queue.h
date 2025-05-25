@@ -3,11 +3,7 @@
 
 #include <stdbool.h>
 #include <string.h>
-
-typedef struct Node {
-    int data;
-    struct Node* next;
-} Node;
+#include "linked-list.h"
 
 typedef struct Queue {
     Node* front;
@@ -20,7 +16,7 @@ Queue* createQueue();
 int isQueueEmpty(Queue* q);
 void enqueue(Queue* q, int data);
 int dequeue(Queue* q);
-int peek(Queue* q);
+int peekQueue(Queue* q);
 void printQueue(Queue* q);
 
 #endif

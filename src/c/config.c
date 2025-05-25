@@ -8,6 +8,9 @@ void createConfig(Config *config){
     config->kapasitasRuangan = 0;
     config->kapasitasAntrian = 0;
     initializeMatriks(&(config->inventoryPasien), MAX_PASIEN, MAX_OBAT);
+    for(int i = 0; i < MAX_PASIEN; i++){
+        createStack(&(config->perutPasien[i]));
+    }
 }
 
 void printConfig(Config config){
@@ -36,5 +39,11 @@ void printConfig(Config config){
             printf("%d ", config.inventoryPasien.contents[i][j]);
         }
         printf("\n");
+    }
+    printf("Jumlah perut pasien terisi: %d\n", config.jumlahPerutPasien);
+    for(int i = 0; i < MAX_PASIEN; i++){
+        if(isStackEmpty(config.perutPasien[i])) continue;
+        printf("Perut pasien %d: ", i);
+        printStack(config.perutPasien[i]);
     }
 }

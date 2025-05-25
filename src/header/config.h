@@ -5,6 +5,7 @@
 #include "config_queue.h"
 #include "matriks.h"
 #include "matriks-denah.h"
+#include "stack-linked.h"
 
 #define MAX_PASIEN 1000
 #define MAX_OBAT 10
@@ -32,6 +33,8 @@ typedef struct{
     int kapasitasAntrian;
     int jumlahPemilikObat;
     Matriks inventoryPasien;
+    int jumlahPerutPasien;
+    Stack perutPasien[MAX_PASIEN];
 } Config;
 
 // Menginisialisasi struktur data config

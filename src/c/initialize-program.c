@@ -169,6 +169,32 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
             }
         }
     }
+    fgets(lineInput, sizeof(lineInput), configFile);
+    configParsing(lineInput, "i", &config->jumlahPerutPasien);
+    for(int i = 0; i < config->jumlahPerutPasien; i++){
+        fgets(lineInput, sizeof(lineInput), configFile);
+        int pasienID;
+        configParsing(lineInput, "i", &pasienID);
+        int indeksGet = 1;
+        while(lineInput[indeksGet] != '\n' && lineInput[indeksGet] != '\0'){
+            if(lineInput[indeksGet] == ' '){
+                indeksGet++;
+            }
+            else{
+                char stringAngka[10];
+                int indeksPutAngka = 0;
+                while(lineInput[indeksGet] != ' ' && lineInput[indeksGet] != '\n' && lineInput[indeksGet] != '\0'){
+                    stringAngka[indeksPutAngka] = lineInput[indeksGet];
+                    indeksGet++;
+                    indeksPutAngka++;
+                }
+                stringAngka[indeksPutAngka] = '\0';
+                int obatID = atoi(stringAngka);
+                push(&(config->perutPasien[pasienID]), obatID);
+                indeksGet++;
+            }
+        }
+    }
     fclose(configFile);
     
     return 1;

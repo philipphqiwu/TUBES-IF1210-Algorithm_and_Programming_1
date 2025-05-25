@@ -76,7 +76,7 @@ int dequeue(Queue* q){
 }
 
 // Function to return the front element of the Queue
-int peek(Queue* q){
+int peekQueue(Queue* q){
     // Check if the Queue is empty
     if (isQueueEmpty(q))
         return -1;
