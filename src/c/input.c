@@ -29,10 +29,10 @@ void input(int * loginState, int * loginId, ListDinUser * UserData, ListObat * l
         return;
     } else if(*loginState != 0){
         if(strcmp(user_input,"LIHAT_DENAH") == 0){
-            lihatDenah(*rumahsakit);
+            // lihatDenah(*rumahsakit);
             return;
         } else if(strcmp(user_input,"LIHAT_RUANGAN") == 0){
-            lihatRuangan(*rumahsakit, *UserData);
+            // lihatRuangan(*rumahsakit, *UserData);
             return;
         }
     } 
@@ -49,9 +49,9 @@ void input(int * loginState, int * loginId, ListDinUser * UserData, ListObat * l
         }
     } else if(*loginState == 1){
         if(strcmp(user_input,"TAMBAH_DOKTER") == 0){
-            tambahDokter(UserData);
+            // tambahDokter(UserData);
         } else if(strcmp(user_input,"ASSIGN_DOKTER") == 0){
-            assignDokter(UserData,rumahsakit);
+            // assignDokter(UserData,rumahsakit);
         } else if(strcmp(user_input,"LIHAT_USER") == 0){
             lihatUser(*UserData);
         } else if(strcmp(user_input,"LIHAT_PASIEN") == 0){

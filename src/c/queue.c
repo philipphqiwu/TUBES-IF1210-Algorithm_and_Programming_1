@@ -1,62 +1,96 @@
-#include <string.h>
-#include <stdbool.h>
+
+#include "../header/Queue.h"
 #include <stdio.h>
-#include "../header/queue.h"
+#include <stdlib.h>
 
-void initQueue(Queue *q){
-    q->front = q->rear = -1;
+// Function to create a new Node
+Node* createNode(int data){
+    // Allocate memory for a new Node
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    // Check if memory allocation was successful
+    if (newNode == NULL)
+        return NULL;
+    // Initialize the Node's data and next pointer
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
 }
 
-bool isQueueEmpty(const Queue *q){
-    return (q->front == -1);
+// Function to create a new Queue
+Queue* createQueue(){
+    // Allocate memory for a new Queue
+    Queue* newQueue = (Queue*)malloc(sizeof(Queue));
+    // Initialize the front and rear pointers of the Queue
+    newQueue->front = newQueue->rear = NULL;
+    newQueue->counter = 0;
+    return newQueue;
 }
 
-bool isQueueFull(const Queue *q){
-    return (q->rear + 1) % MAX_QUEUE_SIZE == q->front;
+// Function to check if the Queue is empty
+int isQueueEmpty(Queue* q){
+    // Check if the front pointer is NULL
+    return q->front == NULL;
 }
 
-void enqueue(Queue *q, const char *value){
-    if(isQueueFull(q)){
-        printf("Error! Queue is full\n");
+// Function to add an element to the Queue
+void enqueue(Queue* q, int data){
+    // Create a new Node with the given data
+    Node* newNode = createNode(data);
+    // Check if memory allocation for the new Node was
+    // successful
+    if (!newNode) {
+        printf("Queue Overflow!\n");
         return;
     }
-    if(isQueueEmpty(q)){
-        q->front = 0;
-    }
-    q->rear = (q->rear + 1) % MAX_QUEUE_SIZE;
-    strcpy(q->items[q->rear], value);
-}
-
-const char* dequeue(Queue *q){
-    if(isQueueEmpty(q)){
-        return NULL;
-    }
-    const char* val = q->items[q->front];
-    if(q->front == q->rear){
-        q->front = q->rear = -1; //reset lagi ke kondisi awal
-    }else{
-        q->front = (q->front + 1) % MAX_QUEUE_SIZE;
-    }
-    return val;
-}
-
-const char* peekQueue(const Queue *q){
-    if (isQueueEmpty(q)) {
-        return NULL;
-    }
-    return q->items[q->front];
-}
-
-void printQueue(const Queue *q){
-    if (isQueueEmpty(q)) {
-        printf("Queue saat ini sedang kosong.\n");
+    // If the Queue is empty, set the front and rear
+    // pointers to the new Node
+    if (q->rear == NULL) {
+        q->front = q->rear = newNode;
         return;
     }
-    printf("Current queue :\n");
-    int i = q->front;
-    do {
-        int sequence = i + 1;
-        printf("%d) %s\n", sequence, q->items[i]);
-        i = (i + 1) % MAX_QUEUE_SIZE;
-    } while (i != (q->rear + 1) % MAX_QUEUE_SIZE);
+    // Add the new Node at the end of the Queue and update
+    // the rear pointer
+    q->rear->next = newNode;
+    q->rear = newNode;
+    q->counter += 1;
+}
+
+// Function to remove an element from the Queue
+int dequeue(Queue* q){
+    // Check if the Queue is empty
+    if (isQueueEmpty(q)) {
+        printf("Queue Underflow\n");
+        return -1;
+    }
+    // Store the front Node and update the front pointer
+    Node* temp = q->front;
+    q->front = q->front->next;
+    // If the Queue becomes empty, update the rear pointer
+    if (q->front == NULL)
+        q->rear = NULL;
+    // Store the data of the front Node and free its memory
+    int data = temp->data;
+    q->counter -= 1;
+    free(temp);
+    return data;
+}
+
+// Function to return the front element of the Queue
+int peekQueue(Queue* q){
+    // Check if the Queue is empty
+    if (isQueueEmpty(q))
+        return -1;
+    // Return the data of the front Node
+    return q->front->data;
+}
+
+// Function to print the Queue
+void printQueue(Queue* q){
+    // Traverse the Queue and print each element
+    Node* temp = q->front;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
 }

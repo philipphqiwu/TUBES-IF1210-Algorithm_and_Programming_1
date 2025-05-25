@@ -3,21 +3,20 @@
 
 #include <stdbool.h>
 #include <string.h>
+#include "linked-list.h"
 
-#define MAX_QUEUE_SIZE 100
-#define MAX_VAL_LENGTH 50
-
-typedef struct {
-    char items[MAX_QUEUE_SIZE][MAX_VAL_LENGTH]; //queue of strings
-    int front, rear;
+typedef struct Queue {
+    Node* front;
+    Node* rear;
+    int counter;
 } Queue;
 
-void initQueue(Queue *q);
-bool isQueueEmpty(const Queue *q);
-bool isQueueFull(const Queue *q);
-void enqueue(Queue *q, const char *value);
-const char* dequeue(Queue *q);
-const char* peekQueue(const Queue *q);
-void printQueue(const Queue *q);
+Node* createNode(int data);
+Queue* createQueue();
+int isQueueEmpty(Queue* q);
+void enqueue(Queue* q, int data);
+int dequeue(Queue* q);
+int peekQueue(Queue* q);
+void printQueue(Queue* q);
 
 #endif

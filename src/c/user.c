@@ -46,7 +46,7 @@ boolean isIdxEff(ListDinUser l, IdxType i){
     return false;
 }
 
-boolean isEmpty(ListDinUser l){
+boolean isListDinEmpty(ListDinUser l){
     return l.nEff==0;
 }
 
@@ -56,6 +56,7 @@ boolean isFull(ListDinUser l){
 
 void printList(ListDinUser l){
     for (int i=0;i<l.nEff;i++){
+        if(l.buffer->id == 0) continue;
         printUser(l.buffer[i]);
         printf("\n");
     }
@@ -105,6 +106,16 @@ void compressList(ListDinUser *l){
     l->capacity = l->nEff;
     l->buffer = (ElType*)realloc(l->buffer,l->capacity*sizeof(ElType));
 
+}
+/* Proses : Mengubah capacity sehingga nEff = capacity */
+/* I.S. List tidak kosong */
+/* F.S. Ukuran nEff = capacity */
+
+void insertUserByID(ListDinUser *list, ElType item){
+    list->buffer[item.id] = item;
+    if(list->nEff <= item.id){
+        list->nEff = item.id + 1;
+    }
 }
 
 void writeListUser(char * folderPath, ListDinUser *list){

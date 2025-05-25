@@ -94,7 +94,7 @@ boolean isIdxEff(ListDinUser l, IdxType i);
 
 /* ********** TEST KOSONG/PENUH ********** */
 /* *** Test list kosong *** */
-boolean isEmpty(ListDinUser l);
+boolean isListDinEmpty(ListDinUser l);
 /* Mengirimkan true jika list l kosong, mengirimkan false jika tidak */
 /* *** Test list penuh *** */
 boolean isFull(ListDinUser l);
@@ -147,6 +147,12 @@ void compressList(ListDinUser *l);
 /* F.S. Ukuran nEff = capacity */
 
 void printUser(User user);
+
+// Memasukan item pada elemen pada list sesuai ID user
+void insertUserByID(ListDinUser *list, ElType item);
+// I.S. list dan item terdefinisi. item.id bernilai dan dapat menjadi indeks yang valid
+// F.S. list.buffer[item.id] terisi dengan data pada item
+//      jika item.id >= list.nEff, maka list.nEff = item.id + 1
 
 void printList(ListDinUser l);
 

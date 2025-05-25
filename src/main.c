@@ -38,8 +38,6 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
-
-
     int loginState = 0;
     /*
     loginState
@@ -58,26 +56,30 @@ int main(int argc, char *argv[]) {
     createListPenyakit(&listPenyakit, 100);
     MapObatPenyakit mapObatPenyakit;
     createMapObatPenyakit(&mapObatPenyakit);
+    Config config;
+    createConfig(&config);
 
-    initializeProgram(folderPath, &UserData, &listObat, &listPenyakit, &mapObatPenyakit);
+    initializeProgram(folderPath, &UserData, &listObat, &listPenyakit, &mapObatPenyakit, &config);
     for (int i = 0; i < UserData.nEff; i++) {
         UserData.buffer[i].ruang[0] = '\0';
     }
     
-    Config rumahsakit;
-    readConfig(folderPath, &rumahsakit, &UserData);
+    // Config rumahsakit;
+    // readConfig(folderPath, &rumahsakit, &UserData);
 
-    // printf("Jumlah user: %d\n", UserData.nEff);
-    // printList(UserData);
-    // printf("List Obat: \n");
-    // printListObat(listObat);
-    // printf("List Penyakit: \n");
-    // printListPenyakit(listPenyakit);
-    // printf("Map Obat Penyakit: \n");
-    // printMapObatPenyakit(mapObatPenyakit);
+    printf("Jumlah user: %d\n", UserData.nEff);
+    printList(UserData);
+    printf("List Obat: \n");
+    printListObat(listObat);
+    printf("List Penyakit: \n");
+    printListPenyakit(listPenyakit);
+    printf("Map Obat Penyakit: \n");
+    printMapObatPenyakit(mapObatPenyakit);
+    printf("Config: \n");
+    printConfig(config);
     
     while(run){
-        input(&loginState, &loginId, &UserData, &listObat, &listPenyakit, &mapObatPenyakit, &run, &rumahsakit);
+        input(&loginState, &loginId, &UserData, &listObat, &listPenyakit, &mapObatPenyakit, &run, &config);
         //printf("id: %d login: %d\n",loginId,loginState);
         //printList(UserData);
     }

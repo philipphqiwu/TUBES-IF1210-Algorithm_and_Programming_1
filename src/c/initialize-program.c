@@ -8,10 +8,11 @@
 #include "../header/obat.h"
 #include "../header/penyakit.h"
 #include "../header/obat-penyakit.h"
+#include "../header/config.h"
 #include "../header/save.h"
 #include "../header/logo.h"
 
-int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listObat, ListPenyakit *listPenyakit , MapObatPenyakit *mapObatPenyakit){
+int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listObat, ListPenyakit *listPenyakit , MapObatPenyakit *mapObatPenyakit, Config *config){
     printLogo();
     printf("\n");
     printf("===============\n");
@@ -19,14 +20,16 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
     printf("===============\n");
 
 
-    char filePathObat[300];
+    char filePathObat[MAX_FILE_PATH_CHAR];
     snprintf(filePathObat, sizeof(filePathObat),"%s/obat.csv", folderPath ); 
-    char filePathPenyakit[300];
+    char filePathPenyakit[MAX_FILE_PATH_CHAR];
     snprintf(filePathPenyakit, sizeof(filePathPenyakit),"%s/penyakit.csv", folderPath ); 
-    char filePathObatPenyakit[300];
+    char filePathObatPenyakit[MAX_FILE_PATH_CHAR];
     snprintf(filePathObatPenyakit, sizeof(filePathObatPenyakit),"%s/obat_penyakit.csv", folderPath ); 
-    char filePathUser[300];
-    snprintf(filePathUser, sizeof(filePathUser),"%s/user.csv", folderPath ); 
+    char filePathUser[MAX_FILE_PATH_CHAR];
+    snprintf(filePathUser, sizeof(filePathUser),"%s/user.csv", folderPath );
+    char filePathConfig[MAX_FILE_PATH_CHAR];
+    snprintf(filePathConfig, sizeof(filePathConfig), "%s/config.txt", folderPath );
 
     FILE *obatFile = fopen(filePathObat, "r");
     if(!obatFile){
@@ -58,14 +61,25 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
         fclose(userFile);
         return 0;
     }
-    char lineInput[1000];
+    FILE *configFile = fopen(filePathConfig, "r");
+    if(!configFile){
+        printf("Gagal membuka file user.csv\n");
+        fclose(obatFile);
+        fclose(penyakitFile);
+        fclose(obatPenyakitFile);
+        fclose(userFile);
+        fclose(configFile);
+        return 0;
+    }
+
+    char lineInput[MAX_INPUT_CHAR];
     // Parsing dan pemasukan data user
     // parseUserData(listUser);
     fgets(lineInput, sizeof(lineInput), userFile);
     while(fgets(lineInput, sizeof(lineInput), userFile)){
         User itemUser;
         parsing(lineInput, "issssfiiififiiii", &itemUser.id, itemUser.username, itemUser.password, itemUser.role, itemUser.riwayat_penyakit, &itemUser.suhu_tubuh, &itemUser.tekanan_darah_sistolik, &itemUser.tekanan_darah_diastolik, &itemUser.detak_jantung, &itemUser.saturasi_oksigen, &itemUser.kadar_gula_darah, &itemUser.berat_badan, &itemUser.tinggi_badan, &itemUser.kadar_kolesterol, &itemUser.kadar_kolesterol_ldl, &itemUser.trombosit);
-        insertLast(listUser, itemUser);
+        insertUserByID(listUser, itemUser);
     }
     fclose(userFile);
     // Parsing dan pemasukan data obat
@@ -84,7 +98,6 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
         insertPenyakitByID(listPenyakit, itemPenyakit);
     }
     fclose(penyakitFile);
-
     // Parsing dan pemasukan data obat_penyakit
     fgets(lineInput, sizeof(lineInput), obatPenyakitFile);
     while(fgets(lineInput, sizeof(lineInput), obatPenyakitFile) != NULL){
@@ -95,6 +108,97 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
         insertObatPenyakitByRawData(mapObatPenyakit, obatId, penyakitId, urutanMinum);
     }
     fclose(obatPenyakitFile);
+    // Parsing dan pemasukan data config
+    fgets(lineInput, sizeof(lineInput), configFile);
+    configParsing(lineInput, "ii", &config->denah.rows, &config->denah.cols);
+    fgets(lineInput, sizeof(lineInput), configFile);
+    configParsing(lineInput, "ii", &config->kapasitasRuangan, &config->kapasitasAntrian);
+    for(int i = 0; i < config->denah.rows * config->denah.cols; i++){
+        int row = i/config->denah.cols;
+        int col = i%config->denah.cols;
+        fgets(lineInput, sizeof(lineInput), configFile);
+        configParsing(lineInput, "i", &config->denah.contents[row][col].dokterID);
+        int indeksGet = 1;
+        while(lineInput[indeksGet] != ' '){
+            indeksGet++;
+        }
+        // config->denah.contents[row][col].antrian = createQueue();
+        while(lineInput[indeksGet] != '\n' && lineInput[indeksGet] != '\0'){
+            if(lineInput[indeksGet] == ' '){
+                indeksGet++;
+            }
+            else{
+                char stringAngka[10];
+                int indeksPut = 0;
+                stringAngka[indeksPut] = lineInput[indeksGet];
+                indeksPut++;
+                indeksGet++;
+                while(lineInput[indeksGet] != ' ' && lineInput[indeksGet] != '\n' && lineInput[indeksGet] != '\0'){
+                    stringAngka[indeksPut] = lineInput[indeksGet];
+                    indeksGet++;
+                    indeksPut++;
+                }
+                stringAngka[indeksPut] = '\0';
+                int pasienID = atoi(stringAngka);
+                enqueue(config->denah.contents[row][col].antrian, pasienID);
+            }
+        }
+    }
+    fgets(lineInput, sizeof(lineInput), configFile);
+    configParsing(lineInput, "i", &config->jumlahPemilikObat);
+    for(int i = 0; i < config->jumlahPemilikObat; i++){
+        fgets(lineInput, sizeof(lineInput), configFile);
+        int pasienID;
+        configParsing(lineInput, "i", &pasienID);
+        int indeksGet = 1;
+        int indeksPut = 0;
+        while(lineInput[indeksGet] != '\n' && lineInput[indeksGet] != '\0'){
+            if(lineInput[indeksGet] == ' '){
+                indeksGet++;
+            }
+            else{
+                char stringAngka[10];
+                int indeksPutAngka = 0;
+                while(lineInput[indeksGet] != ' ' && lineInput[indeksGet] != '\n' && lineInput[indeksGet] != '\0'){
+                    stringAngka[indeksPutAngka] = lineInput[indeksGet];
+                    indeksGet++;
+                    indeksPutAngka++;
+                }
+                stringAngka[indeksPutAngka] = '\0';
+                int obatID = atoi(stringAngka);
+                insertMatrixByIndex(&(config->inventoryPasien), pasienID, indeksPut, obatID);
+                indeksGet++;
+                indeksPut++;
+            }
+        }
+    }
+    fgets(lineInput, sizeof(lineInput), configFile);
+    configParsing(lineInput, "i", &config->jumlahPerutPasien);
+    for(int i = 0; i < config->jumlahPerutPasien; i++){
+        fgets(lineInput, sizeof(lineInput), configFile);
+        int pasienID;
+        configParsing(lineInput, "i", &pasienID);
+        int indeksGet = 1;
+        while(lineInput[indeksGet] != '\n' && lineInput[indeksGet] != '\0'){
+            if(lineInput[indeksGet] == ' '){
+                indeksGet++;
+            }
+            else{
+                char stringAngka[10];
+                int indeksPutAngka = 0;
+                while(lineInput[indeksGet] != ' ' && lineInput[indeksGet] != '\n' && lineInput[indeksGet] != '\0'){
+                    stringAngka[indeksPutAngka] = lineInput[indeksGet];
+                    indeksGet++;
+                    indeksPutAngka++;
+                }
+                stringAngka[indeksPutAngka] = '\0';
+                int obatID = atoi(stringAngka);
+                push(&(config->perutPasien[pasienID]), obatID);
+                indeksGet++;
+            }
+        }
+    }
+    fclose(configFile);
     
     return 1;
 }
