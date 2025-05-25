@@ -3,7 +3,7 @@
 void findBased(int * base, int type){ 
     // Validation for finding base
     while (1) {
-        printf("Cari berdasarkan?\n");
+        printf(COLOR_MAGENTA"Cari berdasarkan?\n");
         printf("1. ID\n");
         printf("2. Nama\n");
         if(type == 2){
@@ -14,7 +14,7 @@ void findBased(int * base, int type){
             if(type == 2 && *base == 3){
                 break;
             }
-            printf("Input tidak valid! Pilih opsi yang valid.\n");
+            printf(COLOR_RED"Input tidak valid! Pilih opsi yang valid.\n"COLOR_RESET);
             while (getchar() != '\n'); // Clear input buffer
         } else {
             break;  
@@ -42,7 +42,6 @@ int binSearchId(ListDinUser * UserData, int id){
         return mid;
     }
     return -1;
-
 }
 
 int seqSearchName(ListDinUser * UserData, char * name){
@@ -59,7 +58,7 @@ void findId(ListDinUser * UserData, int type){
     int id;
     char ch;
     while(1){
-        printf(">>> Masukkan nomor ID ");
+        printf(COLOR_MAGENTA">>> Masukkan nomor ID ");
         switch (type){
             case 1:
                 printf("user: ");
@@ -72,16 +71,16 @@ void findId(ListDinUser * UserData, int type){
                 break;
         }
         if (scanf("%d%c", &id, &ch) != 2 || ch != '\n'){
-            printf("Masukkan input yang valid!\n");
+            printf(COLOR_RED"Masukkan input yang valid!\n");
         } else if(id <= 0 || id > 100){
-            printf("ID HARUS ANTARA 1 DAN 100 !");
+            printf(COLOR_RED"ID HARUS ANTARA 1 DAN 100 !");
         } else {
             break;  
         }
     }
     int idx = binSearchId(UserData, id);
     if(idx == -1){
-        printf("Tidak ditemukan ");
+        printf(COLOR_RED"Tidak ditemukan ");
         switch (type){
             case 1:
                 printf("user: ");
@@ -93,16 +92,18 @@ void findId(ListDinUser * UserData, int type){
                 printf("dokter: ");
                 break;
         }
-        printf("dengan id %d!\n", id);
+        printf("dengan id %d!\n"COLOR_RESET, id);
     } else{
         switch (type){
             case 1:
+                printf("----------------------------------------------------------\n");
                 printf("ID | Nama                | Role    | Penyakit\n");
                 printf("----------------------------------------------------------\n");
                 printf("%-3d| %-20s| %-8s| %-20s\n", UserData->buffer[idx].id, UserData->buffer[idx].username, UserData->buffer[idx].role, strlen(UserData->buffer[idx].riwayat_penyakit) == 0 ? "-" : UserData->buffer[idx].riwayat_penyakit);
                 break;
             case 2:
                 if(strcmp(UserData->buffer[idx].role,"pasien") == 0){
+                    printf("----------------------------------------------------------\n");
                     printf("ID | Nama                | Penyakit\n");
                     printf("----------------------------------------------------------\n");
                     printf("%-3d| %-20s| %-20s\n", UserData->buffer[idx].id, UserData->buffer[idx].username, strlen(UserData->buffer[idx].riwayat_penyakit) == 0 ? "-" : UserData->buffer[idx].riwayat_penyakit);            
@@ -112,6 +113,7 @@ void findId(ListDinUser * UserData, int type){
                 break;
             case 3:
                 if(strcmp(UserData->buffer[idx].role,"dokter") == 0){
+                    printf("----------------------------------------------------------\n");
                     printf("ID | Nama\n");
                     printf("----------------------------------------------------------\n");
                     printf("%-3d| %-20s\n", UserData->buffer[idx].id, UserData->buffer[idx].username);  
@@ -141,14 +143,14 @@ void findName(ListDinUser * UserData, int type){
         scanf("%s", name);
 
         if (strlen(name) > 20) {
-            printf("Error: Username melebihi 20 characters.\n");
+            printf(COLOR_RED"Error: Username melebihi 20 characters.\n"COLOR_RESET);
         } else {
             break;  
         }
     }
     int idx = seqSearchName(UserData, name);
     if(idx == -1){
-        printf("Tidak ditemukan ");
+        printf(COLOR_RED"Tidak ditemukan ");
         switch (type){
             case 1:
                 printf("user: ");
@@ -164,26 +166,29 @@ void findName(ListDinUser * UserData, int type){
     } else{
         switch (type){
             case 1:
+                printf("----------------------------------------------------------\n");
                 printf("ID | Nama                | Role    | Penyakit\n");
                 printf("----------------------------------------------------------\n");
                 printf("%-3d| %-20s| %-8s| %-20s\n", UserData->buffer[idx].id, UserData->buffer[idx].username, UserData->buffer[idx].role, strlen(UserData->buffer[idx].riwayat_penyakit) == 0 ? "-" : UserData->buffer[idx].riwayat_penyakit);
                 break;
             case 2:
                 if(strcmp(UserData->buffer[idx].role,"pasien") == 0){
+                    printf("----------------------------------------------------------\n");
                     printf("ID | Nama                | Penyakit\n");
                     printf("----------------------------------------------------------\n");
                     printf("%-3d| %-20s| %-20s\n", UserData->buffer[idx].id, UserData->buffer[idx].username, strlen(UserData->buffer[idx].riwayat_penyakit) == 0 ? "-" : UserData->buffer[idx].riwayat_penyakit);            
                 } else{
-                    printf("Pasien dengan username %s tidak ditemukan!\n", name);
+                    printf(COLOR_RED"Pasien dengan username %s tidak ditemukan!\n", name);
                 }
                 break;
             case 3:
                 if(strcmp(UserData->buffer[idx].role,"dokter") == 0){
+                    printf("----------------------------------------------------------\n");
                     printf("ID | Nama\n");
                     printf("----------------------------------------------------------\n");
                     printf("%-3d| %-20s\n", UserData->buffer[idx].id, UserData->buffer[idx].username);    
                 } else{
-                    printf("Dokter dengan username %s tidak ditemukan!\n", name);
+                    printf(COLOR_RED"Dokter dengan username %s tidak ditemukan!\n", name);
                 }
                 break;
             }
@@ -192,6 +197,7 @@ void findName(ListDinUser * UserData, int type){
 
 void tampilPenyakit(User *ptrs[], int base, int order, int length, char * penyakit){
     if(base == 3 && order == 3){
+        printf("----------------------------------------------------------\n");
         printf("ID | Nama                | Penyakit\n");
         printf("----------------------------------------------------------\n");
         for(int i = 0; i < length; i++){
@@ -215,6 +221,7 @@ void tampilPenyakit(User *ptrs[], int base, int order, int length, char * penyak
     switch(order){
         case 1:
             printf("ascending...\n");
+            printf("----------------------------------------------------------\n");
             printf("ID | Nama                | Penyakit\n");
             printf("----------------------------------------------------------\n");
             for(int i = 0; i < length; i++){
@@ -225,6 +232,7 @@ void tampilPenyakit(User *ptrs[], int base, int order, int length, char * penyak
             break;
         case 2:
             printf("descending...\n");
+            printf("----------------------------------------------------------\n");
             printf("ID | Nama                | Penyakit\n");
             printf("----------------------------------------------------------\n");
                 for(int i = length-1; i >= 0; i--){
@@ -240,14 +248,14 @@ void findPenyakit(ListDinUser * UserData){
     char penyakit[51];
     while(1){
         while (getchar() != '\n');
-        printf(">>> Masukkan nama penyakit: ");
+        printf(COLOR_MAGENTA">>> Masukkan nama penyakit: ");
         fgets(penyakit, sizeof(penyakit), stdin);
 
         // Remove trailing newline
         penyakit[strcspn(penyakit, "\n")] = '\0';
 
         if (strlen(penyakit) > 50) {
-            printf("Error: Penyakit melebihi 50 characters.\n");
+            printf(COLOR_RED"Error: Penyakit melebihi 50 characters.\n"COLOR_RESET);
         } else {
             break;  
         }
@@ -267,7 +275,7 @@ void findPenyakit(ListDinUser * UserData){
     }
 
     if(count == 0){
-        printf("Tidak ada pasien dengan penyakit %s di rumah sakit!\n",penyakit);
+        printf(COLOR_RED"Tidak ada pasien dengan penyakit %s di rumah sakit!\n"COLOR_RESET,penyakit);
     } else if(count == 1){
         tampilPenyakit(ptrs,3,3,length, penyakit);
     } else{
@@ -289,6 +297,7 @@ void cariUser(ListDinUser * UserData){
             findName(UserData,1);
             break;
     }
+    printf(COLOR_RESET);
 }
 
 void cariPasien(ListDinUser * UserData){
@@ -305,6 +314,7 @@ void cariPasien(ListDinUser * UserData){
             findPenyakit(UserData);
             break;
     }
+    printf(COLOR_RESET);
 }
 void cariDokter(ListDinUser * UserData){
     int base = 0;
@@ -316,6 +326,6 @@ void cariDokter(ListDinUser * UserData){
         case 2:
             findName(UserData,3);
             break;
-
     }
+    printf(COLOR_RESET);
 }
