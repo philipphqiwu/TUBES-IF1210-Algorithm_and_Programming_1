@@ -5,6 +5,7 @@
 #include "obat.h"
 #include "penyakit.h"
 #include "user.h"
+#include "colors.h"
 #include "obat-penyakit.h"
 #include "config.h"
 

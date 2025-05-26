@@ -2,6 +2,13 @@
     "files.associations": {
         "obat-penyakit.h": "c",
         "string.h": "c",
-        "map.h": "c"
+        "map.h": "c",
+        "general-parsing.h": "c",
+        "user.h": "c",
+        "matriks-denah.h": "c",
+        "stdio.h": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c"
     }
 }

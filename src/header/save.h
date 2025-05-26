@@ -5,9 +5,9 @@
 #include "penyakit.h"
 #include "obat-penyakit.h"
 #include "config.h"
+#include "colors.h"
 #include <sys/stat.h>
 #include <sys/types.h>
-#include <errno.h>
 
 int isValidFolderName(const char *name);
 int folderExists(const char *path);

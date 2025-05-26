@@ -10,21 +10,21 @@ void tambahDokter(ListDinUser * UserData){
     char Password[21];
     // Username input validation loop
     while (1) {
-        printf("Username (max 20 characters): ");
+        printf(COLOR_MAGENTA"Username (max 20 characters): ");
         scanf("%s", Username); 
-
+        printf(COLOR_RESET);
         // Validasi username hanya huruf alfabet
         int isValid = 1;  // Flag to track if the username is valid
         for (int i = 0; i < strlen(Username); i++) {
             if((int)Username[i] < 65 || (int)Username[i] > 122 ||((int)Username[i]>90 && (int)Username[i]<97)){
                 isValid = 0;  
-                printf("Username hanya boleh terdiri atas huruf alfabet!\n");
+                printf(COLOR_RED"Username hanya boleh terdiri atas huruf alfabet!\n"COLOR_RESET);
                 break;
             }
         }
 
         if (strlen(Username) > 20) {
-            printf("Error: Username melebihi 20 characters.\n");
+            printf(COLOR_RED"Error: Username melebihi 20 characters.\n"COLOR_RESET);
         } else if (!isValid) {
             continue; 
         } else {
@@ -34,10 +34,11 @@ void tambahDokter(ListDinUser * UserData){
 
     // Password input validation loop
     while (1) {
-        printf("Password (max 20 characters): ");
+        printf(COLOR_MAGENTA"Password (max 20 characters): ");
         scanf("%s", Password);
+        printf(COLOR_RESET);
         if (strlen(Password) > 20) {
-            printf("Error: Password melebihi 20 characters.\n");
+            printf(COLOR_RED"Error: Password melebihi 20 characters.\n"COLOR_RESET);
         } else {
             break;
         }
@@ -50,10 +51,10 @@ void tambahDokter(ListDinUser * UserData){
     }
 
     if(setContain(&setUsername, to_lower(Username))){
-        printf("Penambahan dokter gagal! Sudah ada user bernama %s!\n", Username);
+        printf(COLOR_RED"Penambahan dokter gagal! Sudah ada user bernama %s!\n"COLOR_RESET, Username);
     } else{
-        printf("Dokter %s berhasil ditambahkan!\n", Username);        
-        UserData->buffer[UserData->nEff].id = UserData->nEff+1;
+        printf(COLOR_MAGENTA"Dokter %s berhasil ditambahkan!\n"COLOR_RESET, Username);        
+        UserData->buffer[UserData->nEff].id = UserData->buffer[UserData->nEff-1].id+1;
         strcpy(UserData->buffer[UserData->nEff].username, Username);
         strcpy(UserData->buffer[UserData->nEff].password, Password);
         strcpy(UserData->buffer[UserData->nEff].role, "dokter");
@@ -95,7 +96,7 @@ void assignDokter(ListDinUser * UserData, Config * rumahsakit){
         }
     }
 
-    int baris = input[0] - 'A';
+    /*int baris = input[0] - 'A';
     int kolom = atoi(input + 1) - 1;
     int indeks = baris * rumahsakit->roomCol + kolom;
     
@@ -129,5 +130,5 @@ void assignDokter(ListDinUser * UserData, Config * rumahsakit){
         strcpy(UserData->buffer[idx].ruang, input);
         rumahsakit->room[indeks][0] = idx;
     }
-
+    */
 }
