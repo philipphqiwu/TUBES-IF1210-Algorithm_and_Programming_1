@@ -126,6 +126,28 @@ void sortUser(ListDinUser *list){
     }
 }
 
+int cariIdxUser(ListDinUser * UserData, int id){
+    int left = 0;
+    int right = UserData->nEff - 1;
+    int mid = (left + right)/2;
+
+    while(left < right){
+        if(UserData->buffer[mid].id > id){
+            right = mid;
+            mid = (left+right)/2;
+        } else if (UserData->buffer[mid].id < id){
+            left = mid+1;          
+            mid = (left+right)/2;
+        } else if(UserData->buffer[mid].id == id){
+            break;
+        }
+    }
+    if(UserData->buffer[mid].id == id){
+        return mid;
+    }
+    return -1;
+}
+
 void writeListUser(char * folderPath, ListDinUser *list){
     char fullFilePath[300];
     snprintf(fullFilePath, sizeof(fullFilePath),"%s/user.csv", folderPath ); 

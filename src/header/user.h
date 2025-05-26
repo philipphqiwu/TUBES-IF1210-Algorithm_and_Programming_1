@@ -22,6 +22,7 @@ typedef struct{
     int kadar_kolesterol;
     int trombosit;
     char ruang[2];
+    char antrian[2];
 } User;
 
 void printUser(User user);

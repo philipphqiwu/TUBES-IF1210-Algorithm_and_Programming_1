@@ -61,6 +61,36 @@ int main(int argc, char *argv[]) {
     initializeProgram(folderPath, &UserData, &listObat, &listPenyakit, &mapObatPenyakit, &config);
     for (int i = 0; i < UserData.nEff; i++) {
         UserData.buffer[i].ruang[0] = '\0';
+        UserData.buffer[i].antrian[0] = '\0';
+    }
+
+    // ini untuk set ruangan di adt user dari tiap orang yg ada di ruangannya yeeeeee
+    for(int i = 0; i < config.denah.rows; i++){
+        for(int j = 0; j < config.denah.cols; j++){
+            int idxdokter = cariIdxUser(&UserData, config.denah.contents[i][j].dokterID);
+            if(idxdokter != -1){
+                strcpy(UserData.buffer[idxdokter].ruang,config.denah.contents[i][j].kodeRuangan);
+            } else{
+                continue;
+            }
+            if(isQueueEmpty(config.denah.contents[i][j].antrian)){
+                continue;
+            } else{
+                Node* current = config.denah.contents[i][j].antrian->front;
+                int count = 0;
+
+                while (current != NULL) {
+                    int idxPasien = cariIdxUser(&UserData, current->data);
+                    if (count < config.kapasitasRuangan) {
+                        strcpy(UserData.buffer[idxPasien].ruang, config.denah.contents[i][j].kodeRuangan);
+                    } else {
+                        strcpy(UserData.buffer[idxPasien].antrian, config.denah.contents[i][j].kodeRuangan);
+                    }
+                    count++;
+                    current = current->next;
+                }
+            }
+        }
     }
     
     // Config rumahsakit;
