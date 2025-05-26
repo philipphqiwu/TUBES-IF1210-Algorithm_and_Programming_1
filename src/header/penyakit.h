@@ -66,4 +66,5 @@ void freeListPenyakit(ListPenyakit *list);
 // I.S. list terdefinisi dan sembarang
 // F.S. Memori dalam list terdealokasi, list.nEff dan list.capacity bernilai 0
 
+void writeListPenyakit(char * folderPath, ListPenyakit *list);
 #endif

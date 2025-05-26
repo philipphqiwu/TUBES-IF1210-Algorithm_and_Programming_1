@@ -11,6 +11,7 @@ void createListObat(ListObat *list, int capacity){
 
 void printListObat(ListObat list){
     for(int i = 0; i < list.nEff; i++){
+        if(list.items[i].obat_id == 0) continue;
         printf("%d %s\n", list.items[i].obat_id, list.items[i].nama_obat);
     }
 }
@@ -31,4 +32,16 @@ void freeListObat(ListObat *list){
     free(list->items);
     list->nEff = 0;
     list->capacity = 0;
+}
+
+void writeListObat(char * folderPath, ListObat *list){
+    char fullFilePath[300];
+    snprintf(fullFilePath, sizeof(fullFilePath),"%s/obat.csv", folderPath ); 
+    FILE * file = fopen(fullFilePath, "w");
+    fprintf(file, "obat_id;nama_obat\n");
+    for(int i = 1; i<list->nEff; i++){
+        fprintf(file, "%d;%s\n", list->items[i].obat_id, list->items[i].nama_obat);
+    }
+
+    fclose(file);
 }

@@ -2,17 +2,15 @@
 #define LINKED_LIST_H
 #include <stdio.h>
 
-typedef int ElType;
-
 typedef struct Node{
-    ElType data;
+    int data;
     struct Node* next;
 } Node;
 
 Node* createLinked(int data);
 // menginisialisasi linked list.
 
-void linkedInsertHead(Node** headPointer, ElType data);
+void linkedInsertHead(Node** headPointer, int data);
 // I.S. headPointer terdefinisi (sembarang), data terdefinisi.
 // F.S. headPointer menunjuk ke data pertama.
 
@@ -22,7 +20,7 @@ void linkedDeleteHead(Node** head);
 // F.S. elemen head dihapus jika stack terisi.
 //      mengeluarkan error message jika stack kosong.
 
-void linkedInsertAt(Node** headPointer, int position, ElType data);
+void linkedInsertAt(Node** headPointer, int position, int data);
 // I.S. headPointer terdefinisi dan terisi. position terdefinisi dan dalam range, data terdefinisi.
 // F.S. headPointer menunjuk ke elemen selanjutnya sampai elemen posisi, elemen posisi menunjuk ke elemen selanjutnya.
 

@@ -15,9 +15,28 @@
 #include "header/F03.h"
 #include "header/F04.h"
 #include "header/F06.h"
+#include "header/save.h"
 
 
-int main() {
+int main(int argc, char *argv[]) {
+    char folderPath[300];
+    if (argc == 1){
+        printf("Program akan menggunakan folder default yaitu ../data\n");
+        snprintf(folderPath, sizeof(folderPath), "../data");
+    } else if (argc == 2) {
+        char folderName[256];
+        strcpy (folderName,argv[1]);
+        folderName[strcspn(folderName, "\n")] = '\0';
+        snprintf(folderPath, sizeof(folderPath), "../data/%s", folderName);
+        if (!folderExists(folderPath)) {
+            printf("FOLDER TIDAK DITEMUKAN! PASTIKAN FOLDER ADA DAN BERISI DATA YANG VALID!\n");
+            return 0;
+        }
+    } else{
+        printf("INVALID ARGUMENT!\n");
+        return 0;
+    }
+
     int loginState = 0;
     /*
     loginState
@@ -34,25 +53,32 @@ int main() {
     createListObat(&listObat, 100);
     ListPenyakit listPenyakit;
     createListPenyakit(&listPenyakit, 100);
+    MapObatPenyakit mapObatPenyakit;
+    createMapObatPenyakit(&mapObatPenyakit);
+    Config config;
+    createConfig(&config);
 
-    initializeProgram(&UserData, &listObat, &listPenyakit);
+    initializeProgram(folderPath, &UserData, &listObat, &listPenyakit, &mapObatPenyakit, &config);
     for (int i = 0; i < UserData.nEff; i++) {
         UserData.buffer[i].ruang[0] = '\0';
     }
     
-    Config rumahsakit;
-    readConfig(&rumahsakit, &UserData);
+    // Config rumahsakit;
+    // readConfig(folderPath, &rumahsakit, &UserData);
 
-
-    // printf("List Obat: ");
-    // printListObat(listObat);
-    // printf("List Penyakit: ");
-    // printListPenyakit(listPenyakit);
-    // printf("Jumlah user: %d\n", UserData.nEff);
-    // printList(UserData);
-
+    printf("Jumlah user: %d\n", UserData.nEff);
+    printList(UserData);
+    printf("List Obat: \n");
+    printListObat(listObat);
+    printf("List Penyakit: \n");
+    printListPenyakit(listPenyakit);
+    printf("Map Obat Penyakit: \n");
+    printMapObatPenyakit(mapObatPenyakit);
+    printf("Config: \n");
+    printConfig(config);
+    
     while(run){
-        input(&loginState, &loginId, &UserData, &run, &rumahsakit);
+        input(&loginState, &loginId, &UserData, &listObat, &listPenyakit, &mapObatPenyakit, &run, &config);
         //printf("id: %d login: %d\n",loginId,loginState);
         //printList(UserData);
     }

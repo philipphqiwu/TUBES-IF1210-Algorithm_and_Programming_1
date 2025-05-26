@@ -2,8 +2,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include "../header/parse-user.h"
-void parseUserData(ListDinUser * UserData){
-    FILE * file = fopen("../data/user.csv","r");
+void parseUserData(char * filePath, ListDinUser * UserData){
+    FILE * file = fopen(filePath,"r");
 
     if (!file) {
         printf("Gagal membuka file user.csv\n");

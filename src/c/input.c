@@ -10,7 +10,7 @@
 #include "../header/F10.h"
 #include "../header/F18.h"
 
-void input(int * loginState, int * loginId, ListDinUser * UserData, int * run, Config * rumahsakit){
+void input(int * loginState, int * loginId, ListDinUser * UserData, ListObat * listObat, ListPenyakit * listPenyakit, MapObatPenyakit * mapObatPenyakit, int * run, Config * rumahsakit){
     char user_input[100];
     printf(">>> ");
     scanf("%99s", user_input);
@@ -20,15 +20,19 @@ void input(int * loginState, int * loginId, ListDinUser * UserData, int * run, C
     } else if(strcmp(user_input,"HELP") == 0){
         help(*loginState, *loginId, *UserData);
         return;
+    } else if(strcmp(user_input,"SAVE") == 0){
+        while (getchar() != '\n');
+        save(UserData, listObat, listPenyakit, mapObatPenyakit, rumahsakit);
+        return;
     } else if(strcmp(user_input,"EXIT") == 0){
-        exitProgram(run);
+        exitProgram(run, UserData, listObat, listPenyakit, mapObatPenyakit, rumahsakit);
         return;
     } else if(*loginState != 0){
         if(strcmp(user_input,"LIHAT_DENAH") == 0){
-            lihatDenah(*rumahsakit);
+            // lihatDenah(*rumahsakit);
             return;
         } else if(strcmp(user_input,"LIHAT_RUANGAN") == 0){
-            lihatRuangan(*rumahsakit, *UserData);
+            // lihatRuangan(*rumahsakit, *UserData);
             return;
         }
     } 
@@ -45,11 +49,21 @@ void input(int * loginState, int * loginId, ListDinUser * UserData, int * run, C
         }
     } else if(*loginState == 1){
         if(strcmp(user_input,"TAMBAH_DOKTER") == 0){
-            tambahDokter(UserData);
+            // tambahDokter(UserData);
         } else if(strcmp(user_input,"ASSIGN_DOKTER") == 0){
-            assignDokter(UserData,rumahsakit);
+            // assignDokter(UserData,rumahsakit);
         } else if(strcmp(user_input,"LIHAT_USER") == 0){
             lihatUser(*UserData);
+        } else if(strcmp(user_input,"LIHAT_PASIEN") == 0){
+            lihatPasien(*UserData);
+        } else if(strcmp(user_input,"LIHAT_DOKTER") == 0){
+            lihatDokter(*UserData);
+        } else if(strcmp(user_input,"CARI_USER") == 0){
+            cariUser(UserData);
+        } else if(strcmp(user_input,"CARI_PASIEN") == 0){
+            cariPasien(UserData);
+        } else if(strcmp(user_input,"CARI_DOKTER") == 0){
+            cariDokter(UserData);
         } else{
             printf("PLEASE ENTER A VALID COMMAND!\n");
             printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n");

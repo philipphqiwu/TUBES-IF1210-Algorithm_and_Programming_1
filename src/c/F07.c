@@ -30,79 +30,142 @@ void sortBased(int * base, int * order){
     }
 }
 
-void lihatUser(ListDinUser UserData){
-    int base;
-    int order;
-    sortBased(&base, &order);
+// Sort array secara alphabetical
+void alphabetSort(User *ptrs[], int length){
+    for (int i = 0; i < length - 1; i++) {
+        for (int j = 0; j < length - i - 1; j++) {
+            if (strcmp(to_lower(ptrs[j]->username),to_lower(ptrs[j + 1]->username)) > 0){
+                User* temp =  ptrs[j];
+                ptrs[j] = ptrs[j+1];
+                ptrs[j+1] = temp;
+            }
+        }
+    }
+}
 
-    switch (base){
+void tampilList(User *ptrs[], int type, int base, int order, int length){
+    printf("Menampilkan semua ");
+    switch(type){
         case 1:
-            switch(order){
+            printf("pengguna ");
+            break;
+        case 2:
+            printf("pasien ");
+            break;
+        case 3:
+            printf("dokter ");
+                break;
+    }
+    printf("dengan ");
+    switch(base){
+        case 1:
+            printf("ID ");
+            break;
+        case 2:
+            alphabetSort(ptrs, length);
+            printf("nama ");
+            break;
+    }                
+    printf("terurut ");
+    switch(order){
+        case 1:
+            printf("ascending...\n");
+            switch (type){
                 case 1:
-                    printf("Menampilkan semua pengguna dengan ID terurut ascending...\n");
-                    printf("ID | Nama     | Role     | Penyakit\n");
-                    printf("-------------------------------------\n");
-                    for(int i = 0; i <= getLastIdx(UserData); i++){
-                        printf("%d  | %s  | %s  | %s\n",UserData.buffer[i].id,UserData.buffer[i].username, UserData.buffer[i].role,UserData.buffer[i].riwayat_penyakit);
+                    printf("ID | Nama                | Role    | Penyakit\n");
+                    printf("----------------------------------------------------------\n");
+                    for(int i = 0; i < length; i++){
+                        printf("%-3d| %-20s| %-8s| %-20s\n", ptrs[i]->id, ptrs[i]->username, ptrs[i]->role, strlen(ptrs[i]->riwayat_penyakit) == 0 ? "-" : ptrs[i]->riwayat_penyakit);
                     }
                     break;
                 case 2:
-                    printf("Menampilkan semua pengguna dengan ID terurut descending...\n");
-                    printf("ID | Nama     | Role     | Penyakit\n");
-                    printf("-------------------------------------\n");
-                    for(int i = getLastIdx(UserData); i >= 0; i--){
-                        printf("%d  | %s  | %s  | %s\n",UserData.buffer[i].id,UserData.buffer[i].username, UserData.buffer[i].role,UserData.buffer[i].riwayat_penyakit);
+                    printf("ID | Nama                | Penyakit\n");
+                    printf("----------------------------------------------------------\n");
+                    for(int i = 0; i < length; i++){
+                        if(strcmp(ptrs[i]->role,"pasien") == 0){
+                            printf("%-3d| %-20s| %-20s\n", ptrs[i]->id, ptrs[i]->username, strlen(ptrs[i]->riwayat_penyakit) == 0 ? "-" : ptrs[i]->riwayat_penyakit);
+                        }
                     }
-
+                    break;
+                case 3:
+                    printf("ID | Nama\n");
+                    printf("----------------------------------------------------------\n");
+                    for(int i = 0; i < length; i++){
+                        if(strcmp(ptrs[i]->role,"dokter") == 0){
+                            printf("%-3d| %-20s\n", ptrs[i]->id, ptrs[i]->username);
+                        }
+                    }
                     break;
             }
             break;
+            
         case 2:
-            int length = listLength(UserData);
-            User *ptrs[100];
-            for (int i = 0; i < length; i++){
-                ptrs[i] = &UserData.buffer[i];
-            }
-            switch(order){
+            printf("descending...\n");
+            switch (type){
                 case 1:
-                    for (int i = 0; i < length - 1; i++) {
-                        for (int j = 0; j < length - i - 1; j++) {
-                            if (strcmp(ptrs[j]->username,ptrs[j + 1]->username) > 0){
-                                User* temp =  ptrs[j];
-                                ptrs[j] = ptrs[j+1];
-                                ptrs[j+1] = temp;
-                            }
-                        }
-                    }
-
-                    printf("Menampilkan semua pengguna dengan Username terurut ascending...\n");
-                    printf("ID | Nama     | Role     | Penyakit\n");
-                    printf("-------------------------------------\n");
-                    for(int i = 0; i <= getLastIdx(UserData); i++){
-                        printf("%d  | %s  | %s  | %s\n",ptrs[i]->id,ptrs[i]->username, ptrs[i]->role,ptrs[i]->riwayat_penyakit);
+                    printf("ID | Nama                | Role    | Penyakit\n");
+                    printf("----------------------------------------------------------\n");
+                    for(int i = length-1; i >= 0; i--){
+                        printf("%-3d| %-20s| %-8s| %-20s\n", ptrs[i]->id, ptrs[i]->username, ptrs[i]->role, strlen(ptrs[i]->riwayat_penyakit) == 0 ? "-" : ptrs[i]->riwayat_penyakit);
                     }
                     break;
                 case 2:
-                    for (int i = 0; i < length - 1; i++) {
-                        for (int j = 0; j < length - i - 1; j++) {
-                            if (strcmp(ptrs[j]->username,ptrs[j + 1]->username) < 0){
-                                User* temp =  ptrs[j];
-                                ptrs[j] = ptrs[j+1];
-                                ptrs[j+1] = temp;
-                            }
+                    printf("ID | Nama                | Penyakit\n");
+                    printf("----------------------------------------------------------\n");
+                    for(int i = length-1; i >= 0; i--){
+                        if(strcmp(ptrs[i]->role,"pasien") == 0){
+                            printf("%-3d| %-20s| %-20s\n", ptrs[i]->id, ptrs[i]->username, strlen(ptrs[i]->riwayat_penyakit) == 0 ? "-" : ptrs[i]->riwayat_penyakit);
                         }
                     }
-                    
-                    printf("Menampilkan semua pengguna dengan Username terurut descending...\n");
-                    printf("ID | Nama     | Role     | Penyakit\n");
-                    printf("-------------------------------------\n");
-                    for(int i = 0; i <= getLastIdx(UserData); i++){
-                        printf("%d  | %s  | %s  | %s\n",ptrs[i]->id,ptrs[i]->username, ptrs[i]->role,ptrs[i]->riwayat_penyakit);
+                    break;
+                case 3:
+                    printf("ID | Nama\n");
+                    printf("----------------------------------------------------------\n");
+                    for(int i = length-1; i >= 0; i--){
+                        if(strcmp(ptrs[i]->role,"dokter") == 0){
+                            printf("%-3d| %-20s\n", ptrs[i]->id, ptrs[i]->username);
+                        }
                     }
-
                     break;
             }
             break;
     }
 
+       
+}
+
+void lihatUser(ListDinUser UserData){
+    int base;
+    int order;
+    sortBased(&base, &order);
+    int length = listLength(UserData);    
+    User *ptrs[100];
+    for (int i = 0; i < length; i++){
+        ptrs[i] = &UserData.buffer[i];
+    }
+    tampilList(ptrs, 1, base, order, length);
+}
+
+void lihatPasien(ListDinUser UserData){
+    int base;
+    int order;
+    sortBased(&base, &order);
+    int length = listLength(UserData);    
+    User *ptrs[100];
+    for (int i = 0; i < length; i++){
+        ptrs[i] = &UserData.buffer[i];
+    }
+    tampilList(ptrs, 2, base, order, length);
+}
+
+void lihatDokter(ListDinUser UserData){
+    int base;
+    int order;
+    sortBased(&base, &order);
+    int length = listLength(UserData);    
+    User *ptrs[100];
+    for (int i = 0; i < length; i++){
+        ptrs[i] = &UserData.buffer[i];
+    }
+    tampilList(ptrs, 3, base, order, length);
 }
