@@ -10,7 +10,7 @@ void help(int loginState, int loginId, ListDinUser UserData){
     printf("\n=========== HELP ===========\n");
     switch (loginState){
         case 0:
-            printf("Kamu belum login sebagai role apapun. Silahkan login terlebih dahulu.\n\n");
+            printf("Kamu belum login sebagai role apapun. Silakan login terlebih dahulu.\n\n");
             puts("1. LOGIN    : Masuk ke dalam akun yang sudah terdaftar");
             puts("2. REGISTER : Membuat akun baru");
             break;

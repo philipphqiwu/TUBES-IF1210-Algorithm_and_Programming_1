@@ -1,5 +1,5 @@
 #include "../header/F12.h"
 
-void NGOBATIN(){
+void ngobatin(){
     return;
 }

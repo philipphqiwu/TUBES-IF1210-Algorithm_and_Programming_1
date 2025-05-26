@@ -4,6 +4,6 @@
 #include <stdio.h>
 #include "penyakit.h"
 
-void NGOBATIN();
+void ngobatin();
 
 #endif
