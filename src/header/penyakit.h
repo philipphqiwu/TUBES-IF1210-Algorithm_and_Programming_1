@@ -56,8 +56,8 @@ void insertPenyakitByID(ListPenyakit *list, Penyakit item);
 // F.S. list[item.id] terisi dengan data pada item
 //      jika item.id >= l.nEff, maka l.nEff = item.id + 1
 
-// Mencari ID penyakit berdasarkan nama
-int searchIDByName(ListPenyakit list, char nama[]);
+// Mencari ID penyakit berdasarkan nama, -1 jika tidak ditemukan.
+int searchPenyakitIDByName(ListPenyakit list, char nama[]);
 // Mengembalikan nilai -1 jika tidak menemukan penyakit dengan nama yang sesuai,
 // Mengembalikan ID penyakit jika ditemukan penyakit dengan nama sesuai
 

@@ -9,8 +9,9 @@
 #include "../header/F08.h"
 #include "../header/F10.h"
 #include "../header/F18.h"
+#include "../header/F12.h"
 
-void input(int * loginState, int * loginId, ListDinUser * UserData, ListObat * listObat, ListPenyakit * listPenyakit, MapObatPenyakit * mapObatPenyakit, int * run, Config * rumahsakit){
+void input(int * loginState, int * loginId, ListDinUser * userData, ListObat * listObat, ListPenyakit * listPenyakit, MapObatPenyakit * mapObatPenyakit, int * run, Config * rumahsakit){
     char user_input[100];
     printf(">>> ");
     scanf("%99s", user_input);
@@ -18,57 +19,72 @@ void input(int * loginState, int * loginId, ListDinUser * UserData, ListObat * l
         logout(loginState, loginId);
         return;
     } else if(strcmp(user_input,"HELP") == 0){
-        help(*loginState, *loginId, *UserData);
+        help(*loginState, *loginId, *userData);
         return;
     } else if(strcmp(user_input,"SAVE") == 0){
         while (getchar() != '\n');
-        save(UserData, listObat, listPenyakit, mapObatPenyakit, rumahsakit);
+        save(userData, listObat, listPenyakit, mapObatPenyakit, rumahsakit);
         return;
     } else if(strcmp(user_input,"EXIT") == 0){
-        exitProgram(run, UserData, listObat, listPenyakit, mapObatPenyakit, rumahsakit);
+        exitProgram(run, userData, listObat, listPenyakit, mapObatPenyakit, rumahsakit);
         return;
     } else if(*loginState != 0){
         if(strcmp(user_input,"LIHAT_DENAH") == 0){
             // lihatDenah(*rumahsakit);
             return;
         } else if(strcmp(user_input,"LIHAT_RUANGAN") == 0){
-            // lihatRuangan(*rumahsakit, *UserData);
+            // lihatRuangan(*rumahsakit, *userData);
             return;
         }
     } 
     if(*loginState == 0){
         if(strcmp(user_input,"LOGIN") == 0){
-            login(loginState, loginId, *UserData);
+            login(loginState, loginId, *userData);
         } else if(strcmp(user_input,"REGISTER") == 0){
-            registerPasien(UserData);
+            registerPasien(userData);
         } else if(strcmp(user_input,"LUPA_PASSWORD") == 0){
-            lupaPassword(UserData);
+            lupaPassword(userData);
         } else{
             printf("PLEASE ENTER A VALID COMMAND!\n");
             printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n");
         }
-    } else if(*loginState == 1){
+    }
+    else if(*loginState == 1){
         if(strcmp(user_input,"TAMBAH_DOKTER") == 0){
-            // tambahDokter(UserData);
-        } else if(strcmp(user_input,"ASSIGN_DOKTER") == 0){
-            // assignDokter(UserData,rumahsakit);
-        } else if(strcmp(user_input,"LIHAT_USER") == 0){
-            lihatUser(*UserData);
-        } else if(strcmp(user_input,"LIHAT_PASIEN") == 0){
-            lihatPasien(*UserData);
-        } else if(strcmp(user_input,"LIHAT_DOKTER") == 0){
-            lihatDokter(*UserData);
-        } else if(strcmp(user_input,"CARI_USER") == 0){
-            cariUser(UserData);
-        } else if(strcmp(user_input,"CARI_PASIEN") == 0){
-            cariPasien(UserData);
-        } else if(strcmp(user_input,"CARI_DOKTER") == 0){
-            cariDokter(UserData);
-        } else{
+            // tambahDokter(userData);
+        }
+        else if(strcmp(user_input,"ASSIGN_DOKTER") == 0){
+            // assignDokter(userData,rumahsakit);
+        }
+        else if(strcmp(user_input,"LIHAT_USER") == 0){
+            lihatUser(*userData);
+        }
+        else if(strcmp(user_input,"LIHAT_PASIEN") == 0){
+            lihatPasien(*userData);
+        }
+        else if(strcmp(user_input,"LIHAT_DOKTER") == 0){
+            lihatDokter(*userData);
+        }
+        else if(strcmp(user_input,"CARI_USER") == 0){
+            cariUser(userData);
+        }
+        else if(strcmp(user_input,"CARI_PASIEN") == 0){
+            cariPasien(userData);
+        }
+        else if(strcmp(user_input,"CARI_DOKTER") == 0){
+            cariDokter(userData);
+        }
+        else{
             printf("PLEASE ENTER A VALID COMMAND!\n");
             printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n");
         }
-    } else{
+    }
+    else if(*loginState == 2){
+        if(strcmp(user_input, "NGOBATIN") == 0){
+            ngobatin(*loginId, rumahsakit, *userData, *listObat, *listPenyakit, *mapObatPenyakit);
+        }
+    }
+    else{
             printf("PLEASE ENTER A VALID COMMAND!\n");
             printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n");
     }

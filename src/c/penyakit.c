@@ -37,7 +37,7 @@ void insertPenyakitByID(ListPenyakit *list, Penyakit item){
     }
 }
 
-int searchIDByName(ListPenyakit list, char nama[]){
+int searchPenyakitIDByName(ListPenyakit list, char nama[]){
     int result = -1;
     for(int i = 0; i < list.nEff && result == -1; i++){
         if(!list.items[i].id){ // Ketika elemen tidak terisi
