@@ -68,11 +68,11 @@ void assignDokter(ListDinUser * UserData, Config * rumahsakit){
     char Username[21];
     // Username input validation loop
     while (1) {
-        printf("Username (max 20 characters): ");
+        printf(COLOR_MAGENTA"Username (max 20 characters): ");
         scanf("%s", Username); 
-
+        printf(COLOR_RESET);
         if (strlen(Username) > 20) {
-            printf("Error: Username melebihi 20 characters.\n"); 
+            printf(COLOR_RED"Error: Username melebihi 20 characters.\n"); 
         } else {
             break;
         }
@@ -82,9 +82,10 @@ void assignDokter(ListDinUser * UserData, Config * rumahsakit){
     getchar();
     char input[100];
     while (1) {
-        printf("Ruangan: ");
+        printf(COLOR_MAGENTA"Ruangan: ");
         fgets(input, sizeof(input), stdin);
         input[strcspn(input, "\n")] = '\0';
+        printf(COLOR_RESET);
 
         // Validasi: panjang harus 2, huruf kapital + digit angka
         if (strlen(input) == 2 &&
@@ -92,13 +93,12 @@ void assignDokter(ListDinUser * UserData, Config * rumahsakit){
             input[1] >= '1' && input[1] <= '9'){
             break;
         } else {
-            printf("Input tidak valid! Format harus 1 huruf kapital dan 1 angka (contoh: A1).\n\n");
+            printf(COLOR_RED"Input tidak valid! Format harus 1 huruf kapital dan 1 angka (contoh: A1).\n\n");
         }
     }
 
-    /*int baris = input[0] - 'A';
+    int baris = input[0] - 'A';
     int kolom = atoi(input + 1) - 1;
-    int indeks = baris * rumahsakit->roomCol + kolom;
     
     int idx = -1;
     for(int i = 0; i < UserData->nEff; i++){
@@ -108,27 +108,27 @@ void assignDokter(ListDinUser * UserData, Config * rumahsakit){
         }
     }
     if(idx == -1){
-        printf("Tidak ada dokter bernama %s\n", Username);
+        printf(COLOR_RED"Tidak ada dokter bernama %s\n"COLOR_RESET, Username);
         return;
     }
 
-    if (baris < 0 || kolom < 0 || kolom >= rumahsakit->roomCol || baris >= rumahsakit->roomRow) {
-        printf("Ruangan tidak ditemukan!\n");
+    if (baris < 0 || kolom < 0 || kolom >= rumahsakit->denah.cols || baris >= rumahsakit->denah.rows) {
+        printf(COLOR_RED"Ruangan tidak ditemukan!\n"COLOR_RESET);
         return;
     }
 
     if(strlen(UserData->buffer[idx].ruang) > 0){
-        printf("Dokter %s sudah menempati ruangan %s\n", Username, UserData->buffer[idx].ruang);
+        printf(COLOR_RED"Dokter %s sudah menempati ruangan %s\n"COLOR_RESET, Username, UserData->buffer[idx].ruang);
     }
-    if(rumahsakit->room[indeks][0] != -1){
-        printf("Ruangan %s sudah ditempati oleh Dokter %s\n", input, UserData->buffer[rumahsakit->room[indeks][0]].username);
+    if(rumahsakit->denah.contents[baris][kolom].dokterID != 0){
+        int idxOldDok = cariIdxUser(UserData, rumahsakit->denah.contents[baris][kolom].dokterID);
+        printf(COLOR_RED"Ruangan %s sudah ditempati oleh Dokter %s\n"COLOR_RESET, input, UserData->buffer[idxOldDok].username);
     }
 
-    if(strlen(UserData->buffer[idx].ruang) == 0 &&
-        rumahsakit->room[indeks][0] == -1){
-        printf("Dokter %s berhasil diassign ke ruangan %s\n", Username, input);
+    if(strlen(UserData->buffer[idx].ruang) == 0 && rumahsakit->denah.contents[baris][kolom].dokterID == 0){
+        printf(COLOR_BLUE"Dokter %s berhasil diassign ke ruangan %s\n"COLOR_RESET, Username, input);
         strcpy(UserData->buffer[idx].ruang, input);
-        rumahsakit->room[indeks][0] = idx;
+        rumahsakit->denah.contents[baris][kolom].dokterID = UserData->buffer[idx].id;
     }
-    */
+    
 }
