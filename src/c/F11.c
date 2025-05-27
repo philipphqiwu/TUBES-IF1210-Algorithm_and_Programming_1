@@ -110,27 +110,27 @@ int DIAGNOSIS(ListPenyakit krirteriapenyakit, Config rumahsakit, ListDinUser *Us
                 if (rumahsakit.denah.contents[i][j].dokterID == loginId) {
                     dokterFound = true;
                     int idPasien = rumahsakit.denah.contents[i][j].antrian->front->data;
-                    
-                    if (punyaRiwayat(UserData->buffer[idPasien].riwayat_penyakit)) {
-                        int idPenyakitSekarang = cekpenyakit(krirteriapenyakit, UserData, idPasien);
+                    int idxUser = cariIdxUser(UserData, idPasien);
+                    if (punyaRiwayat(UserData->buffer[idxUser].riwayat_penyakit)) {
+                        int idPenyakitSekarang = cekpenyakit(krirteriapenyakit, UserData, idxUser);
                 
                         if (idPenyakitSekarang == -1) {
-                            printf("%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idPasien].username);
-                            strcpy(UserData->buffer[idPasien].riwayat_penyakit, "");
+                            printf("%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idxUser].username);
+                            strcpy(UserData->buffer[idxUser].riwayat_penyakit, "");
                             return 0; // Diagnosis selesai
                         } 
                         else {
-                        printf("%s masih menderita %s\n", UserData->buffer[idPasien].username, UserData->buffer[idPasien].riwayat_penyakit);
+                        printf("%s masih menderita %s\n", UserData->buffer[idxUser].username, UserData->buffer[idxUser].riwayat_penyakit);
                         return 0;
                         }
                     }   
                     else {
-                        if (assignPenyakit(krirteriapenyakit, UserData, idPasien)) {
-                            printf("%s terdiagnosa penyakit %s!\n", UserData->buffer[idPasien].username, UserData->buffer[idPasien].riwayat_penyakit);
+                        if (assignPenyakit(krirteriapenyakit, UserData, idxUser)) {
+                            printf("%s terdiagnosa penyakit %s!\n", UserData->buffer[idxUser].username, UserData->buffer[idxUser].riwayat_penyakit);
                             return 0; 
                         } 
                         else {
-                            printf("%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idPasien].username);
+                            printf("%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idxUser].username);
                             return 0;
                     }
                 }

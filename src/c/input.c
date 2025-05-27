@@ -35,11 +35,11 @@ void input(int * loginState, int * loginId, ListDinUser * UserData, ListObat * l
     } else if(*loginState != 0){
         if(strcmp(user_input,"LIHAT_DENAH") == 0){
             lihatDenah(*rumahsakit);
-            lihatDenah(*rumahsakit);
+
             return;
         } else if(strcmp(user_input,"LIHAT_RUANGAN") == 0){
             lihatRuangan(*rumahsakit, *UserData);
-            lihatRuangan(*rumahsakit, *UserData);
+        
             return;
         }
     } 
@@ -81,17 +81,15 @@ void input(int * loginState, int * loginId, ListDinUser * UserData, ListObat * l
             DIAGNOSIS(*listPenyakit, *rumahsakit, UserData, *loginId);
         } else if(strcmp(user_input,"NGOBATIN") == 0){
             // assignDokter(UserData,rumahsakit);
-        } else if(strcmp(user_input,"LIHAT_DENAH") == 0){
-            // lihatUser(*UserData);
         } 
         else{
             printf("PLEASE ENTER A VALID COMMAND!\n");
             printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n");
         }
 
-    }   else{
-            printf("PLEASE ENTER A VALID COMMAND!\n");
-            printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n");
+    }else{
+        printf("PLEASE ENTER A VALID COMMAND!\n");
+        printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n");
     }
 
 
