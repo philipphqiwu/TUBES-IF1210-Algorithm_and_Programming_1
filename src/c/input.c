@@ -16,8 +16,9 @@
 
 void input(int * loginState, int * loginId, ListDinUser * UserData, ListObat * listObat, ListPenyakit * listPenyakit, MapObatPenyakit * mapObatPenyakit, int * run, Config * rumahsakit){
     char user_input[100];
-    printf(">>> ");
+    printf(COLOR_GREEN">>> ");
     scanf("%99s", user_input);
+    printf(COLOR_RESET);
     if(strcmp(user_input,"LOGOUT") == 0){
         logout(loginState, loginId);
         return;
@@ -34,8 +35,10 @@ void input(int * loginState, int * loginId, ListDinUser * UserData, ListObat * l
     } else if(*loginState != 0){
         if(strcmp(user_input,"LIHAT_DENAH") == 0){
             lihatDenah(*rumahsakit);
+            lihatDenah(*rumahsakit);
             return;
         } else if(strcmp(user_input,"LIHAT_RUANGAN") == 0){
+            lihatRuangan(*rumahsakit, *UserData);
             lihatRuangan(*rumahsakit, *UserData);
             return;
         }
@@ -48,14 +51,14 @@ void input(int * loginState, int * loginId, ListDinUser * UserData, ListObat * l
         } else if(strcmp(user_input,"LUPA_PASSWORD") == 0){
             lupaPassword(UserData);
         } else{
-            printf("PLEASE ENTER A VALID COMMAND!\n");
-            printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n");
+            printf(COLOR_RED"PLEASE ENTER A VALID COMMAND!\n");
+            printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n"COLOR_RESET);
         }
     } else if(*loginState == 1){
         if(strcmp(user_input,"TAMBAH_DOKTER") == 0){
-            // tambahDokter(UserData);
+            tambahDokter(UserData);
         } else if(strcmp(user_input,"ASSIGN_DOKTER") == 0){
-            // assignDokter(UserData,rumahsakit);
+            assignDokter(UserData,rumahsakit);
         } else if(strcmp(user_input,"LIHAT_USER") == 0){
             lihatUser(*UserData);
         } else if(strcmp(user_input,"LIHAT_PASIEN") == 0){
@@ -69,8 +72,8 @@ void input(int * loginState, int * loginId, ListDinUser * UserData, ListObat * l
         } else if(strcmp(user_input,"CARI_DOKTER") == 0){
             cariDokter(UserData);
         } else{
-            printf("PLEASE ENTER A VALID COMMAND!\n");
-            printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n");
+            printf(COLOR_RED"PLEASE ENTER A VALID COMMAND!\n");
+            printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n"COLOR_RESET);
         }
     
     } else if(*loginState == 2){

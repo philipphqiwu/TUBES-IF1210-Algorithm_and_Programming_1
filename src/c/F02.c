@@ -6,7 +6,7 @@ void registerPasien(ListDinUser * UserData){
     char Password[21];
     // Username input validation loop
     while (1) {
-        printf("Username (max 20 characters): ");
+        printf(COLOR_GREEN"Username (max 20 characters): "COLOR_RESET);
         scanf("%s", Username); 
 
         // Validasi username hanya huruf alfabet
@@ -14,13 +14,13 @@ void registerPasien(ListDinUser * UserData){
         for (int i = 0; i < strlen(Username); i++) {
             if((int)Username[i] < 65 || (int)Username[i] > 122 ||((int)Username[i]>90 && (int)Username[i]<97)){
                 isValid = 0;  
-                printf("Username hanya boleh terdiri atas huruf alfabet!\n");
+                printf(COLOR_RED"Username hanya boleh terdiri atas huruf alfabet!\n"COLOR_RESET);
                 break;
             }
         }
 
         if (strlen(Username) > 20) {
-            printf("Error: Username melebihi 20 characters.\n");
+            printf(COLOR_RED"Error: Username melebihi 20 characters.\n"COLOR_RESET);
         } else if (!isValid) {
             continue; 
         } else {
@@ -30,10 +30,10 @@ void registerPasien(ListDinUser * UserData){
 
     // Password input validation loop
     while (1) {
-        printf("Password (max 20 characters): ");
+        printf(COLOR_GREEN"Password (max 20 characters): "COLOR_RESET);
         scanf("%s", Password);
         if (strlen(Password) > 20) {
-            printf("Error: Password melebihi 20 characters.\n");
+            printf(COLOR_RED"Error: Password melebihi 20 characters.\n"COLOR_RESET);
         } else {
             break;
         }
@@ -46,10 +46,10 @@ void registerPasien(ListDinUser * UserData){
     }
 
     if(setContain(&setUsername, to_lower(Username))){
-        printf("Registrasi gagal! User dengan nama %s sudah terdaftar.\n", Username);
+        printf(COLOR_RED"Registrasi gagal! User dengan nama %s sudah terdaftar.\n"COLOR_RESET, Username);
     } else{
-        printf("Pasien %s berhasil ditambahkan!\n", Username);        
-        UserData->buffer[UserData->nEff].id = UserData->nEff+1;
+        printf(COLOR_BLUE"Pasien %s berhasil ditambahkan!\n"COLOR_RESET, Username);        
+        UserData->buffer[UserData->nEff].id = UserData->buffer[UserData->nEff-1].id+1;
         strcpy(UserData->buffer[UserData->nEff].username, Username);
         strcpy(UserData->buffer[UserData->nEff].password, Password);
         strcpy(UserData->buffer[UserData->nEff].role, "pasien");

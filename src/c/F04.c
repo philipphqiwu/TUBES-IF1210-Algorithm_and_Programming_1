@@ -1,44 +1,44 @@
 #include "../header/F04.h"
 
 void lupaPassword(ListDinUser * UserData){
-    char Username[21];
+    char uname[21];
     char KodeUnik[21];
     // Username input validation loop
     while (1) {
-        printf("Username (max 20 characters): ");
-        scanf("%s", Username);
+        printf(COLOR_GREEN"Username (max 20 characters): ");
+        scanf("%s", uname);
+        printf(COLOR_RESET);
 
         // Validasi username hanya huruf alfabet
         int isValid = 1;  // Flag to track if the username is valid
-        for (int i = 0; i < strlen(Username); i++) {
-            if((int)Username[i] < 65 || (int)Username[i] > 122 ||((int)Username[i]>90 && (int)Username[i]<97)){
+        for (int i = 0; i < strlen(uname); i++) {
+            if((int)uname[i] < 65 || (int)uname[i] > 122 ||((int)uname[i]>90 && (int)uname[i]<97)){
                 isValid = 0;  
-                printf("Username hanya boleh terdiri atas huruf alfabet!\n");
+                printf(COLOR_RED"Username hanya boleh terdiri atas huruf alfabet!\n"COLOR_RESET);
                 break;
             }
         }
 
-        if (strlen(Username) > 20) {
-            printf("Error: Username melebihi 20 characters.\n");
+        if (strlen(uname) > 20) {
+            printf(COLOR_RED"Error: Username melebihi 20 characters.\n"COLOR_RESET);
         } else if (!isValid) {
             continue; 
         } else {
             break;
         }
     }
-    printf("KodeUnik: ");
+    printf(COLOR_GREEN"KodeUnik: ");
     scanf("%20s",KodeUnik);
-    printf("\n");
+    printf("\n"COLOR_RESET);
 
-    int idxUsername = indexOfUsername(*UserData, Username);
+    int idxUsername = indexOfUsername(*UserData, uname);
     if(idxUsername == -1){
-        printf("Tidak ada user di database dengan username %s!\n", Username);
+        printf(COLOR_RED"Tidak ada user di database dengan username %s!\n"COLOR_RESET, uname);
     } else{
         char RLEKode[20];
         int RLEidx = 0;
-        char* uname = to_lower(Username);
 
-        for(int i = 0; i < strlen(Username); i++){
+        for(int i = 0; i < strlen(uname); i++){
             char currentChar = uname[i];
             int count = 1;
 
@@ -54,21 +54,21 @@ void lupaPassword(ListDinUser * UserData){
         }
         RLEKode[RLEidx] = '\0';
 
-        if(strcmp(to_lower(KodeUnik),to_lower(RLEKode))==0){
+        if(strcmp(KodeUnik,RLEKode)==0){
             if(strcmp(UserData->buffer[idxUsername].role,"manager") == 0){
-                printf("Halo Manager %s\n", Username);
+                printf(COLOR_MAGENTA"Halo Manager %s\n"COLOR_RESET, uname);
             } else if(strcmp(UserData->buffer[idxUsername].role,"dokter") == 0){
-                printf("Halo Dokter %s\n", Username);
+                printf(COLOR_CYAN"Halo Dokter %s\n"COLOR_RESET, uname);
             } else if(strcmp(UserData->buffer[idxUsername].role,"pasien") == 0){
-                printf("Halo %s! Ada keluhan apa?\n", Username);
+                printf(COLOR_YELLOW"Halo %s! Ada keluhan apa?\n"COLOR_RESET, uname);
             }
-            printf("Password Baru: ");
+            printf(COLOR_GREEN"Password Baru: ");
             char NewPassword[21];
             scanf("%s",NewPassword);
             strcpy(UserData->buffer[idxUsername].password,NewPassword);
-            printf("\n");
+            printf("\n"COLOR_RESET);
         } else{
-            printf("Kode unik salah!\n");
+            printf(COLOR_RED"Kode unik salah!\n"COLOR_RESET);
         }
     }
     return;

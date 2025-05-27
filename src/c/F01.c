@@ -6,21 +6,22 @@ void login(int * loginState, int * loginId, ListDinUser UserData){
 
     // Username input validation loop
     while (1) {
-        printf("Username (max 20 characters): ");
-        scanf("%s", Username);
-
+        printf(COLOR_GREEN"Username (max 20 characters): ");
+        scanf("%21s", Username);
+        printf(COLOR_RESET);
         if (strlen(Username) > 20) {
-            printf("Error: Username melebihi 20 characters.\n");
+            printf(COLOR_RED"Error: Username melebihi 20 characters.\n"COLOR_RESET);
         } else {
             break;  
         }
     }
     // Password input validation loop
     while (1) {
-        printf("Password (max 20 characters): ");
-        scanf("%s", Password);
+        printf(COLOR_GREEN"Password (max 20 characters): ");
+        scanf("%21s", Password);
+        printf(COLOR_RESET);
         if (strlen(Password) > 20) {
-            printf("Error: Password melebihi 20 characters.\n");
+            printf(COLOR_RED"Error: Password melebihi 20 characters.\n"COLOR_RESET);
         } else {
             break;
         }
@@ -28,19 +29,19 @@ void login(int * loginState, int * loginId, ListDinUser UserData){
 
     int idxUsername = indexOfUsername(UserData, Username);
     if(idxUsername == -1){
-        printf("Tidak ada user di database dengan username %s!\n", Username);
+        printf(COLOR_RED"Tidak ada user di database dengan username %s!\n"COLOR_RESET, Username);
     } else if(strcmp(UserData.buffer[idxUsername].password,Password) != 0){
-        printf("Password yang dimasukkan salah!\n");
+        printf(COLOR_RED"Password yang dimasukkan salah!\n"COLOR_RESET);
     } else{
         *loginId = idxUsername+1;
         if(strcmp(UserData.buffer[idxUsername].role,"manager") == 0){
-            printf("Halo Manager %s\n", Username);
+            printf(COLOR_BLUE"Halo Manager %s\n"COLOR_RESET, Username);
             *loginState = 1;
         } else if(strcmp(UserData.buffer[idxUsername].role,"dokter") == 0){
-            printf("Halo Dokter %s\n", Username);
+            printf(COLOR_BLUE"Halo Dokter %s\n"COLOR_RESET, Username);
             *loginState = 2;
         } else if(strcmp(UserData.buffer[idxUsername].role,"pasien") == 0){
-            printf("Halo %s! Ada keluhan apa?\n", Username);
+            printf(COLOR_BLUE"Halo %s! Ada keluhan apa?\n"COLOR_RESET, Username);
             *loginState = 3;
         }
     }

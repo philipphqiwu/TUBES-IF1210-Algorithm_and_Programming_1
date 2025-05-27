@@ -2,6 +2,10 @@
 #include "../header/config.h"
 #include "../header/user.h"
 #include "../header/F06.h"
+#include <stdio.h>
+#include "../header/config.h"
+#include "../header/user.h"
+#include "../header/F06.h"
 
 const char* cari_username(ListDinUser UserData, int id) {
     for (int i = 0; i < UserData.nEff; i++) {
@@ -11,7 +15,18 @@ const char* cari_username(ListDinUser UserData, int id) {
     }
     return "-";
 }
+const char* cari_username(ListDinUser UserData, int id) {
+    for (int i = 0; i < UserData.nEff; i++) {
+        if (UserData.buffer[i].id == id) {
+            return UserData.buffer[i].username;
+        }
+    }
+    return "-";
+}
 
+char ruangan[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
+                    'K', 'L', 'M', 'N', 'O', 'P','Q', 'R','S','T','U'
+                    ,'V', 'W', 'X','Y','Z'};
 char ruangan[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
                     'K', 'L', 'M', 'N', 'O', 'P','Q', 'R','S','T','U'
                     ,'V', 'W', 'X','Y','Z'};
@@ -57,7 +72,24 @@ void lihatRuangan(Config rumahsakit, ListDinUser UserData) {
         printf("Ruangan: ");
         fgets(kodeRuangan, sizeof(kodeRuangan), stdin);
         kodeRuangan[strcspn(kodeRuangan, "\n")] = '\0';
+void lihatRuangan(Config rumahsakit, ListDinUser UserData) {
+    char kodeRuangan[100];
+        // Validasi input ruangan
+    getchar();
+    while (1) {
+        printf("Ruangan: ");
+        fgets(kodeRuangan, sizeof(kodeRuangan), stdin);
+        kodeRuangan[strcspn(kodeRuangan, "\n")] = '\0';
 
+        // Validasi: panjang harus 2, huruf kapital + digit angka
+        if (strlen(kodeRuangan) == 2 &&
+            kodeRuangan[0] >= 'A' && kodeRuangan[0] <= 'Z' &&
+            kodeRuangan[1] >= '1' && kodeRuangan[1] <= '9'){
+            break;
+        } else {
+            printf("Input tidak valid! Format harus 1 huruf kapital dan 1 angka (contoh: A1).\n\n");
+        }
+    }
         // Validasi: panjang harus 2, huruf kapital + digit angka
         if (strlen(kodeRuangan) == 2 &&
             kodeRuangan[0] >= 'A' && kodeRuangan[0] <= 'Z' &&

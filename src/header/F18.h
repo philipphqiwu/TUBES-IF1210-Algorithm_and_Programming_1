@@ -2,6 +2,7 @@
 #define F18_H
 #include "user.h"
 #include "config.h"
+#include "colors.h"
 #include "obat.h"
 #include "penyakit.h"
 #include "save.h"
