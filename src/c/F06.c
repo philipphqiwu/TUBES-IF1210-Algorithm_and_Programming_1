@@ -19,7 +19,7 @@ char ruangan[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
 void lihatDenah(Config rumahsakit) {
 
     printf("    ");
-    for(int j = 0; j < rumahsakit.denah.rows; j++) {
+    for(int j = 0; j < rumahsakit.denah.cols; j++) {
         printf("  %d  ", j+1);
     }
     printf("\n");
@@ -89,18 +89,19 @@ void lihatRuangan(Config rumahsakit, ListDinUser UserData) {
     printf("Pasien di dalam ruangan:\n");
     int pasienCount = 0;
     
-    int id_pasien = rumahsakit.denah.contents[baris][kolom].antrian->front->data;
-    Node* temp = rumahsakit.denah.contents[baris][kolom].antrian->front->next;
-
-    while (temp != NULL)
+    int id_pasien;
+    Node* temp = rumahsakit.denah.contents[baris][kolom].antrian->front;
+    Node* rear = rumahsakit.denah.contents[baris][kolom].antrian->rear;
+    // int counter = 0;
+    while (temp!= NULL && pasienCount < rumahsakit.kapasitasRuangan)
     {
-        temp = rumahsakit.denah.contents[baris][kolom].antrian->front;
-
-       if (id_pasien != 0) {
+        id_pasien = temp->data;
+        if (id_pasien != 0) {
             printf("  %d. %s\n", ++pasienCount, cari_username(UserData, id_pasien+1));
         }
+        
+        temp = temp->next;
 
-        temp = rumahsakit.denah.contents[baris][kolom].antrian->front->next;
     }
 
     if (pasienCount == 0) printf("  Tidak ada pasien\n");

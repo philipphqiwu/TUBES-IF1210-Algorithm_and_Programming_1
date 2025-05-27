@@ -8,7 +8,7 @@
 
 
 int cekpenyakit(ListPenyakit kriteriapenyakit, ListDinUser* UserData, int idPasien){
-    int idPenyakit;
+    // int idPenyakit;
     for (int i = 0; i <= 5; i++) {
        
         boolean allMatch = true;
@@ -109,25 +109,29 @@ int DIAGNOSIS(ListPenyakit krirteriapenyakit, Config rumahsakit, ListDinUser *Us
     
                 if (rumahsakit.denah.contents[i][j].dokterID == loginId) {
                     dokterFound = true;
-                    int idPasien = rumahsakit.denah.contents[i][j].antrian->front;
-                if (punyaRiwayat(UserData->buffer[idPasien].riwayat_penyakit)) {
-                    int idPenyakitSekarang = cekpenyakit(krirteriapenyakit, UserData, idPasien);
+                    int idPasien = rumahsakit.denah.contents[i][j].antrian->front->data;
+                    
+                    if (punyaRiwayat(UserData->buffer[idPasien].riwayat_penyakit)) {
+                        int idPenyakitSekarang = cekpenyakit(krirteriapenyakit, UserData, idPasien);
                 
-                    if (idPenyakitSekarang == -1) {
-                        printf("%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idPasien].username);
-                        strcpy(UserData->buffer[idPasien].riwayat_penyakit, "");
-                        return 0; // Diagnosis selesai
-                    } else {
+                        if (idPenyakitSekarang == -1) {
+                            printf("%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idPasien].username);
+                            strcpy(UserData->buffer[idPasien].riwayat_penyakit, "");
+                            return 0; // Diagnosis selesai
+                        } 
+                        else {
                         printf("%s masih menderita %s\n", UserData->buffer[idPasien].username, UserData->buffer[idPasien].riwayat_penyakit);
                         return 0;
-                    }
-                } else {
-                    if (assignPenyakit(krirteriapenyakit, UserData, idPasien)) {
-                        printf("%s terdiagnosa penyakit %s!\n", UserData->buffer[idPasien].username, UserData->buffer[idPasien].riwayat_penyakit);
-                        return 0; 
-                    } else {
-                        printf("%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idPasien].username);
-                        return 0;
+                        }
+                    }   
+                    else {
+                        if (assignPenyakit(krirteriapenyakit, UserData, idPasien)) {
+                            printf("%s terdiagnosa penyakit %s!\n", UserData->buffer[idPasien].username, UserData->buffer[idPasien].riwayat_penyakit);
+                            return 0; 
+                        } 
+                        else {
+                            printf("%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idPasien].username);
+                            return 0;
                     }
                 }
             }
@@ -138,7 +142,7 @@ int DIAGNOSIS(ListPenyakit krirteriapenyakit, Config rumahsakit, ListDinUser *Us
             }
             break;
         }
-        }
+    }
     
     
 

@@ -9,6 +9,10 @@
 #include "../header/F08.h"
 #include "../header/F10.h"
 #include "../header/F18.h"
+#include "../header/user.h"
+#include "../header/config.h"
+#include "../header/Boolean.h"
+#include "../header/penyakit.h"
 
 void input(int * loginState, int * loginId, ListDinUser * UserData, ListObat * listObat, ListPenyakit * listPenyakit, MapObatPenyakit * mapObatPenyakit, int * run, Config * rumahsakit){
     char user_input[100];
@@ -29,10 +33,10 @@ void input(int * loginState, int * loginId, ListDinUser * UserData, ListObat * l
         return;
     } else if(*loginState != 0){
         if(strcmp(user_input,"LIHAT_DENAH") == 0){
-            // lihatDenah(*rumahsakit);
+            lihatDenah(*rumahsakit);
             return;
         } else if(strcmp(user_input,"LIHAT_RUANGAN") == 0){
-            // lihatRuangan(*rumahsakit, *UserData);
+            lihatRuangan(*rumahsakit, *UserData);
             return;
         }
     } 
@@ -68,7 +72,21 @@ void input(int * loginState, int * loginId, ListDinUser * UserData, ListObat * l
             printf("PLEASE ENTER A VALID COMMAND!\n");
             printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n");
         }
-    } else{
+    
+    } else if(*loginState == 2){
+        if(strcmp(user_input,"DIAGNOSIS") == 0){
+            DIAGNOSIS(*listPenyakit, *rumahsakit, UserData, *loginId);
+        } else if(strcmp(user_input,"NGOBATIN") == 0){
+            // assignDokter(UserData,rumahsakit);
+        } else if(strcmp(user_input,"LIHAT_DENAH") == 0){
+            // lihatUser(*UserData);
+        } 
+        else{
+            printf("PLEASE ENTER A VALID COMMAND!\n");
+            printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n");
+        }
+
+    }   else{
             printf("PLEASE ENTER A VALID COMMAND!\n");
             printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n");
     }
