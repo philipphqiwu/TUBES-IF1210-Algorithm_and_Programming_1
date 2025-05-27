@@ -7,29 +7,25 @@
 #include "../header/user.h"
 #include "../header/F06.h"
 
-const char* cari_username(ListDinUser UserData, int id) {
-    for (int i = 0; i < UserData.nEff; i++) {
-        if (UserData.buffer[i].id == id) {
-            return UserData.buffer[i].username;
-        }
+const char* cari_username(ListDinUser UserData, int idPasien) {
+    int idxUser = cariIdxUser(&UserData, idPasien);
+    if (idPasien == 1){
+        printf("kayaknya pasiennya gaada\n");
+        printf("%d\n", idxUser);
     }
-    return "-";
-}
-const char* cari_username(ListDinUser UserData, int id) {
-    for (int i = 0; i < UserData.nEff; i++) {
-        if (UserData.buffer[i].id == id) {
-            return UserData.buffer[i].username;
-        }
+    
+    
+    if (idxUser == -1) {
+        return "-";
     }
-    return "-";
+    
+    return UserData.buffer[idxUser].username;
 }
 
 char ruangan[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
                     'K', 'L', 'M', 'N', 'O', 'P','Q', 'R','S','T','U'
                     ,'V', 'W', 'X','Y','Z'};
-char ruangan[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
-                    'K', 'L', 'M', 'N', 'O', 'P','Q', 'R','S','T','U'
-                    ,'V', 'W', 'X','Y','Z'};
+
 
 void lihatDenah(Config rumahsakit) {
 
@@ -72,14 +68,6 @@ void lihatRuangan(Config rumahsakit, ListDinUser UserData) {
         printf("Ruangan: ");
         fgets(kodeRuangan, sizeof(kodeRuangan), stdin);
         kodeRuangan[strcspn(kodeRuangan, "\n")] = '\0';
-void lihatRuangan(Config rumahsakit, ListDinUser UserData) {
-    char kodeRuangan[100];
-        // Validasi input ruangan
-    getchar();
-    while (1) {
-        printf("Ruangan: ");
-        fgets(kodeRuangan, sizeof(kodeRuangan), stdin);
-        kodeRuangan[strcspn(kodeRuangan, "\n")] = '\0';
 
         // Validasi: panjang harus 2, huruf kapital + digit angka
         if (strlen(kodeRuangan) == 2 &&
@@ -90,17 +78,6 @@ void lihatRuangan(Config rumahsakit, ListDinUser UserData) {
             printf("Input tidak valid! Format harus 1 huruf kapital dan 1 angka (contoh: A1).\n\n");
         }
     }
-        // Validasi: panjang harus 2, huruf kapital + digit angka
-        if (strlen(kodeRuangan) == 2 &&
-            kodeRuangan[0] >= 'A' && kodeRuangan[0] <= 'Z' &&
-            kodeRuangan[1] >= '1' && kodeRuangan[1] <= '9'){
-            break;
-        } else {
-            printf("Input tidak valid! Format harus 1 huruf kapital dan 1 angka (contoh: A1).\n\n");
-        }
-    }
-
-
 
     int baris = kodeRuangan[0] - 'A';
     int kolom = atoi(kodeRuangan + 1) - 1;
@@ -116,24 +93,26 @@ void lihatRuangan(Config rumahsakit, ListDinUser UserData) {
     
 
     int idDokter = rumahsakit.denah.contents[baris][kolom].dokterID;
-    printf("Dokter     : %s\n", (idDokter == 0) ? "-" : cari_username(UserData, idDokter+1));
-
+    printf("Dokter     : %s\n", (idDokter == 0) ? "-" : cari_username(UserData, idDokter));
+    
     printf("Pasien di dalam ruangan:\n");
     int pasienCount = 0;
     
     int id_pasien;
     Node* temp = rumahsakit.denah.contents[baris][kolom].antrian->front;
-    Node* rear = rumahsakit.denah.contents[baris][kolom].antrian->rear;
-    // int counter = 0;
-    while (temp!= NULL && pasienCount < rumahsakit.kapasitasRuangan)
+
+    char *adadokter = cari_username(UserData, idDokter);
+   
+    while (temp != NULL && pasienCount < rumahsakit.kapasitasRuangan &&  strcmp(adadokter, "-") != 0)
     {
         id_pasien = temp->data;
-        if (id_pasien != 0) {
-            printf("  %d. %s\n", ++pasienCount, cari_username(UserData, id_pasien+1));
-        }
         
-        temp = temp->next;
 
+       if (id_pasien != 0) {
+            printf("  %d. %s\n", ++pasienCount, cari_username(UserData, id_pasien));
+        }
+
+        temp = temp->next;
     }
 
     if (pasienCount == 0) printf("  Tidak ada pasien\n");
