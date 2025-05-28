@@ -7,15 +7,15 @@ PENAWAR - Meminum penawar jika salah minum obat dan mengeluarkan obat terakhir y
 EXIT - Keluar dari program*/
 void help(int loginState, int loginId, ListDinUser UserData){
 
-    printf("\n=========== HELP ===========\n");
+    printf(COLOR_WHITE"\n=========== HELP ===========\n");
     switch (loginState){
         case 0:
-            printf("Kamu belum login sebagai role apapun. Silahkan login terlebih dahulu.\n\n");
+            printf(COLOR_BLUE"Kamu belum login sebagai role apapun. Silahkan login terlebih dahulu.\n\n");
             puts("1. LOGIN    : Masuk ke dalam akun yang sudah terdaftar");
             puts("2. REGISTER : Membuat akun baru");
             break;
         case 1:
-            printf("Halo Manager %s. Berikut adalah hal-hal yang dapat kamu lakukan sekarang:\n\n", UserData.buffer[loginId-1].username);
+            printf(COLOR_MAGENTA"Halo Manager %s. Berikut adalah hal-hal yang dapat kamu lakukan sekarang:\n\n", UserData.buffer[loginId-1].username);
             puts("1. LOGOUT                 : Keluar dari akun yang sedang digunakan");
             puts("2. TAMBAH_DOKTER          : Mendaftarkan dokter baru ke sistem");
             puts("3. LIHAT_DENAH            : Membuka denah rumah sakit");
@@ -30,7 +30,7 @@ void help(int loginState, int loginId, ListDinUser UserData){
             puts("12. ASSIGN_DOKTER         : Melakukan assign ruangan ke dokter tertentu yang belum memiliki ruangan");
             break;
         case 2:
-            printf("Halo Dokter %s. Kamu memanggil HELP. Berikut command yang tersedia:\n\n", UserData.buffer[loginId-1].username);
+            printf(COLOR_CYAN"Halo Dokter %s. Kamu memanggil HELP. Berikut command yang tersedia:\n\n", UserData.buffer[loginId-1].username);
             puts("1. LOGOUT         : Keluar dari akun");
             puts("2. DIAGNOSIS      : Melakukan diagnosis pasien");
             puts("3. NGOBATIN       : Meresepkan obat");
@@ -38,7 +38,7 @@ void help(int loginState, int loginId, ListDinUser UserData){
         break;
 
         case 3:
-            printf("Selamat datang, %s. Berikut command yang tersedia:\n\n", UserData.buffer[loginId-1].username);
+            printf(COLOR_YELLOW"Selamat datang, %s. Berikut command yang tersedia:\n\n", UserData.buffer[loginId-1].username);
             puts("1. LOGOUT             : Keluar dari akun");
             puts("2. DAFTAR_CHECKUP     : Mendaftarkan diri untuk pemeriksaan");
             puts("3. ANTRIAN            : Melihat status antrian");
@@ -51,6 +51,7 @@ void help(int loginState, int loginId, ListDinUser UserData){
     puts("Footnote:");
     puts("1. Untuk menggunakan aplikasi, silahkan masukkan nama fungsi yang terdaftar");
     puts("2. Jangan lupa untuk memasukkan input yang valid\n");
+    printf(COLOR_RESET);
 }
 
 

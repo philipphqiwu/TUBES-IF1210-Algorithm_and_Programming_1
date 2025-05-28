@@ -25,15 +25,16 @@ void save(ListDinUser * UserData, ListObat * listObat, ListPenyakit * listPenyak
     char folderName[256];
     int valid = 0;
     while(!valid){
-        printf("Masukkan nama folder: ");
+        printf(COLOR_GREEN"Masukkan nama folder: ");
         fgets(folderName, sizeof(folderName), stdin);
+        printf(COLOR_RESET);
         // Remove newline
         folderName[strcspn(folderName, "\n")] = '\0';
         
         if(isValidFolderName(folderName)){
             valid = 1;
         } else{
-            printf("Maaf! Nama folder tidak valid di Linux!\n");
+            printf(COLOR_RED"Maaf! Nama folder tidak valid di Linux!\n"COLOR_RESET);
         }
     }
     char folderPath[300];
@@ -48,7 +49,7 @@ void save(ListDinUser * UserData, ListObat * listObat, ListPenyakit * listPenyak
     writeListPenyakit(folderPath, listPenyakit);
     writeMapObatPenyakit(folderPath, mapObatPenyakit);
     //writeConfig();
-    printf("Data berhasil disimpan di %s\n", folderPath);
+    printf(COLOR_BLUE"Data berhasil disimpan di %s\n"COLOR_RESET, folderPath);
 
     
 }

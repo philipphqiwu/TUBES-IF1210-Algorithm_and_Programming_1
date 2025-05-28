@@ -56,12 +56,46 @@ void freeListPenyakit(ListPenyakit *list){
     list->capacity = 0;
 }
 
+void sortPenyakit(ListPenyakit *list){
+    for(int i = 0; i < list->nEff-1; i++){
+        for(int j = 0; j < list->nEff-i-1; j++){
+            if(list->items[j].id>list->items[j+1].id){
+                Penyakit temp = list->items[j];
+                list->items[j] = list->items[j+1];
+                list->items[j+1] = temp;
+            }
+        }
+    }
+}
+
+int cariIdxPenyakit(ListPenyakit * list, int id){
+    int left = 0;
+    int right = list->nEff - 1;
+    int mid = (left + right)/2;
+
+    while(left < right){
+        if(list->items[mid].id > id){
+            right = mid;
+            mid = (left+right)/2;
+        } else if (list->items[mid].id < id){
+            left = mid+1;          
+            mid = (left+right)/2;
+        } else if(list->items[mid].id == id){
+            break;
+        }
+    }
+    if(list->items[mid].id == id){
+        return mid;
+    }
+    return -1;
+}
+
 void writeListPenyakit(char * folderPath, ListPenyakit *list){
     char fullFilePath[300];
     snprintf(fullFilePath, sizeof(fullFilePath), "%s/penyakit.csv", folderPath); 
     FILE * file = fopen(fullFilePath, "w");
     fprintf(file, "id;nama_penyakit;suhu_tubuh_min;suhu_tubuh_max;tekanan_darah_sistolik_min;tekanan_darah_sistolik_max;tekanan_darah_diastolik_min;tekanan_darah_diastolik_max;detak_jantung_min;detak_jantung_max;saturasi_oksigen_min;saturasi_oksigen_max;kadar_gula_darah_min;kadar_gula_darah_max;berat_badan_min;berat_badan_max;tinggi_badan_min;tinggi_badan_max;kadar_kolesterol_min;kadar_kolesterol_max;trombosit_min;trombosit_max\n");
-    for(int i = 1; i<list->nEff; i++){
+    for(int i = 0; i<list->nEff; i++){
         fprintf(file, "%d;%s;%f;%f;%d;%d;%d;%d;%d;%d;%f;%f;%d;%d;%f;%f;%d;%d;%d;%d;%d;%d\n", 
             list->items[i].id, list->items[i].nama_penyakit ,list->items[i].suhu_tubuh_min, list->items[i].suhu_tubuh_max,
             list->items[i].tekanan_darah_sistolik_min, list->items[i].tekanan_darah_sistolik_max, list->items[i].tekanan_darah_diastolik_min, list->items[i].tekanan_darah_diastolik_max ,
