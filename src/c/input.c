@@ -78,7 +78,7 @@ void input(int * loginState, int * loginId, ListDinUser * UserData, ListObat * l
     
     } else if(*loginState == 2){
         if(strcmp(user_input,"DIAGNOSIS") == 0){
-            DIAGNOSIS(*listPenyakit, *rumahsakit, UserData, *loginId);
+            diagnosisPenyakit(*listPenyakit, *rumahsakit, UserData, *loginId);
         } else if(strcmp(user_input,"NGOBATIN") == 0){
             // assignDokter(UserData,rumahsakit);
         } 
