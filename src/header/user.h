@@ -130,23 +130,10 @@ void deleteLast(ListDinUser *l, ElType *val);
 /*      Banyaknya elemen list berkurang satu */
 /*      List l mungkin menjadi kosong */
 
-/* ********* MENGUBAH UKURAN ARRAY ********* */
-void expandList(ListDinUser *l, int num);
-/* Proses : Menambahkan capacity l sebanyak num */
-/* I.S. List sudah terdefinisi */
-/* F.S. Ukuran list bertambah sebanyak num */
-
-void shrinkList(ListDinUser *l, int num);
-/* Proses : Mengurangi capacity sebanyak num */
-/* I.S. List sudah terdefinisi, ukuran capacity > num, dan nEff < capacity - num. */
-/* F.S. Ukuran list berkurang sebanyak num. */
-
-void compressList(ListDinUser *l);
-/* Proses : Mengubah capacity sehingga nEff = capacity */
-/* I.S. List tidak kosong */
-/* F.S. Ukuran nEff = capacity */
-
+// Menampilkan data user
 void printUser(User user);
+// I.S. user terdefinisi
+// F.S. Ditampilkan data dari user
 
 // Memasukan item pada elemen pada list sesuai ID user
 void insertUserByID(ListDinUser *list, ElType item);
@@ -154,15 +141,25 @@ void insertUserByID(ListDinUser *list, ElType item);
 // F.S. list.buffer[item.id] terisi dengan data pada item
 //      jika item.id >= list.nEff, maka list.nEff = item.id + 1
 
+// Menampilkan list data user
 void printList(ListDinUser l);
+// I.S. list user terdefinisi
+// F.S. Ditampilkan list data user
 
+// Mengembalikan indeks dari user dengan username tertentu
 IdxType indexOfUsername(ListDinUser l, char* username);
 
-// Sort List based on id
+// Menyortir List user berdasarkan id
 void sortUser(ListDinUser *list);
+// I.S. list terdefinisi
+// F.S. list tersortir ascending menurut id
 
+// Mengembalikan indeks user dengan id tertentu
 int cariIdxUser(ListDinUser * UserData, int id);
 
+// Menuliskan List User ke dalam file
 void writeListUser(char * folderPath, ListDinUser *list);
+// I.S. list terdefinisi dan terisi
+// F.S. File user.csv berada pada folder yang ditujukan
 
 #endif

@@ -2,7 +2,8 @@
 #define LOGO_H
 #include "colors.h"
 
-void printLogo();
 // Mencetak logo dari Rumah Sakit Nimons
+void printLogo();
+
 
 #endif

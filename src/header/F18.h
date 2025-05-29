@@ -8,6 +8,9 @@
 #include "save.h"
 #include <stdio.h>
 
+// User dapat keluar dari program
 void exitProgram(int * run, ListDinUser * UserData, ListObat * listObat, ListPenyakit * listPenyakit, MapObatPenyakit * mapObatPenyakit, Config * rumahsakit);
+// I.S. Seluruh argumen terdefinisi
+// F.S. Program akan dihentikan
 
 #endif

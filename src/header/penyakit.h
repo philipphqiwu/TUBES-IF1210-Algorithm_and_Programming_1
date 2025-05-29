@@ -66,10 +66,17 @@ void freeListPenyakit(ListPenyakit *list);
 // I.S. list terdefinisi dan sembarang
 // F.S. Memori dalam list terdealokasi, list.nEff dan list.capacity bernilai 0
 
-// Sort List based on id
+// Menyortir List penyakit berdasarkan id
 void sortPenyakit(ListPenyakit *list);
+// I.S. list terdefinisi
+// F.S. list tersortir ascending menurut id
 
+// Mengembalikan indeks penyakit dengan id tertentu
 int cariIdxPenyakit(ListPenyakit * list, int id);
 
+// Menuliskan List penyakit ke dalam file
 void writeListPenyakit(char * folderPath, ListPenyakit *list);
+// I.S. list terdefinisi dan terisi
+// F.S. File penyakit.csv berada pada folder yang ditujukan
+
 #endif
