@@ -56,7 +56,7 @@ boolean isFull(ListDinUser l){
 
 void printList(ListDinUser l){
     for (int i=0;i<l.nEff;i++){
-        if(l.buffer->id == 0) continue;
+        if(l.buffer[i].id == 0) continue;
         printUser(l.buffer[i]);
         printf("\n");
     }
