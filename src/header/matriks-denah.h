@@ -19,6 +19,18 @@ typedef struct{
     int cols;
 } MatriksDenah;
 
+// typedef struct{
+//     char kodeRuangan[MAX_KODE_RUANG_LENGTH];
+//     int dokterID;
+//     Queue *antrian;
+// } KontenDenah;
+
+// typedef struct{
+//     KontenDenah contents[MAX_ROWS];
+//     int rows;
+//     int cols;
+// } MatriksDenah;
+
 // I.S. matriks bertipe MatriksDenah (sembarang) terdefinisi, rows dan cols terdefinisi
 // F.S. matriks berbentuk array 2D dengan ukuran rows x cols
 void initializeMatriksDenah(MatriksDenah *matriks);

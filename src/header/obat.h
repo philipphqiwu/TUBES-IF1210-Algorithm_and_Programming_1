@@ -41,8 +41,17 @@ void freeListObat(ListObat *list);
 // I.S. list terdefinisi dan sembarang
 // F.S. Memori dalam list terdealokasi, list.nEff dan list.capacity bernilai 0
 
-// Sort List based on id
+// Menyortir List obat berdasarkan id
 void sortObat(ListObat *l);
+// I.S. list terdefinisi
+// F.S. list tersortir ascending menurut id
 
+// Mengembalikan indeks obat dengan id tertentu
+int cariIdxObat(ListObat * list, int id);
+
+// Menuliskan List obat ke dalam file
 void writeListObat(char * folderPath, ListObat *list);
+// I.S. list terdefinisi dan terisi
+// F.S. File obat.csv berada pada folder yang ditujukan
+
 #endif

@@ -1,10 +1,5 @@
 #include "../header/F05.h"
-/*
 
-PULANGDOK -Berkonsultasi kembalik ke dokter untuk menanyakan apakah kondisi sudah baik dan boleh pulang - Pasien
-MINUM_OBAT -Melihat daftar obat dan melakukan pilihan obat yang akan diminum - Pasien
-PENAWAR - Meminum penawar jika salah minum obat dan mengeluarkan obat terakhir yang diminum - Pasien
-EXIT - Keluar dari program*/
 void help(int loginState, int loginId, ListDinUser UserData){
 
     printf(COLOR_WHITE"\n=========== HELP ===========\n");
@@ -13,12 +8,15 @@ void help(int loginState, int loginId, ListDinUser UserData){
             printf(COLOR_BLUE"Kamu belum login sebagai role apapun. Silahkan login terlebih dahulu.\n\n");
             puts("1. LOGIN    : Masuk ke dalam akun yang sudah terdaftar");
             puts("2. REGISTER : Membuat akun baru");
+            puts("3. SAVE     : Menyimpan kondisi rumah sakit");
+            puts("4. EXIT     : Keluar dari program");
             break;
         case 1:
             printf(COLOR_MAGENTA"Halo Manager %s. Berikut adalah hal-hal yang dapat kamu lakukan sekarang:\n\n", UserData.buffer[loginId-1].username);
-            puts("1. LOGOUT                 : Keluar dari akun yang sedang digunakan");
-            puts("2. TAMBAH_DOKTER          : Mendaftarkan dokter baru ke sistem");
-            puts("3. LIHAT_DENAH            : Membuka denah rumah sakit");
+            puts("1.  LOGOUT                : Keluar dari akun yang sedang digunakan");
+            puts("2.  TAMBAH_DOKTER         : Mendaftarkan dokter baru ke sistem");
+            puts("3.  LIHAT_DENAH           : Melihat denah rumah sakit");
+            puts("3.  LIHAT_RUANGAN         : Melihat isi dari ruangan pada rumah sakit");
             puts("4.  LIHAT_USER            : Melihat data seluruh pengguna");
             puts("5.  LIHAT_PASIEN          : Melihat data seluruh pasien");
             puts("6.  LIHAT_DOKTER          : Melihat data seluruh dokter");
@@ -28,6 +26,8 @@ void help(int loginState, int loginId, ListDinUser UserData){
             puts("10. LIHAT_SEMUA_ANTRIAN   : Melihat rincian seluruh ruangan saat ini");
             puts("11. TAMBAH_DOKTER         : Menambah dokter baru dengan username dan password yang ditentukan");
             puts("12. ASSIGN_DOKTER         : Melakukan assign ruangan ke dokter tertentu yang belum memiliki ruangan");
+            puts("13. SAVE                  : Menyimpan kondisi rumah sakit");
+            puts("14. EXIT                  : Keluar dari program");
             break;
         case 2:
             printf(COLOR_CYAN"Halo Dokter %s. Kamu memanggil HELP. Berikut command yang tersedia:\n\n", UserData.buffer[loginId-1].username);
@@ -35,17 +35,21 @@ void help(int loginState, int loginId, ListDinUser UserData){
             puts("2. DIAGNOSIS      : Melakukan diagnosis pasien");
             puts("3. NGOBATIN       : Meresepkan obat");
             puts("4. LIHAT_DENAH    : Membuka denah rumah sakit");
+            puts("5. SAVE           : Menyimpan kondisi rumah sakit");
+            puts("6. EXIT           : Keluar dari program");
         break;
 
         case 3:
             printf(COLOR_YELLOW"Selamat datang, %s. Berikut command yang tersedia:\n\n", UserData.buffer[loginId-1].username);
-            puts("1. LOGOUT             : Keluar dari akun");
-            puts("2. DAFTAR_CHECKUP     : Mendaftarkan diri untuk pemeriksaan");
-            puts("3. ANTRIAN            : Melihat status antrian");
-            puts("4. LIHAT_DENAH        : Membuka denah rumah sakit");
-            puts("5.  PULANGDOK         : Berkonsultasi kembali ke dokter untuk menanyakan apakah kondisi sudah baik dan boleh pulang");
-            puts("6.  MINUM_OBAT        : Melihat daftar obat dan memilih obat yang akan diminum");
-            puts("7.  PENAWAR           : Meminum penawar jika salah minum obat dan mengeluarkan obat terakhir yang diminum");
+            puts("1. LOGOUT            : Keluar dari akun");
+            puts("2. DAFTAR_CHECKUP    : Mendaftarkan diri untuk pemeriksaan");
+            puts("3. ANTRIAN           : Melihat status antrian");
+            puts("4. LIHAT_DENAH       : Membuka denah rumah sakit");
+            puts("5. PULANGDOK         : Berkonsultasi kembali ke dokter untuk menanyakan apakah kondisi sudah baik dan boleh pulang");
+            puts("6. MINUM_OBAT        : Melihat daftar obat dan memilih obat yang akan diminum");
+            puts("7. PENAWAR           : Meminum penawar jika salah minum obat dan mengeluarkan obat terakhir yang diminum");
+            puts("8. SAVE              : Menyimpan kondisi rumah sakit");
+            puts("9. EXIT              : Keluar dari program");
         break;
     }
     puts("Footnote:");

@@ -89,24 +89,6 @@ void deleteLast(ListDinUser *l, ElType *val){
     l->nEff--;
 }
 
-void expandList(ListDinUser *l, int num){
-    l->capacity += num;
-    l->buffer = (ElType*)realloc(l->buffer,l->capacity*sizeof(ElType));
-}
-
-void shrinkList(ListDinUser *l, int num){
-    if (l->capacity > num && l->nEff <= (l->capacity - num)) {
-        l->capacity -= num;
-        l->buffer = (ElType*) realloc(l->buffer, l->capacity * sizeof(ElType));
-    }
-}
-
-void compressList(ListDinUser *l){
-    l->capacity = l->nEff;
-    l->buffer = (ElType*)realloc(l->buffer,l->capacity*sizeof(ElType));
-
-}
-
 void insertUserByID(ListDinUser *list, ElType item){
     list->buffer[item.id] = item;
     if(list->nEff <= item.id){

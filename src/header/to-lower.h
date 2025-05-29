@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+
 // Fungsi untuk mengimitasi fungsi tolower dari header <ctype.h>
 char * to_lower(const char * s);
 

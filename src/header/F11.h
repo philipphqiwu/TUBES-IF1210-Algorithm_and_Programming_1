@@ -3,7 +3,8 @@
 #include "user.h"
 #include "penyakit.h"
 #include <stdio.h>
+#include "config.h"
 
-void DIAGNOSIS();
+int DIAGNOSIS(ListPenyakit krirteriapenyakit, Config rumahsakit, ListDinUser *UserData, int loginId);
 
 #endif

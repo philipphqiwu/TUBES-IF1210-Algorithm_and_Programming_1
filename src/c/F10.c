@@ -59,6 +59,7 @@ void tambahDokter(ListDinUser * UserData){
         strcpy(UserData->buffer[UserData->nEff].password, Password);
         strcpy(UserData->buffer[UserData->nEff].role, "dokter");
         UserData->buffer[UserData->nEff].ruang[0] = '\0';
+        UserData->buffer[UserData->nEff].antrian[0] = '\0';
         UserData->nEff += 1;
     }
     return;
@@ -129,6 +130,7 @@ void assignDokter(ListDinUser * UserData, Config * rumahsakit){
         printf(COLOR_BLUE"Dokter %s berhasil diassign ke ruangan %s\n"COLOR_RESET, Username, input);
         strcpy(UserData->buffer[idx].ruang, input);
         rumahsakit->denah.contents[baris][kolom].dokterID = UserData->buffer[idx].id;
+        rumahsakit->denah.contents[baris][kolom].antrian->front = 0;
     }
     
 }

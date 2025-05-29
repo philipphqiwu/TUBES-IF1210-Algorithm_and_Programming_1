@@ -10,23 +10,6 @@
 #define MAX_PASIEN 1000
 #define MAX_OBAT 10
 
-// typedef struct{
-//     char kodeRuangan[3];
-//     int idDokter;
-//     int ruangan[CAPACITYRUANGAN]; //😊 Hi!
-//     QueueConfig antrian;
-// } RoomComponent;
-
-// typedef struct{
-//     int roomRow;
-//     int roomCol;
-//     int roomCapacity;
-//     int queueCapacity;
-//     RoomComponent room[MAX_RUANGAN];
-//     int jumlahPemilikobat;
-//     Matriks inventoryPasien;
-// } Config;
-
 typedef struct{
     MatriksDenah denah;
     int kapasitasRuangan;
@@ -39,15 +22,17 @@ typedef struct{
 
 // Menginisialisasi struktur data config
 void createConfig(Config *config);
-// I.S. config terdefinisi, sembarang
-// F.S. seluruh komponen config terinisialisasi dengan nilai default
+// I.S. Config terdefinisi, sembarang
+// F.S. Seluruh komponen config terinisialisasi dengan nilai default
 
 // Menampilkan data config pada layar
 void printConfig(Config config);
-// I.S. config terdefinisi dan terisi
-// F.S. seluruh data pada config tampil pada layar
+// I.S. Config terdefinisi dan terisi
+// F.S. Seluruh data pada config tampil pada layar
 
-// void writeConfig(Config *rumahsakit, ListDinUser *UserData);
-// void readConfig(Config *rumahsakit, ListDinUser *UserData);
+// Menuliskan data config pada file
+void writeConfig(char * folderPath, Config *config);
+// I.S. Config terdefinisi dan terisi
+// F.S. File config.txt berada pada folder yang ditujukan
 
 #endif
