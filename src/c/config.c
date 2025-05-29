@@ -25,6 +25,7 @@ void printConfig(Config config){
             printf("\tID Dokter: %d\n", config.denah.contents[i][j].dokterID);
             printf("\tAntrian (ID Pasien): ");
             printQueue(config.denah.contents[i][j].antrian);
+            printf("\tOrang di antrian: %d\n", config.denah.contents[i][j].antrian->counter);
         }
         printf("\n");
     }

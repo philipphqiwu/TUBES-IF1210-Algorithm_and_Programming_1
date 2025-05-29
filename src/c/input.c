@@ -11,6 +11,8 @@
 #include "../header/F10.h"
 #include "../header/F11.h"
 #include "../header/F12.h"
+#include "../header/F14.h"
+#include "../header/F15.h"
 #include "../header/F16.h"
 #include "../header/F17.h"
 #include "../header/F18.h"
@@ -37,7 +39,8 @@ void input(int * loginState, int * loginId, ListDinUser * userData, ListObat * l
     } else if(strcmp(user_input,"EXIT") == 0){
         exitProgram(run, userData, listObat, listPenyakit, mapObatPenyakit, rumahsakit);
         return;
-    } else if(*loginState != 0){
+    } 
+    else if(*loginState != 0){
         if(strcmp(user_input,"LIHAT_DENAH") == 0){
             lihatDenah(*rumahsakit);
 
@@ -99,6 +102,12 @@ void input(int * loginState, int * loginId, ListDinUser * userData, ListObat * l
         }
         else if(strcmp(user_input, "MINUM_PENAWAR") == 0){
             minumPenawar(*loginId, rumahsakit, *userData, *listObat, *listPenyakit, *mapObatPenyakit);
+        }
+        else if(strcmp(user_input, "DAFTAR_CHECKUP") == 0){
+            daftarCheckUp(userData, rumahsakit, *loginId);
+        }
+        else if(strcmp(user_input, "ANTRIAN") == 0){
+            antrianSaya(userData, rumahsakit, *loginId);
         }
         else{
             printf("PLEASE ENTER A VALID COMMAND!\n");
