@@ -3,12 +3,12 @@
 void sortBased(int * base, int * order){ 
 // Validation for sorting base
     while (1) {
-        printf("Urutkan berdasarkan?\n");
+        printf(COLOR_MAGENTA"Urutkan berdasarkan?\n");
         printf("1. ID\n");
         printf("2. Nama\n");
         printf(">>> Pilihan : ");
         if (scanf("%d", base) != 1 || (*base != 1 && *base != 2)) {
-            printf("Input tidak valid! Pilih 1 atau 2.\n");
+            printf(COLOR_RED"Input tidak valid! Pilih 1 atau 2.\n");
             while (getchar() != '\n'); // Clear input buffer
         } else {
             break;  
@@ -17,12 +17,12 @@ void sortBased(int * base, int * order){
 
     // Validation for sorting order
     while (1) {
-        printf("\nUrutan sort?\n");
+        printf(COLOR_MAGENTA"\nUrutan sort?\n");
         printf("1. ASC (A-Z)\n");
         printf("2. DES (Z-A)\n");
         printf(">>> Pilihan : ");
         if (scanf("%d", order) != 1 || (*order != 1 && *order != 2)) {
-            printf("Input tidak valid! Pilih 1 atau 2.\n");
+            printf(COLOR_RED"Input tidak valid! Pilih 1 atau 2.\n");
             while (getchar() != '\n'); // Clear input buffer
         } else {
             break;  
@@ -44,7 +44,7 @@ void alphabetSort(User *ptrs[], int length){
 }
 
 void tampilList(User *ptrs[], int type, int base, int order, int length){
-    printf("Menampilkan semua ");
+    printf(COLOR_MAGENTA"Menampilkan semua ");
     switch(type){
         case 1:
             printf("pengguna ");
@@ -72,6 +72,7 @@ void tampilList(User *ptrs[], int type, int base, int order, int length){
             printf("ascending...\n");
             switch (type){
                 case 1:
+                    printf("----------------------------------------------------------\n");
                     printf("ID | Nama                | Role    | Penyakit\n");
                     printf("----------------------------------------------------------\n");
                     for(int i = 0; i < length; i++){
@@ -79,6 +80,7 @@ void tampilList(User *ptrs[], int type, int base, int order, int length){
                     }
                     break;
                 case 2:
+                    printf("----------------------------------------------------------\n");
                     printf("ID | Nama                | Penyakit\n");
                     printf("----------------------------------------------------------\n");
                     for(int i = 0; i < length; i++){
@@ -88,6 +90,7 @@ void tampilList(User *ptrs[], int type, int base, int order, int length){
                     }
                     break;
                 case 3:
+                    printf("----------------------------------------------------------\n");
                     printf("ID | Nama\n");
                     printf("----------------------------------------------------------\n");
                     for(int i = 0; i < length; i++){
@@ -103,6 +106,7 @@ void tampilList(User *ptrs[], int type, int base, int order, int length){
             printf("descending...\n");
             switch (type){
                 case 1:
+                    printf("----------------------------------------------------------\n");
                     printf("ID | Nama                | Role    | Penyakit\n");
                     printf("----------------------------------------------------------\n");
                     for(int i = length-1; i >= 0; i--){
@@ -110,6 +114,7 @@ void tampilList(User *ptrs[], int type, int base, int order, int length){
                     }
                     break;
                 case 2:
+                    printf("----------------------------------------------------------\n");
                     printf("ID | Nama                | Penyakit\n");
                     printf("----------------------------------------------------------\n");
                     for(int i = length-1; i >= 0; i--){
@@ -119,6 +124,7 @@ void tampilList(User *ptrs[], int type, int base, int order, int length){
                     }
                     break;
                 case 3:
+                    printf("----------------------------------------------------------\n");
                     printf("ID | Nama\n");
                     printf("----------------------------------------------------------\n");
                     for(int i = length-1; i >= 0; i--){
@@ -130,8 +136,7 @@ void tampilList(User *ptrs[], int type, int base, int order, int length){
             }
             break;
     }
-
-       
+    printf(COLOR_RESET);
 }
 
 void lihatUser(ListDinUser UserData){

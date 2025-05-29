@@ -3,6 +3,7 @@
 #include "user.h"
 #include "set.h"
 #include "to-lower.h"
+#include "colors.h"
 #include "config.h"
 #include <stdio.h>
 

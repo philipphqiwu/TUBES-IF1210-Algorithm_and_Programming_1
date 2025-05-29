@@ -6,8 +6,9 @@ void exitProgram(int * run, ListDinUser * UserData, ListObat * listObat, ListPen
     char input[100];
     char konfirmasi;
     do {
-        printf("Apakah Anda mau melakukan penyimpanan file yang sudah diubah? (y/n) ");
+        printf(COLOR_GREEN"Apakah Anda mau melakukan penyimpanan file yang sudah diubah? (y/n) ");
         fgets(input, sizeof(input), stdin);
+        printf(COLOR_RESET);
 
         // Remove trailing newline
         input[strcspn(input, "\n")] = '\0';
@@ -17,17 +18,17 @@ void exitProgram(int * run, ListDinUser * UserData, ListObat * listObat, ListPen
             konfirmasi = input[0];
             break;
         } else {
-            printf("Input tidak valid! Masukkan hanya satu karakter: 'y' atau 'n'.\n\n");
+            printf(COLOR_RED"Input tidak valid! Masukkan hanya satu karakter: 'y' atau 'n'.\n\n"COLOR_RESET);
         }
     } while (1);
 
 
     if (konfirmasi == 'y') {
-        printf("Data akan disimpan.\n");
+        printf(COLOR_BLUE"Data akan disimpan.\n"COLOR_RESET);
         save(UserData, listObat, listPenyakit, mapObatPenyakit, rumahsakit);
     } else {
-        printf("Data tidak disimpan.\n");
+        printf(COLOR_BLUE"Data tidak disimpan.\n"COLOR_RESET);
     }
-    printf("THANK YOU FOR USING OUR SERVICE !!!");
+    printf(COLOR_BLUE"THANK YOU FOR USING OUR SERVICE !!!"COLOR_RESET);
     *run = 0;
 }

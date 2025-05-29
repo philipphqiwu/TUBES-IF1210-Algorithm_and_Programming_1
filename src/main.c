@@ -6,7 +6,6 @@
 #include "header/penyakit.h"
 #include "header/obat-penyakit.h"
 #include "header/input.h"
-#include "header/parse-user.h"
 #include "header/parse-config.h"
 #include "header/general-parsing.h"
 #include "header/initialize-program.h"
@@ -16,12 +15,13 @@
 #include "header/F04.h"
 #include "header/F06.h"
 #include "header/save.h"
+#include "header/colors.h"
 
 
 int main(int argc, char *argv[]) {
     char folderPath[300];
     if (argc == 1){
-        printf("Program akan menggunakan folder default yaitu ../data\n");
+        printf(COLOR_BLUE"Program akan menggunakan folder default yaitu ../data\n"COLOR_RESET);
         snprintf(folderPath, sizeof(folderPath), "../data");
     } else if (argc == 2) {
         char folderName[256];
@@ -29,11 +29,11 @@ int main(int argc, char *argv[]) {
         folderName[strcspn(folderName, "\n")] = '\0';
         snprintf(folderPath, sizeof(folderPath), "../data/%s", folderName);
         if (!folderExists(folderPath)) {
-            printf("FOLDER TIDAK DITEMUKAN! PASTIKAN FOLDER ADA DAN BERISI DATA YANG VALID!\n");
+            printf(COLOR_RED"FOLDER TIDAK DITEMUKAN! PASTIKAN FOLDER ADA DAN BERISI DATA YANG VALID!\n"COLOR_RESET);
             return 0;
         }
     } else{
-        printf("INVALID ARGUMENT!\n");
+        printf(COLOR_RED"INVALID ARGUMENT!\n"COLOR_RESET);
         return 0;
     }
 
@@ -61,6 +61,36 @@ int main(int argc, char *argv[]) {
     initializeProgram(folderPath, &UserData, &listObat, &listPenyakit, &mapObatPenyakit, &config);
     for (int i = 0; i < UserData.nEff; i++) {
         UserData.buffer[i].ruang[0] = '\0';
+        UserData.buffer[i].antrian[0] = '\0';
+    }
+
+    // ini untuk set ruangan di adt user dari tiap orang yg ada di ruangannya yeeeeee
+    for(int i = 0; i < config.denah.rows; i++){
+        for(int j = 0; j < config.denah.cols; j++){
+            int idxdokter = cariIdxUser(&UserData, config.denah.contents[i][j].dokterID);
+            if(idxdokter != -1){
+                strcpy(UserData.buffer[idxdokter].ruang,config.denah.contents[i][j].kodeRuangan);
+            } else{
+                continue;
+            }
+            if(isQueueEmpty(config.denah.contents[i][j].antrian)){
+                continue;
+            } else{
+                Node* current = config.denah.contents[i][j].antrian->front;
+                int count = 0;
+
+                while (current != NULL) {
+                    int idxPasien = cariIdxUser(&UserData, current->data);
+                    if (count < config.kapasitasRuangan) {
+                        strcpy(UserData.buffer[idxPasien].ruang, config.denah.contents[i][j].kodeRuangan);
+                    } else {
+                        strcpy(UserData.buffer[idxPasien].antrian, config.denah.contents[i][j].kodeRuangan);
+                    }
+                    count++;
+                    current = current->next;
+                }
+            }
+        }
     }
     
     // Config rumahsakit;

@@ -41,5 +41,10 @@ void freeListObat(ListObat *list);
 // I.S. list terdefinisi dan sembarang
 // F.S. Memori dalam list terdealokasi, list.nEff dan list.capacity bernilai 0
 
+// Sort List based on id
+void sortObat(ListObat *l);
+
+int cariIdxObat(ListObat * list, int id);
+
 void writeListObat(char * folderPath, ListObat *list);
 #endif

@@ -2,12 +2,12 @@
 
 void logout(int * loginState, int * loginId){
     if(*loginState == 0){
-        printf("Logout gagal!\n");
-        printf("Anda belum login, silahkan login terlebih dahulu sebelum melakukan logout\n");
+        printf(COLOR_RED"Logout gagal!\n");
+        printf("Anda belum login, silahkan login terlebih dahulu sebelum melakukan logout\n"COLOR_RESET);
     } else{
         *loginState = 0;
         *loginId = -1;
-        printf("\nSampai Jumpa\n");
+        printf(COLOR_BLUE"\nSampai Jumpa\n"COLOR_RESET);
     }
     return;
 }

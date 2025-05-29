@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "../header/parse-user.h"
-void parseUserData(char * filePath, ListDinUser * UserData){
+/*void parseUserData(char * filePath, ListDinUser * UserData){
     FILE * file = fopen(filePath,"r");
 
     if (!file) {
@@ -66,3 +66,4 @@ void parseUserData(char * filePath, ListDinUser * UserData){
     fclose(file);
     return;
 }
+*/
