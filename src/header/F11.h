@@ -5,6 +5,9 @@
 #include <stdio.h>
 #include "config.h"
 
-int DIAGNOSIS(ListPenyakit krirteriapenyakit, Config rumahsakit, ListDinUser *UserData, int loginId);
+int cekPenyakit(ListPenyakit kriteriapenyakit, ListDinUser* UserData, int idPasien);
+boolean assignPenyakit(ListPenyakit kriteriapenyakit, ListDinUser* UserData, int idPasien);
+boolean punyaRiwayat(char* riwayat_penyakit);
+int diagnosis(ListPenyakit krirteriapenyakit, Config rumahsakit, ListDinUser *UserData, int loginId);
 
 #endif

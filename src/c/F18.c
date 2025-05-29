@@ -1,4 +1,5 @@
 #include "../header/F18.h"
+#include "../header/logo.h"
 #include <stdio.h>
 
 void exitProgram(int * run, ListDinUser * UserData, ListObat * listObat, ListPenyakit * listPenyakit,  MapObatPenyakit * mapObatPenyakit, Config * rumahsakit){
@@ -29,6 +30,7 @@ void exitProgram(int * run, ListDinUser * UserData, ListObat * listObat, ListPen
     } else {
         printf(COLOR_BLUE"Data tidak disimpan.\n"COLOR_RESET);
     }
+    printLogo();
     printf(COLOR_BLUE"THANK YOU FOR USING OUR SERVICE !!!\n"COLOR_RESET);
     *run = 0;
 }
