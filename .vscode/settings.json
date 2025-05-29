@@ -12,6 +12,7 @@
         "string_view": "c",
         "f12.h": "c",
         "f13.h": "c",
-        "matriks.h": "c"
+        "matriks.h": "c",
+        "f16.h": "c"
     }
 }

@@ -8,8 +8,10 @@
 #include "../header/F07.h"
 #include "../header/F08.h"
 #include "../header/F10.h"
-#include "../header/F18.h"
+#include "../header/F11.h"
 #include "../header/F12.h"
+#include "../header/F16.h"
+#include "../header/F18.h"
 #include "../header/user.h"
 #include "../header/config.h"
 #include "../header/Boolean.h"
@@ -82,16 +84,16 @@ void input(int * loginState, int * loginId, ListDinUser * userData, ListObat * l
         if(strcmp(user_input,"DIAGNOSIS") == 0){
             DIAGNOSIS(*listPenyakit, *rumahsakit, userData, *loginId);
         } else if(strcmp(user_input,"NGOBATIN") == 0){
-            // assignDokter(userData,rumahsakit);
+            ngobatin(*loginId, rumahsakit, *userData, *listObat, *listPenyakit, *mapObatPenyakit);
         } 
         else{
             printf("PLEASE ENTER A VALID COMMAND!\n");
             printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n");
         }
     }
-    else if(*loginState == 2){
-        if(strcmp(user_input, "NGOBATIN") == 0){
-            ngobatin(*loginId, rumahsakit, *userData, *listObat, *listPenyakit, *mapObatPenyakit);
+    else if(*loginState == 3){
+        if(strcmp(user_input, "MINUM_OBAT") == 0){
+            minumObat(*loginId, rumahsakit, *userData, *listObat, *listPenyakit, *mapObatPenyakit);
         }
     }
     else{
