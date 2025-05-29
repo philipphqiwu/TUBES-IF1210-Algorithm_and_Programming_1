@@ -148,7 +148,7 @@ void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
     }else{ //kalau gada antrian di luar ruangan
         printf("Karena tidak ada antrian di luar ruangan, silahkan langsung masuk saja.\n");
         if(rumahsakit->denah.contents[choice_holder[choice][0]][choice_holder[choice][1]].antrian->counter == 1){
-            printf("Dokter akan memeriksamu sekarang.");
+            printf("Dokter akan memeriksamu sekarang.\n");
         }else{
             printf("Masih ada pasien dalam ruangan yang harus dilayani dulu oleh dokter. Anda giliran ke-%d.\n", rumahsakit->denah.contents[choice_holder[choice][0]][choice_holder[choice][1]].antrian->counter);
         }
