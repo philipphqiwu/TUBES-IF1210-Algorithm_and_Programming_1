@@ -106,7 +106,6 @@ int main(int argc, char *argv[]) {
     printMapObatPenyakit(mapObatPenyakit);
     printf("Config: \n");
     printConfig(config);
-
     
     while(run){
         input(&loginState, &loginId, &UserData, &listObat, &listPenyakit, &mapObatPenyakit, &run, &config);

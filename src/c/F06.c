@@ -2,24 +2,35 @@
 #include "../header/config.h"
 #include "../header/user.h"
 #include "../header/F06.h"
+#include <stdio.h>
+#include "../header/config.h"
+#include "../header/user.h"
+#include "../header/F06.h"
 
-const char* cari_username(ListDinUser UserData, int id) {
-    for (int i = 0; i < UserData.nEff; i++) {
-        if (UserData.buffer[i].id == id) {
-            return UserData.buffer[i].username;
-        }
+const char* cari_username(ListDinUser UserData, int idPasien) {
+    int idxUser = cariIdxUser(&UserData, idPasien);
+    if (idPasien == 1){
+        printf("kayaknya pasiennya gaada\n");
+        printf("%d\n", idxUser);
     }
-    return "-";
+    
+    
+    if (idxUser == -1) {
+        return "-";
+    }
+    
+    return UserData.buffer[idxUser].username;
 }
 
 char ruangan[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
                     'K', 'L', 'M', 'N', 'O', 'P','Q', 'R','S','T','U'
                     ,'V', 'W', 'X','Y','Z'};
 
+
 void lihatDenah(Config rumahsakit) {
 
     printf("    ");
-    for(int j = 0; j < rumahsakit.denah.rows; j++) {
+    for(int j = 0; j < rumahsakit.denah.cols; j++) {
         printf("  %d  ", j+1);
     }
     printf("\n");
@@ -68,8 +79,6 @@ void lihatRuangan(Config rumahsakit, ListDinUser UserData) {
         }
     }
 
-
-
     int baris = kodeRuangan[0] - 'A';
     int kolom = atoi(kodeRuangan + 1) - 1;
 
@@ -85,22 +94,22 @@ void lihatRuangan(Config rumahsakit, ListDinUser UserData) {
 
     int idDokter = rumahsakit.denah.contents[baris][kolom].dokterID;
     printf("Dokter     : %s\n", (idDokter == 0) ? "-" : cari_username(UserData, idDokter+1));
-
-    printf("Pasien di dalam ruangan:\n");
-    int pasienCount = 0;
+    printf("Dokter     : %s\n", (idDokter == 0) ? "-" : cari_username(UserData, idDokter));
     
-    int id_pasien = rumahsakit.denah.contents[baris][kolom].antrian->front->data;
-    Node* temp = rumahsakit.denah.contents[baris][kolom].antrian->front->next;
+    int id_pasien;
 
-    while (temp != NULL)
+    char *adadokter = cari_username(UserData, idDokter);
+   
+    while (temp != NULL && pasienCount < rumahsakit.kapasitasRuangan &&  strcmp(adadokter, "-") != 0)
     {
-        temp = rumahsakit.denah.contents[baris][kolom].antrian->front;
+        id_pasien = temp->data;
+        
 
        if (id_pasien != 0) {
-            printf("  %d. %s\n", ++pasienCount, cari_username(UserData, id_pasien+1));
+            printf("  %d. %s\n", ++pasienCount, cari_username(UserData, id_pasien));
         }
 
-        temp = rumahsakit.denah.contents[baris][kolom].antrian->front->next;
+        temp = temp->next;
     }
 
     if (pasienCount == 0) printf("  Tidak ada pasien\n");

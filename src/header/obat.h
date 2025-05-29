@@ -44,5 +44,7 @@ void freeListObat(ListObat *list);
 // Sort List based on id
 void sortObat(ListObat *l);
 
+int cariIdxObat(ListObat * list, int id);
+
 void writeListObat(char * folderPath, ListObat *list);
 #endif

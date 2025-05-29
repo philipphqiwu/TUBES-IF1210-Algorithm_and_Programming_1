@@ -33,7 +33,7 @@ void login(int * loginState, int * loginId, ListDinUser UserData){
     } else if(strcmp(UserData.buffer[idxUsername].password,Password) != 0){
         printf(COLOR_RED"Password yang dimasukkan salah!\n"COLOR_RESET);
     } else{
-        *loginId = idxUsername+1;
+        *loginId = UserData.buffer[idxUsername].id;
         if(strcmp(UserData.buffer[idxUsername].role,"manager") == 0){
             printf(COLOR_BLUE"Halo Manager %s\n"COLOR_RESET, Username);
             *loginState = 1;

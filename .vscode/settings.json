@@ -9,6 +9,11 @@
         "stdio.h": "c",
         "array": "c",
         "string": "c",
-        "string_view": "c"
+        "string_view": "c",
+        "f12.h": "c",
+        "f13.h": "c",
+        "matriks.h": "c",
+        "f16.h": "c",
+        "F17.C": "cpp"
     }
 }

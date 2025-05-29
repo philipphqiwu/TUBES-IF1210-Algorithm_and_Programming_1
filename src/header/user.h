@@ -21,8 +21,8 @@ typedef struct{
     int tinggi_badan;
     int kadar_kolesterol;
     int trombosit;
-    char ruang[2];
-    char antrian[2];
+    char ruang[10];
+    char antrian[10];
 } User;
 
 void printUser(User user);

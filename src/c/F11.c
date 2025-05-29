@@ -8,7 +8,7 @@
 
 
 int cekpenyakit(ListPenyakit kriteriapenyakit, ListDinUser* UserData, int idPasien){
-    int idPenyakit;
+    // int idPenyakit;
     for (int i = 0; i <= 5; i++) {
        
         boolean allMatch = true;
@@ -99,50 +99,54 @@ boolean punyaRiwayat(char* riwayat_penyakit) {
 }
 
 
+
 int DIAGNOSIS(ListPenyakit krirteriapenyakit, Config rumahsakit, ListDinUser *UserData, int loginId){
-  
-    boolean dokterFound = false;
-    boolean pasienFound = false;
-    
-    for (int i = 0; i < rumahsakit.denah.cols; i++) {
+    int idxKolom, idxBaris;
+    for (int i = 0; i < rumahsakit.denah.rows; i++){
         for (int j = 0; j < rumahsakit.denah.cols; j++){
-    
-                if (rumahsakit.denah.contents[i][j].dokterID == loginId) {
-                    dokterFound = true;
-                    int idPasien = rumahsakit.denah.contents[i][j].antrian->front;
-                if (punyaRiwayat(UserData->buffer[idPasien].riwayat_penyakit)) {
-                    int idPenyakitSekarang = cekpenyakit(krirteriapenyakit, UserData, idPasien);
-                
-                    if (idPenyakitSekarang == -1) {
-                        printf("%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idPasien].username);
-                        strcpy(UserData->buffer[idPasien].riwayat_penyakit, "");
-                        return 0; // Diagnosis selesai
-                    } else {
-                        printf("%s masih menderita %s\n", UserData->buffer[idPasien].username, UserData->buffer[idPasien].riwayat_penyakit);
-                        return 0;
-                    }
-                } else {
-                    if (assignPenyakit(krirteriapenyakit, UserData, idPasien)) {
-                        printf("%s terdiagnosa penyakit %s!\n", UserData->buffer[idPasien].username, UserData->buffer[idPasien].riwayat_penyakit);
-                        return 0; 
-                    } else {
-                        printf("%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idPasien].username);
-                        return 0;
-                    }
+            if (rumahsakit.denah.contents[i][j].dokterID == loginId){
+                idxKolom = j;
+                idxBaris = i;
+            }
+        }
+    }
+    int idxDokter = cariIdxUser(UserData, loginId);
+    if (idxDokter != -1){
+        int idxPasien = cariIdxUser(UserData, rumahsakit.denah.contents[idxBaris][idxKolom].antrian->front->data);
+        if (idxPasien != -1){
+            int idPenyakitSekarang = cekpenyakit(krirteriapenyakit, UserData, idxPasien);
+            if (punyaRiwayat(UserData->buffer[idxPasien].riwayat_penyakit)) {
+                    
+                if (idPenyakitSekarang == -1) {
+                    printf("%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idxPasien].username);
+                    strcpy(UserData->buffer[idxPasien].riwayat_penyakit, "");
+                    return 0; // Diagnosis selesai
+                } 
+                else {
+                    printf("%s masih menderita %s\n", UserData->buffer[idxPasien].username, UserData->buffer[idxPasien].riwayat_penyakit);
+                    return 0;
+                }
+            }   
+            else {
+                if (assignPenyakit(krirteriapenyakit, UserData, idxPasien)) {
+                    printf("%s terdiagnosa penyakit %s!\n", UserData->buffer[idxPasien].username, UserData->buffer[idxPasien].riwayat_penyakit);
+                    return 0; 
+                } 
+                else {
+                    printf("%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idxPasien].username);
+                    return 0;
                 }
             }
-            
-            if (!pasienFound) {
-                printf("Tidak ada pasien di ruangan Anda saat ini\n");
-                return 0;
-            }
-            break;
-        }
         }
     
-    
+        else{
+            printf("Tidak ada pasien di ruangan Anda saat ini\n");
+            return 0;
+        }
+    }
 
-    if (!dokterFound) {
+    
+    else{
         printf("Anda tidak sedang bertugas di ruangan manapun\n");
         return 0;
     }
@@ -150,6 +154,10 @@ int DIAGNOSIS(ListPenyakit krirteriapenyakit, Config rumahsakit, ListDinUser *Us
     return 0; 
      
 }
+
+
+
+        
 
 
      
