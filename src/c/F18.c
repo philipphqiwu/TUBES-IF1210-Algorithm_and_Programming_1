@@ -29,6 +29,6 @@ void exitProgram(int * run, ListDinUser * UserData, ListObat * listObat, ListPen
     } else {
         printf(COLOR_BLUE"Data tidak disimpan.\n"COLOR_RESET);
     }
-    printf(COLOR_BLUE"THANK YOU FOR USING OUR SERVICE !!!"COLOR_RESET);
+    printf(COLOR_BLUE"THANK YOU FOR USING OUR SERVICE !!!\n"COLOR_RESET);
     *run = 0;
 }
