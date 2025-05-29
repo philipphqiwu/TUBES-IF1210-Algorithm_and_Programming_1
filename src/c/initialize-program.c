@@ -201,6 +201,40 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
         }
     }
     fclose(configFile);
+
+    for (int i = 0; i < listUser->nEff; i++) {
+        listUser->buffer[i].ruang[0] = '\0';
+        listUser->buffer[i].antrian[0] = '\0';
+    }
+
+    // ini untuk set ruangan di adt user dari tiap orang yg ada di ruangannya yeeeeee
+    for(int i = 0; i < config->denah.rows; i++){
+        for(int j = 0; j < config->denah.cols; j++){
+            int idxdokter = cariIdxUser(listUser, config->denah.contents[i][j].dokterID);
+            if(idxdokter != -1){
+                strcpy(listUser->buffer[idxdokter].ruang,config->denah.contents[i][j].kodeRuangan);
+            } else{
+                continue;
+            }
+            if(isQueueEmpty(config->denah.contents[i][j].antrian)){
+                continue;
+            } else{
+                Node* current = config->denah.contents[i][j].antrian->front;
+                int count = 0;
+
+                while (current != NULL) {
+                    int idxPasien = cariIdxUser(listUser, current->data);
+                    if (count < config->kapasitasRuangan) {
+                        strcpy(listUser->buffer[idxPasien].ruang, config->denah.contents[i][j].kodeRuangan);
+                    } else {
+                        strcpy(listUser->buffer[idxPasien].antrian, config->denah.contents[i][j].kodeRuangan);
+                    }
+                    count++;
+                    current = current->next;
+                }
+            }
+        }
+    }
     
     return 1;
 }

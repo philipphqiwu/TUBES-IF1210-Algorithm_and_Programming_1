@@ -62,7 +62,7 @@ void lihatDenah(Config rumahsakit) {
 
 void lihatRuangan(Config rumahsakit, ListDinUser UserData) {
     char kodeRuangan[100];
-        // Validasi input ruangan
+    // Validasi input ruangan
     getchar();
     while (1) {
         printf("Ruangan: ");
