@@ -1,18 +1,10 @@
+#include "../header/F06.h"
 #include "../header/F09.h"
 #include "../header/config.h"
 #include "../header/user.h"
 #include "../header/matriks-denah.h"
 #include "../header/queue.h"
 #include <stdio.h>
-
-const char* cari_user(ListDinUser UserData, int ID) {
-    for (int i = 0; i < UserData.nEff; i++) {
-        if (UserData.buffer[i].id == ID) {
-            return UserData.buffer[i].username;
-        }
-    }
-    return "-";
-}
 
 char ruang[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
                     'K', 'L', 'M', 'N', 'O', 'P','Q', 'R','S','T','U'
@@ -56,14 +48,14 @@ void lihatAntrian(Config rumahsakit, ListDinUser UserData){
             }
             printf("\n============ %s ============\n", rumahsakit.denah.contents[baris][kolom].kodeRuangan);
             printf("Kapasitas  : %d\n", rumahsakit.kapasitasRuangan);
-            printf("Dokter     : %s\n", cari_user(UserData, rumahsakit.denah.contents[baris][kolom].dokterID));
+            printf("Dokter     : %s\n", cari_username(UserData, rumahsakit.denah.contents[baris][kolom].dokterID));
 
             printf("Pasien di dalam ruangan:\n");
             int pasien_count = 0;
             int nomor_urut = 1;
             Node* temp = rumahsakit.denah.contents[baris][kolom].antrian->front;
             while(temp != NULL && pasien_count < rumahsakit.kapasitasRuangan){
-                const char* nama = cari_user(UserData, temp->data);
+                const char* nama = cari_username(UserData, temp->data);
                 if (strcmp(nama, "-") != 0 && strcmp(nama, "") != 0){
                     printf("  %d. %s\n", nomor_urut++, nama);
                     pasien_count++;
@@ -76,7 +68,7 @@ void lihatAntrian(Config rumahsakit, ListDinUser UserData){
             int nomor = 1;
             int antrian_count = 0;
             while(temp != NULL && antrian_count < rumahsakit.kapasitasAntrian){
-                const char* nama = cari_user(UserData, temp->data);
+                const char* nama = cari_username(UserData, temp->data);
                 if (strcmp(nama, "-") != 0 && strcmp(nama, "") != 0){
                     printf("  %d. %s\n", nomor++, nama);
                     antrian_count++;

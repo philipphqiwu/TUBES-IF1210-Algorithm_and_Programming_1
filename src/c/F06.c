@@ -2,18 +2,9 @@
 #include "../header/config.h"
 #include "../header/user.h"
 #include "../header/F06.h"
-#include <stdio.h>
-#include "../header/config.h"
-#include "../header/user.h"
-#include "../header/F06.h"
 
-const char* cari_username(ListDinUser UserData, int idPasien) {
-    int idxUser = cariIdxUser(&UserData, idPasien);
-    if (idPasien == 1){
-        printf("kayaknya pasiennya gaada\n");
-        printf("%d\n", idxUser);
-    }
-    
+const char* cari_username(ListDinUser UserData, int id) {
+    int idxUser = cariIdxUser(&UserData, id);    
     
     if (idxUser == -1) {
         return "-";
@@ -93,12 +84,15 @@ void lihatRuangan(Config rumahsakit, ListDinUser UserData) {
     
 
     int idDokter = rumahsakit.denah.contents[baris][kolom].dokterID;
-    printf("Dokter     : %s\n", (idDokter == 0) ? "-" : cari_username(UserData, idDokter+1));
     printf("Dokter     : %s\n", (idDokter == 0) ? "-" : cari_username(UserData, idDokter));
     
-    int id_pasien;
-
     char *adadokter = cari_username(UserData, idDokter);
+    
+    printf("Pasien di dalam ruangan:\n");
+    int pasienCount = 0;
+    
+    int id_pasien;
+    Node* temp = rumahsakit.denah.contents[baris][kolom].antrian->front;
    
     while (temp != NULL && pasienCount < rumahsakit.kapasitasRuangan &&  strcmp(adadokter, "-") != 0)
     {

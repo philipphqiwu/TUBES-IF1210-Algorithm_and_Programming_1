@@ -1,6 +1,7 @@
 #include "../header/user.h"
 #include "../header/config.h"
 #include "../header/queue.h"
+#include "../header/F06.h"
 #include "../header/F15.h"
 #include <stdio.h>
 
@@ -14,9 +15,9 @@ void antrianSaya(ListDinUser *UserData, Config *rumahsakit, int loginId){
                         printf("Anda sedang berada di dalam ruangan dokter!\n");
                     }else{
                         printf("Status antrian anda:\n");
-                        printf("Dokter: Dr. %s\n", cari_user(*UserData, rumahsakit->denah.contents[i][j].dokterID));
+                        printf("Dokter: Dr. %s\n", cari_username(*UserData, rumahsakit->denah.contents[i][j].dokterID));
                         printf("Ruangan: %s\n", rumahsakit->denah.contents[i][j].kodeRuangan);
-                        printf("Posisi antrian: %d dari 4\n", (rumahsakit->denah.contents[i][j].antrian->counter - rumahsakit->kapasitasRuangan));
+                        printf("Posisi antrian: %d dari %d\n", (rumahsakit->denah.contents[i][j].antrian->counter - rumahsakit->kapasitasRuangan), rumahsakit->kapasitasAntrian);
                     }
                     return;
                 }

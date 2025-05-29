@@ -3,6 +3,7 @@
 void help(int loginState, int loginId, ListDinUser UserData){
 
     printf(COLOR_WHITE"\n=========== HELP ===========\n");
+    int idxUser = cariIdxUser(&UserData, loginId);
     switch (loginState){
         case 0:
             printf(COLOR_BLUE"Kamu belum login sebagai role apapun. Silahkan login terlebih dahulu.\n\n");
@@ -12,7 +13,7 @@ void help(int loginState, int loginId, ListDinUser UserData){
             puts("4. EXIT     : Keluar dari program");
             break;
         case 1:
-            printf(COLOR_MAGENTA"Halo Manager %s. Berikut adalah hal-hal yang dapat kamu lakukan sekarang:\n\n", UserData.buffer[loginId-1].username);
+            printf(COLOR_MAGENTA"Halo Manager %s. Berikut adalah hal-hal yang dapat kamu lakukan sekarang:\n\n", UserData.buffer[idxUser].username);
             puts("1.  LOGOUT                : Keluar dari akun yang sedang digunakan");
             puts("2.  TAMBAH_DOKTER         : Mendaftarkan dokter baru ke sistem");
             puts("3.  LIHAT_DENAH           : Melihat denah rumah sakit");
@@ -30,7 +31,7 @@ void help(int loginState, int loginId, ListDinUser UserData){
             puts("14. EXIT                  : Keluar dari program");
             break;
         case 2:
-            printf(COLOR_CYAN"Halo Dokter %s. Kamu memanggil HELP. Berikut command yang tersedia:\n\n", UserData.buffer[loginId-1].username);
+            printf(COLOR_CYAN"Halo Dokter %s. Kamu memanggil HELP. Berikut command yang tersedia:\n\n", UserData.buffer[idxUser].username);
             puts("1. LOGOUT         : Keluar dari akun");
             puts("2. DIAGNOSIS      : Melakukan diagnosis pasien");
             puts("3. NGOBATIN       : Meresepkan obat");
@@ -40,7 +41,7 @@ void help(int loginState, int loginId, ListDinUser UserData){
         break;
 
         case 3:
-            printf(COLOR_YELLOW"Selamat datang, %s. Berikut command yang tersedia:\n\n", UserData.buffer[loginId-1].username);
+            printf(COLOR_YELLOW"Selamat datang, %s. Berikut command yang tersedia:\n\n", UserData.buffer[idxUser].username);
             puts("1. LOGOUT            : Keluar dari akun");
             puts("2. DAFTAR_CHECKUP    : Mendaftarkan diri untuk pemeriksaan");
             puts("3. ANTRIAN           : Melihat status antrian");
