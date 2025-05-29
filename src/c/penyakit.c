@@ -44,7 +44,7 @@ int searchPenyakitIDByName(ListPenyakit list, char nama[]){
             continue;
         }
         if(!strcmp(list.items[i].nama_penyakit, nama)){
-            result = i;
+            result = list.items[i].id;
         }
     }
     return result;

@@ -46,11 +46,11 @@ int isMatriksEmpty(Matriks matriks){
     for(int i = 0; i < matriks.rows; i++){
         for(int j = 0; j < matriks.cols; j++){
             if(matriks.contents[i][j] != 0){
-                return 1;
+                return 0;
             }
         }
     }
-    return 0;
+    return 1;
 }
 
 int matriksSize(Matriks *arr){

@@ -13,8 +13,9 @@ void minumObat(int loginID, Config *config, ListDinUser listUser, ListObat listO
     int obatAvailable[MAX_OBAT_PER_PENYAKIT];
     for(int i = 0; i < MAX_OBAT_PER_PENYAKIT; i++){
         int obatID = config->inventoryPasien.contents[loginID][i];
+        int obatIdx = cariIdxObat(&listObat, obatID);
         if(obatID == 0) continue;
-        printf("%d. %s\n", nomorObat, listObat.items[obatID].nama_obat);
+        printf("%d. %s\n", nomorObat, listObat.items[obatIdx].nama_obat);
         obatAvailable[nomorObat] = obatID;
         nomorObat++;
     }
@@ -26,7 +27,8 @@ void minumObat(int loginID, Config *config, ListDinUser listUser, ListObat listO
         printf("Pilih obat untuk diminum: ");
         scanf("%d", &obatPilihan);
     }
-    printf("GLEKGLEKGLEK... %s berhasil diminum!!!\n", listObat.items[obatAvailable[obatPilihan]].nama_obat);
+    int obatIdx = cariIdxObat(&listObat, obatAvailable[obatPilihan]);
+    printf("GLEKGLEKGLEK... %s berhasil diminum!!!\n", listObat.items[obatIdx].nama_obat);
     push(config->perutPasien, obatAvailable[obatPilihan]);
     for(int i = 0; i < MAX_OBAT_PER_PENYAKIT; i++){
         if(config->inventoryPasien.contents[loginID][i] == obatAvailable[obatPilihan]){
