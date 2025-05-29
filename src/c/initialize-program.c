@@ -125,7 +125,7 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
             indeksGet++;
         }
         // config->denah.contents[row][col].antrian = createQueue();
-        while(lineInput[indeksGet] != '\n' && lineInput[indeksGet] != '\0'){
+        while(lineInput[indeksGet] != '\n' && lineInput[indeksGet] != '\0' && lineInput[indeksGet] != '0'){
             if(lineInput[indeksGet] == ' '){
                 indeksGet++;
             }

@@ -15,6 +15,10 @@ void parsing(char *input, char *format, ...){
         while(input[indeksGet] != ',' && input[indeksGet] != ';' && input[indeksGet] != '\n' && input[indeksGet] != '\0'){
             // printf("debug %c ", input[indeksGet]);
             // printf("\n");
+            if(input[indeksGet] == '\r'){
+                indeksGet++;
+                continue;
+            }
             parsedInput[indeksPut] = input[indeksGet];
             // printf("debug %c ", parsedInput[indeksPut]);
             // printf("\n");
