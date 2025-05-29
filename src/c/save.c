@@ -48,7 +48,7 @@ void save(ListDinUser * UserData, ListObat * listObat, ListPenyakit * listPenyak
     writeListObat(folderPath, listObat);
     writeListPenyakit(folderPath, listPenyakit);
     writeMapObatPenyakit(folderPath, mapObatPenyakit);
-    //writeConfig();
+    writeConfig(folderPath, rumahsakit);
     printf(COLOR_BLUE"Data berhasil disimpan di %s\n"COLOR_RESET, folderPath);
 
     

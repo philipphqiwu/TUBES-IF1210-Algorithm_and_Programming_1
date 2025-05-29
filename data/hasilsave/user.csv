@@ -1,0 +1,20 @@
+id;username;password;role;riwayat_penyakit;suhu_tubuh;tekanan_darah_sistolik;tekanan_darah_diastolik;detak_jantung;saturasi_oksigen;kadar_gula_darah;berat_badan;tinggi_badan;kadar_kolesterol;trombosit
+1;stewart;pass11;pasien;;36.099998;92;77;66;93.699997;127;52.400002;177;193;328
+2;gro;pass22;pasien;COVID-19;36.599998;126;85;67;96.500000;175;45.700001;156;235;212
+3;kebin;pass33;pasien;;36.400002;96;68;94;92.300003;162;64.099998;158;240;380
+4;pop;pass44;pasien;Diabetes Mellitus;36.900002;110;85;73;98.699997;152;62.799999;157;184;390
+5;opor;oporkanajala;pasien;;36.200001;103;87;65;96.599998;102;72.300003;184;150;292
+6;nikeb;pnikeb;pasien;;36.400002;96;68;94;92.300003;162;64.099998;158;240;380
+7;tuart;paturrt;pasien;;36.099998;92;77;66;93.699997;127;52.400002;177;193;328
+8;minonette;pass88;pasien;;36.700001;93;87;63;97.800003;136;77.000000;172;227;380
+9;tobo;pass99;pasien;;36.799999;114;74;61;94.599998;100;80.599998;173;152;386
+10;neronimo;pass1010;dokter;;;;;;;;;;;
+10;ropik;pass110;pasien;;36.200001;103;87;65;96.599998;102;72.300003;184;150;292
+11;ciciko;pass1111;dokter;;;;;;;;;;;
+12;cacako;pass1212;dokter;;;;;;;;;;;
+13;kroket;pass1313;dokter;;;;;;;;;;;
+15;risol;pass1515;dokter;;;;;;;;;;;
+16;tobokan;pass1234;pasien;;36.799999;114;74;61;94.599998;100;80.599998;173;152;386
+20;popokan;passpopokan;pasien;;36.900002;110;85;73;98.699997;152;62.799999;157;184;390
+88;zeru;pass77;manager;;;;;;;;;;;
+100;pendatang;pendatangbaru;pasien;;;;;;;;;;;
