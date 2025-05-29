@@ -42,6 +42,7 @@ void enqueue(Queue* q, int data){
         printf("Queue Overflow!\n");
         return;
     }
+    q->counter += 1;
     // If the Queue is empty, set the front and rear
     // pointers to the new Node
     if (q->rear == NULL) {
@@ -52,7 +53,6 @@ void enqueue(Queue* q, int data){
     // the rear pointer
     q->rear->next = newNode;
     q->rear = newNode;
-    q->counter += 1;
 }
 
 // Function to remove an element from the Queue

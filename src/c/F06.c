@@ -93,13 +93,10 @@ void lihatRuangan(Config rumahsakit, ListDinUser UserData) {
     
 
     int idDokter = rumahsakit.denah.contents[baris][kolom].dokterID;
+    printf("Dokter     : %s\n", (idDokter == 0) ? "-" : cari_username(UserData, idDokter+1));
     printf("Dokter     : %s\n", (idDokter == 0) ? "-" : cari_username(UserData, idDokter));
     
-    printf("Pasien di dalam ruangan:\n");
-    int pasienCount = 0;
-    
     int id_pasien;
-    Node* temp = rumahsakit.denah.contents[baris][kolom].antrian->front;
 
     char *adadokter = cari_username(UserData, idDokter);
    

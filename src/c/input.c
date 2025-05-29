@@ -7,9 +7,12 @@
 #include "../header/F06.h"
 #include "../header/F07.h"
 #include "../header/F08.h"
+#include "../header/F09.h"
 #include "../header/F10.h"
 #include "../header/F11.h"
 #include "../header/F12.h"
+#include "../header/F14.h"
+#include "../header/F15.h"
 #include "../header/F16.h"
 #include "../header/F17.h"
 #include "../header/F18.h"
@@ -36,7 +39,8 @@ void input(int * loginState, int * loginId, ListDinUser * userData, ListObat * l
     } else if(strcmp(user_input,"EXIT") == 0){
         exitProgram(run, userData, listObat, listPenyakit, mapObatPenyakit, rumahsakit);
         return;
-    } else if(*loginState != 0){
+    } 
+    else if(*loginState != 0){
         if(strcmp(user_input,"LIHAT_DENAH") == 0){
             lihatDenah(*rumahsakit);
 
@@ -76,7 +80,9 @@ void input(int * loginState, int * loginId, ListDinUser * userData, ListObat * l
             cariPasien(userData);
         } else if(strcmp(user_input,"CARI_DOKTER") == 0){
             cariDokter(userData);
-        } else{
+        } else if(strcmp(user_input,"LIHAT_SEMUA_ANTRIAN") == 0){
+            lihatAntrian(*rumahsakit, *userData);
+        }else{
             printf(COLOR_RED"PLEASE ENTER A VALID COMMAND!\n");
             printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n"COLOR_RESET);
         }
@@ -98,6 +104,12 @@ void input(int * loginState, int * loginId, ListDinUser * userData, ListObat * l
         }
         else if(strcmp(user_input, "MINUM_PENAWAR") == 0){
             minumPenawar(*loginId, rumahsakit, *userData, *listObat, *listPenyakit, *mapObatPenyakit);
+        }
+        else if(strcmp(user_input, "DAFTAR_CHECKUP") == 0){
+            daftarCheckUp(userData, rumahsakit, *loginId);
+        }
+        else if(strcmp(user_input, "ANTRIAN") == 0){
+            antrianSaya(userData, rumahsakit, *loginId);
         }
         else{
             printf("PLEASE ENTER A VALID COMMAND!\n");
