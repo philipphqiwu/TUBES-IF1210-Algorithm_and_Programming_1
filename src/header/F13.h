@@ -4,6 +4,6 @@
 #include <stdio.h>
 #include "penyakit.h"
 
-void PULANGDOK();
+void pulangDok();
 
 #endif

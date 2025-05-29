@@ -39,6 +39,20 @@ void insertMatrixByIndex(Matriks *matriks, int row, int col, int data){
     }
 }
 
-int denahSize(Matriks *arr){
+int isMatriksEmpty(Matriks matriks){
+    if(matriks.rows == 0 || matriks.cols == 0){
+        return 1;
+    }
+    for(int i = 0; i < matriks.rows; i++){
+        for(int j = 0; j < matriks.cols; j++){
+            if(matriks.contents[i][j] != 0){
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+int matriksSize(Matriks *arr){
     return arr->cols * arr->rows;
 }

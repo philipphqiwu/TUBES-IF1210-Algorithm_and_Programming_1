@@ -1,5 +1,5 @@
 #include "../header/F13.h"
 
-void PULANGDOK(){
+void pulangDok(){
     return;
 }

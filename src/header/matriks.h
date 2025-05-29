@@ -29,6 +29,10 @@ void insertMatrixByIndex(Matriks *matriks, int row, int col, int data);
 //      matriks.rows = row + 1 jika row >= matriks.rows
 //      matriks.cols = col + 1 jika col >= matriks.cols
 
+// Mengecek apakah matriks empty (ditandai dengan semua elemen bernilai 0)
+int isMatriksEmpty(Matriks matriks);
+// Mengembalikan 1 jika kosong, 0 jika tidak.
+
 // mengembalikan banyak ruangan pada denah
 int matriksSize(Matriks *arr);
 
