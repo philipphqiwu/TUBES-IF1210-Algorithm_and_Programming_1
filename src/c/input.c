@@ -11,6 +11,7 @@
 #include "../header/F11.h"
 #include "../header/F12.h"
 #include "../header/F16.h"
+#include "../header/F17.h"
 #include "../header/F18.h"
 #include "../header/user.h"
 #include "../header/config.h"
@@ -94,6 +95,13 @@ void input(int * loginState, int * loginId, ListDinUser * userData, ListObat * l
     else if(*loginState == 3){
         if(strcmp(user_input, "MINUM_OBAT") == 0){
             minumObat(*loginId, rumahsakit, *userData, *listObat, *listPenyakit, *mapObatPenyakit);
+        }
+        else if(strcmp(user_input, "MINUM_PENAWAR") == 0){
+            minumPenawar(*loginId, rumahsakit, *userData, *listObat, *listPenyakit, *mapObatPenyakit);
+        }
+        else{
+            printf("PLEASE ENTER A VALID COMMAND!\n");
+            printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n");
         }
     }
     else{

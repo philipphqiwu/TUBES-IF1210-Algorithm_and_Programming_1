@@ -29,7 +29,7 @@ void minumObat(int loginID, Config *config, ListDinUser listUser, ListObat listO
     }
     int obatIdx = cariIdxObat(&listObat, obatAvailable[obatPilihan]);
     printf("GLEKGLEKGLEK... %s berhasil diminum!!!\n", listObat.items[obatIdx].nama_obat);
-    push(config->perutPasien, obatAvailable[obatPilihan]);
+    push(&(config->perutPasien[loginID]), obatAvailable[obatPilihan]);
     for(int i = 0; i < MAX_OBAT_PER_PENYAKIT; i++){
         if(config->inventoryPasien.contents[loginID][i] == obatAvailable[obatPilihan]){
             config->inventoryPasien.contents[loginID][i] = 0;

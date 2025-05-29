@@ -1,5 +1,5 @@
-#ifndef F13_H
-#define F13_H
+#ifndef F16_H
+#define F16_H
 #include "user.h"
 #include "obat.h"
 #include "penyakit.h"
