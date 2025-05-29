@@ -100,14 +100,9 @@ boolean isListDinEmpty(ListDinUser l);
 boolean isFull(ListDinUser l);
 /* Mengirimkan true jika list l penuh, mengirimkan false jika tidak */
 
-/* ********** SEARCHING ********** */
-/* ***  Perhatian : list boleh kosong!! *** */
+// Mengembalikan indeks dengan username tertentu
 IdxType indexOfUsername(ListDinUser l, char * username);
-/* Search apakah ada elemen List l yang bernilai val */
-/* Jika ada, menghasilkan indeks i terkecil, dengan elemen ke-i = val */
-/* Jika tidak ada, mengirimkan IDX_UNDEF */
-/* Menghasilkan indeks tak terdefinisi (IDX_UNDEF) jika List l kosong */
-/* Skema Searching yang digunakan bebas */
+
 
 
 /* ********** OPERASI LAIN ********** */
@@ -145,9 +140,6 @@ void insertUserByID(ListDinUser *list, ElType item);
 void printList(ListDinUser l);
 // I.S. list user terdefinisi
 // F.S. Ditampilkan list data user
-
-// Mengembalikan indeks dari user dengan username tertentu
-IdxType indexOfUsername(ListDinUser l, char* username);
 
 // Menyortir List user berdasarkan id
 void sortUser(ListDinUser *list);

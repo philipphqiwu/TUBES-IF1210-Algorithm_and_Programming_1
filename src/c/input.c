@@ -43,13 +43,8 @@ void input(int * loginState, int * loginId, ListDinUser * userData, ListObat * l
     else if(*loginState != 0){
         if(strcmp(user_input,"LIHAT_DENAH") == 0){
             lihatDenah(*rumahsakit);
-
             return;
-        } else if(strcmp(user_input,"LIHAT_RUANGAN") == 0){
-            lihatRuangan(*rumahsakit, *userData);
-        
-            return;
-        }
+        } 
     } 
     if(*loginState == 0){
         if(strcmp(user_input,"LOGIN") == 0){
@@ -64,7 +59,10 @@ void input(int * loginState, int * loginId, ListDinUser * userData, ListObat * l
         }
     }
     else if(*loginState == 1){
-        if(strcmp(user_input,"TAMBAH_DOKTER") == 0){
+        if(strcmp(user_input,"LIHAT_RUANGAN") == 0){
+            lihatRuangan(*rumahsakit, *userData);
+            return;
+        } else if(strcmp(user_input,"TAMBAH_DOKTER") == 0){
             tambahDokter(userData);
         } else if(strcmp(user_input,"ASSIGN_DOKTER") == 0){
             assignDokter(userData,rumahsakit);
@@ -89,7 +87,7 @@ void input(int * loginState, int * loginId, ListDinUser * userData, ListObat * l
     
     } else if(*loginState == 2){
         if(strcmp(user_input,"DIAGNOSIS") == 0){
-            DIAGNOSIS(*listPenyakit, *rumahsakit, userData, *loginId);
+            diagnosis(*listPenyakit, *rumahsakit, userData, *loginId);
         } else if(strcmp(user_input,"NGOBATIN") == 0){
             ngobatin(*loginId, rumahsakit, *userData, *listObat, *listPenyakit, *mapObatPenyakit);
         } 

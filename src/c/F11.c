@@ -7,7 +7,7 @@
 
 
 
-int cekpenyakit(ListPenyakit kriteriapenyakit, ListDinUser* UserData, int idPasien){
+int cekPenyakit(ListPenyakit kriteriapenyakit, ListDinUser* UserData, int idPasien){
     // int idPenyakit;
     for (int i = 0; i <= 5; i++) {
        
@@ -84,7 +84,7 @@ int cekpenyakit(ListPenyakit kriteriapenyakit, ListDinUser* UserData, int idPasi
 }
 
 boolean assignPenyakit(ListPenyakit kriteriapenyakit, ListDinUser* UserData, int idPasien){
-    int kondisipasien = cekpenyakit(kriteriapenyakit, UserData, idPasien);
+    int kondisipasien = cekPenyakit(kriteriapenyakit, UserData, idPasien);
     if (kondisipasien != -1){
         strcpy(UserData->buffer[idPasien].riwayat_penyakit, kriteriapenyakit.items[kondisipasien].nama_penyakit);
         return true;
@@ -100,7 +100,7 @@ boolean punyaRiwayat(char* riwayat_penyakit) {
 
 
 
-int DIAGNOSIS(ListPenyakit krirteriapenyakit, Config rumahsakit, ListDinUser *UserData, int loginId){
+int diagnosis(ListPenyakit krirteriapenyakit, Config rumahsakit, ListDinUser *UserData, int loginId){
     int idxKolom, idxBaris;
     for (int i = 0; i < rumahsakit.denah.rows; i++){
         for (int j = 0; j < rumahsakit.denah.cols; j++){
@@ -114,7 +114,7 @@ int DIAGNOSIS(ListPenyakit krirteriapenyakit, Config rumahsakit, ListDinUser *Us
     if (idxDokter != -1){
         int idxPasien = cariIdxUser(UserData, rumahsakit.denah.contents[idxBaris][idxKolom].antrian->front->data);
         if (idxPasien != -1){
-            int idPenyakitSekarang = cekpenyakit(krirteriapenyakit, UserData, idxPasien);
+            int idPenyakitSekarang = cekPenyakit(krirteriapenyakit, UserData, idxPasien);
             if (punyaRiwayat(UserData->buffer[idxPasien].riwayat_penyakit)) {
                     
                 if (idPenyakitSekarang == -1) {
