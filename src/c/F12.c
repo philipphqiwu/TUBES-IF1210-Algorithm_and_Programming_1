@@ -24,6 +24,10 @@ void ngobatin(int loginID, Config *config, ListDinUser listUser, ListObat listOb
         printf(COLOR_RED"Tidak ada pasien dalam ruangan.\n"COLOR_RESET);
         return;
     }
+    if(!isMatriksRowEmpty(config->inventoryPasien, loginID) || (config->perutPasien[loginID].head != NULL)){
+        printf(COLOR_RED"Pasien sudah diobati!\n"COLOR_RESET);
+        return;
+    }
     int pasienID = config->denah.contents[indeksRuangan[0]][indeksRuangan[1]].antrian->front->data;
     int pasienIdx = cariIdxUser(&listUser, pasienID);
     printf(COLOR_CYAN"Dokter sedang mengobati pasien!\n\n");
