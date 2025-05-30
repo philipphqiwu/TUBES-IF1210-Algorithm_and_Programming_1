@@ -6,7 +6,7 @@
 void minumObat(int loginID, Config *config, ListDinUser listUser, ListObat listObat, ListPenyakit listPenyakit, MapObatPenyakit mapObatPenyakit){
     // int userIdx = cariIdxUser(&listUser, loginID);
     if(isMatriksRowEmpty(config->inventoryPasien, loginID)){
-        printf("Kamu tidak memiliki obat!\n");
+        printf(COLOR_RED"Kamu tidak memiliki obat!\n"COLOR_RESET);
         return;
     }
     printf("============ DAFTAR OBAT ============\n");
@@ -22,19 +22,31 @@ void minumObat(int loginID, Config *config, ListDinUser listUser, ListObat listO
     }
     printf("Pilih obat untuk diminum: ");
     int obatPilihan;
-    scanf("%d", &obatPilihan);
-    while(obatPilihan <= 0 || obatPilihan >= nomorObat){
-        printf("Pilihan nomor tidak tersedia!\n");
+    
+    while(scanf("%d", &obatPilihan) !=  1 || obatPilihan <= 0 || obatPilihan >= nomorObat){
+        printf(COLOR_RED"Pilihan nomor tidak tersedia!\n"COLOR_RESET);
         printf("Pilih obat untuk diminum: ");
-        scanf("%d", &obatPilihan);
+        while (getchar() != '\n');
     }
     int obatIdx = cariIdxObat(&listObat, obatAvailable[obatPilihan]);
+    if(config->perutPasien[loginID].head == NULL){
+        config->jumlahPerutPasien++;
+    }
     printf("GLEKGLEKGLEK... %s berhasil diminum!!!\n", listObat.items[obatIdx].nama_obat);
     push(&(config->perutPasien[loginID]), obatAvailable[obatPilihan]);
     for(int i = 0; i < MAX_OBAT_PER_PENYAKIT; i++){
         if(config->inventoryPasien.contents[loginID][i] == obatAvailable[obatPilihan]){
-            config->inventoryPasien.contents[loginID][i] = 0;
+            for(int j = i; j < MAX_OBAT_PER_PENYAKIT-1; j++){
+                if(config->inventoryPasien.contents[loginID][j] == 0){
+                    config->inventoryPasien.contents[loginID][j+1] = 0;
+                    break;
+                }
+                config->inventoryPasien.contents[loginID][j] = config->inventoryPasien.contents[loginID][j+1];
+            }
             break;
         }
+    }
+    if(config->inventoryPasien.contents[loginID][0] == 0){
+        config->jumlahPemilikObat--;
     }
 }

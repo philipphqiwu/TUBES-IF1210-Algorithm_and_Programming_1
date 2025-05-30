@@ -26,6 +26,6 @@ void antrianSaya(ListDinUser *UserData, Config *rumahsakit, int loginId){
         }
     }
     //kalau ga ketemu id pasien dalam antrian manapun
-    printf("Anda belum terdaftar dalam antrian check-up!\n");
-    printf("Silakan daftar terlebih dahulu dengan command DAFTAR_CHECKUP.\n");
+    printf(COLOR_RED"Anda belum terdaftar dalam antrian check-up!\n");
+    printf("Silakan daftar terlebih dahulu dengan command DAFTAR_CHECKUP.\n"COLOR_RESET);
 }
