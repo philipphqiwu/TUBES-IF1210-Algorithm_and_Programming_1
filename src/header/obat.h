@@ -4,9 +4,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define MAX_NAMA_OBAT 21
+
 typedef struct{
     int obat_id;
-    char nama_obat[21];
+    char nama_obat[MAX_NAMA_OBAT];
 } Obat;
 
 typedef struct{

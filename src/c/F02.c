@@ -48,7 +48,8 @@ void registerPasien(ListDinUser * UserData){
     if(setContain(&setUsername, to_lower(Username))){
         printf(COLOR_RED"Registrasi gagal! User dengan nama %s sudah terdaftar.\n"COLOR_RESET, Username);
     } else{
-        printf(COLOR_BLUE"Pasien %s berhasil ditambahkan!\n"COLOR_RESET, Username);        
+        printf(COLOR_BLUE"Pasien %s berhasil ditambahkan!\n"COLOR_RESET, Username);
+        UserData->buffer[UserData->nEff] = createEmptyUser();        
         UserData->buffer[UserData->nEff].id = UserData->buffer[UserData->nEff-1].id+1;
         strcpy(UserData->buffer[UserData->nEff].username, Username);
         strcpy(UserData->buffer[UserData->nEff].password, Password);

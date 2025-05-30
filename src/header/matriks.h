@@ -33,6 +33,10 @@ void insertMatrixByIndex(Matriks *matriks, int row, int col, int data);
 int isMatriksEmpty(Matriks matriks);
 // Mengembalikan 1 jika kosong, 0 jika tidak.
 
+// Mengecek apakah suatu baris pada matriks (ditandai dengan semua elemen bernilai 0)
+int isMatriksRowEmpty(Matriks matriks, int row);
+// Mengembalikan 1 jika kosong, 0 jika tidak.
+
 // mengembalikan banyak ruangan pada denah
 int matriksSize(Matriks *arr);
 

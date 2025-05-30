@@ -4,8 +4,9 @@
 #include <stdlib.h>
 
 void minumObat(int loginID, Config *config, ListDinUser listUser, ListObat listObat, ListPenyakit listPenyakit, MapObatPenyakit mapObatPenyakit){
-    if(isMatriksEmpty(config->inventoryPasien)){
-        printf("Pasien tidak memiliki obat!\n");
+    // int userIdx = cariIdxUser(&listUser, loginID);
+    if(isMatriksRowEmpty(config->inventoryPasien, loginID)){
+        printf("Kamu tidak memiliki obat!\n");
         return;
     }
     printf("============ DAFTAR OBAT ============\n");
