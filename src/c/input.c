@@ -40,56 +40,71 @@ void input(int * loginState, int * loginId, ListDinUser * userData, ListObat * l
     } else if(strcmp(user_input,"EXIT") == 0){
         exitProgram(run, userData, listObat, listPenyakit, mapObatPenyakit, rumahsakit);
         return;
-    } 
+    }
     else if(*loginState != 0){
         if(strcmp(user_input,"LIHAT_DENAH") == 0){
             lihatDenah(*rumahsakit);
             return;
-        } 
-    } 
+        }
+        else if(strcmp(user_input,"LIHAT_RUANGAN") == 0){
+            lihatRuangan(*rumahsakit, *userData);
+            return;
+        }
+    }
     if(*loginState == 0){
         if(strcmp(user_input,"LOGIN") == 0){
             login(loginState, loginId, *userData);
-        } else if(strcmp(user_input,"REGISTER") == 0){
+        }
+        else if(strcmp(user_input,"REGISTER") == 0){
             registerPasien(userData);
-        } else if(strcmp(user_input,"LUPA_PASSWORD") == 0){
+        }
+        else if(strcmp(user_input,"LUPA_PASSWORD") == 0){
             lupaPassword(userData);
-        } else{
+        }
+        else{
             printf(COLOR_RED"PLEASE ENTER A VALID COMMAND!\n");
             printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n"COLOR_RESET);
         }
     }
     else if(*loginState == 1){
-        if(strcmp(user_input,"LIHAT_RUANGAN") == 0){
-            lihatRuangan(*rumahsakit, *userData);
-            return;
-        } else if(strcmp(user_input,"TAMBAH_DOKTER") == 0){
+        if(strcmp(user_input,"TAMBAH_DOKTER") == 0){
             tambahDokter(userData);
-        } else if(strcmp(user_input,"ASSIGN_DOKTER") == 0){
+        }
+        else if(strcmp(user_input,"ASSIGN_DOKTER") == 0){
             assignDokter(userData,rumahsakit);
-        } else if(strcmp(user_input,"LIHAT_USER") == 0){
+        }
+        else if(strcmp(user_input,"LIHAT_USER") == 0){
             lihatUser(*userData);
-        } else if(strcmp(user_input,"LIHAT_PASIEN") == 0){
+        }
+        else if(strcmp(user_input,"LIHAT_PASIEN") == 0){
             lihatPasien(*userData);
-        } else if(strcmp(user_input,"LIHAT_DOKTER") == 0){
+        }
+        else if(strcmp(user_input,"LIHAT_DOKTER") == 0){
             lihatDokter(*userData);
-        } else if(strcmp(user_input,"CARI_USER") == 0){
+        }
+        else if(strcmp(user_input,"CARI_USER") == 0){
             cariUser(userData);
-        } else if(strcmp(user_input,"CARI_PASIEN") == 0){
+        }
+        else if(strcmp(user_input,"CARI_PASIEN") == 0){
             cariPasien(userData);
-        } else if(strcmp(user_input,"CARI_DOKTER") == 0){
+        }
+        else if(strcmp(user_input,"CARI_DOKTER") == 0){
             cariDokter(userData);
-        } else if(strcmp(user_input,"LIHAT_SEMUA_ANTRIAN") == 0){
+        }
+        else if(strcmp(user_input,"LIHAT_SEMUA_ANTRIAN") == 0){
             lihatAntrian(*rumahsakit, *userData);
-        }else{
+        }
+        else{
             printf(COLOR_RED"PLEASE ENTER A VALID COMMAND!\n");
             printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n"COLOR_RESET);
         }
     
-    } else if(*loginState == 2){
+    }
+    else if(*loginState == 2){
         if(strcmp(user_input,"DIAGNOSIS") == 0){
             diagnosis(*listPenyakit, *rumahsakit, userData, *loginId);
-        } else if(strcmp(user_input,"NGOBATIN") == 0){
+        }
+        else if(strcmp(user_input,"NGOBATIN") == 0){
             ngobatin(*loginId, rumahsakit, *userData, *listObat, *listPenyakit, *mapObatPenyakit);
         } 
         else{
