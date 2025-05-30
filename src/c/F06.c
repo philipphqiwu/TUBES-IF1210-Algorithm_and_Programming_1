@@ -78,31 +78,33 @@ void lihatRuangan(Config rumahsakit, ListDinUser UserData) {
     int baris = kodeRuangan[0] - 'A';
     int kolom = atoi(kodeRuangan + 1) - 1;
 
+
     // validasi jika besar ruangan tidak valid
     if (baris < 0 || kolom < 0 || kolom >= rumahsakit.denah.cols || baris >= rumahsakit.denah.rows) {
         printf("Ruangan tidak ditemukan!\n");
-        return;
     }
-    int idDokter = rumahsakit.denah.contents[baris][kolom].dokterID;
-    int pasienCount = 0;
-    int id_pasien;
-    Node* temp = rumahsakit.denah.contents[baris][kolom].antrian->front;
-   
-    printf("\n--- Detail Ruangan %s ---\n", kodeRuangan);
-    printf("Kapasitas  : %d\n", rumahsakit.kapasitasRuangan);
-    printf("Dokter     : %s\n", (idDokter == 0) ? "-" : cariUsername(UserData, idDokter));
-    printf("Pasien di dalam ruangan:\n");
     
-    // mengambil data pasien di queue linked list dan melakukan print setiap pasien hingga NULL
-    while (temp != NULL && pasienCount < rumahsakit.kapasitasRuangan &&  strcmp(cariUsername(UserData, idDokter), "-") != 0)
-    {
-        id_pasien = temp->data;
-       if (id_pasien != 0) {
-            printf("  %d. %s\n", ++pasienCount, cariUsername(UserData, id_pasien));
+    else{
+        int idDokter = rumahsakit.denah.contents[baris][kolom].dokterID;
+        int pasienCount = 0;
+        int id_pasien;
+        Node* temp = rumahsakit.denah.contents[baris][kolom].antrian->front;
+        printf("\n--- Detail Ruangan %s ---\n", kodeRuangan);
+        printf("Kapasitas  : %d\n", rumahsakit.kapasitasRuangan);
+        printf("Dokter     : %s\n", (idDokter == 0) ? "-" : cariUsername(UserData, idDokter));
+        printf("Pasien di dalam ruangan:\n");
+        
+        // mengambil data pasien di queue linked list dan melakukan print setiap pasien hingga NULL
+        while (temp != NULL && pasienCount < rumahsakit.kapasitasRuangan &&  strcmp(cariUsername(UserData, idDokter), "-") != 0 )
+        {
+            id_pasien = temp->data;
+        if (id_pasien != 0) {
+                printf("  %d. %s\n", ++pasienCount, cariUsername(UserData, id_pasien));
+            }
+            temp = temp->next;
         }
-        temp = temp->next;
-    }
 
-    if (pasienCount == 0) printf("  Tidak ada pasien\n");
-    printf("------------------------------\n");
+        if (pasienCount == 0) printf("  Tidak ada pasien\n");
+        printf("------------------------------\n");
+    }
 }
