@@ -135,7 +135,7 @@ void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
             int antrian_total = rumahsakit->denah.contents[baris][kolom].antrian->counter;
             int current_antrian_luar = antrian_total - rumahsakit->kapasitasRuangan;
             if(current_antrian_luar == 4) continue;
-            const char* nama = cari_username(*UserData, rumahsakit->denah.contents[baris][kolom].dokterID);   
+            const char* nama = cariUsername(*UserData, rumahsakit->denah.contents[baris][kolom].dokterID);   
             const char* kodeRuang = rumahsakit->denah.contents[baris][kolom].kodeRuangan;
             if(current_antrian_luar > 0){
                 printf("%d. Dr. %s - Spesialisasi Umum - Ruangan %s (Antrian: %d)\n", nomor, nama, kodeRuang, current_antrian_luar);
@@ -153,7 +153,7 @@ void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
     scanf("%d", &choice);
     enqueue(rumahsakit->denah.contents[choice_holder[choice][0]][choice_holder[choice][1]].antrian, loginId);
     printf("Pendaftaran check-up berhasil!\n");
-    printf("Anda terdaftar pada antrian %s di ruangan %s.\n", cari_username(*UserData, rumahsakit->denah.contents[choice_holder[choice][0]][choice_holder[choice][1]].dokterID), rumahsakit->denah.contents[choice_holder[choice][0]][choice_holder[choice][1]].kodeRuangan);
+    printf("Anda terdaftar pada antrian %s di ruangan %s.\n", cariUsername(*UserData, rumahsakit->denah.contents[choice_holder[choice][0]][choice_holder[choice][1]].dokterID), rumahsakit->denah.contents[choice_holder[choice][0]][choice_holder[choice][1]].kodeRuangan);
     if((rumahsakit->denah.contents[choice_holder[choice][0]][choice_holder[choice][1]].antrian->counter - rumahsakit->kapasitasRuangan) > 0){
         printf("Posisi antrian anda: %d\n", (rumahsakit->denah.contents[choice_holder[choice][0]][choice_holder[choice][1]].antrian->counter - rumahsakit->kapasitasRuangan));
     }else{ //kalau gada antrian di luar ruangan

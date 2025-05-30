@@ -15,7 +15,7 @@ void antrianSaya(ListDinUser *UserData, Config *rumahsakit, int loginId){
                         printf("Anda sedang berada di dalam ruangan dokter!\n");
                     }else{
                         printf("Status antrian anda:\n");
-                        printf("Dokter: Dr. %s\n", cari_username(*UserData, rumahsakit->denah.contents[i][j].dokterID));
+                        printf("Dokter: Dr. %s\n", cariUsername(*UserData, rumahsakit->denah.contents[i][j].dokterID));
                         printf("Ruangan: %s\n", rumahsakit->denah.contents[i][j].kodeRuangan);
                         printf("Posisi antrian: %d dari %d\n", (rumahsakit->denah.contents[i][j].antrian->counter - rumahsakit->kapasitasRuangan), rumahsakit->kapasitasAntrian);
                     }

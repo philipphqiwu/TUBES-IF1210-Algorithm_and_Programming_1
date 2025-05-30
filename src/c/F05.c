@@ -4,7 +4,6 @@ void help(int loginState, int loginId, ListDinUser UserData){
     int idxUser = cariIdxUser(&UserData, loginId);
 
     printf(COLOR_WHITE"\n=========== HELP ===========\n");
-    int idxUser = cariIdxUser(&UserData, loginId);
     switch (loginState){
         // untuk sebelum LOGIN
         case 0:

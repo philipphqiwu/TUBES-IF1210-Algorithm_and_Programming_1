@@ -5,7 +5,7 @@
 #include "config.h"
 
 // Fungsi untuk mencari username seorang user
-const char* cari_username(ListDinUser UserData, int id);
+const char* cariUsername(ListDinUser UserData, int id);
 
 // User dapat melihat denah rumah sakit
 void lihatDenah(Config rumahsakit);
