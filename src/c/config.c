@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../header/config.h"
+#include "../header/obat-penyakit.h"
 
 void createConfig(Config *config){
     initializeMatriksDenah(&(config->denah));
@@ -25,7 +26,6 @@ void printConfig(Config config){
             printf("\tID Dokter: %d\n", config.denah.contents[i][j].dokterID);
             printf("\tAntrian (ID Pasien): ");
             printQueue(config.denah.contents[i][j].antrian);
-            printf("\tOrang di antrian: %d\n", config.denah.contents[i][j].antrian->counter);
         }
         printf("\n");
     }
@@ -67,6 +67,11 @@ void writeConfig(char * folderPath, Config *config){
             }
             // Traverse the Queue and print each element
             Node* temp = config->denah.contents[i][j].antrian->front;
+            if(temp == NULL){
+                fprintf(file, " 0\n");
+                continue;
+
+            }
             while (temp != NULL) {
                 fprintf(file, " %d", temp->data);
                 temp = temp->next;
@@ -80,7 +85,7 @@ void writeConfig(char * folderPath, Config *config){
     for(int i = 0; i < config->inventoryPasien.rows; i++){
         if(config->inventoryPasien.contents[i][0] == 0) continue;
         fprintf(file, "%d", i);
-        for(int j = 0; j < config->inventoryPasien.cols; j++){
+        for(int j = 0; j < MAX_OBAT_PER_PENYAKIT; j++){
             if(config->inventoryPasien.contents[i][j] == 0) break;
             fprintf(file, " %d", config->inventoryPasien.contents[i][j]);
         }
@@ -100,8 +105,6 @@ void writeConfig(char * folderPath, Config *config){
             push(&stackReverse, temp->data);
             temp = temp->next;
         }
-        
-
         
         Node* tempReverse = stackReverse.head;
         while(tempReverse != NULL){
