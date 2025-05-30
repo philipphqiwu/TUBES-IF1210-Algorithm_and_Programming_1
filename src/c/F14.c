@@ -122,7 +122,7 @@ void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
             printf("Trombosit harus berupa angka positif!\n");
             valid = 0;
         }
-    } while (trombosit <= 0);
+    } while (!valid);
     UserData->buffer[loginId].trombosit = trombosit;
 
     int choice_holder[50][2];
