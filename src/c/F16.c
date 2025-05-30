@@ -54,7 +54,7 @@ void minumObat(int *loginID, int *loginState, Config *config, ListDinUser *listU
         listUser->buffer[userIdx].nyawa--;
         printf(COLOR_RED"Kamu salah minum obat! Nyawamu berkurang menjadi %d!", listUser->buffer[userIdx].nyawa);
         for(int i = 0; i < listUser->buffer[userIdx].nyawa; i++){
-            printf("\u2764\uFE0F");
+            printf("\u2764\uFE0F ");
         }
         for(int i = 0; i < 3 - listUser->buffer[userIdx].nyawa; i++){
             printf("\U0001F90D");
@@ -85,8 +85,8 @@ void minumObat(int *loginID, int *loginState, Config *config, ListDinUser *listU
             pop(&(config->perutPasien[*loginID]));
         }
         config->jumlahPerutPasien--;
-        printf(COLOR_MAGENTA"Mohon maaf, karena kamu telah meminum obat yang salah sebanyak tiga kali, rumah sakit enggan untuk memberimu penawar\n");
-        printf(COLOR_MAGENTA"Kamu dinyatakan ded \U0001F480\n");
+        printf(COLOR_MAGENTA"Mohon maaf, karena kamu telah meminum obat yang salah sebanyak tiga kali, rumah sakit enggan untuk memberimu penawar.\n");
+        printf(COLOR_MAGENTA"Kamu dinyatakan ded. \U0001F480\n");
         printf(COLOR_RESET);
         // printList(*listUser);
         logout(loginState, loginID);
