@@ -6,7 +6,7 @@ MINUM_OBAT -Melihat daftar obat dan melakukan pilihan obat yang akan diminum - P
 PENAWAR - Meminum penawar jika salah minum obat dan mengeluarkan obat terakhir yang diminum - Pasien
 EXIT - Keluar dari program*/
 void help(int loginState, int loginId, ListDinUser UserData){
-    int idxUser = cariIdxUser(UserData, loginId);
+    int idxUser = cariIdxUser(&UserData, loginId);
 
     printf(COLOR_WHITE"\n=========== HELP ===========\n");
     switch (loginState){
@@ -18,7 +18,7 @@ void help(int loginState, int loginId, ListDinUser UserData){
             break;
         // untuk Manager
         case 1:
-            printf(COLOR_MAGENTA"Halo Manager %s. Berikut adalah hal-hal yang dapat kamu lakukan sekarang:\n\n", UserData.buffer[idxUser.username);
+            printf(COLOR_MAGENTA"Halo Manager %s. Berikut adalah hal-hal yang dapat kamu lakukan sekarang:\n\n", UserData.buffer[idxUser].username);
             puts("1. LOGOUT                 : Keluar dari akun yang sedang digunakan");
             puts("2. TAMBAH_DOKTER          : Mendaftarkan dokter baru ke sistem");
             puts("3. LIHAT_DENAH            : Membuka denah rumah sakit");
