@@ -131,6 +131,40 @@ int cariIdxUser(ListDinUser * UserData, int id){
     return -1;
 }
 
+User createEmptyUser(){
+    User user;
+    user.id = 0;
+    strcpy(user.username, "");
+    strcpy(user.password, "");
+    strcpy(user.role, "");
+    strcpy(user.riwayat_penyakit, "");
+    user.suhu_tubuh = 0;
+    user.tekanan_darah_sistolik = 0;
+    user.tekanan_darah_diastolik = 0;
+    user.detak_jantung = 0;
+    user.saturasi_oksigen = 0;
+    user.kadar_gula_darah = 0;
+    user.berat_badan = 0;
+    user.tinggi_badan = 0;
+    user.kadar_kolesterol = 0;
+    user.trombosit = 0;
+    return user;
+}
+
+void resetUserData(User *user){
+    strcpy(user->riwayat_penyakit, "");
+    user->suhu_tubuh = 0;
+    user->tekanan_darah_sistolik = 0;
+    user->tekanan_darah_diastolik = 0;
+    user->detak_jantung = 0;
+    user->saturasi_oksigen = 0;
+    user->kadar_gula_darah = 0;
+    user->berat_badan = 0;
+    user->tinggi_badan = 0;
+    user->kadar_kolesterol = 0;
+    user->trombosit = 0;
+}
+
 void writeListUser(char * folderPath, ListDinUser *list){
     char fullFilePath[300];
     snprintf(fullFilePath, sizeof(fullFilePath),"%s/user.csv", folderPath ); 

@@ -53,6 +53,18 @@ int isMatriksEmpty(Matriks matriks){
     return 1;
 }
 
+int isMatriksRowEmpty(Matriks matriks, int row){
+    if(isMatriksEmpty(matriks)){
+        return 1;
+    }
+    for(int i = 0; i < matriks.rows; i++){
+        if(matriks.contents[row][i] != 0){
+            return 0;
+        }
+    }
+    return 1;
+}
+
 int matriksSize(Matriks *arr){
     return arr->cols * arr->rows;
 }

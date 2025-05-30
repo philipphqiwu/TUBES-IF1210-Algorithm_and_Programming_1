@@ -149,6 +149,14 @@ void sortUser(ListDinUser *list);
 // Mengembalikan indeks user dengan id tertentu
 int cariIdxUser(ListDinUser * UserData, int id);
 
+// Mengembalikan nilai bertipe User yang memiliki komponen-komponen default.
+User createEmptyUser();
+
+// Mereset data user, digunakan ketika ingin memulangkan pasien.
+void resetUserData(User *user);
+// I.S. user terdefinisi, user merupakan pasien.
+// F.S. Semua data user kecuali ID, username, password, dan role direset.
+
 // Menuliskan List User ke dalam file
 void writeListUser(char * folderPath, ListDinUser *list);
 // I.S. list terdefinisi dan terisi

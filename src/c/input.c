@@ -11,6 +11,7 @@
 #include "../header/F10.h"
 #include "../header/F11.h"
 #include "../header/F12.h"
+#include "../header/F13.h"
 #include "../header/F14.h"
 #include "../header/F15.h"
 #include "../header/F16.h"
@@ -108,6 +109,9 @@ void input(int * loginState, int * loginId, ListDinUser * userData, ListObat * l
         }
         else if(strcmp(user_input, "ANTRIAN") == 0){
             antrianSaya(userData, rumahsakit, *loginId);
+        }
+        else if(strcmp(user_input, "PULANGDOK") == 0){
+            pulangDok(*loginId, rumahsakit, userData, *listObat, *listPenyakit, *mapObatPenyakit);
         }
         else{
             printf("PLEASE ENTER A VALID COMMAND!\n");
