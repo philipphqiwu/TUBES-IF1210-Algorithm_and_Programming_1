@@ -3,13 +3,13 @@
 #include "../header/user.h"
 #include "../header/F06.h"
 
-const char* cari_username(ListDinUser UserData, int id) {
-    int idxUser = cariIdxUser(&UserData, id);    
-    
+
+// mencari nama pasien dalam ruangan
+const char* cariUsername(ListDinUser UserData, int idPasien) {
+    int idxUser = cariIdxUser(&UserData, idPasien);
     if (idxUser == -1) {
         return "-";
     }
-    
     return UserData.buffer[idxUser].username;
 }
 
@@ -19,13 +19,14 @@ char ruangan[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
 
 
 void lihatDenah(Config rumahsakit) {
-
+    // print bagian pertama dari ruangan
     printf("    ");
+    // print banyak kolom
     for(int j = 0; j < rumahsakit.denah.cols; j++) {
         printf("  %d  ", j+1);
     }
     printf("\n");
-
+    // Print gari pertama dalam dneah
     printf("   +");
     for(int j = 0; j < rumahsakit.denah.cols; j++) {
         printf("-----+");
@@ -34,14 +35,14 @@ void lihatDenah(Config rumahsakit) {
 
 
     for(int i = 0; i < rumahsakit.denah.rows; i++) {
-
+        // print baris dan kolomnya
         printf(" %c |", ruangan[i]);
         for(int j = 0; j < rumahsakit.denah.cols; j++) {
              printf(" %c%-2d |", ruangan[i], j+1); 
         }
         printf("\n");
 
-
+        // print garis
         printf("   +");
         for(int j = 0; j < rumahsakit.denah.cols; j++) {
             printf("-----+");
@@ -73,39 +74,33 @@ void lihatRuangan(Config rumahsakit, ListDinUser UserData) {
     int baris = kodeRuangan[0] - 'A';
     int kolom = atoi(kodeRuangan + 1) - 1;
 
-    
+
+    // validasi jika besar ruangan tidak valid
     if (baris < 0 || kolom < 0 || kolom >= rumahsakit.denah.cols || baris >= rumahsakit.denah.rows) {
         printf("Ruangan tidak ditemukan!\n");
-        return;
     }
-
-    printf("\n--- Detail Ruangan %s ---\n", kodeRuangan);
-    printf("Kapasitas  : %d\n", rumahsakit.kapasitasRuangan);
     
-
-    int idDokter = rumahsakit.denah.contents[baris][kolom].dokterID;
-    printf("Dokter     : %s\n", (idDokter == 0) ? "-" : cari_username(UserData, idDokter));
-    
-    char *adadokter = cari_username(UserData, idDokter);
-    
-    printf("Pasien di dalam ruangan:\n");
-    int pasienCount = 0;
-    
-    int id_pasien;
-    Node* temp = rumahsakit.denah.contents[baris][kolom].antrian->front;
-   
-    while (temp != NULL && pasienCount < rumahsakit.kapasitasRuangan &&  strcmp(adadokter, "-") != 0)
-    {
-        id_pasien = temp->data;
+    else{
+        int idDokter = rumahsakit.denah.contents[baris][kolom].dokterID;
+        int pasienCount = 0;
+        int id_pasien;
+        Node* temp = rumahsakit.denah.contents[baris][kolom].antrian->front;
+        printf("\n--- Detail Ruangan %s ---\n", kodeRuangan);
+        printf("Kapasitas  : %d\n", rumahsakit.kapasitasRuangan);
+        printf("Dokter     : %s\n", (idDokter == 0) ? "-" : cariUsername(UserData, idDokter));
+        printf("Pasien di dalam ruangan:\n");
         
-
-       if (id_pasien != 0) {
-            printf("  %d. %s\n", ++pasienCount, cari_username(UserData, id_pasien));
+        // mengambil data pasien di queue linked list dan melakukan print setiap pasien hingga NULL
+        while (temp != NULL && pasienCount < rumahsakit.kapasitasRuangan &&  strcmp(cariUsername(UserData, idDokter), "-") != 0 )
+        {
+            id_pasien = temp->data;
+        if (id_pasien != 0) {
+                printf("  %d. %s\n", ++pasienCount, cariUsername(UserData, id_pasien));
+            }
+            temp = temp->next;
         }
 
-        temp = temp->next;
+        if (pasienCount == 0) printf("  Tidak ada pasien\n");
+        printf("------------------------------\n");
     }
-
-    if (pasienCount == 0) printf("  Tidak ada pasien\n");
-    printf("------------------------------\n");
 }
