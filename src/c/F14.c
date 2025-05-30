@@ -23,98 +23,108 @@ void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
     //input data
     float suhu, berat, saturasi;
     int sistolik, diastolik, detak, gula, tinggi, kolestrol, trombosit;
+    int valid;
     printf("Silakan masukkan data check-up Anda:\n");
 
     do {
         printf("Suhu Tubuh (Celcius): ");
-        scanf("%f", &suhu);
-        if (suhu <= 0) {
+        valid = scanf("%f", &suhu);
+        while(getchar() != '\n'); //valid dan getchar disini untuk validasi input agar user tidak input string
+        if (valid != 1 || suhu <= 0) {
             printf("Suhu tubuh harus berupa angka positif!\n");
-        }else{
-            UserData->buffer[loginId].suhu_tubuh = suhu;
+            valid = 0;
         }
-    } while (suhu <= 0);
+    } while (!valid);
+    UserData->buffer[loginId].suhu_tubuh = suhu;
 
     do {
         printf("Tekanan Darah (sistol diastol, contoh: 120 80): ");
-        scanf("%d %d", &sistolik, &diastolik);
-        if (sistolik <= 0 && diastolik <= 0) {
-            printf("Tekanan darah harus berupa angka positif!\n");
-        }else{
-            UserData->buffer[loginId].tekanan_darah_sistolik = sistolik;
-            UserData->buffer[loginId].tekanan_darah_diastolik = diastolik;
+        valid = scanf("%d %d", &sistolik, &diastolik);
+        while(getchar() != '\n');
+        if (valid != 2 || sistolik <= 0 || diastolik <= 0) {
+            printf("Tekanan darah harus berupa dua angka positif!\n");
+            valid = 0;
         }
-    } while (sistolik <= 0 && diastolik <= 0); 
+    } while (!valid);
+    UserData->buffer[loginId].tekanan_darah_sistolik = sistolik;
+    UserData->buffer[loginId].tekanan_darah_diastolik = diastolik;
 
     do {
         printf("Detak Jantung (bpm): ");
-        scanf("%d", &detak);
-        if (detak <= 0) {
+        valid = scanf("%d", &detak);
+        while(getchar() != '\n');
+        if (valid != 1 || detak <= 0) {
             printf("Detak jantung harus berupa angka positif!\n");
-        }else{
-            UserData->buffer[loginId].detak_jantung = detak;
+            valid = 0;
         }
-    } while (detak <= 0);
+    } while (!valid);
+    UserData->buffer[loginId].detak_jantung = detak;
 
     do {
         printf("Saturasi Oksigen (%%): ");
-        scanf("%f", &saturasi);
-        if (saturasi <= 0) {
+        valid = scanf("%f", &saturasi);
+        while(getchar() != '\n');
+        if (valid != 1 || saturasi <= 0) {
             printf("Saturasi oksigen harus berupa angka positif!\n");
-        }else{
-            UserData->buffer[loginId].saturasi_oksigen = saturasi;
+            valid = 0;
         }
-    } while (saturasi <= 0);
+    } while (!valid);
+    UserData->buffer[loginId].saturasi_oksigen = saturasi;
 
     do {
         printf("Kadar Gula Darah (mg/dL): ");
-        scanf("%d", &gula);
-        if (gula <= 0) {
+        valid = scanf("%d", &gula);
+        while(getchar() != '\n');
+        if (valid != 1 || gula <= 0) {
             printf("Kadar gula darah harus berupa angka positif!\n");
-        }else{
-            UserData->buffer[loginId].kadar_gula_darah = gula;
+            valid = 0;
         }
-    } while (gula <= 0);
+    } while (!valid);
+    UserData->buffer[loginId].kadar_gula_darah = gula;
 
     do {
         printf("Berat Badan (kg): ");
-        scanf("%f", &berat);
-        if (berat <= 0) {
+        valid = scanf("%f", &berat);
+        while(getchar() != '\n');
+        if (valid != 1 || berat <= 0) {
             printf("Berat badan harus berupa angka positif!\n");
-        }else{
-            UserData->buffer[loginId].berat_badan = berat;
+            valid = 0;
         }
-    } while (berat <= 0);
+    } while (!valid);
+    UserData->buffer[loginId].berat_badan = berat;
 
     do {
         printf("Tinggi Badan (cm): ");
-        scanf("%d", &tinggi);
-        if (tinggi <= 0) {
+        valid = scanf("%d", &tinggi);
+        while(getchar() != '\n');
+        if (valid != 1 || tinggi <= 0) {
             printf("Tinggi badan harus berupa angka positif!\n");
-        }else{
-            UserData->buffer[loginId].tinggi_badan = tinggi;
+            valid = 0;
         }
-    } while (tinggi <= 0);
+    } while (!valid);
+    UserData->buffer[loginId].tinggi_badan = tinggi;
 
     do {
         printf("Kadar Kolestrol (mg/dL): ");
-        scanf("%d", &kolestrol);
-        if (kolestrol <= 0) {
+        valid = scanf("%d", &kolestrol);
+        while(getchar() != '\n');
+        if (valid != 1 || kolestrol <= 0) {
             printf("Kadar kolestrol harus berupa angka positif!\n");
-        }else{
-            UserData->buffer[loginId].kadar_kolesterol = kolestrol;
+            valid = 0;
         }
-    } while (kolestrol <= 0);
+    } while (!valid);
+    UserData->buffer[loginId].kadar_kolesterol = kolestrol;
 
     do {
         printf("Trombosit (ribu/µL): ");
-        scanf("%d", &trombosit);
-        if (trombosit <= 0) {
+        valid = scanf("%d", &trombosit);
+        while(getchar() != '\n');
+        if (valid != 1 || trombosit <= 0) {
             printf("Trombosit harus berupa angka positif!\n");
-        }else{
-            UserData->buffer[loginId].trombosit = trombosit;
+            valid = 0;
         }
-    } while (trombosit <= 0);
+    } while (!valid);
+    UserData->buffer[loginId].trombosit = trombosit;
 
     int choice_holder[50][2];
     int nomor = 1;
@@ -149,7 +159,7 @@ void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
     }else{ //kalau gada antrian di luar ruangan
         printf("Karena tidak ada antrian di luar ruangan, silahkan langsung masuk saja.\n");
         if(rumahsakit->denah.contents[choice_holder[choice][0]][choice_holder[choice][1]].antrian->counter == 1){
-            printf("Dokter akan memeriksamu sekarang.\n");
+            printf("Dokter akan memeriksamu sekarang.\n"); //kalau gada orang lain yang harus dilayani dokter terlebih dahulu
         }else{
             printf("Masih ada pasien dalam ruangan yang harus dilayani dulu oleh dokter. Anda giliran ke-%d.\n", rumahsakit->denah.contents[choice_holder[choice][0]][choice_holder[choice][1]].antrian->counter);
         }
