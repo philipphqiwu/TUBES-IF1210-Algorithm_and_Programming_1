@@ -48,9 +48,9 @@ make clean
 ```bash
 make
 ```
-3. Jalankan program:
+3. Jalankan program (pakai folder load):
 ```bash
-./main
+./main <<nama_folder>>
 ```
 
 <h2 id="features">Features</h2>
@@ -63,8 +63,22 @@ Untuk saat ini, fitur-fitur yang telah berhasil diimplementasikan berupa: <br/>
 - Lihat Denah <br/>
 - Lihat Ruangan <br/>
 - Lihat User <br/>
+- Lihat Pasien <br/>
+- Lihat Dokter <br/>
+- Cari User <br/>
+- Cari Pasien <br/>
+- Cari Dokter <br/>
+- Lihat Semua Antrian <br/>
 - Tambah Dokter <br/>
 - Assign Dokter <br/>
+- Diagnosis <br/>
+- Ngobatin <br/>
+- Pulangdok <br/>
+- Daftar Checkup <br/>
+- Antrian Saya <br/>
+- Minum Obat <br/>
+- Minum Penawar <br/>
+- Save <br/>
 - Exit
 
 
