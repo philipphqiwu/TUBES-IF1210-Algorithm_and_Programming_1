@@ -142,6 +142,20 @@ void diagnosis(ListPenyakit kriteriapenyakit, Config rumahsakit, ListDinUser *Us
                 // pasien tidak punya penyakit
                 else {
                     printf("%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idxPasien].username);
+                    printf("Pasien %s merasa sehat sehingga dia keluar dari ruangan dan pulang!\n", UserData->buffer[idxPasien].username);
+                    int posisiPasien[2] = {-1, -1};
+                    for(int i = 0; i < rumahsakit.denah.rows; i++){
+                        for(int j = 0; j < rumahsakit.denah.cols; j++){
+                            if(rumahsakit.denah.contents[i][j].antrian->front->data == loginId){
+                                posisiPasien[0] = i;
+                                posisiPasien[1] = j;
+                                break;
+                            }
+                        }
+                        if(posisiPasien[0] == i) break;
+                    }
+                    dequeue(&(rumahsakit.denah.contents[posisiPasien[0]][posisiPasien[1]].antrian));
+                    resetUserData(&(UserData->buffer[idxPasien]));
                     return;
                 }
             }

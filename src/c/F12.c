@@ -45,7 +45,8 @@ void ngobatin(int loginID, Config *config, ListDinUser listUser, ListObat listOb
         if(obatID == 0) break;
         int obatIdx = cariIdxObat(&listObat, obatID);
         printf("%d. %s\n", i, listObat.items[obatIdx].nama_obat);
-        config->inventoryPasien.contents[pasienID][i] = listObat.items[obatIdx].obat_id;
+        insertMatrixByIndex(&config->inventoryPasien, pasienID, i-1, listObat.items[obatIdx].obat_id);
+        //config->inventoryPasien.contents[pasienID][i-1] = listObat.items[obatIdx].obat_id;
     }
     return;
 }
