@@ -17,25 +17,25 @@ void ngobatin(int loginID, Config *config, ListDinUser listUser, ListObat listOb
         }
     }
     if(!found){
-        printf("Anda belum terassign pada ruangan apapun.\n");
+        printf(COLOR_RED"Anda belum terassign pada ruangan apapun.\n"COLOR_RESET);
         return;
     }
     if(config->denah.contents[indeksRuangan[0]][indeksRuangan[1]].antrian->counter == 0){
-        printf("Tidak ada pasien dalam ruangan.\n");
+        printf(COLOR_RED"Tidak ada pasien dalam ruangan.\n"COLOR_RESET);
         return;
     }
     int pasienID = config->denah.contents[indeksRuangan[0]][indeksRuangan[1]].antrian->front->data;
     int pasienIdx = cariIdxUser(&listUser, pasienID);
-    printf("Dokter sedang mengobati pasien!\n\n");
+    printf(COLOR_CYAN"Dokter sedang mengobati pasien!\n\n");
     // printf("[DEBUG] riwayat_penyakit: %s\n", listUser.buffer[pasienIdx].riwayat_penyakit);
     int penyakitID = searchPenyakitIDByName(listPenyakit, listUser.buffer[pasienIdx].riwayat_penyakit);
     if(penyakitID == -1) {
-        printf("Pasien tidak memiliki penyakit!\n");
-        printf("Pasien belum didiagnosis!\n");
+        printf(COLOR_RED"Pasien tidak memiliki penyakit!\n");
+        printf(COLOR_RED"Pasien belum didiagnosis!\n"COLOR_RESET);
         return;
     }
     int penyakitIdx = cariIdxPenyakit(&listPenyakit, penyakitID);
-    printf("Pasien memiliki penyakit %s\n", listPenyakit.items[penyakitIdx].nama_penyakit);
+    printf(COLOR_CYAN"Pasien memiliki penyakit %s\n", listPenyakit.items[penyakitIdx].nama_penyakit);
     // printf("[DEBUG] penyakitIdx: %d\n", penyakitIdx);
     config->jumlahPemilikObat++;
     printf("Obat yang harus diberikan: \n");
@@ -48,5 +48,6 @@ void ngobatin(int loginID, Config *config, ListDinUser listUser, ListObat listOb
         insertMatrixByIndex(&config->inventoryPasien, pasienID, i-1, listObat.items[obatIdx].obat_id);
         //config->inventoryPasien.contents[pasienID][i-1] = listObat.items[obatIdx].obat_id;
     }
+    printf(COLOR_RESET);
     return;
 }

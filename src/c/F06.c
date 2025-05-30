@@ -19,6 +19,7 @@ char ruangan[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
 
 
 void lihatDenah(Config rumahsakit) {
+    printf(COLOR_BLUE);
     // print bagian pertama dari ruangan
     printf("    ");
     // print banyak kolom
@@ -49,6 +50,7 @@ void lihatDenah(Config rumahsakit) {
         }
         printf("\n");
         }
+    printf(COLOR_RESET);
 }
 
 
@@ -67,7 +69,7 @@ void lihatRuangan(Config rumahsakit, ListDinUser UserData) {
             kodeRuangan[1] >= '1' && kodeRuangan[1] <= '9'){
             break;
         } else {
-            printf("Input tidak valid! Format harus 1 huruf kapital dan 1 angka (contoh: A1).\n\n");
+            printf(COLOR_RED"Input tidak valid! Format harus 1 huruf kapital dan 1 angka (contoh: A1).\n\n"COLOR_RESET);
         }
     }
 
@@ -77,13 +79,14 @@ void lihatRuangan(Config rumahsakit, ListDinUser UserData) {
 
     // validasi jika besar ruangan tidak valid
     if (baris < 0 || kolom < 0 || kolom >= rumahsakit.denah.cols || baris >= rumahsakit.denah.rows) {
-        printf("Ruangan tidak ditemukan!\n");
+        printf(COLOR_RED"Ruangan tidak ditemukan!\n"COLOR_RESET);
     }
     
     else{
         int idDokter = rumahsakit.denah.contents[baris][kolom].dokterID;
         int pasienCount = 0;
         int id_pasien;
+        printf(COLOR_GREEN);
         Node* temp = rumahsakit.denah.contents[baris][kolom].antrian->front;
         printf("\n--- Detail Ruangan %s ---\n", kodeRuangan);
         printf("Kapasitas  : %d\n", rumahsakit.kapasitasRuangan);
@@ -102,5 +105,6 @@ void lihatRuangan(Config rumahsakit, ListDinUser UserData) {
 
         if (pasienCount == 0) printf("  Tidak ada pasien\n");
         printf("------------------------------\n");
+        printf(COLOR_RESET);
     }
 }

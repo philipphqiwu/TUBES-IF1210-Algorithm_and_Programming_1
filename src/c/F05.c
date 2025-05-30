@@ -3,11 +3,25 @@
 void help(int loginState, int loginId, ListDinUser UserData){
     int idxUser = cariIdxUser(&UserData, loginId);
 
-    printf(COLOR_WHITE"\n=========== HELP ===========\n");
+    switch(loginState){
+        case 0:
+            printf(COLOR_WHITE);
+            break;
+        case 1:
+            printf(COLOR_MAGENTA);
+            break;
+        case 2:
+            printf(COLOR_CYAN);
+            break;
+        case 3:
+            printf(COLOR_YELLOW);
+            break;
+    }
+    printf("\n=========== HELP ===========\n");
     switch (loginState){
         // untuk sebelum LOGIN
         case 0:
-            printf(COLOR_BLUE"Kamu belum login sebagai role apapun. Silahkan login terlebih dahulu.\n\n");
+            printf("Kamu belum login sebagai role apapun. Silahkan login terlebih dahulu.\n\n");
             puts("1. LOGIN    : Masuk ke dalam akun yang sudah terdaftar");
             puts("2. REGISTER : Membuat akun baru");
             puts("3. SAVE     : Menyimpan kondisi rumah sakit");
