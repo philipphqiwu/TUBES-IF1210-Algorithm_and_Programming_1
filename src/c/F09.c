@@ -11,7 +11,7 @@ char ruang[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
                     ,'V', 'W', 'X','Y','Z'};
 
 void lihatAntrian(Config rumahsakit, ListDinUser UserData){
-
+    printf(COLOR_MAGENTA);
     printf("    ");
     for(int j = 0; j < rumahsakit.denah.cols; j++) {
         printf("  %d  ", j+1);
@@ -48,14 +48,14 @@ void lihatAntrian(Config rumahsakit, ListDinUser UserData){
             }
             printf("\n============ %s ============\n", rumahsakit.denah.contents[baris][kolom].kodeRuangan);
             printf("Kapasitas  : %d\n", rumahsakit.kapasitasRuangan);
-            printf("Dokter     : %s\n", cari_username(UserData, rumahsakit.denah.contents[baris][kolom].dokterID));
+            printf("Dokter     : %s\n", cariUsername(UserData, rumahsakit.denah.contents[baris][kolom].dokterID));
 
             printf("Pasien di dalam ruangan:\n");
             int pasien_count = 0;
             int nomor_urut = 1;
             Node* temp = rumahsakit.denah.contents[baris][kolom].antrian->front;
             while(temp != NULL && pasien_count < rumahsakit.kapasitasRuangan){
-                const char* nama = cari_username(UserData, temp->data);
+                const char* nama = cariUsername(UserData, temp->data);
                 if (strcmp(nama, "-") != 0 && strcmp(nama, "") != 0){
                     printf("  %d. %s\n", nomor_urut++, nama);
                     pasien_count++;
@@ -68,7 +68,7 @@ void lihatAntrian(Config rumahsakit, ListDinUser UserData){
             int nomor = 1;
             int antrian_count = 0;
             while(temp != NULL && antrian_count < rumahsakit.kapasitasAntrian){
-                const char* nama = cari_username(UserData, temp->data);
+                const char* nama = cariUsername(UserData, temp->data);
                 if (strcmp(nama, "-") != 0 && strcmp(nama, "") != 0){
                     printf("  %d. %s\n", nomor++, nama);
                     antrian_count++;
@@ -79,4 +79,5 @@ void lihatAntrian(Config rumahsakit, ListDinUser UserData){
             printf("------------------------------\n");
         }
     }
+    printf(COLOR_RESET);
 }

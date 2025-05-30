@@ -128,7 +128,7 @@ void findId(ListDinUser * UserData, int type){
 void findName(ListDinUser * UserData, int type){
     char name[21];
     while(1){
-        printf(">>> Masukkan nama ");
+        printf(COLOR_MAGENTA">>> Masukkan nama ");
         switch (type){
             case 1:
                 printf("user: ");
@@ -197,7 +197,7 @@ void findName(ListDinUser * UserData, int type){
 
 void tampilPenyakit(User *ptrs[], int base, int order, int length, char * penyakit){
     if(base == 3 && order == 3){
-        printf("----------------------------------------------------------\n");
+        printf(COLOR_MAGENTA"----------------------------------------------------------\n");
         printf("ID | Nama                | Penyakit\n");
         printf("----------------------------------------------------------\n");
         for(int i = 0; i < length; i++){

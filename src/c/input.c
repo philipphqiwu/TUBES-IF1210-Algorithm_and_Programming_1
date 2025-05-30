@@ -24,7 +24,21 @@
 
 void input(int * loginState, int * loginId, ListDinUser * userData, ListObat * listObat, ListPenyakit * listPenyakit, MapObatPenyakit * mapObatPenyakit, int * run, Config * rumahsakit){
     char user_input[100];
-    printf(COLOR_GREEN">>> ");
+    switch (*loginState){
+        case 0:
+            printf(COLOR_WHITE);
+            break;
+        case 1:
+            printf(COLOR_MAGENTA);
+            break;
+        case 2:
+            printf(COLOR_CYAN);
+            break;
+        case 3:
+            printf(COLOR_YELLOW);
+            break;
+    }
+    printf("\n>>> ");
     scanf("%99s", user_input);
     printf(COLOR_RESET);
     if(strcmp(user_input,"LOGOUT") == 0){
@@ -108,8 +122,8 @@ void input(int * loginState, int * loginId, ListDinUser * userData, ListObat * l
             ngobatin(*loginId, rumahsakit, *userData, *listObat, *listPenyakit, *mapObatPenyakit);
         } 
         else{
-            printf("PLEASE ENTER A VALID COMMAND!\n");
-            printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n");
+            printf(COLOR_RED"PLEASE ENTER A VALID COMMAND!\n");
+            printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n"COLOR_RESET);
         }
     }
     else if(*loginState == 3){
@@ -129,13 +143,13 @@ void input(int * loginState, int * loginId, ListDinUser * userData, ListObat * l
             pulangDok(*loginId, rumahsakit, userData, *listObat, *listPenyakit, *mapObatPenyakit);
         }
         else{
-            printf("PLEASE ENTER A VALID COMMAND!\n");
-            printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n");
+            printf(COLOR_RED"PLEASE ENTER A VALID COMMAND!\n");
+            printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n"COLOR_RESET);
         }
     }
     else{
-            printf("PLEASE ENTER A VALID COMMAND!\n");
-            printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n");
+            printf(COLOR_RED"PLEASE ENTER A VALID COMMAND!\n");
+            printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n"COLOR_RESET);
     }
 
 

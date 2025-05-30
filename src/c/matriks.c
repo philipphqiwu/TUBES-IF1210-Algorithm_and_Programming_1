@@ -30,13 +30,13 @@ void initializeMatriks(Matriks *arr, int rows, int cols){
 }
 
 void insertMatrixByIndex(Matriks *matriks, int row, int col, int data){
-    matriks->contents[row][col] = data;
     if(row >= matriks->rows){
         matriks->rows = row+1;
     }
     if(col >= matriks->cols){
         matriks->cols = col+1;
     }
+    matriks->contents[row][col] = data;
 }
 
 int isMatriksEmpty(Matriks matriks){

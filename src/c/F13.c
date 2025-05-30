@@ -22,7 +22,7 @@ void pulangDok(int loginID, Config *config, ListDinUser *listUser, ListObat list
         printf(COLOR_RED"Masih ada obat yang belum kamu habiskan, minum semuanya dulu yukk!\n"COLOR_RESET);
         return;
     }
-    printf("Dokter sedang memeriksa keadaanmu...\n\n");
+    printf(COLOR_YELLOW"Dokter sedang memeriksa keadaanmu...\n\n");
     int urutanSalah = cekPerutDenganUrutan(config->perutPasien[loginID], penyakitId, mapObatPenyakit);
     // printf("urutanSalah: %d\n", urutanSalah);
     if(isMatriksRowEmpty(config->inventoryPasien, loginID) && urutanSalah){
@@ -42,7 +42,7 @@ void pulangDok(int loginID, Config *config, ListDinUser *listUser, ListObat list
             i--;
             temp = temp->next;
         }
-        printf("Urutan peminuman obat yang diharapkan:\n");
+        printf(COLOR_WHITE"Urutan peminuman obat yang diharapkan:\n");
         for(int i = 1; i < banyakObat+1; i++){
             int obatId = mapObatPenyakit.items[penyakitId].value[i].obat_id;
             int obatIdx = cariIdxObat(&listObat, obatId);
@@ -52,7 +52,7 @@ void pulangDok(int loginID, Config *config, ListDinUser *listUser, ListObat list
             else printf(" -> %s", namaObat);
         }
         printf("\n\n");
-        printf("Urutan obat yang kamu minum:\n");
+        printf(COLOR_RED"Urutan obat yang kamu minum:\n");
         for(int i = 1; i < banyakObat+1; i++){
             int obatId = isiPerut[i];
             int obatIdx = cariIdxObat(&listObat, obatId);
@@ -68,7 +68,7 @@ void pulangDok(int loginID, Config *config, ListDinUser *listUser, ListObat list
             }
         }
         printf("\n\n");
-        printf("Silahkan kunjungi dokter untuk meminta penawar yang sesuai!\n");
+        printf(COLOR_RED"Silahkan kunjungi dokter untuk meminta penawar yang sesuai!\n"COLOR_RESET);
         return;
     }
     int posisiPasien[2] = {-1, -1};
@@ -88,8 +88,9 @@ void pulangDok(int loginID, Config *config, ListDinUser *listUser, ListObat list
     for(int i = 0; i < banyakObat; i++){
         pop(&(config->perutPasien[loginID]));
     }
-    printf("Selamat! Kamu sudah dinyatakan sembuh oleh dokter. Silahkan pulang dan semoga sehat selalu!\n");
+    printf(COLOR_YELLOW"Selamat! Kamu sudah dinyatakan sembuh oleh dokter. Silahkan pulang dan semoga sehat selalu!\n");
     config->jumlahPerutPasien--;
+    printf(COLOR_RESET);
 }
 
 int cekPerutDenganUrutan(Stack perut, int penyakitID, MapObatPenyakit mapObatPenyakit){

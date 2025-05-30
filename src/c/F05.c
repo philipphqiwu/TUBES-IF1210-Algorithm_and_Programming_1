@@ -1,17 +1,33 @@
 #include "../header/F05.h"
 
 void help(int loginState, int loginId, ListDinUser UserData){
-
-    printf(COLOR_WHITE"\n=========== HELP ===========\n");
     int idxUser = cariIdxUser(&UserData, loginId);
-    switch (loginState){
+
+    switch(loginState){
         case 0:
-            printf(COLOR_BLUE"Kamu belum login sebagai role apapun. Silahkan login terlebih dahulu.\n\n");
+            printf(COLOR_WHITE);
+            break;
+        case 1:
+            printf(COLOR_MAGENTA);
+            break;
+        case 2:
+            printf(COLOR_CYAN);
+            break;
+        case 3:
+            printf(COLOR_YELLOW);
+            break;
+    }
+    printf("\n=========== HELP ===========\n");
+    switch (loginState){
+        // untuk sebelum LOGIN
+        case 0:
+            printf("Kamu belum login sebagai role apapun. Silahkan login terlebih dahulu.\n\n");
             puts("1. LOGIN    : Masuk ke dalam akun yang sudah terdaftar");
             puts("2. REGISTER : Membuat akun baru");
             puts("3. SAVE     : Menyimpan kondisi rumah sakit");
             puts("4. EXIT     : Keluar dari program");
             break;
+        // untuk Manager
         case 1:
             printf(COLOR_MAGENTA"Halo Manager %s. Berikut adalah hal-hal yang dapat kamu lakukan sekarang:\n\n", UserData.buffer[idxUser].username);
             puts(" 1. LOGOUT                : Keluar dari akun yang sedang digunakan");
@@ -30,6 +46,7 @@ void help(int loginState, int loginId, ListDinUser UserData){
             puts("14. SAVE                  : Menyimpan kondisi rumah sakit");
             puts("15. EXIT                  : Keluar dari program");
             break;
+        // untuk manager
         case 2:
             printf(COLOR_CYAN"Halo Dokter %s. Kamu memanggil HELP. Berikut command yang tersedia:\n\n", UserData.buffer[idxUser].username);
             puts("1. LOGOUT         : Keluar dari akun");
@@ -40,7 +57,7 @@ void help(int loginState, int loginId, ListDinUser UserData){
             puts("6. SAVE           : Menyimpan kondisi rumah sakit");
             puts("7. EXIT           : Keluar dari program");
         break;
-
+        // untuk pasien
         case 3:
             printf(COLOR_YELLOW"Selamat datang, %s. Berikut command yang tersedia:\n\n", UserData.buffer[idxUser].username);
             puts(" 1. LOGOUT            : Keluar dari akun");
@@ -55,6 +72,7 @@ void help(int loginState, int loginId, ListDinUser UserData){
             puts("10. EXIT              : Keluar dari program");
         break;
     }
+
     puts("Footnote:");
     puts("1. Untuk menggunakan aplikasi, silahkan masukkan nama fungsi yang terdaftar");
     puts("2. Jangan lupa untuk memasukkan input yang valid\n");

@@ -9,7 +9,7 @@ void minumObat(int loginID, Config *config, ListDinUser listUser, ListObat listO
         printf(COLOR_RED"Kamu tidak memiliki obat!\n"COLOR_RESET);
         return;
     }
-    printf("============ DAFTAR OBAT ============\n");
+    printf(COLOR_YELLOW"============ DAFTAR OBAT ============\n");
     int nomorObat = 1;
     int obatAvailable[MAX_OBAT_PER_PENYAKIT];
     for(int i = 0; i < MAX_OBAT_PER_PENYAKIT; i++){
@@ -25,14 +25,14 @@ void minumObat(int loginID, Config *config, ListDinUser listUser, ListObat listO
     
     while(scanf("%d", &obatPilihan) !=  1 || obatPilihan <= 0 || obatPilihan >= nomorObat){
         printf(COLOR_RED"Pilihan nomor tidak tersedia!\n"COLOR_RESET);
-        printf("Pilih obat untuk diminum: ");
+        printf(COLOR_YELLOW"Pilih obat untuk diminum: ");
         while (getchar() != '\n');
     }
     int obatIdx = cariIdxObat(&listObat, obatAvailable[obatPilihan]);
     if(config->perutPasien[loginID].head == NULL){
         config->jumlahPerutPasien++;
     }
-    printf("GLEKGLEKGLEK... %s berhasil diminum!!!\n", listObat.items[obatIdx].nama_obat);
+    printf("GLEKGLEKGLEK... %s berhasil diminum!!!\n"COLOR_RESET, listObat.items[obatIdx].nama_obat);
     push(&(config->perutPasien[loginID]), obatAvailable[obatPilihan]);
     for(int i = 0; i < MAX_OBAT_PER_PENYAKIT; i++){
         if(config->inventoryPasien.contents[loginID][i] == obatAvailable[obatPilihan]){

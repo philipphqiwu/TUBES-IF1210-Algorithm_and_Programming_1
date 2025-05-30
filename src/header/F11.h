@@ -18,7 +18,7 @@ boolean assignPenyakit(ListPenyakit kriteriapenyakit, ListDinUser* UserData, int
 boolean punyaRiwayat(char* riwayat_penyakit);
 
 // Mengembalikan nilai 0
-int diagnosis(ListPenyakit krirteriapenyakit, Config rumahsakit, ListDinUser *UserData, int loginId);
+int diagnosis(ListPenyakit kriteriapenyakit, Config rumahsakit, ListDinUser *UserData, int loginId);
 // I.S. Semua argumen terdefinisi, loginId merupakan ID dokter.
 // F.S. komponen riwayat_penyakit pasien yang dilayani terassign riwayat_penyakit baru sesuai dengan kondisi tubuhnya.
 

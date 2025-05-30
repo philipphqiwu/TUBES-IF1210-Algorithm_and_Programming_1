@@ -7,7 +7,7 @@ void logout(int * loginState, int * loginId){
     } else{
         *loginState = 0;
         *loginId = -1;
-        printf(COLOR_BLUE"\nSampai Jumpa\n"COLOR_RESET);
+        printf(COLOR_BLUE"Sampai Jumpa!\n"COLOR_RESET);
     }
     return;
 }
