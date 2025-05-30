@@ -77,7 +77,7 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
     fgets(lineInput, sizeof(lineInput), userFile);
     while(fgets(lineInput, sizeof(lineInput), userFile)){
         User itemUser;
-        parsing(lineInput, "issssfiiififiii", &itemUser.id, itemUser.username, itemUser.password, itemUser.role, itemUser.riwayat_penyakit, &itemUser.suhu_tubuh, &itemUser.tekanan_darah_sistolik, &itemUser.tekanan_darah_diastolik, &itemUser.detak_jantung, &itemUser.saturasi_oksigen, &itemUser.kadar_gula_darah, &itemUser.berat_badan, &itemUser.tinggi_badan, &itemUser.kadar_kolesterol, &itemUser.trombosit);
+        parsing(lineInput, "issssfiiififiiii", &itemUser.id, itemUser.username, itemUser.password, itemUser.role, itemUser.riwayat_penyakit, &itemUser.suhu_tubuh, &itemUser.tekanan_darah_sistolik, &itemUser.tekanan_darah_diastolik, &itemUser.detak_jantung, &itemUser.saturasi_oksigen, &itemUser.kadar_gula_darah, &itemUser.berat_badan, &itemUser.tinggi_badan, &itemUser.kadar_kolesterol, &itemUser.trombosit, &itemUser.nyawa);
         insertLast(listUser, itemUser);
     }
     fclose(userFile);

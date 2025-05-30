@@ -60,6 +60,7 @@ int main(int argc, char *argv[]) {
 
     initializeProgram(folderPath, &UserData, &listObat, &listPenyakit, &mapObatPenyakit, &config);
 
+    /* DEBUGGING PURPOSE CODE */
     // printf("Jumlah user: %d\n", UserData.nEff);
     // printList(UserData);
     // printf("List Obat: \n");

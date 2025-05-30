@@ -21,6 +21,7 @@ typedef struct{
     int tinggi_badan;
     int kadar_kolesterol;
     int trombosit;
+    int nyawa;
     char ruang[10];
     char antrian[10];
 } User;
@@ -156,6 +157,11 @@ User createEmptyUser();
 void resetUserData(User *user);
 // I.S. user terdefinisi, user merupakan pasien.
 // F.S. Semua data user kecuali ID, username, password, dan role direset.
+
+// Menghilangkan user dengan indeks tertentu dari list.
+void deleteUser(ListDinUser *list, int idx);
+// I.S. list dan idx terdefinisi.
+// F.S. Semua komponen yang ada pada elemen indeks idx direset menjadi default.
 
 // Menuliskan List User ke dalam file
 void writeListUser(char * folderPath, ListDinUser *list);

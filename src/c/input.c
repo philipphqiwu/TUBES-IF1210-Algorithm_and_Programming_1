@@ -128,7 +128,7 @@ void input(int * loginState, int * loginId, ListDinUser * userData, ListObat * l
     }
     else if(*loginState == 3){
         if(strcmp(user_input, "MINUM_OBAT") == 0){
-            minumObat(*loginId, rumahsakit, *userData, *listObat, *listPenyakit, *mapObatPenyakit);
+            minumObat(loginId, loginState, rumahsakit, userData, *listObat, *listPenyakit, *mapObatPenyakit);
         }
         else if(strcmp(user_input, "MINUM_PENAWAR") == 0){
             minumPenawar(*loginId, rumahsakit, *userData, *listObat, *listPenyakit, *mapObatPenyakit);
