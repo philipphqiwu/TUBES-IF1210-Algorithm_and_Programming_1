@@ -122,7 +122,7 @@ void diagnosis(ListPenyakit kriteriapenyakit, Config rumahsakit, ListDinUser *Us
             if (punyaRiwayat(UserData->buffer[idxPasien].riwayat_penyakit)) {
                 // Jika pasien sudah sembuh
                 if (idPenyakitSekarang == -1) {
-                    printf("%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idxPasien].username);
+                    printf("%s sudah tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idxPasien].username);
                     strcpy(UserData->buffer[idxPasien].riwayat_penyakit, "");
                     return; // Diagnosis selesai
                 } 
@@ -146,7 +146,8 @@ void diagnosis(ListPenyakit kriteriapenyakit, Config rumahsakit, ListDinUser *Us
                     int posisiPasien[2] = {-1, -1};
                     for(int i = 0; i < rumahsakit.denah.rows; i++){
                         for(int j = 0; j < rumahsakit.denah.cols; j++){
-                            if(rumahsakit.denah.contents[i][j].antrian->front->data == loginId){
+                            Queue *temp = rumahsakit.denah.contents[i][j].antrian;
+                            if(temp != NULL && temp->front != NULL && temp->front->data == loginId){
                                 posisiPasien[0] = i;
                                 posisiPasien[1] = j;
                                 break;
@@ -154,7 +155,11 @@ void diagnosis(ListPenyakit kriteriapenyakit, Config rumahsakit, ListDinUser *Us
                         }
                         if(posisiPasien[0] == i) break;
                     }
-                    dequeue(&(rumahsakit.denah.contents[posisiPasien[0]][posisiPasien[1]].antrian));
+                    if (posisiPasien[0] != -1 && posisiPasien[1] != -1) {
+                        dequeue(rumahsakit.denah.contents[posisiPasien[0]][posisiPasien[1]].antrian);
+                    } else {
+                        printf("Pasien tidak ditemukan dalam antrian mana pun!\n");
+                    }
                     resetUserData(&(UserData->buffer[idxPasien]));
                     return;
                 }
