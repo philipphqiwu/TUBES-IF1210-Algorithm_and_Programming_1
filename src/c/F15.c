@@ -12,12 +12,12 @@ void antrianSaya(ListDinUser *UserData, Config *rumahsakit, int loginId){
             while (current != NULL) {
                 if (current->data == loginId) {
                     if(rumahsakit->denah.contents[i][j].antrian->counter <= 3){
-                        printf("Anda sedang berada di dalam ruangan dokter!\n");
+                        printf(COLOR_RED"Anda sedang berada di dalam ruangan dokter!\n"COLOR_RESET);
                     }else{
-                        printf("Status antrian anda:\n");
+                        printf(COLOR_YELLOW"Status antrian anda:\n");
                         printf("Dokter: Dr. %s\n", cariUsername(*UserData, rumahsakit->denah.contents[i][j].dokterID));
                         printf("Ruangan: %s\n", rumahsakit->denah.contents[i][j].kodeRuangan);
-                        printf("Posisi antrian: %d dari %d\n", (rumahsakit->denah.contents[i][j].antrian->counter - rumahsakit->kapasitasRuangan), rumahsakit->kapasitasAntrian);
+                        printf("Posisi antrian: %d dari %d\n"COLOR_RESET, (rumahsakit->denah.contents[i][j].antrian->counter - rumahsakit->kapasitasRuangan), rumahsakit->kapasitasAntrian);
                     }
                     return;
                 }

@@ -11,7 +11,7 @@ char ruang[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
                     ,'V', 'W', 'X','Y','Z'};
 
 void lihatAntrian(Config rumahsakit, ListDinUser UserData){
-
+    printf(COLOR_MAGENTA);
     printf("    ");
     for(int j = 0; j < rumahsakit.denah.cols; j++) {
         printf("  %d  ", j+1);
@@ -79,4 +79,5 @@ void lihatAntrian(Config rumahsakit, ListDinUser UserData){
             printf("------------------------------\n");
         }
     }
+    printf(COLOR_RESET);
 }

@@ -32,20 +32,20 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
 
     FILE *obatFile = fopen(filePathObat, "r");
     if(!obatFile){
-        printf("Gagal membuka file obat.csv\n");
+        printf(COLOR_RED"Gagal membuka file obat.csv\n");
         fclose(obatFile);
         return 0;
     }
     FILE *penyakitFile = fopen(filePathPenyakit, "r");
     if(!penyakitFile){
-        printf("Gagal membuka file penyakit.csv\n");
+        printf(COLOR_RED"Gagal membuka file penyakit.csv\n");
         fclose(obatFile);
         fclose(penyakitFile);
         return 0;
     }
     FILE *obatPenyakitFile = fopen(filePathObatPenyakit, "r");
     if(!obatPenyakitFile){
-        printf("Gagal membuka file obat_penyakit.csv\n");
+        printf(COLOR_RED"Gagal membuka file obat_penyakit.csv\n");
         fclose(obatFile);
         fclose(penyakitFile);
         fclose(obatPenyakitFile);
@@ -53,7 +53,7 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
     }
     FILE *userFile = fopen(filePathUser, "r");
     if(!userFile){
-        printf("Gagal membuka file user.csv\n");
+        printf(COLOR_RED"Gagal membuka file user.csv\n");
         fclose(obatFile);
         fclose(penyakitFile);
         fclose(obatPenyakitFile);
@@ -62,7 +62,7 @@ int initializeProgram(char * folderPath, ListDinUser *listUser, ListObat *listOb
     }
     FILE *configFile = fopen(filePathConfig, "r");
     if(!configFile){
-        printf("Gagal membuka file user.csv\n");
+        printf(COLOR_RED"Gagal membuka file config.txt\n");
         fclose(obatFile);
         fclose(penyakitFile);
         fclose(obatPenyakitFile);

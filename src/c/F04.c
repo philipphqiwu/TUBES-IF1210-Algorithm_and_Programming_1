@@ -5,7 +5,7 @@ void lupaPassword(ListDinUser * UserData){
     char KodeUnik[21];
     // Username input validation loop
     while (1) {
-        printf(COLOR_GREEN"Username (max 20 characters): ");
+        printf("Username (max 20 characters): ");
         scanf("%s", uname);
         printf(COLOR_RESET);
 
@@ -27,7 +27,7 @@ void lupaPassword(ListDinUser * UserData){
             break;
         }
     }
-    printf(COLOR_GREEN"KodeUnik: ");
+    printf("KodeUnik: ");
     scanf("%20s",KodeUnik);
     printf("\n"COLOR_RESET);
 

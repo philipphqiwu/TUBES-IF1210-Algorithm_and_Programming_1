@@ -10,7 +10,7 @@ void minumPenawar(int loginID, Config *config, ListDinUser listUser, ListObat li
     }
     int obatID = pop(&(config->perutPasien[loginID]));
     int obatIdx = cariIdxObat(&listObat, obatID);
-    printf("Uwekkk!!! %s keluar dan kembali ke inventory.\n", listObat.items[obatIdx].nama_obat);
+    printf(COLOR_YELLOW"Uwekkk!!! %s keluar dan kembali ke inventory.\n"COLOR_RESET, listObat.items[obatIdx].nama_obat);
     if(config->inventoryPasien.contents[loginID][0] == 0){
         config->jumlahPemilikObat++;
     }

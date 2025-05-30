@@ -21,8 +21,8 @@ int main(int argc, char *argv[]) {
     // BAGIAN LOAD
     char folderPath[300];
     if (argc == 1){
-        printf(COLOR_BLUE"Program akan menggunakan folder default yaitu ../data\n"COLOR_RESET);
-        snprintf(folderPath, sizeof(folderPath), "../data");
+        printf(COLOR_RED"Tidak ada nama folder yang diberikan!\nUsage : ./main <<nama_folder>>\n\n"COLOR_RESET);
+        return 0;
     } else if (argc == 2) {
         char folderName[256];
         strcpy (folderName,argv[1]);

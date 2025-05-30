@@ -111,7 +111,7 @@ void diagnosis(ListPenyakit kriteriapenyakit, Config rumahsakit, ListDinUser *Us
         }
     }
     int idxDokter = cariIdxUser(UserData, loginId); // Mencari id dokter 
-
+    printf(COLOR_CYAN);
     // validasi ruangan dari dokter
     if (idxDokter != -1 && dokterFoundruangan == 1){
         // validasi dari pasien terdepan yang akan diobati
@@ -122,13 +122,13 @@ void diagnosis(ListPenyakit kriteriapenyakit, Config rumahsakit, ListDinUser *Us
             if (punyaRiwayat(UserData->buffer[idxPasien].riwayat_penyakit)) {
                 // Jika pasien sudah sembuh
                 if (idPenyakitSekarang == -1) {
-                    printf("%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idxPasien].username);
+                    printf(COLOR_CYAN"%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idxPasien].username);
                     strcpy(UserData->buffer[idxPasien].riwayat_penyakit, "");
                     return; // Diagnosis selesai
                 } 
                 // Jika pasien masih sakit
                 else {
-                    printf("%s masih menderita %s\n", UserData->buffer[idxPasien].username, UserData->buffer[idxPasien].riwayat_penyakit);
+                    printf(COLOR_CYAN"%s masih menderita %s\n", UserData->buffer[idxPasien].username, UserData->buffer[idxPasien].riwayat_penyakit);
                     return;
                 }
             }   
@@ -136,12 +136,12 @@ void diagnosis(ListPenyakit kriteriapenyakit, Config rumahsakit, ListDinUser *Us
             else {
                 // Pasien punya penyakit
                 if (assignPenyakit(kriteriapenyakit, UserData, idxPasien)) {
-                    printf("%s terdiagnosa penyakit %s!\n", UserData->buffer[idxPasien].username, UserData->buffer[idxPasien].riwayat_penyakit);
+                    printf(COLOR_CYAN"%s terdiagnosa penyakit %s!\n", UserData->buffer[idxPasien].username, UserData->buffer[idxPasien].riwayat_penyakit);
                     return; 
                 } 
                 // pasien tidak punya penyakit
                 else {
-                    printf("%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idxPasien].username);
+                    printf(COLOR_CYAN"%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idxPasien].username);
                     printf("Pasien %s merasa sehat sehingga dia keluar dari ruangan dan pulang!\n", UserData->buffer[idxPasien].username);
                     int posisiPasien[2] = {-1, -1};
                     for(int i = 0; i < rumahsakit.denah.rows; i++){
@@ -154,18 +154,18 @@ void diagnosis(ListPenyakit kriteriapenyakit, Config rumahsakit, ListDinUser *Us
                         }
                         if(posisiPasien[0] == i) break;
                     }
-                    dequeue(&(rumahsakit.denah.contents[posisiPasien[0]][posisiPasien[1]].antrian));
+                    dequeue(rumahsakit.denah.contents[posisiPasien[0]][posisiPasien[1]].antrian);
                     resetUserData(&(UserData->buffer[idxPasien]));
                     return;
                 }
             }
         }
         else{
-            printf("Tidak ada pasien di ruangan Anda saat ini\n");
+            printf(COLOR_RED"Tidak ada pasien di ruangan Anda saat ini\n"COLOR_RESET);
         }
     }
     else{
-        printf("Anda tidak sedang bertugas di ruangan manapun\n");
+        printf(COLOR_RED"Anda tidak sedang bertugas di ruangan manapun\n"COLOR_RESET);
     }
     
     return; 

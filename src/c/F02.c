@@ -6,7 +6,7 @@ void registerPasien(ListDinUser * UserData){
     char Password[21];
     // Username input validation loop
     while (1) {
-        printf(COLOR_GREEN"Username (max 20 characters): "COLOR_RESET);
+        printf("Username (max 20 characters): "COLOR_RESET);
         scanf("%s", Username); 
 
         // Validasi username hanya huruf alfabet
@@ -30,7 +30,7 @@ void registerPasien(ListDinUser * UserData){
 
     // Password input validation loop
     while (1) {
-        printf(COLOR_GREEN"Password (max 20 characters): "COLOR_RESET);
+        printf("Password (max 20 characters): "COLOR_RESET);
         scanf("%s", Password);
         if (strlen(Password) > 20) {
             printf(COLOR_RED"Error: Password melebihi 20 characters.\n"COLOR_RESET);

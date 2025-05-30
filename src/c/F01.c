@@ -6,7 +6,7 @@ void login(int * loginState, int * loginId, ListDinUser UserData){
 
     // Username input validation loop
     while (1) {
-        printf(COLOR_GREEN"Username (max 20 characters): ");
+        printf("Username (max 20 characters): ");
         scanf("%21s", Username);
         printf(COLOR_RESET);
         if (strlen(Username) > 20) {
@@ -17,7 +17,7 @@ void login(int * loginState, int * loginId, ListDinUser UserData){
     }
     // Password input validation loop
     while (1) {
-        printf(COLOR_GREEN"Password (max 20 characters): ");
+        printf("Password (max 20 characters): ");
         scanf("%21s", Password);
         printf(COLOR_RESET);
         if (strlen(Password) > 20) {
@@ -35,13 +35,13 @@ void login(int * loginState, int * loginId, ListDinUser UserData){
     } else{
         *loginId = UserData.buffer[idxUsername].id;
         if(strcmp(UserData.buffer[idxUsername].role,"manager") == 0){
-            printf(COLOR_BLUE"Halo Manager %s\n"COLOR_RESET, Username);
+            printf(COLOR_MAGENTA"Halo Manager %s\n"COLOR_RESET, Username);
             *loginState = 1;
         } else if(strcmp(UserData.buffer[idxUsername].role,"dokter") == 0){
-            printf(COLOR_BLUE"Halo Dokter %s\n"COLOR_RESET, Username);
+            printf(COLOR_CYAN"Halo Dokter %s\n"COLOR_RESET, Username);
             *loginState = 2;
         } else if(strcmp(UserData.buffer[idxUsername].role,"pasien") == 0){
-            printf(COLOR_BLUE"Halo %s! Ada keluhan apa?\n"COLOR_RESET, Username);
+            printf(COLOR_YELLOW"Halo %s! Ada keluhan apa?\n"COLOR_RESET, Username);
             *loginState = 3;
         }
     }
