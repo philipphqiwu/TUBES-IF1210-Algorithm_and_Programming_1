@@ -26,7 +26,7 @@ void ngobatin(int loginID, Config *config, ListDinUser listUser, ListObat listOb
     }
     int pasienID = config->denah.contents[indeksRuangan[0]][indeksRuangan[1]].antrian->front->data;
     int pasienIdx = cariIdxUser(&listUser, pasienID);
-    printf("Dokter sedang mengobati pasien!\n");
+    printf("Dokter sedang mengobati pasien!\n\n");
     // printf("[DEBUG] riwayat_penyakit: %s\n", listUser.buffer[pasienIdx].riwayat_penyakit);
     int penyakitID = searchPenyakitIDByName(listPenyakit, listUser.buffer[pasienIdx].riwayat_penyakit);
     if(penyakitID == -1) {
@@ -37,6 +37,7 @@ void ngobatin(int loginID, Config *config, ListDinUser listUser, ListObat listOb
     int penyakitIdx = cariIdxPenyakit(&listPenyakit, penyakitID);
     printf("Pasien memiliki penyakit %s\n", listPenyakit.items[penyakitIdx].nama_penyakit);
     // printf("[DEBUG] penyakitIdx: %d\n", penyakitIdx);
+    config->jumlahPemilikObat++;
     printf("Obat yang harus diberikan: \n");
     for(int i = 1; i < MAX_OBAT_PER_PENYAKIT; i++){
         int obatID = mapObatPenyakit.items[penyakitID].value[i].obat_id;

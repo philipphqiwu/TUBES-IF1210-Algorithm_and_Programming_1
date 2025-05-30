@@ -9,6 +9,6 @@
 int cekPenyakit(ListPenyakit kriteriapenyakit, ListDinUser* UserData, int idPasien);
 boolean assignPenyakit(ListPenyakit kriteriapenyakit, ListDinUser* UserData, int idPasien);
 boolean punyaRiwayat(char* riwayat_penyakit);
-int diagnosis(ListPenyakit krirteriapenyakit, Config rumahsakit, ListDinUser *UserData, int loginId);
+void diagnosis(ListPenyakit krirteriapenyakit, Config rumahsakit, ListDinUser *UserData, int loginId);
 
 #endif

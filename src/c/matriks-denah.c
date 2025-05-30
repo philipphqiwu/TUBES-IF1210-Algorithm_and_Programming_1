@@ -40,7 +40,7 @@ char* convertNumberToKodeRuangan(int rows, int cols){
         indeksPut++;
     }
     char stringAngka[MAX_KODE_RUANG_LENGTH+1];
-    sprintf(stringAngka, "%d", cols+1);
+    snprintf(stringAngka, MAX_KODE_RUANG_LENGTH+2, "%d", cols+1);
     for(int i = 0; i < strlen(stringAngka); i++){
         output[indeksPut] = stringAngka[i];
         indeksPut++;

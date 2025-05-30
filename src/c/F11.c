@@ -5,8 +5,6 @@
 #include "../header/Boolean.h"
 #include "../header/penyakit.h"
 
-
-
 int cekPenyakit(ListPenyakit kriteriaPenyakit, ListDinUser* UserData, int idPasien){
     // int idPenyakit;
     for (int i = 0; i <= 5; i++) {
@@ -78,7 +76,7 @@ int cekPenyakit(ListPenyakit kriteriaPenyakit, ListDinUser* UserData, int idPasi
             return i;
         }
     }
-    // Kalau tidak ada penyaki yang cocok maka akan di return -1
+    // Kalau tidak ada penyakit yang cocok maka akan di return -1
 
     return -1;
 }
@@ -96,80 +94,65 @@ boolean assignPenyakit(ListPenyakit kriteriaPenyakit, ListDinUser* UserData, int
 }
 
 // Untuk melakukan pengecekan apakah pasien punya riwayat penyakit sebelumnya
-boolean punyaRiwayat(char* riwayat_penyakit) {
-    return (riwayat_penyakit != NULL &&  strlen(riwayat_penyakit) > 0 &&  strcmp(riwayat_penyakit, "") != 0);
+boolean punyaRiwayat(char* riwayatPenyakit) {
+    return (riwayatPenyakit != NULL &&  strlen(riwayatPenyakit) > 0 &&  strcmp(riwayatPenyakit, "") != 0);
 }
 
-
-
-int diagnosis(ListPenyakit krirteriapenyakit, Config rumahsakit, ListDinUser *UserData, int loginId){
-    int idxKolom, idxBaris;
+void diagnosis(ListPenyakit kriteriapenyakit, Config rumahsakit, ListDinUser *UserData, int loginId){
+    int idxKolom, idxBaris, dokterFoundruangan = 0;;
     // mencari ruangan pasien
     for (int i = 0; i < rumahsakit.denah.rows; i++){
         for (int j = 0; j < rumahsakit.denah.cols; j++){
             if (rumahsakit.denah.contents[i][j].dokterID == loginId){
                 idxKolom = j;
                 idxBaris = i;
+                dokterFoundruangan = 1;
             }
         }
     }
     int idxDokter = cariIdxUser(UserData, loginId); // Mencari id dokter 
 
     // validasi ruangan dari dokter
-    if (idxDokter != -1){
+    if (idxDokter != -1 && dokterFoundruangan == 1){
         // validasi dari pasien terdepan yang akan diobati
         int idxPasien = cariIdxUser(UserData, rumahsakit.denah.contents[idxBaris][idxKolom].antrian->front->data);
         if (idxPasien != -1){
-            int idPenyakitSekarang = cekPenyakit(krirteriapenyakit, UserData, idxPasien);
+            int idPenyakitSekarang = cekPenyakit(kriteriapenyakit, UserData, idxPasien);
             // Kemungkinan 1 : pasien pernah didiagnosis
             if (punyaRiwayat(UserData->buffer[idxPasien].riwayat_penyakit)) {
                 // Jika pasien sudah sembuh
                 if (idPenyakitSekarang == -1) {
                     printf("%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idxPasien].username);
                     strcpy(UserData->buffer[idxPasien].riwayat_penyakit, "");
-                    return 0; // Diagnosis selesai
+                    return; // Diagnosis selesai
                 } 
                 // Jika pasien masih sakit
                 else {
                     printf("%s masih menderita %s\n", UserData->buffer[idxPasien].username, UserData->buffer[idxPasien].riwayat_penyakit);
-                    return 0;
+                    return;
                 }
             }   
             // Kemungkinan 2 : pasien belum pernah didiagnosis
             else {
                 // Pasien punya penyakit
-                if (assignPenyakit(krirteriapenyakit, UserData, idxPasien)) {
+                if (assignPenyakit(kriteriapenyakit, UserData, idxPasien)) {
                     printf("%s terdiagnosa penyakit %s!\n", UserData->buffer[idxPasien].username, UserData->buffer[idxPasien].riwayat_penyakit);
-                    return 0; 
+                    return; 
                 } 
                 // pasien tidak punya penyakit
                 else {
                     printf("%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idxPasien].username);
-                    return 0;
+                    return;
                 }
             }
         }
-    
         else{
             printf("Tidak ada pasien di ruangan Anda saat ini\n");
-            return 0;
         }
     }
-
-    
     else{
         printf("Anda tidak sedang bertugas di ruangan manapun\n");
-        return 0;
     }
     
-    return 0; 
-     
+    return; 
 }
-
-
-
-        
-
-
-     
-

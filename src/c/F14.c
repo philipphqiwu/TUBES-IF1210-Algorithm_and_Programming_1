@@ -26,6 +26,8 @@ void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
     int valid;
     printf("Silakan masukkan data check-up Anda:\n");
 
+    int idxUser = cariIdxUser(UserData, loginId);
+
     do {
         printf("Suhu Tubuh (Celcius): ");
         valid = scanf("%f", &suhu);
@@ -35,7 +37,7 @@ void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
             valid = 0;
         }
     } while (!valid);
-    UserData->buffer[loginId].suhu_tubuh = suhu;
+    UserData->buffer[idxUser].suhu_tubuh = suhu;
 
     do {
         printf("Tekanan Darah (sistol diastol, contoh: 120 80): ");
@@ -46,8 +48,8 @@ void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
             valid = 0;
         }
     } while (!valid);
-    UserData->buffer[loginId].tekanan_darah_sistolik = sistolik;
-    UserData->buffer[loginId].tekanan_darah_diastolik = diastolik;
+    UserData->buffer[idxUser].tekanan_darah_sistolik = sistolik;
+    UserData->buffer[idxUser].tekanan_darah_diastolik = diastolik;
 
     do {
         printf("Detak Jantung (bpm): ");
@@ -58,7 +60,7 @@ void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
             valid = 0;
         }
     } while (!valid);
-    UserData->buffer[loginId].detak_jantung = detak;
+    UserData->buffer[idxUser].detak_jantung = detak;
 
     do {
         printf("Saturasi Oksigen (%%): ");
@@ -69,7 +71,7 @@ void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
             valid = 0;
         }
     } while (!valid);
-    UserData->buffer[loginId].saturasi_oksigen = saturasi;
+    UserData->buffer[idxUser].saturasi_oksigen = saturasi;
 
     do {
         printf("Kadar Gula Darah (mg/dL): ");
@@ -80,7 +82,7 @@ void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
             valid = 0;
         }
     } while (!valid);
-    UserData->buffer[loginId].kadar_gula_darah = gula;
+    UserData->buffer[idxUser].kadar_gula_darah = gula;
 
     do {
         printf("Berat Badan (kg): ");
@@ -91,7 +93,7 @@ void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
             valid = 0;
         }
     } while (!valid);
-    UserData->buffer[loginId].berat_badan = berat;
+    UserData->buffer[idxUser].berat_badan = berat;
 
     do {
         printf("Tinggi Badan (cm): ");
@@ -102,7 +104,7 @@ void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
             valid = 0;
         }
     } while (!valid);
-    UserData->buffer[loginId].tinggi_badan = tinggi;
+    UserData->buffer[idxUser].tinggi_badan = tinggi;
 
     do {
         printf("Kadar Kolestrol (mg/dL): ");
@@ -113,7 +115,7 @@ void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
             valid = 0;
         }
     } while (!valid);
-    UserData->buffer[loginId].kadar_kolesterol = kolestrol;
+    UserData->buffer[idxUser].kadar_kolesterol = kolestrol;
 
     do {
         printf("Trombosit (ribu/µL): ");
@@ -124,7 +126,7 @@ void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
             valid = 0;
         }
     } while (!valid);
-    UserData->buffer[loginId].trombosit = trombosit;
+    UserData->buffer[idxUser].trombosit = trombosit;
 
     int choice_holder[50][2];
     int nomor = 1;
@@ -135,7 +137,10 @@ void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
             int antrian_total = rumahsakit->denah.contents[baris][kolom].antrian->counter;
             int current_antrian_luar = antrian_total - rumahsakit->kapasitasRuangan;
             if(current_antrian_luar == 4) continue;
-            const char* nama = cariUsername(*UserData, rumahsakit->denah.contents[baris][kolom].dokterID);   
+            char nama[21];
+            strncpy(nama, cariUsername(*UserData, rumahsakit->denah.contents[baris][kolom].dokterID), 20);
+            nama[20] = '\0';  // pastikan null-terminated
+
             const char* kodeRuang = rumahsakit->denah.contents[baris][kolom].kodeRuangan;
             if(current_antrian_luar > 0){
                 printf("%d. Dr. %s - Spesialisasi Umum - Ruangan %s (Antrian: %d)\n", nomor, nama, kodeRuang, current_antrian_luar);
