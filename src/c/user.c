@@ -7,8 +7,8 @@
 void printUser(User user){
     printf("%d,%s,%s,%s", user.id, user.username, user.password, user.role);
     if(strcmp(user.role,"pasien")==0){
-        printf(",%s,%f,%d,%d,%d,%f,%d,%f,%d,%d,%d", user.riwayat_penyakit, user.suhu_tubuh, user.tekanan_darah_sistolik, user.tekanan_darah_diastolik, user.detak_jantung,
-        user.saturasi_oksigen, user.kadar_gula_darah, user.berat_badan, user.tinggi_badan, user.kadar_kolesterol, user.trombosit);
+        printf(",%s,%f,%d,%d,%d,%f,%d,%f,%d,%d,%d,%d", user.riwayat_penyakit, user.suhu_tubuh, user.tekanan_darah_sistolik, user.tekanan_darah_diastolik, user.detak_jantung,
+        user.saturasi_oksigen, user.kadar_gula_darah, user.berat_badan, user.tinggi_badan, user.kadar_kolesterol, user.trombosit, user.nyawa);
     }
 }
 
@@ -148,6 +148,7 @@ User createEmptyUser(){
     user.tinggi_badan = 0;
     user.kadar_kolesterol = 0;
     user.trombosit = 0;
+    user.nyawa = 3;
     return user;
 }
 
@@ -163,21 +164,49 @@ void resetUserData(User *user){
     user->tinggi_badan = 0;
     user->kadar_kolesterol = 0;
     user->trombosit = 0;
+    user->nyawa = 3;
+}
+
+void deleteUser(ListDinUser *list, int idx){
+    if(idx == list->nEff-1){
+        list->buffer[idx].id = 0;
+        strcpy(list->buffer[idx].username, "");
+        strcpy(list->buffer[idx].password, "");
+        strcpy(list->buffer[idx].role, "");
+        strcpy(list->buffer[idx].riwayat_penyakit, "");
+        list->buffer[idx].suhu_tubuh = 0;
+        list->buffer[idx].tekanan_darah_sistolik = 0;
+        list->buffer[idx].tekanan_darah_diastolik = 0;
+        list->buffer[idx].detak_jantung = 0;
+        list->buffer[idx].saturasi_oksigen = 0;
+        list->buffer[idx].kadar_gula_darah = 0;
+        list->buffer[idx].berat_badan = 0;
+        list->buffer[idx].tinggi_badan = 0;
+        list->buffer[idx].kadar_kolesterol = 0;
+        list->buffer[idx].trombosit = 0;
+        list->buffer[idx].nyawa = 3;
+    }
+    else{
+        for(int i = idx; i < list->nEff-1; i++){
+            list->buffer[i] = list->buffer[i+1];
+        }
+    }
+    list->nEff--;
 }
 
 void writeListUser(char * folderPath, ListDinUser *list){
     char fullFilePath[300];
     snprintf(fullFilePath, sizeof(fullFilePath),"%s/user.csv", folderPath ); 
     FILE * file = fopen(fullFilePath, "w");
-    fprintf(file, "id;username;password;role;riwayat_penyakit;suhu_tubuh;tekanan_darah_sistolik;tekanan_darah_diastolik;detak_jantung;saturasi_oksigen;kadar_gula_darah;berat_badan;tinggi_badan;kadar_kolesterol;trombosit\n");
+    fprintf(file, "id;username;password;role;riwayat_penyakit;suhu_tubuh;tekanan_darah_sistolik;tekanan_darah_diastolik;detak_jantung;saturasi_oksigen;kadar_gula_darah;berat_badan;tinggi_badan;kadar_kolesterol;trombosit;nyawa\n");
 
     for(int i = 0; i<list->nEff; i++){
         fprintf(file, "%d;%s;%s;%s;%s", list->buffer[i].id, list->buffer[i].username, list->buffer[i].password, list->buffer[i].role, list->buffer[i].riwayat_penyakit);
         if(list->buffer[i].suhu_tubuh != 0){
-            fprintf(file, ";%f;%d;%d;%d;%f;%d;%f;%d;%d;%d", list->buffer[i].suhu_tubuh, list->buffer[i].tekanan_darah_sistolik, list->buffer[i].tekanan_darah_diastolik, list->buffer[i].detak_jantung,
-            list->buffer[i].saturasi_oksigen, list->buffer[i].kadar_gula_darah, list->buffer[i].berat_badan, list->buffer[i].tinggi_badan, list->buffer[i].kadar_kolesterol, list->buffer[i].trombosit);
+            fprintf(file, ";%f;%d;%d;%d;%f;%d;%f;%d;%d;%d;%d", list->buffer[i].suhu_tubuh, list->buffer[i].tekanan_darah_sistolik, list->buffer[i].tekanan_darah_diastolik, list->buffer[i].detak_jantung,
+            list->buffer[i].saturasi_oksigen, list->buffer[i].kadar_gula_darah, list->buffer[i].berat_badan, list->buffer[i].tinggi_badan, list->buffer[i].kadar_kolesterol, list->buffer[i].trombosit, list->buffer[i].nyawa);
         } else{
-            fprintf(file, ";;;;;;;;;;");
+            fprintf(file, ";;;;;;;;;;;");
         }
         fprintf(file,"\n");
     }
