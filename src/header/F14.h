@@ -3,9 +3,9 @@
 #include "user.h"
 #include "queue.h"
 #include "config.h"
+#include "colors.h"
 #include <stdio.h>
 
 void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId);
-const char* cari_user(ListDinUser UserData, int ID);
 
 #endif

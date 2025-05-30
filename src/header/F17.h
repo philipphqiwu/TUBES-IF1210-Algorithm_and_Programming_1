@@ -5,6 +5,7 @@
 #include "penyakit.h"
 #include "obat-penyakit.h"
 #include "config.h"
+#include "colors.h"
 
 // Mengeluarkan obat yang ada pada bagian TOP perut
 void minumPenawar(int loginID, Config *config, ListDinUser listUser, ListObat listObat, ListPenyakit listPenyakit, MapObatPenyakit mapObatPenyakit);

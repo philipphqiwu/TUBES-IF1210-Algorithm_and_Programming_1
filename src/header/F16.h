@@ -5,6 +5,7 @@
 #include "penyakit.h"
 #include "obat-penyakit.h"
 #include "config.h"
+#include "colors.h"
 
 // Memberikan opsi kepada user untuk meminum obat.
 void minumObat(int loginID, Config *config, ListDinUser listUser, ListObat listObat, ListPenyakit listPenyakit, MapObatPenyakit mapObatPenyakit);
