@@ -3,6 +3,7 @@
 #include "../header/user.h"
 #include "../header/config.h"
 #include "../header/Boolean.h"
+#include <string.h>
 #include "../header/penyakit.h"
 
 int cekPenyakit(ListPenyakit kriteriaPenyakit, ListDinUser* UserData, int idPasien){
@@ -143,22 +144,13 @@ void diagnosis(ListPenyakit kriteriapenyakit, Config rumahsakit, ListDinUser *Us
                 else {
                     printf(COLOR_CYAN"%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idxPasien].username);
                     printf("Pasien %s merasa sehat sehingga dia keluar dari ruangan dan pulang!\n", UserData->buffer[idxPasien].username);
-                    int posisiPasien[2] = {-1, -1};
-                    for(int i = 0; i < rumahsakit.denah.rows; i++){
-                        for(int j = 0; j < rumahsakit.denah.cols; j++){
-                            Queue *temp = rumahsakit.denah.contents[i][j].antrian;
-                            if(temp != NULL && temp->front != NULL && temp->front->data == loginId){
-                                posisiPasien[0] = i;
-                                posisiPasien[1] = j;
-                                break;
-                            }
-                        }
-                        if(posisiPasien[0] == i) break;
-                    }
-                    if (posisiPasien[0] != -1 && posisiPasien[1] != -1) {
-                        dequeue(rumahsakit.denah.contents[posisiPasien[0]][posisiPasien[1]].antrian);
+        
+                    Queue *temp = rumahsakit.denah.contents[idxBaris][idxKolom].antrian;
+                    
+                    if (temp != NULL && temp->front != NULL && temp->front->data == idxPasien) {
+                        dequeue(rumahsakit.denah.contents[idxBaris][idxKolom].antrian);
                     } else {
-                        printf("❗Pasien tidak ditemukan dalam antrian mana pun. Tidak dilakukan dequeue.\n");
+                        printf("Pasien tidak ditemukan dalam antrian mana pun. Tidak dilakukan dequeue.\n");
                     }
                     resetUserData(&(UserData->buffer[idxPasien]));
                     return;
