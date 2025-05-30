@@ -149,8 +149,19 @@ void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
     }
 
     int choice;
-    printf("Pilih dokter (contoh input: 1) : ");
-    scanf("%d", &choice);
+    int valid_choice = 0;
+    do {
+        printf("Pilih dokter (contoh input: 1) : ");
+        valid = scanf("%d", &choice);
+        while(getchar() != '\n'); 
+        if (valid != 1 || choice < 1 || choice >= nomor) {
+            printf("Pilihan tidak valid! Silakan masukkan angka antara 1 sampai %d.\n", nomor-1);
+            valid_choice = 0;
+        } else {
+            valid_choice = 1;
+        }
+    } while (!valid_choice);
+
     enqueue(rumahsakit->denah.contents[choice_holder[choice][0]][choice_holder[choice][1]].antrian, loginId);
     printf("Pendaftaran check-up berhasil!\n");
     printf("Anda terdaftar pada antrian %s di ruangan %s.\n", cariUsername(*UserData, rumahsakit->denah.contents[choice_holder[choice][0]][choice_holder[choice][1]].dokterID), rumahsakit->denah.contents[choice_holder[choice][0]][choice_holder[choice][1]].kodeRuangan);
