@@ -155,7 +155,11 @@ void diagnosis(ListPenyakit kriteriapenyakit, Config rumahsakit, ListDinUser *Us
                         }
                         if(posisiPasien[0] == i) break;
                     }
-                    dequeue(rumahsakit.denah.contents[posisiPasien[0]][posisiPasien[1]].antrian);
+                    if (posisiPasien[0] != -1 && posisiPasien[1] != -1) {
+                        dequeue(rumahsakit.denah.contents[posisiPasien[0]][posisiPasien[1]].antrian);
+                    } else {
+                        printf("❗Pasien tidak ditemukan dalam antrian mana pun. Tidak dilakukan dequeue.\n");
+                    }
                     resetUserData(&(UserData->buffer[idxPasien]));
                     return;
                 }
