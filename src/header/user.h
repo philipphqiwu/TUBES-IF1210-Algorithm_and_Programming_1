@@ -149,6 +149,9 @@ void sortUser(ListDinUser *list);
 // Mengembalikan indeks user dengan id tertentu
 int cariIdxUser(ListDinUser * UserData, int id);
 
+// Mengembalikan username user
+const char* cariUsername(ListDinUser UserData, int idPasien); 
+
 // Mengembalikan nilai bertipe User yang memiliki komponen-komponen default.
 User createEmptyUser();
 

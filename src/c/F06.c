@@ -5,13 +5,7 @@
 
 
 // mencari nama pasien dalam ruangan
-const char* cariUsername(ListDinUser UserData, int idPasien) {
-    int idxUser = cariIdxUser(&UserData, idPasien);
-    if (idxUser == -1) {
-        return "-";
-    }
-    return UserData.buffer[idxUser].username;
-}
+
 
 char ruangan[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
                     'K', 'L', 'M', 'N', 'O', 'P','Q', 'R','S','T','U'
@@ -24,7 +18,11 @@ void lihatDenah(Config rumahsakit) {
     printf("    ");
     // print banyak kolom
     for(int j = 0; j < rumahsakit.denah.cols; j++) {
-        printf("  %d  ", j+1);
+        if (j == 0){
+            printf("  %d  ", j+1);
+        }else{
+            printf("   %d  ", j+1);
+        }
     }
     printf("\n");
     // Print gari pertama dalam dneah
