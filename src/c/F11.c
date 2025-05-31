@@ -146,12 +146,14 @@ void diagnosis(ListPenyakit kriteriapenyakit, Config rumahsakit, ListDinUser *Us
                     printf("Pasien %s merasa sehat sehingga dia keluar dari ruangan dan pulang!\n", UserData->buffer[idxPasien].username);
         
                     Queue *temp = rumahsakit.denah.contents[idxBaris][idxKolom].antrian;
-                    
-                    if (temp != NULL && temp->front != NULL && temp->front->data == idxPasien) {
+                    // Add this before the strcmp
+                   
+                    if (temp != NULL && temp->front != NULL && cariIdxUser(UserData, temp->front->data) == idxPasien) {
                         dequeue(rumahsakit.denah.contents[idxBaris][idxKolom].antrian);
                     } else {
-                        printf("Pasien tidak ditemukan dalam antrian mana pun. Tidak dilakukan dequeue.\n");
+                    printf("Pasien tidak ditemukan dalam antrian mana pun. Tidak dilakukan dequeue.\n");
                     }
+
                     resetUserData(&(UserData->buffer[idxPasien]));
                     return;
                 }
