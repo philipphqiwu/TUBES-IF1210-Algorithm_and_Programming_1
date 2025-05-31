@@ -37,7 +37,7 @@ void ubahDenah(Config *rumahSakit){
             rumahSakit->denah.cols = kolomNew;
             return;
         }else{
-            printf("Ruangan tidak kosong, pindahkan dokter terlebih dahulu");
+            printf("Ruangan tidak kosong, pindahkan dokter terlebih dahulu\n");
             return;
         }
     }else{
@@ -85,9 +85,14 @@ void pindahDokter(ListDinUser userData, Config *rumahSakit){
     if(rumahSakit->denah.contents[barisNow][kolomNow].dokterID != 0){
         rumahSakit->denah.contents[barisNew][kolomNew] = rumahSakit->denah.contents[barisNow][kolomNow];
         rumahSakit->denah.contents[barisNow][kolomNow].dokterID = 0;
-        printf("Berhasil memindahkan dokter %s", cariUsername(userData, rumahSakit->denah.contents[barisNew][kolomNew].dokterID));
+        printf("Berhasil memindahkan dokter %s\n", cariUsername(userData, rumahSakit->denah.contents[barisNew][kolomNew].dokterID));
+    
+        strcpy(&userData.buffer[cariIdxUser(&userData, rumahSakit->denah.contents[barisNew][kolomNew].dokterID)].ruang, kodeRuanganNew);
+        // printf("%s\n", userData.buffer[cariIdxUser(&userData, rumahSakit->denah.contents[barisNew][kolomNew].dokterID)].ruang);
+        return;
     }
     else{
-        printf("Ruangan tidak kosong");
+        printf("Ruangan tidak kosong\n");
+        return;
     }
 }
