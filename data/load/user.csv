@@ -13,7 +13,7 @@ id;username;password;role;riwayat_penyakit;suhu_tubuh;tekanan_darah_sistolik;tek
 11;ciciko;pass1111;dokter;;;;;;;;;;;
 12;cacako;pass1212;dokter;;;;;;;;;;;
 13;kroket;pass1313;dokter;;;;;;;;;;;
-14;junior;junior12;pasien;;;;;;;;;;;
+14;junior;junior12;pasien;;36.5;37.0;120;130;75;80;75;100;96.0;98.0;90;130;130;160;170;200;150;450
 15;risol;pass1515;dokter;;;;;;;;;;;
 16;tobokan;pass1234;pasien;;36.799999;114;74;61;94.599998;100;80.599998;173;152;386
 20;popokan;passpopokan;pasien;;36.900002;110;85;73;98.699997;152;62.799999;157;184;390
