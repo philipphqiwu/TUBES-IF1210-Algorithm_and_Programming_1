@@ -22,10 +22,11 @@ void help(int loginState, int loginId, ListDinUser UserData){
         // untuk sebelum LOGIN
         case 0:
             printf("Kamu belum login sebagai role apapun. Silahkan login terlebih dahulu.\n\n");
-            puts("1. LOGIN    : Masuk ke dalam akun yang sudah terdaftar");
-            puts("2. REGISTER : Membuat akun baru");
-            puts("3. SAVE     : Menyimpan kondisi rumah sakit");
-            puts("4. EXIT     : Keluar dari program");
+            puts("1. LOGIN         : Masuk ke dalam akun yang sudah terdaftar");
+            puts("2. REGISTER      : Membuat akun baru");
+            puts("3. LUPA_PASSWORD : Mengubah password pengguna dengan menggunakan kode unik");
+            puts("4. SAVE          : Menyimpan kondisi rumah sakit");
+            puts("5. EXIT          : Keluar dari program");
             break;
         // untuk Manager
         case 1:
