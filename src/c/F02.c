@@ -56,6 +56,7 @@ void registerPasien(ListDinUser * UserData){
         strcpy(UserData->buffer[UserData->nEff].role, "pasien");
         UserData->buffer[UserData->nEff].ruang[0] = '\0';
         UserData->buffer[UserData->nEff].antrian[0] = '\0';
+        UserData->buffer[UserData->nEff].nyawa = 3;
         UserData->nEff += 1;
     }
 

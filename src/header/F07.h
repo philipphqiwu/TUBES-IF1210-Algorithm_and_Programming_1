@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 // Menanyakan user sort berdasarkan id atau nama dan urutan sort
-void sortBased(int * base, int * order);
+void sortBased(int * base, int * order, int type);
 // I.S. base dan order masih 0
 // F.S. base dan order memiliki nilai berdasarkan jenis sort yang diinginkan
 
@@ -15,6 +15,11 @@ void sortBased(int * base, int * order);
 void alphabetSort(User *ptrs[], int length);
 // I.S. Seluruh argumen terdefinisi
 // F.S. Pointers-pointers ptrs disortir berdasarkan alfabet
+
+// Melakukan sort berdasarkan aura
+void auraSort(User *ptrs[], int length);
+// I.S. Seluruh argumen terdefinisi
+// F.S. Pointers-pointers ptrs disortir berdasarkan aura
 
 // Menampilkan list berdasarkan jenis pengurutan
 void tampilList(User *ptrs[], int type, int base, int order, int length);

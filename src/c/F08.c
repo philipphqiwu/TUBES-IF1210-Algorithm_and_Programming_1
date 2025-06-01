@@ -281,7 +281,7 @@ void findPenyakit(ListDinUser * UserData){
     } else{
         int base = 0;
         int order = 0;
-        sortBased(&base, &order);
+        sortBased(&base, &order, 2);
         tampilPenyakit(ptrs,base,order,length, penyakit);
     }
 }

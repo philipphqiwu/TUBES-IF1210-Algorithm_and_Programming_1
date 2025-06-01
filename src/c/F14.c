@@ -137,16 +137,17 @@ void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
             if(rumahsakit->denah.contents[baris][kolom].dokterID == 0) continue;
             int antrian_total = rumahsakit->denah.contents[baris][kolom].antrian->counter;
             int current_antrian_luar = antrian_total - rumahsakit->kapasitasRuangan;
-            if(current_antrian_luar == 4) continue;
+            if(current_antrian_luar >= rumahsakit->kapasitasAntrian) continue;
             char nama[21];
             strncpy(nama, cariUsername(*UserData, rumahsakit->denah.contents[baris][kolom].dokterID), 20);
             nama[20] = '\0';  // pastikan null-terminated
 
             const char* kodeRuang = rumahsakit->denah.contents[baris][kolom].kodeRuangan;
+            int idxDokter = cariIdxUser(UserData, rumahsakit->denah.contents[baris][kolom].dokterID);
             if(current_antrian_luar > 0){
-                printf("%d. Dr. %s - Spesialisasi Umum - Ruangan %s (Antrian: %d)\n", nomor, nama, kodeRuang, current_antrian_luar);
+                printf(COLOR_YELLOW"%d. Dr. %s - Spesialisasi Umum - Ruangan %s (Antrian: %d)"COLOR_BLUE"- Aura %d\n"COLOR_RESET, nomor, nama, kodeRuang, current_antrian_luar, UserData->buffer[idxDokter].aura);
             }else{ //kalau current antrian luar minus, berdasarkan rumus current antrian artinya tidak ada ada antrian di luar 
-                printf("%d. Dr. %s - Spesialisasi Umum - Ruangan %s (Antrian: %d)\n", nomor, nama, kodeRuang, 0);
+                printf(COLOR_YELLOW"%d. Dr. %s - Spesialisasi Umum - Ruangan %s (Antrian: %d)"COLOR_BLUE"- Aura %d\n"COLOR_RESET, nomor, nama, kodeRuang, 0, UserData->buffer[idxDokter].aura);
             }
             choice_holder[nomor][0] = baris;
             choice_holder[nomor][1] = kolom;

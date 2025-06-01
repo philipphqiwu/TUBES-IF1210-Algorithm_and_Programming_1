@@ -24,6 +24,7 @@ typedef struct{
     int nyawa;
     char ruang[10];
     char antrian[10];
+    int aura;
 } User;
 
 void printUser(User user);

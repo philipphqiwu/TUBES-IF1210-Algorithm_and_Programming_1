@@ -198,15 +198,18 @@ void writeListUser(char * folderPath, ListDinUser *list){
     char fullFilePath[300];
     snprintf(fullFilePath, sizeof(fullFilePath),"%s/user.csv", folderPath ); 
     FILE * file = fopen(fullFilePath, "w");
-    fprintf(file, "id;username;password;role;riwayat_penyakit;suhu_tubuh;tekanan_darah_sistolik;tekanan_darah_diastolik;detak_jantung;saturasi_oksigen;kadar_gula_darah;berat_badan;tinggi_badan;kadar_kolesterol;trombosit;nyawa\n");
+    fprintf(file, "id;username;password;role;riwayat_penyakit;suhu_tubuh;tekanan_darah_sistolik;tekanan_darah_diastolik;detak_jantung;saturasi_oksigen;kadar_gula_darah;berat_badan;tinggi_badan;kadar_kolesterol;trombosit;nyawa;aura\n");
 
     for(int i = 0; i<list->nEff; i++){
         fprintf(file, "%d;%s;%s;%s;%s", list->buffer[i].id, list->buffer[i].username, list->buffer[i].password, list->buffer[i].role, list->buffer[i].riwayat_penyakit);
         if(list->buffer[i].suhu_tubuh != 0){
-            fprintf(file, ";%f;%d;%d;%d;%f;%d;%f;%d;%d;%d;%d", list->buffer[i].suhu_tubuh, list->buffer[i].tekanan_darah_sistolik, list->buffer[i].tekanan_darah_diastolik, list->buffer[i].detak_jantung,
+            fprintf(file, ";%f;%d;%d;%d;%f;%d;%f;%d;%d;%d;%d;", list->buffer[i].suhu_tubuh, list->buffer[i].tekanan_darah_sistolik, list->buffer[i].tekanan_darah_diastolik, list->buffer[i].detak_jantung,
             list->buffer[i].saturasi_oksigen, list->buffer[i].kadar_gula_darah, list->buffer[i].berat_badan, list->buffer[i].tinggi_badan, list->buffer[i].kadar_kolesterol, list->buffer[i].trombosit, list->buffer[i].nyawa);
         } else{
-            fprintf(file, ";;;;;;;;;;;");
+            fprintf(file, ";;;;;;;;;;;;");
+            if(strcmp(list->buffer[i].role,"dokter") == 0){
+                fprintf(file, "%d", list->buffer[i].aura);
+            }
         }
         fprintf(file,"\n");
     }
