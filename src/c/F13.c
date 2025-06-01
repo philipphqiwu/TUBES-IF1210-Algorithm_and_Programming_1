@@ -23,53 +23,55 @@ void pulangDok(int loginID, Config *config, ListDinUser *listUser, ListObat list
         return;
     }
     printf(COLOR_YELLOW"Dokter sedang memeriksa keadaanmu...\n\n");
-    int urutanSalah = cekPerutDenganUrutan(config->perutPasien[loginID], penyakitId, mapObatPenyakit);
-    // printf("urutanSalah: %d\n", urutanSalah);
-    if(isMatriksRowEmpty(config->inventoryPasien, loginID) && urutanSalah){
-        printf(COLOR_RED"Maaf, tapi kamu masih belum bisa pulang!\n\n"COLOR_RESET);
-        int banyakObat = config->perutPasien[loginID].length;
-        // printf("banyakObat %d\n", banyakObat);
-        int isiPerut[banyakObat+1];
-        Node* temp = config->perutPasien[loginID].head;
-        // printf("obat di perut %d\n", temp->data);
-        int i = banyakObat;
-        // printf("hit\n");
-        // printStack(config->perutPasien[loginID]);
-        while(temp != NULL && i > 0){
-            // printf("loop%d\n", i);
+    if(strcmp(listUser->buffer[userIdx].riwayat_penyakit, "-")){
+        int urutanSalah = cekPerutDenganUrutan(config->perutPasien[loginID], penyakitId, mapObatPenyakit);
+        // printf("urutanSalah: %d\n", urutanSalah);
+        if(isMatriksRowEmpty(config->inventoryPasien, loginID) && urutanSalah){
+            printf(COLOR_RED"Maaf, tapi kamu masih belum bisa pulang!\n\n"COLOR_RESET);
+            int banyakObat = config->perutPasien[loginID].length;
+            // printf("banyakObat %d\n", banyakObat);
+            int isiPerut[banyakObat+1];
+            Node* temp = config->perutPasien[loginID].head;
             // printf("obat di perut %d\n", temp->data);
-            isiPerut[i] = temp->data;
-            i--;
-            temp = temp->next;
-        }
-        printf(COLOR_WHITE"Urutan peminuman obat yang diharapkan:\n");
-        for(int i = 1; i < banyakObat+1; i++){
-            int obatId = mapObatPenyakit.items[penyakitId].value[i].obat_id;
-            int obatIdx = cariIdxObat(&listObat, obatId);
-            char namaObat[MAX_NAMA_OBAT];
-            strcpy(namaObat, listObat.items[obatIdx].nama_obat);
-            if(i == 1) printf("%s", namaObat);
-            else printf(" -> %s", namaObat);
-        }
-        printf("\n\n");
-        printf(COLOR_RED"Urutan obat yang kamu minum:\n");
-        for(int i = 1; i < banyakObat+1; i++){
-            int obatId = isiPerut[i];
-            int obatIdx = cariIdxObat(&listObat, obatId);
-            char namaObat[MAX_NAMA_OBAT];
-            strcpy(namaObat, listObat.items[obatIdx].nama_obat);
-            if(i < urutanSalah){
+            int i = banyakObat;
+            // printf("hit\n");
+            // printStack(config->perutPasien[loginID]);
+            while(temp != NULL && i > 0){
+                // printf("loop%d\n", i);
+                // printf("obat di perut %d\n", temp->data);
+                isiPerut[i] = temp->data;
+                i--;
+                temp = temp->next;
+            }
+            printf(COLOR_WHITE"Urutan peminuman obat yang diharapkan:\n");
+            for(int i = 1; i < banyakObat+1; i++){
+                int obatId = mapObatPenyakit.items[penyakitId].value[i].obat_id;
+                int obatIdx = cariIdxObat(&listObat, obatId);
+                char namaObat[MAX_NAMA_OBAT];
+                strcpy(namaObat, listObat.items[obatIdx].nama_obat);
                 if(i == 1) printf("%s", namaObat);
                 else printf(" -> %s", namaObat);
             }
-            else{
-                if(i == 1) printf(COLOR_RED"%s"COLOR_RESET, namaObat);
-                else printf(COLOR_RED" -> %s"COLOR_RESET, namaObat);
+            printf("\n\n");
+            printf(COLOR_RED"Urutan obat yang kamu minum:\n");
+            for(int i = 1; i < banyakObat+1; i++){
+                int obatId = isiPerut[i];
+                int obatIdx = cariIdxObat(&listObat, obatId);
+                char namaObat[MAX_NAMA_OBAT];
+                strcpy(namaObat, listObat.items[obatIdx].nama_obat);
+                if(i < urutanSalah){
+                    if(i == 1) printf("%s", namaObat);
+                    else printf(" -> %s", namaObat);
+                }
+                else{
+                    if(i == 1) printf(COLOR_RED"%s"COLOR_RESET, namaObat);
+                    else printf(COLOR_RED" -> %s"COLOR_RESET, namaObat);
+                }
             }
+            printf("\n\n");
+            printf(COLOR_RED"Silahkan kunjungi dokter untuk meminta penawar yang sesuai!\n"COLOR_RESET);
+            return;
         }
-        printf("\n\n");
-        printf(COLOR_RED"Silahkan kunjungi dokter untuk meminta penawar yang sesuai!\n"COLOR_RESET);
-        return;
     }
     int posisiPasien[2] = {-1, -1};
     for(int i = 0; i < config->denah.rows; i++){
