@@ -4,6 +4,8 @@
 #include "../header/user.h"
 #include "../header/Boolean.h"
 
+
+
 void printUser(User user){
     printf("%d,%s,%s,%s", user.id, user.username, user.password, user.role);
     if(strcmp(user.role,"pasien")==0){
@@ -129,6 +131,14 @@ int cariIdxUser(ListDinUser * UserData, int id){
         return mid;
     }
     return -1;
+}
+
+const char* cariUsername(ListDinUser UserData, int ID) {
+    int idxUser = cariIdxUser(&UserData, ID);
+    if (idxUser == -1) {
+        return "-";
+    }
+    return UserData.buffer[idxUser].username;
 }
 
 User createEmptyUser(){
