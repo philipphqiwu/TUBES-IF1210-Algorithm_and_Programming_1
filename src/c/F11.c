@@ -129,7 +129,7 @@ void diagnosis(ListPenyakit kriteriapenyakit, Config rumahsakit, ListDinUser *Us
                 // Jika pasien sudah sembuh
                 if (idPenyakitSekarang == -1) {
                     printf(COLOR_CYAN"%s sudah tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idxPasien].username);
-                    resetUserData(&(UserData->buffer[idxPasien]));
+                    // resetUserData(&(UserData->buffer[idxPasien]));
                     strcpy(UserData->buffer[idxPasien].riwayat_penyakit, "-");
                     return; // Diagnosis selesai
                 } 
@@ -150,7 +150,7 @@ void diagnosis(ListPenyakit kriteriapenyakit, Config rumahsakit, ListDinUser *Us
                 // pasien tidak punya penyakit
                 else {
                     printf(COLOR_CYAN"%s tidak terdiagnosa penyakit apapun!\n", UserData->buffer[idxPasien].username);
-                    resetUserData(&(UserData->buffer[idxPasien]));
+                    // resetUserData(&(UserData->buffer[idxPasien]));
                     strcpy(UserData->buffer[idxPasien].riwayat_penyakit, "-");
                     return;
                 }

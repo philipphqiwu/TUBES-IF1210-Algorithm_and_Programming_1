@@ -6,21 +6,23 @@
 void pulangDok(int loginID, Config *config, ListDinUser *listUser, ListObat listObat, ListPenyakit listPenyakit, MapObatPenyakit mapObatPenyakit){
     int userIdx = cariIdxUser(listUser, loginID);
     int penyakitId = searchPenyakitIDByName(listPenyakit, listUser->buffer[userIdx].riwayat_penyakit);
-    if(listUser->buffer[userIdx].suhu_tubuh == 0){
-        printf(COLOR_RED"Kamu belum checkup!\n"COLOR_RESET);
-        return;
-    }
-    else if(!strcmp(listUser->buffer[userIdx].riwayat_penyakit, "")){
-        printf(COLOR_RED"Kamu belum menerima diagnosis apapun dari dokter, jangan buru-buru pulang!\n"COLOR_RESET);
-        return;
-    }
-    else if(isMatriksRowEmpty(config->inventoryPasien, loginID) && config->perutPasien[loginID].head == NULL){
-        printf(COLOR_RED"Kamu belum menerima obat apapun dari dokter!\n"COLOR_RESET);
-        return;
-    }
-    else if(!isMatriksRowEmpty(config->inventoryPasien, loginID)){
-        printf(COLOR_RED"Masih ada obat yang belum kamu habiskan, minum semuanya dulu yukk!\n"COLOR_RESET);
-        return;
+    if(strcmp(listUser->buffer[userIdx].riwayat_penyakit, "-")){
+        if(listUser->buffer[userIdx].suhu_tubuh == 0){
+            printf(COLOR_RED"Kamu belum checkup!\n"COLOR_RESET);
+            return;
+        }
+        else if(!strcmp(listUser->buffer[userIdx].riwayat_penyakit, "")){
+            printf(COLOR_RED"Kamu belum menerima diagnosis apapun dari dokter, jangan buru-buru pulang!\n"COLOR_RESET);
+            return;
+        }
+        else if(isMatriksRowEmpty(config->inventoryPasien, loginID) && config->perutPasien[loginID].head == NULL){
+            printf(COLOR_RED"Kamu belum menerima obat apapun dari dokter!\n"COLOR_RESET);
+            return;
+        }
+        else if(!isMatriksRowEmpty(config->inventoryPasien, loginID)){
+            printf(COLOR_RED"Masih ada obat yang belum kamu habiskan, minum semuanya dulu yukk!\n"COLOR_RESET);
+            return;
+        }
     }
     printf(COLOR_YELLOW"Dokter sedang memeriksa keadaanmu...\n\n");
     if(strcmp(listUser->buffer[userIdx].riwayat_penyakit, "-")){
