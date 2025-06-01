@@ -71,8 +71,10 @@ void help(int loginState, int loginId, ListDinUser UserData){
             puts(" 6. PULANGDOK         : Berkonsultasi kembali ke dokter untuk menanyakan apakah kondisi sudah baik dan boleh pulang");
             puts(" 7. MINUM_OBAT        : Melihat daftar obat dan memilih obat yang akan diminum");
             puts(" 8. MINUM_PENAWAR     : Meminum penawar jika salah minum obat dan mengeluarkan obat terakhir yang diminum");
-            puts(" 9. SAVE              : Menyimpan kondisi rumah sakit");
-            puts("10. EXIT              : Keluar dari program");
+            puts(" 9. SKIP_ANTRIAN      : Langsung maju ke posisi terdepan");
+            puts("10. CANCEL_ANTRIAN    : Keluar sepenuhnya dari ruangan");
+            puts("11. SAVE              : Menyimpan kondisi rumah sakit");
+            puts("12. EXIT              : Keluar dari program");
         break;
     }
 
