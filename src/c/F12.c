@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../header/F12.h"
+#include "../header/ascii-art.h"
 
 void ngobatin(int loginID, Config *config, ListDinUser listUser, ListObat listObat, ListPenyakit listPenyakit, MapObatPenyakit mapObatPenyakit){
     int found = 0;
@@ -39,6 +40,7 @@ void ngobatin(int loginID, Config *config, ListDinUser listUser, ListObat listOb
         return;
     }
     int penyakitIdx = cariIdxPenyakit(&listPenyakit, penyakitID);
+    printAsciiNgobatin();
     printf(COLOR_CYAN"Pasien memiliki penyakit %s\n", listPenyakit.items[penyakitIdx].nama_penyakit);
     // printf("[DEBUG] penyakitIdx: %d\n", penyakitIdx);
     config->jumlahPemilikObat++;

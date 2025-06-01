@@ -1,5 +1,6 @@
 #include "../header/F16.h"
 #include "../header/F03.h"
+#include "../header/ascii-art.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -23,11 +24,12 @@ void minumObat(int *loginID, int *loginState, Config *config, ListDinUser *listU
     }
     printf("Pilih obat untuk diminum: ");
     int obatPilihan;
-    
-    while(scanf("%d", &obatPilihan) !=  1 || obatPilihan <= 0 || obatPilihan >= nomorObat){
+    int temp = scanf("%d", &obatPilihan);
+    if(temp !=  1 || obatPilihan <= 0 || obatPilihan >= nomorObat){
         printf(COLOR_RED"Pilihan nomor tidak tersedia!\n"COLOR_RESET);
-        printf(COLOR_YELLOW"Pilih obat untuk diminum: ");
+        // printf(COLOR_YELLOW"Pilih obat untuk diminum: ");
         while (getchar() != '\n');
+        return;
     }
     int obatIdx = cariIdxObat(&listObat, obatAvailable[obatPilihan]);
     if(config->perutPasien[*loginID].head == NULL){
@@ -85,6 +87,7 @@ void minumObat(int *loginID, int *loginState, Config *config, ListDinUser *listU
             pop(&(config->perutPasien[*loginID]));
         }
         config->jumlahPerutPasien--;
+        printAsciiDed();
         printf(COLOR_MAGENTA"Mohon maaf, karena kamu telah meminum obat yang salah sebanyak tiga kali, rumah sakit enggan untuk memberimu penawar.\n");
         printf(COLOR_MAGENTA"Kamu dinyatakan ded. \U0001F480\n");
         printf(COLOR_RESET);

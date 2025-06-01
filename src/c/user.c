@@ -4,6 +4,8 @@
 #include "../header/user.h"
 #include "../header/Boolean.h"
 
+
+
 void printUser(User user){
     printf("%d,%s,%s,%s", user.id, user.username, user.password, user.role);
     if(strcmp(user.role,"pasien")==0){
@@ -131,6 +133,14 @@ int cariIdxUser(ListDinUser * UserData, int id){
     return -1;
 }
 
+const char* cariUsername(ListDinUser UserData, int ID) {
+    int idxUser = cariIdxUser(&UserData, ID);
+    if (idxUser == -1) {
+        return "-";
+    }
+    return UserData.buffer[idxUser].username;
+}
+
 User createEmptyUser(){
     User user;
     user.id = 0;
@@ -206,7 +216,12 @@ void writeListUser(char * folderPath, ListDinUser *list){
             fprintf(file, ";%f;%d;%d;%d;%f;%d;%f;%d;%d;%d;%d;", list->buffer[i].suhu_tubuh, list->buffer[i].tekanan_darah_sistolik, list->buffer[i].tekanan_darah_diastolik, list->buffer[i].detak_jantung,
             list->buffer[i].saturasi_oksigen, list->buffer[i].kadar_gula_darah, list->buffer[i].berat_badan, list->buffer[i].tinggi_badan, list->buffer[i].kadar_kolesterol, list->buffer[i].trombosit, list->buffer[i].nyawa);
         } else{
-            fprintf(file, ";;;;;;;;;;;;");
+            if(strcmp(list->buffer[i].role,"pasien") == 0){
+                fprintf(file, ";;;;;;;;;;;%d;", list->buffer[i].nyawa);
+            }
+            else{
+                fprintf(file, ";;;;;;;;;;;;");
+            }
             if(strcmp(list->buffer[i].role,"dokter") == 0){
                 fprintf(file, "%d", list->buffer[i].aura);
             }
