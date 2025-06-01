@@ -3,6 +3,7 @@
 #include "../header/F06.h"
 #include "../header/F14.h"
 #include "../header/config.h"
+#include "../header/ascii-art.h"
 #include <stdio.h>
 
 void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
@@ -168,6 +169,7 @@ void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
     } while (!valid_choice);
 
     enqueue(rumahsakit->denah.contents[choice_holder[choice][0]][choice_holder[choice][1]].antrian, loginId);
+    printAsciiDaftarCheckup();
     printf("Pendaftaran check-up berhasil!\n");
     printf("Anda terdaftar pada antrian %s di ruangan %s.\n", cariUsername(*UserData, rumahsakit->denah.contents[choice_holder[choice][0]][choice_holder[choice][1]].dokterID), rumahsakit->denah.contents[choice_holder[choice][0]][choice_holder[choice][1]].kodeRuangan);
     if((rumahsakit->denah.contents[choice_holder[choice][0]][choice_holder[choice][1]].antrian->counter - rumahsakit->kapasitasRuangan) > 0){

@@ -1,5 +1,6 @@
 #include "../header/F16.h"
 #include "../header/F03.h"
+#include "../header/ascii-art.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -85,6 +86,7 @@ void minumObat(int *loginID, int *loginState, Config *config, ListDinUser *listU
             pop(&(config->perutPasien[*loginID]));
         }
         config->jumlahPerutPasien--;
+        printAsciiDed();
         printf(COLOR_MAGENTA"Mohon maaf, karena kamu telah meminum obat yang salah sebanyak tiga kali, rumah sakit enggan untuk memberimu penawar.\n");
         printf(COLOR_MAGENTA"Kamu dinyatakan ded. \U0001F480\n");
         printf(COLOR_RESET);
