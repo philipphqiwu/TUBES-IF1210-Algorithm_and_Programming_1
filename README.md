@@ -54,7 +54,15 @@ make
 ```
 
 <h2 id="features">Features</h2>
-Untuk saat ini, fitur-fitur yang telah berhasil diimplementasikan berupa: <br/>
+Semua spesifikasi wajib telah dikerjakan, ditambah dengan bonus-bonus berupa: <br>
+- B02 - Denah Dinamis <br/>
+- B03 - Aura! <br/>
+- B05 - Dead or Alive?! <br/>
+- B06 - Mainin Antrian <br/>
+<br/>
+
+
+Fitur-fitur yang telah berhasil diimplementasikan berupa: <br/>
 - Login <br/>
 - Register <br/>
 - Logout <br/>
@@ -78,8 +86,12 @@ Untuk saat ini, fitur-fitur yang telah berhasil diimplementasikan berupa: <br/>
 - Antrian Saya <br/>
 - Minum Obat <br/>
 - Minum Penawar <br/>
+- Ubah Denah <br/>
+- Pindah Dok <br/>
+- Skip Antrian <br/>
+- Cancel Antrian <br/>
 - Save <br/>
-- Exit
+- Exit <br/>
 
 
 
