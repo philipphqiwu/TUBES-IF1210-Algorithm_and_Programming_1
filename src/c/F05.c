@@ -44,8 +44,10 @@ void help(int loginState, int loginId, ListDinUser UserData){
             puts("11. LIHAT_SEMUA_ANTRIAN   : Melihat rincian seluruh ruangan saat ini");
             puts("12. TAMBAH_DOKTER         : Menambah dokter baru dengan username dan password yang ditentukan");
             puts("13. ASSIGN_DOKTER         : Melakukan assign ruangan ke dokter tertentu yang belum memiliki ruangan");
-            puts("14. SAVE                  : Menyimpan kondisi rumah sakit");
-            puts("15. EXIT                  : Keluar dari program");
+            puts("14. UBAH_DENAH            : Mengganti ukuran ruangan rumah sakit ");
+            puts("15. PINDAH_DOK            : Memindahkan ruangan dokter ke ruangan baru beserta dengan antriannya");
+            puts("16. SAVE                  : Menyimpan kondisi rumah sakit");
+            puts("17. EXIT                  : Keluar dari program");
             break;
         // untuk manager
         case 2:
