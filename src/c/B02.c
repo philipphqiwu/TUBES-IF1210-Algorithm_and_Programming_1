@@ -87,7 +87,7 @@ void pindahDokter(ListDinUser userData, Config *rumahSakit){
         rumahSakit->denah.contents[barisNow][kolomNow].dokterID = 0;
         printf("Berhasil memindahkan dokter %s\n", cariUsername(userData, rumahSakit->denah.contents[barisNew][kolomNew].dokterID));
     
-        strcpy(&userData.buffer[cariIdxUser(&userData, rumahSakit->denah.contents[barisNew][kolomNew].dokterID)].ruang, kodeRuanganNew);
+        strcpy(userData.buffer[cariIdxUser(&userData, rumahSakit->denah.contents[barisNew][kolomNew].dokterID)].ruang, kodeRuanganNew);
         // printf("%s\n", userData.buffer[cariIdxUser(&userData, rumahSakit->denah.contents[barisNew][kolomNew].dokterID)].ruang);
         return;
     }
