@@ -22,6 +22,7 @@
 #include "../header/Boolean.h"
 #include "../header/penyakit.h"
 #include "../header/B02.h"
+#include "../header/B06.h"
 
 void input(int * loginState, int * loginId, ListDinUser * userData, ListObat * listObat, ListPenyakit * listPenyakit, MapObatPenyakit * mapObatPenyakit, int * run, Config * rumahsakit){
     char user_input[100];
@@ -148,6 +149,9 @@ void input(int * loginState, int * loginId, ListDinUser * userData, ListObat * l
         }
         else if(strcmp(user_input, "PULANGDOK") == 0){
             pulangDok(*loginId, rumahsakit, userData, *listObat, *listPenyakit, *mapObatPenyakit);
+        }
+        else if(strcmp(user_input, "SKIP_ANTRIAN") == 0){
+            skipAntrian(*loginId, rumahsakit, *userData);
         }
         else{
             printf(COLOR_RED"PLEASE ENTER A VALID COMMAND!\n");

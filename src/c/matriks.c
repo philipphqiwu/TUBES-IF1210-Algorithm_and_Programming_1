@@ -57,7 +57,7 @@ int isMatriksRowEmpty(Matriks matriks, int row){
     if(isMatriksEmpty(matriks)){
         return 1;
     }
-    for(int i = 0; i < matriks.rows; i++){
+    for(int i = 0; i < matriks.cols; i++){
         if(matriks.contents[row][i] != 0){
             return 0;
         }

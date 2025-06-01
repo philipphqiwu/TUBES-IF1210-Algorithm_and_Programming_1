@@ -24,11 +24,12 @@ void minumObat(int *loginID, int *loginState, Config *config, ListDinUser *listU
     }
     printf("Pilih obat untuk diminum: ");
     int obatPilihan;
-    
-    while(scanf("%d", &obatPilihan) !=  1 || obatPilihan <= 0 || obatPilihan >= nomorObat){
+    int temp = scanf("%d", &obatPilihan);
+    if(temp !=  1 || obatPilihan <= 0 || obatPilihan >= nomorObat){
         printf(COLOR_RED"Pilihan nomor tidak tersedia!\n"COLOR_RESET);
-        printf(COLOR_YELLOW"Pilih obat untuk diminum: ");
+        // printf(COLOR_YELLOW"Pilih obat untuk diminum: ");
         while (getchar() != '\n');
+        return;
     }
     int obatIdx = cariIdxObat(&listObat, obatAvailable[obatPilihan]);
     if(config->perutPasien[*loginID].head == NULL){
