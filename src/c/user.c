@@ -216,7 +216,12 @@ void writeListUser(char * folderPath, ListDinUser *list){
             fprintf(file, ";%f;%d;%d;%d;%f;%d;%f;%d;%d;%d;%d;", list->buffer[i].suhu_tubuh, list->buffer[i].tekanan_darah_sistolik, list->buffer[i].tekanan_darah_diastolik, list->buffer[i].detak_jantung,
             list->buffer[i].saturasi_oksigen, list->buffer[i].kadar_gula_darah, list->buffer[i].berat_badan, list->buffer[i].tinggi_badan, list->buffer[i].kadar_kolesterol, list->buffer[i].trombosit, list->buffer[i].nyawa);
         } else{
-            fprintf(file, ";;;;;;;;;;;;");
+            if(strcmp(list->buffer[i].role,"pasien") == 0){
+                fprintf(file, ";;;;;;;;;;;%d;", list->buffer[i].nyawa);
+            }
+            else{
+                fprintf(file, ";;;;;;;;;;;;");
+            }
             if(strcmp(list->buffer[i].role,"dokter") == 0){
                 fprintf(file, "%d", list->buffer[i].aura);
             }

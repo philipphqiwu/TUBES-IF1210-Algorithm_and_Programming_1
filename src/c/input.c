@@ -153,6 +153,9 @@ void input(int * loginState, int * loginId, ListDinUser * userData, ListObat * l
         else if(strcmp(user_input, "SKIP_ANTRIAN") == 0){
             skipAntrian(*loginId, rumahsakit, *userData);
         }
+        else if(strcmp(user_input, "CANCEL_ANTRIAN") == 0){
+            cancelAntrian(*loginId, rumahsakit, userData);
+        }
         else{
             printf(COLOR_RED"PLEASE ENTER A VALID COMMAND!\n");
             printf("TYPE \"HELP\" TO SHOW VALID COMMANDS!\n"COLOR_RESET);

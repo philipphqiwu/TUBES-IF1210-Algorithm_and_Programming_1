@@ -88,12 +88,12 @@ void pulangDok(int loginID, Config *config, ListDinUser *listUser, ListObat list
     for(int i = 0; i < banyakObat; i++){
         pop(&(config->perutPasien[loginID]));
     }
+    config->jumlahPerutPasien--;
     printf(COLOR_YELLOW"Selamat! Kamu sudah dinyatakan sembuh oleh dokter. Silahkan pulang dan semoga sehat selalu!\n");
     // AURA
     int idxDokter = cariIdxUser(listUser, config->denah.contents[posisiPasien[0]][posisiPasien[1]].dokterID);
     listUser->buffer[idxDokter].aura++;
 
-    config->jumlahPerutPasien--;
     printf(COLOR_RESET);
 }
 
