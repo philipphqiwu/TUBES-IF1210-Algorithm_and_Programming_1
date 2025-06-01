@@ -5,6 +5,7 @@
 #include "../header/Boolean.h"
 #include <string.h>
 #include "../header/penyakit.h"
+#include "../header/ascii-art.h"
 
 int cekPenyakit(ListPenyakit kriteriaPenyakit, ListDinUser* UserData, int idPasien){
     // int idPenyakit;
@@ -116,7 +117,7 @@ void diagnosis(ListPenyakit kriteriapenyakit, Config rumahsakit, ListDinUser *Us
     // validasi ruangan dari dokter
     if (idxDokter != -1 && dokterFoundruangan == 1){
         // validasi dari pasien terdepan yang akan diobati
-        int idxPasien = cariIdxUser(UserData, rumahsakit.denah.contents[idxBaris][idxKolom].antrian->front->data);
+        int idxPasien = cariIdxUser(UserData, peekQueue(rumahsakit.denah.contents[idxBaris][idxKolom].antrian));
         if (idxPasien != -1){
             int idPenyakitSekarang = cekPenyakit(kriteriapenyakit, UserData, idxPasien);
             // Kemungkinan 1 : pasien pernah didiagnosis
@@ -137,6 +138,7 @@ void diagnosis(ListPenyakit kriteriapenyakit, Config rumahsakit, ListDinUser *Us
             else {
                 // Pasien punya penyakit
                 if (assignPenyakit(kriteriapenyakit, UserData, idxPasien)) {
+                    printAsciiDiagnosis();
                     printf(COLOR_CYAN"%s terdiagnosa penyakit %s!\n", UserData->buffer[idxPasien].username, UserData->buffer[idxPasien].riwayat_penyakit);
                     return; 
                 } 
