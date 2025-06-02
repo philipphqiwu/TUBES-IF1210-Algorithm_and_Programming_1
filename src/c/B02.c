@@ -73,6 +73,11 @@ void pindahDokter(ListDinUser userData, Config *rumahSakit){
     int barisNew = kodeRuanganNew[0] - 'A';
     int kolomNew = atoi(kodeRuanganNew + 1) - 1;
 
+    if (rumahSakit->denah.contents[barisNow][kolomNow].dokterID == 0){
+        printf(COLOR_RED"Tidak ada dokter dalam ruangan awal!\n"COLOR_RESET);
+        return;
+    }
+
     if (barisNow < 0 || kolomNow < 0 || kolomNow >= rumahSakit->denah.cols || barisNow >= rumahSakit->denah.rows) {
         printf(COLOR_RED"Ruangan awal tidak ditemukan!\n"COLOR_RESET);
         return;
