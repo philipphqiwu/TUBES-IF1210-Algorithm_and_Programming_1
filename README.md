@@ -48,7 +48,7 @@ make clean
 ```bash
 make
 ```
-3. Jalankan program (pakai folder load):
+3. Jalankan program (default folder: load):
 ```bash
 ./main <<nama_folder>>
 ```
@@ -91,7 +91,12 @@ Fitur-fitur yang telah berhasil diimplementasikan berupa: <br/>
 - Skip Antrian <br/>
 - Cancel Antrian <br/>
 - Save <br/>
+- Load <br/>
 - Exit <br/>
 
-
-
+Fitur bonus yang telah berhasil diimplementasikan: <br/>
+- Denah Dinamis <br/>
+- Aura! <br/>
+- Dead or Alive?! <br/>
+- Mainin Antrian <br/>
+- Kreativitas (berupa ASCII Art) <br/>
