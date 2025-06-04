@@ -41,7 +41,7 @@ void ubahDenah(Config *rumahSakit){
             return;
         }
     }else{
-        printf("Denah rumash sakit berhasil diubah menjadi %d baris dan %d kolom\n", barisNew, kolomNew);
+        printf("Denah rumah sakit berhasil diubah menjadi %d baris dan %d kolom\n", barisNew, kolomNew);
         rumahSakit->denah.rows = barisNew;
         rumahSakit->denah.cols = kolomNew;
     }

@@ -131,7 +131,8 @@ void assignDokter(ListDinUser * UserData, Config * rumahsakit){
         printf(COLOR_BLUE"Dokter %s berhasil diassign ke ruangan %s\n"COLOR_RESET, Username, input);
         strcpy(UserData->buffer[idx].ruang, input);
         rumahsakit->denah.contents[baris][kolom].dokterID = UserData->buffer[idx].id;
-        rumahsakit->denah.contents[baris][kolom].antrian->front = 0;
+        // rumahsakit->denah.contents[baris][kolom].antrian->front = 0;
+        rumahsakit->denah.contents[baris][kolom].antrian = createQueue();
     }
     
 }

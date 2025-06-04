@@ -145,9 +145,9 @@ void daftarCheckUp(ListDinUser *UserData, Config *rumahsakit, int loginId){
             const char* kodeRuang = rumahsakit->denah.contents[baris][kolom].kodeRuangan;
             int idxDokter = cariIdxUser(UserData, rumahsakit->denah.contents[baris][kolom].dokterID);
             if(current_antrian_luar > 0){
-                printf(COLOR_YELLOW"%d. Dr. %s - Spesialisasi Umum - Ruangan %s (Antrian: %d)"COLOR_BLUE"- Aura %d\n"COLOR_RESET, nomor, nama, kodeRuang, current_antrian_luar, UserData->buffer[idxDokter].aura);
+                printf(COLOR_YELLOW"%d. Dr. %s - Spesialisasi Umum - Ruangan %s (Antrian: %d)"COLOR_BLUE" - Aura %d\n"COLOR_RESET, nomor, nama, kodeRuang, current_antrian_luar, UserData->buffer[idxDokter].aura);
             }else{ //kalau current antrian luar minus, berdasarkan rumus current antrian artinya tidak ada ada antrian di luar 
-                printf(COLOR_YELLOW"%d. Dr. %s - Spesialisasi Umum - Ruangan %s (Antrian: %d)"COLOR_BLUE"- Aura %d\n"COLOR_RESET, nomor, nama, kodeRuang, 0, UserData->buffer[idxDokter].aura);
+                printf(COLOR_YELLOW"%d. Dr. %s - Spesialisasi Umum - Ruangan %s (Antrian: %d)"COLOR_BLUE" - Aura %d\n"COLOR_RESET, nomor, nama, kodeRuang, 0, UserData->buffer[idxDokter].aura);
             }
             choice_holder[nomor][0] = baris;
             choice_holder[nomor][1] = kolom;
